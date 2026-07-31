@@ -4,9 +4,12 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
+  ScrollRestoration,
 } from "@tanstack/react-router";
+import React from "react";
 
 import appCss from "../styles.css?url";
 import "../styles.css";
@@ -121,10 +124,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <CommandPaletteProvider>
+        <ScrollRestoration />
         <Outlet />
         <Toaster />
       </CommandPaletteProvider>

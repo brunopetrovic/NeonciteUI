@@ -30,7 +30,6 @@ const PAGES = [
   { to: "/components", label: "Components", icon: Layers },
   { to: "/blocks", label: "Blocks", icon: Sparkles },
   { to: "/themes", label: "Themes", icon: Palette },
-  { to: "/changelog", label: "Changelog", icon: ScrollText },
   { to: "/docs/installation", label: "Installation", icon: BookOpen },
   { to: "/docs/cli", label: "CLI", icon: Terminal },
   { to: "/docs/theming", label: "Theming", icon: Palette },

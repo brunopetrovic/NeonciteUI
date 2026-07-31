@@ -8,7 +8,6 @@ const nav = [
   { to: "/components", label: "Components" },
   { to: "/blocks", label: "Blocks" },
   { to: "/themes", label: "Themes" },
-  { to: "/changelog", label: "Changelog" },
 ];
 
 export function SiteHeader() {

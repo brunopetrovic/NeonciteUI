@@ -11,6 +11,11 @@ export function Demo() {
 
 export const preview = (
   <div className="rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] inline-block">
-    <Calendar mode="single" />
+    <Calendar
+      mode="single"
+      defaultMonth={new Date(2026, 6, 1)}
+      today={new Date(2026, 6, 31)}
+      selected={new Date(2026, 6, 31)}
+    />
   </div>
 );

@@ -28,7 +28,7 @@ export function Demo() {
 export const preview = (
   <div className="w-[320px]">
     <Command>
-      <CommandInput placeholder="Type a command…" />
+      <CommandInput placeholder="Type a command…" autoFocus={false} />
       <CommandList>
         <CommandEmpty>No results.</CommandEmpty>
         <CommandGroup heading="Actions">

@@ -58,11 +58,6 @@ export function SiteFooter() {
               </a>
             </li>
             <li>
-              <Link to="/changelog" className="text-foreground hover:neon-cyan transition-colors">
-                Changelog
-              </Link>
-            </li>
-            <li>
               <Link to="/blocks" className="text-foreground hover:neon-cyan transition-colors">
                 Blocks
               </Link>
