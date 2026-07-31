@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/textarea.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport type TextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;\n\nexport const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(\n  ({ className, ...props }, ref) => (\n    <textarea\n      ref={ref}\n      className={cn(\n        \"flex min-h-[88px] w-full rounded-[10px] bg-[color:var(--recessed-bg)] px-3.5 py-2.5 text-[13px] text-foreground\",\n        \"border border-[color:var(--hairline)] shadow-[var(--recessed-shadow)]\",\n        \"placeholder:text-muted-foreground/60 resize-y\",\n        \"focus-visible:outline-none focus-visible:border-[color:var(--ring)]/60 focus-visible:shadow-[var(--recessed-shadow)] focus-visible:ring-[3px] focus-visible:ring-[color:var(--ring)]/15\",\n        \"transition-all disabled:cursor-not-allowed disabled:opacity-40\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nTextarea.displayName = \"Textarea\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

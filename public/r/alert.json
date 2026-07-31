@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/alert.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst alertVariants = cva(\n  \"relative w-full rounded-[12px] border p-4 font-mono text-[12px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg+div]:translate-y-[-3px] [&>svg~*]:pl-7\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-[color:var(--surface-2)] border-[color:var(--hairline)] text-foreground\",\n        info: \"bg-[#00f0ff]/[0.04] border-[#00f0ff]/30 text-[#00f0ff]\",\n        success: \"bg-[#00ff66]/[0.04] border-[#00ff66]/30 text-[#00ff66]\",\n        warning: \"bg-[#ffcc00]/[0.04] border-[#ffcc00]/30 text-[#ffcc00]\",\n        destructive: \"bg-[#ff003c]/[0.04] border-[#ff003c]/40 text-[#ff003c]\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  },\n);\n\nexport const Alert = React.forwardRef<\n  HTMLDivElement,\n  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>\n>(({ className, variant, ...props }, ref) => (\n  <div ref={ref} role=\"alert\" className={cn(alertVariants({ variant }), className)} {...props} />\n));\nAlert.displayName = \"Alert\";\n\nexport const AlertTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h5\n    ref={ref}\n    className={cn(\"mb-1 font-mono text-[11px] uppercase tracking-[0.18em]\", className)}\n    {...props}\n  />\n));\nAlertTitle.displayName = \"AlertTitle\";\n\nexport const AlertDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\"text-[12px] opacity-80 [&_p]:leading-relaxed\", className)}\n    {...props}\n  />\n));\nAlertDescription.displayName = \"AlertDescription\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

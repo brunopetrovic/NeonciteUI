@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/tooltip.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as TooltipPrimitive from \"@radix-ui/react-tooltip\";\nimport { cn } from \"@/lib/utils\";\n\nexport const TooltipProvider = TooltipPrimitive.Provider;\nexport const Tooltip = TooltipPrimitive.Root;\nexport const TooltipTrigger = TooltipPrimitive.Trigger;\n\nexport const TooltipContent = React.forwardRef<\n  React.ElementRef<typeof TooltipPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>\n>(({ className, sideOffset = 6, ...props }, ref) => (\n  <TooltipPrimitive.Content\n    ref={ref}\n    sideOffset={sideOffset}\n    className={cn(\n      \"z-50 overflow-hidden rounded-[8px] border border-[color:var(--hairline)] bg-[color:var(--surface-3)]\",\n      \"px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-wider text-foreground\",\n      \"shadow-[0_8px_24px_rgba(0,0,0,0.6)]\",\n      \"data-[state=delayed-open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=delayed-open]:fade-in-0\",\n      className,\n    )}\n    {...props}\n  />\n));\nTooltipContent.displayName = \"TooltipContent\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

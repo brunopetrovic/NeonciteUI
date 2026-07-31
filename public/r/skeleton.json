@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "skeleton",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/skeleton.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\n        \"animate-pulse rounded-[8px] bg-gradient-to-r from-[#0a0a0a] via-[#161618] to-[#0a0a0a]\",\n        \"border border-[color:var(--hairline)]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

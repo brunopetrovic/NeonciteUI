@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "breadcrumb",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/breadcrumb.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronRight, MoreHorizontal } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Breadcrumb = React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<\"nav\">>(\n  ({ ...props }, ref) => <nav ref={ref} aria-label=\"breadcrumb\" {...props} />,\n);\nBreadcrumb.displayName = \"Breadcrumb\";\n\nexport const BreadcrumbList = React.forwardRef<\n  HTMLOListElement,\n  React.ComponentPropsWithoutRef<\"ol\">\n>(({ className, ...props }, ref) => (\n  <ol\n    ref={ref}\n    className={cn(\n      \"flex flex-wrap items-center gap-1.5 break-words font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground\",\n      className,\n    )}\n    {...props}\n  />\n));\nBreadcrumbList.displayName = \"BreadcrumbList\";\n\nexport const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<\"li\">>(\n  ({ className, ...props }, ref) => (\n    <li ref={ref} className={cn(\"inline-flex items-center gap-1.5\", className)} {...props} />\n  ),\n);\nBreadcrumbItem.displayName = \"BreadcrumbItem\";\n\nexport const BreadcrumbLink = React.forwardRef<\n  HTMLAnchorElement,\n  React.ComponentPropsWithoutRef<\"a\">\n>(({ className, ...props }, ref) => (\n  <a\n    ref={ref}\n    className={cn(\"transition-colors hover:text-[color:var(--neon-pink)]\", className)}\n    {...props}\n  />\n));\nBreadcrumbLink.displayName = \"BreadcrumbLink\";\n\nexport const BreadcrumbPage = React.forwardRef<\n  HTMLSpanElement,\n  React.ComponentPropsWithoutRef<\"span\">\n>(({ className, ...props }, ref) => (\n  <span\n    ref={ref}\n    role=\"link\"\n    aria-disabled=\"true\"\n    aria-current=\"page\"\n    className={cn(\"text-foreground\", className)}\n    {...props}\n  />\n));\nBreadcrumbPage.displayName = \"BreadcrumbPage\";\n\nexport const BreadcrumbSeparator = ({\n  children,\n  className,\n  ...props\n}: React.ComponentProps<\"li\">) => (\n  <li role=\"presentation\" aria-hidden=\"true\" className={cn(\"[&>svg]:size-3\", className)} {...props}>\n    {children ?? <ChevronRight />}\n  </li>\n);\nBreadcrumbSeparator.displayName = \"BreadcrumbSeparator\";\n\nexport const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<\"span\">) => (\n  <span\n    role=\"presentation\"\n    aria-hidden=\"true\"\n    className={cn(\"flex h-9 w-9 items-center justify-center\", className)}\n    {...props}\n  >\n    <MoreHorizontal className=\"h-4 w-4\" />\n    <span className=\"sr-only\">More</span>\n  </span>\n);\nBreadcrumbEllipsis.displayName = \"BreadcrumbEllipsis\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

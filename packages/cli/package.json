@@ -1,0 +1,24 @@
+{
+  "name": "neoncite",
+  "version": "0.1.0",
+  "description": "CLI for the Neoncite UI design system",
+  "type": "module",
+  "bin": {
+    "neoncite": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node18 --clean",
+    "dev": "tsup src/index.ts --format esm --target node18 --watch"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "execa": "^9.0.0",
+    "kleur": "^4.1.5",
+    "prompts": "^2.4.2",
+    "zod": "^3.24.0"
+  },
+  "license": "MIT"
+}

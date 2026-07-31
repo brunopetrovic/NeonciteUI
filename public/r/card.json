@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/card.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\n        \"rounded-[16px] border border-[color:var(--hairline)] bg-gradient-to-b from-[#121214] to-[#0a0a0c] text-card-foreground\",\n        \"shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.05)]\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nCard.displayName = \"Card\";\n\nexport const CardHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div\n      ref={ref}\n      className={cn(\n        \"flex flex-col gap-1.5 p-5 border-b border-[color:var(--hairline)]/60\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nCardHeader.displayName = \"CardHeader\";\n\nexport const CardTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.HTMLAttributes<HTMLHeadingElement>\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\"text-[15px] font-semibold leading-tight tracking-tight\", className)}\n    {...props}\n  />\n));\nCardTitle.displayName = \"CardTitle\";\n\nexport const CardDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.HTMLAttributes<HTMLParagraphElement>\n>(({ className, ...props }, ref) => (\n  <p ref={ref} className={cn(\"text-[13px] text-muted-foreground\", className)} {...props} />\n));\nCardDescription.displayName = \"CardDescription\";\n\nexport const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => <div ref={ref} className={cn(\"p-5\", className)} {...props} />,\n);\nCardContent.displayName = \"CardContent\";\n\nexport const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(\n  ({ className, ...props }, ref) => (\n    <div ref={ref} className={cn(\"flex items-center p-5 pt-0\", className)} {...props} />\n  ),\n);\nCardFooter.displayName = \"CardFooter\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "separator",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-separator"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/separator.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Separator = React.forwardRef<\n  React.ElementRef<typeof SeparatorPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>\n>(({ className, orientation = \"horizontal\", decorative = true, ...props }, ref) => (\n  <SeparatorPrimitive.Root\n    ref={ref}\n    decorative={decorative}\n    orientation={orientation}\n    className={cn(\n      \"shrink-0 bg-[color:var(--hairline)]\",\n      orientation === \"horizontal\" ? \"h-px w-full\" : \"h-full w-px\",\n      className,\n    )}\n    {...props}\n  />\n));\nSeparator.displayName = \"Separator\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/badge.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { motion, type HTMLMotionProps } from \"framer-motion\";\nimport { cn } from \"@/lib/utils\";\n\nconst badgeVariants = cva(\n  \"inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest border transition-colors\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-white/[0.04] text-foreground border-[color:var(--hairline)]\",\n        pink: \"bg-[color:var(--neon-pink)]/10 text-[color:var(--neon-pink)] border-[color:var(--neon-pink)]/40 [text-shadow:0_0_8px_rgba(255,42,157,0.6)]\",\n        cyan: \"bg-[#00f0ff]/10 text-[#00f0ff] border-[#00f0ff]/40 [text-shadow:0_0_8px_rgba(0,240,255,0.6)]\",\n        green:\n          \"bg-[#00ff66]/10 text-[#00ff66] border-[#00ff66]/40 [text-shadow:0_0_8px_rgba(0,255,102,0.6)]\",\n        yellow:\n          \"bg-[#ffcc00]/10 text-[#ffcc00] border-[#ffcc00]/40 [text-shadow:0_0_8px_rgba(255,204,0,0.6)]\",\n        red: \"bg-[#ff003c]/10 text-[#ff003c] border-[#ff003c]/40 [text-shadow:0_0_8px_rgba(255,0,60,0.6)]\",\n        outline: \"bg-transparent text-muted-foreground border-[color:var(--hairline)]\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  },\n);\n\nexport interface BadgeProps extends HTMLMotionProps<\"span\">, VariantProps<typeof badgeVariants> {}\n\nexport function Badge({ className, variant, ...props }: BadgeProps) {\n  return (\n    <motion.span\n      whileHover={{ scale: 1.05, y: -1 }}\n      whileTap={{ scale: 0.95 }}\n      className={cn(badgeVariants({ variant }), className)}\n      {...props}\n    />\n  );\n}\n\nexport { badgeVariants };\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}
