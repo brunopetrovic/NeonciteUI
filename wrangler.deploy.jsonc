@@ -1,7 +1,13 @@
 {
+  "$schema": "node_modules/wrangler/config-schema.json",
   "name": "neoncite-ui",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
   "main": "dist/server/server.js",
-  "account_id": "b125fb1c0875010abfd70cb3f1f74445"
+  "account_id": "b125fb1c0875010abfd70cb3f1f74445",
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "none"
+  }
 }

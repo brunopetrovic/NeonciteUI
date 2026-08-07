@@ -69,7 +69,7 @@ Use the CLI to add components directly to your `@/components/ui` directory:
 npx neoncite add button card dialog
 ```
 
-Or copy the source code directly from our [Component Registry](https://ground-steeple-tq7q.here.now/public/r).
+Or copy the source code directly from our [Component Registry](https://neoncite-ui.brunopetrovic33.workers.dev/r).
 
 ---
 
