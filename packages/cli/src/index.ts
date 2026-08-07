@@ -10,7 +10,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 
+const CLI_VERSION = "0.2.0";
 const DEFAULT_REGISTRY = "https://neoncite-ui.brunopetrovic33.workers.dev/r";
+const BOOTSTRAP_DEPS = ["clsx", "tailwind-merge", "tw-animate-css"];
 
 const RegistryFile = z.object({
   path: z.string(),
@@ -27,6 +29,8 @@ const RegistryItem = z.object({
 });
 type TRegistryItem = z.infer<typeof RegistryItem>;
 
+type NeonciteConfig = z.infer<typeof ConfigSchema>;
+
 const ConfigSchema = z.object({
   $schema: z.string().optional(),
   style: z.string().default("neoncite"),
@@ -40,9 +44,21 @@ const ConfigSchema = z.object({
 });
 
 const program = new Command();
-program.name("neoncite").description("Neoncite UI design system CLI").version("0.1.0");
+program.name("neoncite").description("Neoncite UI design system CLI").version(CLI_VERSION);
 
-// ---------- helpers ----------
+async function exists(p: string) {
+  try {
+    await fs.access(p);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function readJson(p: string) {
+  return JSON.parse(await fs.readFile(p, "utf8")) as Record<string, unknown>;
+}
+
 async function readConfig(cwd: string) {
   const p = path.join(cwd, "neoncite.json");
   try {
@@ -54,18 +70,45 @@ async function readConfig(cwd: string) {
 }
 
 async function detectPackageManager(cwd: string): Promise<"bun" | "pnpm" | "yarn" | "npm"> {
-  if (await exists(path.join(cwd, "bun.lockb"))) return "bun";
+  if ((await exists(path.join(cwd, "bun.lock"))) || (await exists(path.join(cwd, "bun.lockb")))) {
+    return "bun";
+  }
   if (await exists(path.join(cwd, "pnpm-lock.yaml"))) return "pnpm";
   if (await exists(path.join(cwd, "yarn.lock"))) return "yarn";
   return "npm";
 }
-async function exists(p: string) {
-  try {
-    await fs.access(p);
-    return true;
-  } catch {
-    return false;
+
+async function readProjectPackage(cwd: string) {
+  const packagePath = path.join(cwd, "package.json");
+  if (!(await exists(packagePath))) {
+    throw new Error("No package.json found. Run Neoncite from the root of a React project.");
   }
+  return readJson(packagePath);
+}
+
+function dependencyVersion(pkg: Record<string, unknown>, name: string) {
+  const dependencies = (pkg.dependencies ?? {}) as Record<string, string>;
+  const devDependencies = (pkg.devDependencies ?? {}) as Record<string, string>;
+  return dependencies[name] ?? devDependencies[name];
+}
+
+function tailwindMajor(version?: string) {
+  if (!version) return null;
+  const match = version.match(/(\d+)/);
+  return match ? Number(match[1]) : null;
+}
+
+function aliasToFsPath(cwd: string, alias: string, fallback: string) {
+  const normalized = alias.replace(/\\/g, "/").replace(/\/$/, "");
+  if (normalized.startsWith("@/")) return path.join(cwd, "src", normalized.slice(2));
+  if (normalized.startsWith("~/")) return path.join(cwd, "src", normalized.slice(2));
+  if (normalized.startsWith("./")) return path.join(cwd, normalized.slice(2));
+  if (normalized.startsWith("src/")) return path.join(cwd, normalized);
+  return path.join(cwd, fallback);
+}
+
+function withTsExtension(filePath: string) {
+  return /\.[cm]?[jt]sx?$/.test(filePath) ? filePath : `${filePath}.ts`;
 }
 
 async function fetchItem(registry: string, name: string): Promise<TRegistryItem> {
@@ -93,37 +136,170 @@ async function resolveAll(registry: string, names: string[]) {
 
 async function installDeps(deps: string[], pm: string, cwd: string) {
   if (deps.length === 0) return;
-  const cmd =
-    pm === "npm" ? ["install", ...deps] : pm === "yarn" ? ["add", ...deps] : ["add", ...deps];
+  const cmd = pm === "npm" ? ["install", ...deps] : ["add", ...deps];
   console.log(kleur.dim(`  ${pm} ${cmd.join(" ")}`));
   await execa(pm, cmd, { cwd, stdio: "inherit" });
 }
 
-// ---------- commands ----------
+function rewriteRegistrySource(content: string, config: NeonciteConfig) {
+  const componentAlias = config.aliases.components.replace(/\/$/, "");
+  return content
+    .replace(/@\/registry\/ui\//g, `${componentAlias}/neoncite/`)
+    .replace(/@\/lib\/utils/g, config.aliases.utils);
+}
+
+function registryTarget(cwd: string, file: z.infer<typeof RegistryFile>, config: NeonciteConfig) {
+  if (file.type === "registry:ui" || file.path.includes("components/neoncite/")) {
+    const componentsDir = aliasToFsPath(cwd, config.aliases.components, "src/components");
+    return path.join(componentsDir, "neoncite", path.basename(file.path));
+  }
+  return path.join(cwd, file.path);
+}
+
+async function findCssEntry(cwd: string) {
+  const candidates = [
+    "src/index.css",
+    "src/styles.css",
+    "src/globals.css",
+    "src/app.css",
+    "app/globals.css",
+    "styles/globals.css",
+  ];
+
+  let firstExisting: string | null = null;
+  for (const candidate of candidates) {
+    const absolute = path.join(cwd, candidate);
+    if (!(await exists(absolute))) continue;
+    firstExisting ??= absolute;
+    const content = await fs.readFile(absolute, "utf8");
+    if (content.includes("tailwindcss")) return { path: absolute, created: false };
+  }
+
+  if (firstExisting) return { path: firstExisting, created: false };
+
+  const created = path.join(cwd, "src/globals.css");
+  await fs.mkdir(path.dirname(created), { recursive: true });
+  await fs.writeFile(created, '@import "tailwindcss";\n');
+  return { path: created, created: true };
+}
+
+async function ensureUtils(cwd: string, config: NeonciteConfig) {
+  const utilsPath = withTsExtension(aliasToFsPath(cwd, config.aliases.utils, "src/lib/utils"));
+  if (await exists(utilsPath)) {
+    console.log(kleur.dim(`  exists ${path.relative(cwd, utilsPath)}`));
+    return;
+  }
+
+  const source = `import { clsx, type ClassValue } from "clsx";\nimport { twMerge } from "tailwind-merge";\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs));\n}\n`;
+  await fs.mkdir(path.dirname(utilsPath), { recursive: true });
+  await fs.writeFile(utilsPath, source);
+  console.log(kleur.green("  + ") + path.relative(cwd, utilsPath));
+}
+
+async function ensureThemeCss(cwd: string) {
+  const cssEntry = await findCssEntry(cwd);
+  const themePath = path.join(path.dirname(cssEntry.path), "neoncite.css");
+
+  if (!(await exists(themePath))) {
+    const themeUrl = new URL("../theme.css", import.meta.url);
+    const themeCss = await fs.readFile(themeUrl, "utf8");
+    await fs.writeFile(themePath, themeCss);
+    console.log(kleur.green("  + ") + path.relative(cwd, themePath));
+  } else {
+    console.log(kleur.dim(`  exists ${path.relative(cwd, themePath)}`));
+  }
+
+  const relativeTheme = `./${path.basename(themePath)}`;
+  const importLine = `@import "${relativeTheme}";`;
+  let entryContent = await fs.readFile(cssEntry.path, "utf8");
+
+  if (!entryContent.includes(importLine)) {
+    const lines = entryContent.split("\n");
+    let insertAt = 0;
+    while (insertAt < lines.length && (lines[insertAt].trim() === "" || lines[insertAt].trim().startsWith("@import "))) {
+      insertAt += 1;
+    }
+    lines.splice(insertAt, 0, importLine);
+    entryContent = lines.join("\n");
+    await fs.writeFile(cssEntry.path, entryContent);
+    console.log(kleur.green("  ~ ") + `${path.relative(cwd, cssEntry.path)} (imported Neoncite theme)`);
+  }
+
+  if (!entryContent.includes("tailwindcss")) {
+    console.log(
+      kleur.yellow("  ! ") +
+        `${path.relative(cwd, cssEntry.path)} does not appear to import Tailwind CSS. Add @import \"tailwindcss\"; before the Neoncite import.`,
+    );
+  }
+
+  if (cssEntry.created) {
+    console.log(
+      kleur.yellow("  ! ") +
+        `Created ${path.relative(cwd, cssEntry.path)}. Import this stylesheet from your application entry point.`,
+    );
+  }
+}
+
 program
   .command("init")
   .description("Initialize Neoncite in this project")
   .option("--registry <url>", "Registry URL", DEFAULT_REGISTRY)
-  .action(async (opts: { registry: string }) => {
+  .option("-y, --yes", "Use non-interactive defaults")
+  .action(async (opts: { registry: string; yes?: boolean }) => {
     const cwd = process.cwd();
-    if (await readConfig(cwd)) {
-      console.log(kleur.yellow("neoncite.json already exists."));
-      return;
+    const pkg = await readProjectPackage(cwd);
+    const pm = await detectPackageManager(cwd);
+    const tailwindVersion = dependencyVersion(pkg, "tailwindcss");
+    const major = tailwindMajor(tailwindVersion);
+
+    if (major !== null && major < 4) {
+      throw new Error(
+        `Neoncite requires Tailwind CSS v4. Detected ${tailwindVersion}. Upgrade Tailwind before running init.`,
+      );
     }
-    const answers = await prompts([
-      { type: "text", name: "components", message: "Components alias", initial: "@/components" },
-      { type: "text", name: "utils", message: "Utils alias", initial: "@/lib/utils" },
-    ]);
-    const config = {
-      $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
-      style: "neoncite",
-      registry: opts.registry,
-      aliases: { components: answers.components, utils: answers.utils },
-    };
-    await fs.writeFile(path.join(cwd, "neoncite.json"), JSON.stringify(config, null, 2));
-    console.log(kleur.green("✓ ") + "Wrote neoncite.json");
-    console.log(kleur.dim("  Next: ") + kleur.cyan("neoncite add button"));
+    if (!tailwindVersion) {
+      console.log(
+        kleur.yellow("! Tailwind CSS was not found in package.json. Neoncite requires Tailwind CSS v4."),
+      );
+    }
+
+    const existing = await readConfig(cwd);
+    let config: NeonciteConfig;
+
+    if (existing) {
+      config = existing;
+      console.log(kleur.dim("  exists neoncite.json"));
+    } else {
+      const answers = opts.yes
+        ? { components: "@/components", utils: "@/lib/utils" }
+        : await prompts([
+            { type: "text", name: "components", message: "Components alias", initial: "@/components" },
+            { type: "text", name: "utils", message: "Utils alias", initial: "@/lib/utils" },
+          ]);
+
+      config = ConfigSchema.parse({
+        $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+        style: "neoncite",
+        registry: opts.registry,
+        aliases: {
+          components: answers.components || "@/components",
+          utils: answers.utils || "@/lib/utils",
+        },
+      });
+      await fs.writeFile(path.join(cwd, "neoncite.json"), `${JSON.stringify(config, null, 2)}\n`);
+      console.log(kleur.green("  + ") + "neoncite.json");
+    }
+
+    const missingBootstrapDeps = BOOTSTRAP_DEPS.filter((dep) => !dependencyVersion(pkg, dep));
+    if (missingBootstrapDeps.length) await installDeps(missingBootstrapDeps, pm, cwd);
+
+    await ensureUtils(cwd, config);
+    await ensureThemeCss(cwd);
+
+    console.log(kleur.green("\n✓ Neoncite initialized."));
+    console.log(kleur.dim("  Next: ") + kleur.cyan("npx neoncite add button"));
   });
+
 program
   .command("add [components...]")
   .description("Add one or more components from the Neoncite registry")
@@ -141,8 +317,8 @@ program
       console.log(kleur.dim(`Fetching full registry index from ${registry}…`));
       const res = await fetch(`${registry.replace(/\/$/, "")}/index.json`);
       if (!res.ok) throw new Error(`Failed to fetch index: ${res.status}`);
-      const index = await res.json();
-      componentsToResolve = index.items.map((i: { name: string }) => i.name);
+      const index = (await res.json()) as { items: { name: string }[] };
+      componentsToResolve = index.items.map((i) => i.name);
     }
 
     if (componentsToResolve.length === 0) {
@@ -150,9 +326,7 @@ program
       return;
     }
 
-    console.log(
-      kleur.dim(`Resolving ${componentsToResolve.length} component(s) and dependencies…`),
-    );
+    console.log(kleur.dim(`Resolving ${componentsToResolve.length} component(s) and dependencies…`));
     const items = await resolveAll(registry, componentsToResolve);
 
     console.log(kleur.cyan("\nResolved components:"));
@@ -179,7 +353,7 @@ program
 
     for (const item of items) {
       for (const f of item.files) {
-        const target = path.join(cwd, f.path);
+        const target = registryTarget(cwd, f, config);
         if ((await exists(target)) && !opts.overwrite) {
           console.log(
             kleur.yellow("  skip ") +
@@ -189,7 +363,7 @@ program
           continue;
         }
         await fs.mkdir(path.dirname(target), { recursive: true });
-        await fs.writeFile(target, f.content);
+        await fs.writeFile(target, rewriteRegistrySource(f.content, config));
         console.log(kleur.green("  + ") + path.relative(cwd, target));
       }
     }
@@ -202,6 +376,7 @@ program
   .option("--registry <url>", "Registry URL", DEFAULT_REGISTRY)
   .action(async (opts: { registry: string }) => {
     const res = await fetch(`${opts.registry.replace(/\/$/, "")}/index.json`);
+    if (!res.ok) throw new Error(`Failed to fetch registry index: ${res.status}`);
     const json = (await res.json()) as { items: { name: string }[] };
     for (const it of json.items) console.log("  " + kleur.cyan(it.name));
   });
@@ -214,15 +389,20 @@ program
     const config = (await readConfig(cwd)) ?? ConfigSchema.parse({});
     const item = await fetchItem(config.registry, name);
     for (const f of item.files) {
-      const local = path.join(cwd, f.path);
+      const local = registryTarget(cwd, f, config);
       if (!(await exists(local))) {
-        console.log(kleur.red("  missing ") + f.path);
+        console.log(kleur.red("  missing ") + path.relative(cwd, local));
         continue;
       }
       const localText = await fs.readFile(local, "utf8");
-      if (localText === f.content) console.log(kleur.green("  same    ") + f.path);
-      else console.log(kleur.yellow("  drifted ") + f.path);
+      const upstream = rewriteRegistrySource(f.content, config);
+      if (localText === upstream) console.log(kleur.green("  same    ") + path.relative(cwd, local));
+      else console.log(kleur.yellow("  drifted ") + path.relative(cwd, local));
     }
   });
 
-program.parse();
+program.parseAsync().catch((error: unknown) => {
+  const message = error instanceof Error ? error.message : String(error);
+  console.error(kleur.red(`\nNeoncite error: ${message}`));
+  process.exitCode = 1;
+});
