@@ -1,96 +1,76 @@
-# Neoncite UI
+# Neoncite/UI
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/brunopetrovic/NeonciteUI/main/public/og-image.png" alt="Neoncite UI Banner" width="100%" />
-</p>
+**Machined React components for technical products.**
 
-<p align="center">
-  <strong>Machined React components for the modern web.</strong><br>
-  Deep OLED blacks, hardware rim lighting, and vibrant neon accents built on Radix UI & Tailwind CSS.
-</p>
+Neoncite/UI is an opinionated, dark-mode-only React component system built around OLED-black surfaces, hardware-inspired rim lighting, nine neon accents, Radix UI primitives, and Tailwind CSS v4. It is designed for developer tools, AI interfaces, observability products, dashboards, and other high-density applications.
 
-<p align="center">
-  <a href="https://neoncite-ui.brunopetrovic33.workers.dev/">Live Demo</a> •
-  <a href="https://thorus.ai">Built By Thorus</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#components">Components</a>
-</p>
+[Live site](https://neoncite-ui.brunopetrovic33.workers.dev/) · [Components](https://neoncite-ui.brunopetrovic33.workers.dev/components) · [Docs](https://neoncite-ui.brunopetrovic33.workers.dev/docs/installation) · [Registry](https://neoncite-ui.brunopetrovic33.workers.dev/r/index.json)
 
----
+## Status
 
-## Overview
+Neoncite/UI is under active pre-1.0 development. The public registry currently contains 33 component items. APIs and installation behavior are being hardened before a stable 1.0 release.
 
-**Neoncite UI** is an opinionated, dark-mode-first React component library designed for high-density developer tools, futuristic dashboards, AI interfaces, and modern web applications. 
+## Design principles
 
-Unlike standard "beige" component kits, Neoncite UI focuses on:
-- **OLED Surface Hierarchy:** Pure black backgrounds (`#050507`), recessed layers (`#0c0d12`), and elevated glass surfaces (`#12131a`).
-- **Hardware Rim Lighting:** Dual-shadow top bevels and hairline borders mimicking machined metallic hardware.
-- **9-Color Neon Palette:** Tuned glowing accents (`neon-pink`, `neon-cyan`, `neon-blue`, `neon-yellow`, `neon-orange`, `neon-green`, `neon-purple`, `neon-red`, `neon-lime`).
-- **Copy-Paste Architecture:** Zero lock-in. Component source files live inside your codebase (shadcn registry schema compatible).
+- **Dark-only by design.** Neoncite does not ship a light theme.
+- **OLED surface hierarchy.** Pure black and near-black semantic surfaces keep dense interfaces legible.
+- **Machined lighting.** Hairlines, recessed surfaces, rim-light shadows, and restrained glow create the hardware-inspired identity.
+- **Nine neon accents.** Pink, cyan, blue, yellow, orange, green, purple, red, and lime are exposed through design tokens.
+- **Source ownership.** The CLI installs component source into your project from a shadcn-style registry.
+- **Accessible foundations.** Interactive primitives use Radix where appropriate and are expected to preserve keyboard/focus semantics; accessibility is validated continuously rather than treated as a blanket claim.
 
----
+## Requirements
 
-## Key Features
-
-- ⚡ **30+ Primitives & Blocks:** Buttons, Inputs, Cards, Dialogs, Charts, Data Tables, Command Palettes, Sonner Toasts, Selects, and Tabs.
-- 🎨 **Tokenized CSS Variables:** Pure Tailwind CSS v4 variables with hardware rim light shadows and neon glow keyframes.
-- 🛠️ **Radix UI Core:** Full accessibility, ARIA wiring, keyboard navigation, and focus management out of the box.
-- 📦 **First-Class CLI:** Easily initialize and add components to your project with `npx neoncite@latest init`.
-- 📐 **TanStack Router & Vite:** Built for high performance and full-stack React routing.
-
----
+- React 18 or 19
+- Tailwind CSS v4
+- TypeScript recommended
+- A project alias compatible with your Neoncite configuration (the default `@/` maps to `src/`)
 
 ## Installation
 
-### 1. Initialize Neoncite in your project
-
-Run the Neoncite CLI tool to set up tokens and dependencies automatically:
+Initialize Neoncite with non-interactive defaults:
 
 ```bash
-npx neoncite@latest init
+npx neoncite@latest init -y
 ```
 
-### 2. Manual Setup (Tailwind CSS v4)
+Initialization creates `neoncite.json`, scaffolds the shared `cn()` utility when missing, installs the small utility dependencies required by the token layer, and wires the Neoncite theme into a detected global Tailwind v4 stylesheet.
 
-If you prefer setting up manually, add the Neoncite token tokens file (`packages/ui/tokens.css`) to your CSS entry point:
-
-```css
-/* src/styles.css */
-@import "./tokens.css";
-
-@source "./**/*.{ts,tsx,html}";
-```
-
-### 3. Adding Components
-
-Use the CLI to add components directly to your `@/components/ui` directory:
+Then install one or more components:
 
 ```bash
 npx neoncite add button card dialog
 ```
 
-Or copy the source code directly from our [Component Registry](https://neoncite-ui.brunopetrovic33.workers.dev/r).
+With the default aliases, installed component source lives under:
 
----
+```text
+src/components/neoncite/
+```
 
-## Usage Example
+## Usage
 
 ```tsx
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/neoncite/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/neoncite/card";
 
 export function DashboardWidget() {
   return (
-    <Card className="machined-surface border-[color:var(--hairline)]">
+    <Card>
       <CardHeader>
-        <CardTitle className="neon-white font-mono">System Telemetry</CardTitle>
+        <CardTitle>System Telemetry</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <p className="text-sm text-muted-foreground">
           Real-time node cluster monitoring initialized.
         </p>
         <Button variant="neon" size="sm">
-          Run Diagnostics
+          Run diagnostics
         </Button>
       </CardContent>
     </Card>
@@ -98,33 +78,57 @@ export function DashboardWidget() {
 }
 ```
 
----
+## CLI
 
-## Project Structure
+Current CLI 0.2 release target:
 
-```
-├── packages/
-│   ├── cli/              # Neoncite CLI installer (`npx neoncite`)
-│   └── ui/               # Monorepo UI package & token declarations
-├── src/
-│   ├── components/       # Showcase site components & interactive playground
-│   ├── registry/         # Component source registry & json manifests
-│   ├── routes/           # TanStack router page views & documentation
-│   └── styles.css        # Global CSS entry importing Neoncite tokens
-├── scripts/
-│   └── build-registry.mjs # Script for compiling registry items to JSON
-└── package.json
+```text
+neoncite init [-y|--yes]
+neoncite add <component...>
+neoncite list
+neoncite diff <component>
+neoncite --version
 ```
 
----
+Run `npx neoncite --help` for command options. Only implemented commands are documented as available.
 
-## Authors & Credits
+## Registry and generated artifacts
 
-- Created and maintained by **[Thorus](https://thorus.ai)**.
-- Built with React, Vite, Tailwind CSS, Radix UI, and Lucide Icons.
+Canonical component source lives in `src/registry/ui`. Registry JSON and the direct-consumption `@neoncite/ui` package are generated/validated against that source.
 
----
+Useful repository checks:
+
+```bash
+npm run validate:registry
+npm run validate:generated
+npm run validate
+```
+
+`validate:registry` verifies that component imports are represented by `dependencies` or `registryDependencies`. `validate:generated` detects drift between canonical source and generated registry/package output.
+
+## Project structure
+
+```text
+packages/
+  cli/                 Neoncite CLI
+  ui/                  Direct-consumption package and canonical token stylesheet
+src/
+  components/          Documentation/showcase components and Blocks
+  registry/ui/         Canonical component implementations
+  registry/items.json  Registry metadata
+  routes/              TanStack Start routes and documentation
+scripts/
+  build-registry.mjs
+  build-package.mjs
+  build-cli-theme.mjs
+  validate-registry-deps.mjs
+public/r/               Generated public registry JSON
+```
+
+## Contributing and security
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidance and [SECURITY.md](SECURITY.md) for vulnerability reporting. General support guidance is in [SUPPORT.md](SUPPORT.md).
 
 ## License
 
-Licensed under the [MIT License](LICENSE).
+MIT © 2026 Bruno Petrovic. See [LICENSE](LICENSE).
