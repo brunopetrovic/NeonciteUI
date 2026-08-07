@@ -11,8 +11,8 @@ const ROOT = path.resolve(__dirname, "..");
 const REG_SRC = path.join(ROOT, "src/registry/ui");
 const OUT = path.join(ROOT, "public/r");
 const ITEMS_PATH = path.join(ROOT, "src/registry/items.json");
+const TOKENS_PATH = path.join(ROOT, "packages/ui/tokens.css");
 
-// Define schema for validation
 const ItemSchema = z.object({
   slug: z.string(),
   dependencies: z.array(z.string()).default([]),
@@ -33,7 +33,6 @@ for (const itemMeta of ITEMS) {
 
   const content = fs.readFileSync(srcPath, "utf8");
 
-  // Basic validation of the content (ensure it's not empty and looks like a component)
   if (!content.includes("export") || content.length < 10) {
     throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
   }
@@ -65,4 +64,23 @@ fs.writeFileSync(
     2,
   ),
 );
+
+if (!fs.existsSync(TOKENS_PATH)) {
+  throw new Error(`[registry] missing canonical token stylesheet ${TOKENS_PATH}`);
+}
+
+const themeCss = fs
+  .readFileSync(TOKENS_PATH, "utf8")
+  .split("\n")
+  .filter(
+    (line) =>
+      !line.startsWith('@import "tailwindcss"') &&
+      !line.startsWith("@source ") &&
+      !line.startsWith("@custom-variant dark"),
+  )
+  .join("\n")
+  .trimStart();
+
+fs.writeFileSync(path.join(OUT, "theme.css"), `${themeCss}\n`);
 console.log(`[registry] wrote index.json (${index.length} items)`);
+console.log("[registry] wrote theme.css");
