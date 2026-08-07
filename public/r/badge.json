@@ -3,7 +3,8 @@
   "name": "badge",
   "type": "registry:ui",
   "dependencies": [
-    "class-variance-authority"
+    "class-variance-authority",
+    "framer-motion"
   ],
   "registryDependencies": [],
   "files": [
