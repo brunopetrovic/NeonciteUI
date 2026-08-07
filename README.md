@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://ground-steeple-tq7q.here.now/">Live Demo</a> •
+  <a href="https://neoncite-ui.brunopetrovic33.workers.dev/">Live Demo</a> •
   <a href="https://thorus.ai">Built By Thorus</a> •
   <a href="#installation">Installation</a> •
   <a href="#components">Components</a>

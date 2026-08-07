@@ -16,7 +16,8 @@
     "format": "prettier --write .",
     "build:registry": "node scripts/build-registry.mjs",
     "build:package": "node scripts/build-package.mjs",
-    "build:dist": "npm run build:registry && npm run build:package"
+    "build:dist": "npm run build:registry && npm run build:package",
+    "deploy": "vite build && wrangler deploy --config wrangler.deploy.jsonc"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
