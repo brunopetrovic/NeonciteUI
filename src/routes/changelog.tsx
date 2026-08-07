@@ -19,10 +19,11 @@ const releases = [
   {
     version: "CLI 0.2.0",
     status: "release candidate",
-    accent: "neon-pink",
+    textAccent: "neon-pink",
+    dotAccent: "bg-[color:var(--neon-pink)]",
     summary: "Production-readiness foundation for installation, registry integrity, and trust.",
     changes: [
-      "`init -y` now bootstraps Neoncite configuration, cn(), utility dependencies, and the Tailwind v4 theme layer.",
+      "init -y now bootstraps Neoncite configuration, cn(), utility dependencies, and the Tailwind v4 theme layer.",
       "Component installation rewrites internal registry imports to the consuming project's configured aliases.",
       "Registry dependency declarations are validated automatically across every registered component.",
       "Generated registry and @neoncite/ui package artifacts are checked for drift from canonical source.",
@@ -33,7 +34,8 @@ const releases = [
   {
     version: "0.1.0",
     status: "public preview",
-    accent: "neon-cyan",
+    textAccent: "neon-cyan",
+    dotAccent: "bg-[color:var(--neon-cyan)]",
     summary: "Initial pre-1.0 Neoncite/UI component and registry preview.",
     changes: [
       "Introduced the dark-only OLED surface system and nine-color neon token palette.",
@@ -53,9 +55,9 @@ function ChangelogPage() {
           Changelog
         </h1>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Release notes for Neoncite/UI. Until stable 1.0, entries distinguish shipped public-preview
-          work from release candidates so the site never implies a package has been published before
-          it actually has.
+          Release notes for Neoncite/UI. Until stable 1.0, entries distinguish shipped
+          public-preview work from release candidates so the site never implies a package has been
+          published before it actually has.
         </p>
 
         <div className="mt-12 space-y-8">
@@ -67,7 +69,7 @@ function ChangelogPage() {
               <div className="flex flex-wrap items-center gap-3">
                 <h2 className="font-mono text-[20px] font-bold neon-white">{release.version}</h2>
                 <span
-                  className={`rounded-full border border-[color:var(--hairline)] bg-white/[0.03] px-2.5 py-1 font-mono text-[9px] uppercase tracking-widest ${release.accent}`}
+                  className={`rounded-full border border-[color:var(--hairline)] bg-white/[0.03] px-2.5 py-1 font-mono text-[9px] uppercase tracking-widest ${release.textAccent}`}
                 >
                   {release.status}
                 </span>
@@ -77,8 +79,14 @@ function ChangelogPage() {
               </p>
               <ul className="mt-5 space-y-3">
                 {release.changes.map((change) => (
-                  <li key={change} className="flex gap-3 text-[13px] leading-relaxed text-foreground">
-                    <span className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${release.accent}`} />
+                  <li
+                    key={change}
+                    className="flex gap-3 text-[13px] leading-relaxed text-foreground"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`mt-2 h-1.5 w-1.5 shrink-0 rounded-full ${release.dotAccent}`}
+                    />
                     <span>{change}</span>
                   </li>
                 ))}
