@@ -38,7 +38,10 @@ test("every registry item has canonical source and a Neoncite target path", () =
 test("every registry dependency refers to another registered item", () => {
   for (const item of items) {
     for (const dependency of item.registryDeps ?? []) {
-      assert.ok(bySlug.has(dependency), `${item.slug} references unknown registry dependency ${dependency}`);
+      assert.ok(
+        bySlug.has(dependency),
+        `${item.slug} references unknown registry dependency ${dependency}`,
+      );
     }
   }
 });
