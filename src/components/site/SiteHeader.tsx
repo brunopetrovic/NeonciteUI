@@ -13,13 +13,6 @@ const nav = [
 export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      document.documentElement.classList.remove("theme-light");
-      localStorage.removeItem("neoncite-theme");
-    }
-  }, []);
-
   return (
     <>
       <header className="sticky top-0 z-40 w-full border-b border-[color:var(--hairline)] bg-[color:var(--surface-0)]/80 backdrop-blur-xl">
@@ -38,7 +31,7 @@ export function SiteHeader() {
             </div>
           </Link>
 
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden md:flex items-center gap-1" aria-label="Primary navigation">
             {nav.map((item) => (
               <Link
                 key={item.to}
@@ -61,7 +54,7 @@ export function SiteHeader() {
               target="_blank"
               rel="noreferrer"
               className="hidden sm:flex h-8 w-8 items-center justify-center rounded-[10px] border border-transparent text-muted-foreground hover:text-foreground hover:border-[color:var(--hairline)] hover:bg-white/5 transition-colors"
-              aria-label="GitHub"
+              aria-label="Open NeonciteUI on GitHub"
             >
               <Github size={15} strokeWidth={2} />
             </a>
@@ -71,11 +64,12 @@ export function SiteHeader() {
             >
               Install
             </Link>
-            {/* Mobile hamburger */}
             <button
+              type="button"
               onClick={() => setMobileOpen(true)}
               className="flex md:hidden h-8 w-8 items-center justify-center rounded-[10px] border border-transparent text-muted-foreground hover:text-foreground hover:border-[color:var(--hairline)] hover:bg-white/5 transition-colors"
               aria-label="Open navigation menu"
+              aria-expanded={mobileOpen}
             >
               <Menu size={18} strokeWidth={2} />
             </button>
@@ -83,16 +77,20 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {/* Mobile drawer overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 md:hidden">
-          {/* Backdrop */}
-          <div
+          <button
+            type="button"
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
+            aria-label="Close navigation menu"
           />
-          {/* Drawer panel */}
-          <div className="absolute inset-y-0 left-0 w-[280px] bg-[color:var(--surface-0)] border-r border-[color:var(--hairline)] shadow-[4px_0_24px_rgba(0,0,0,0.6)] animate-in slide-in-from-left duration-200">
+          <div
+            className="absolute inset-y-0 left-0 w-[280px] bg-[color:var(--surface-0)] border-r border-[color:var(--hairline)] shadow-[4px_0_24px_rgba(0,0,0,0.6)] animate-in slide-in-from-left duration-200"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
             <div className="flex items-center justify-between h-14 px-4 border-b border-[color:var(--hairline)]">
               <Link to="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
                 <div className="flex h-7 w-7 items-center justify-center rounded-[8px] border border-[color:var(--neon-pink)]/40 bg-[color:var(--neon-pink)]/5">
@@ -101,6 +99,7 @@ export function SiteHeader() {
                 <span className="font-mono text-[13px] font-bold neon-white">neoncite/ui</span>
               </Link>
               <button
+                type="button"
                 onClick={() => setMobileOpen(false)}
                 className="flex h-7 w-7 items-center justify-center rounded-[8px] text-muted-foreground hover:text-foreground transition-colors"
                 aria-label="Close menu"
@@ -108,7 +107,7 @@ export function SiteHeader() {
                 <X size={16} />
               </button>
             </div>
-            <nav className="flex flex-col gap-0.5 p-3">
+            <nav className="flex flex-col gap-0.5 p-3" aria-label="Mobile navigation">
               {nav.map((item) => (
                 <Link
                   key={item.to}
