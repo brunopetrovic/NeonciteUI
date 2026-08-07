@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Anthracite CLI — fetches components from the public registry and writes them
+// Neoncite CLI — fetches components from the public registry and writes them
 // into the user's project. Compatible with the shadcn-style registry-item schema.
 
 import { Command } from "commander";
@@ -10,7 +10,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 
-const DEFAULT_REGISTRY = "https://anthracite.dev/r";
+const DEFAULT_REGISTRY = "https://neoncite.dev/r";
 
 const RegistryFile = z.object({
   path: z.string(),
@@ -29,7 +29,7 @@ type TRegistryItem = z.infer<typeof RegistryItem>;
 
 const ConfigSchema = z.object({
   $schema: z.string().optional(),
-  style: z.string().default("anthracite"),
+  style: z.string().default("neoncite"),
   registry: z.string().default(DEFAULT_REGISTRY),
   aliases: z
     .object({
@@ -40,11 +40,11 @@ const ConfigSchema = z.object({
 });
 
 const program = new Command();
-program.name("anthracite").description("Anthracite UI design system CLI").version("0.1.0");
+program.name("neoncite").description("Neoncite UI design system CLI").version("0.1.0");
 
 // ---------- helpers ----------
 async function readConfig(cwd: string) {
-  const p = path.join(cwd, "anthracite.json");
+  const p = path.join(cwd, "neoncite.json");
   try {
     const raw = await fs.readFile(p, "utf8");
     return ConfigSchema.parse(JSON.parse(raw));
@@ -102,12 +102,12 @@ async function installDeps(deps: string[], pm: string, cwd: string) {
 // ---------- commands ----------
 program
   .command("init")
-  .description("Initialize Anthracite in this project")
+  .description("Initialize Neoncite in this project")
   .option("--registry <url>", "Registry URL", DEFAULT_REGISTRY)
   .action(async (opts: { registry: string }) => {
     const cwd = process.cwd();
     if (await readConfig(cwd)) {
-      console.log(kleur.yellow("anthracite.json already exists."));
+      console.log(kleur.yellow("neoncite.json already exists."));
       return;
     }
     const answers = await prompts([
@@ -115,18 +115,18 @@ program
       { type: "text", name: "utils", message: "Utils alias", initial: "@/lib/utils" },
     ]);
     const config = {
-      $schema: "https://anthracite.dev/schema.json",
-      style: "anthracite",
+      $schema: "https://neoncite.dev/schema.json",
+      style: "neoncite",
       registry: opts.registry,
       aliases: { components: answers.components, utils: answers.utils },
     };
-    await fs.writeFile(path.join(cwd, "anthracite.json"), JSON.stringify(config, null, 2));
-    console.log(kleur.green("✓ ") + "Wrote anthracite.json");
-    console.log(kleur.dim("  Next: ") + kleur.cyan("anthracite add button"));
+    await fs.writeFile(path.join(cwd, "neoncite.json"), JSON.stringify(config, null, 2));
+    console.log(kleur.green("✓ ") + "Wrote neoncite.json");
+    console.log(kleur.dim("  Next: ") + kleur.cyan("neoncite add button"));
   });
 program
   .command("add [components...]")
-  .description("Add one or more components from the Anthracite registry")
+  .description("Add one or more components from the Neoncite registry")
   .option("-a, --all", "Add all components from the registry")
   .option("-y, --yes", "Skip confirmation prompts")
   .option("-o, --overwrite", "Overwrite existing files")

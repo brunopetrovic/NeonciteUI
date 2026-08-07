@@ -13,6 +13,10 @@
     "build": "tsup src/index.ts --format esm --target node18 --clean",
     "dev": "tsup src/index.ts --format esm --target node18 --watch"
   },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.8.3"
+  },
   "dependencies": {
     "commander": "^12.0.0",
     "execa": "^9.0.0",
