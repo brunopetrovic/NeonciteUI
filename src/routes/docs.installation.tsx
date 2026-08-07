@@ -31,9 +31,9 @@ function InstallationPage() {
       <section className="mb-10">
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-3">1. Initialize</h2>
         <p className="text-[14px] text-muted-foreground mb-4">
-          Creates <code className="text-foreground">neoncite.json</code>, installs the shared utility
-          dependencies, scaffolds <code className="text-foreground">cn()</code> when missing, and wires
-          the Neoncite Tailwind v4 theme into the detected global stylesheet. Use{" "}
+          Creates <code className="text-foreground">neoncite.json</code>, installs the shared
+          utility dependencies, scaffolds <code className="text-foreground">cn()</code> when
+          missing, and wires the Neoncite Tailwind v4 theme into the detected global stylesheet. Use{" "}
           <code className="text-foreground">-y</code> for non-interactive defaults.
         </p>
         <CodeBlock code="npx neoncite@latest init -y" language="bash" filename="terminal" />
