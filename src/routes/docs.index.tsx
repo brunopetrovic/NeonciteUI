@@ -21,35 +21,41 @@ const cards = [
     icon: Terminal,
     accent: "neon-pink",
     title: "Installation",
-    description: "Bootstrap the Neoncite tokens, aliases, utilities, and your first source component.",
+    description:
+      "Bootstrap the Neoncite tokens, aliases, utilities, and your first source component.",
   },
   {
     to: "/docs/cli" as const,
     icon: Braces,
     accent: "neon-cyan",
     title: "CLI reference",
-    description: "Use init, add, list, diff, and version inspection without hidden registry behavior.",
+    description:
+      "Use init, add, list, diff, and version inspection without hidden registry behavior.",
   },
   {
     to: "/docs/theming" as const,
     icon: Palette,
     accent: "neon-purple",
     title: "Theming",
-    description: "Understand Neoncite's dark-only semantic tokens, accents, surfaces, glow, and presets.",
+    description:
+      "Understand Neoncite's dark-only semantic tokens, accents, surfaces, glow, and presets.",
   },
   {
     to: "/components" as const,
     icon: Blocks,
     accent: "neon-green",
     title: "Components",
-    description: "Browse every registered component, live preview, install command, and usage example.",
+    description:
+      "Browse every registered component, live preview, install command, and usage example.",
   },
 ];
 
 function DocsOverview() {
   return (
     <article>
-      <p className="font-mono text-[11px] uppercase tracking-widest neon-pink mb-3">Documentation</p>
+      <p className="font-mono text-[11px] uppercase tracking-widest neon-pink mb-3">
+        Documentation
+      </p>
       <h1 className="text-[40px] font-mono font-bold tracking-tighter neon-white mb-4">
         Build with Neoncite.
       </h1>
