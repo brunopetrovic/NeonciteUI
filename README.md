@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="https://ais-pre-5bbpqp76kckuezeo4f6gak-6592840303.europe-west1.run.app">Live Demo</a> •
+  <a href="https://ground-steeple-tq7q.here.now/">Live Demo</a> •
   <a href="https://thorus.ai">Built By Thorus</a> •
   <a href="#installation">Installation</a> •
   <a href="#components">Components</a>
@@ -69,7 +69,7 @@ Use the CLI to add components directly to your `@/components/ui` directory:
 npx neoncite add button card dialog
 ```
 
-Or copy the source code directly from our [Component Registry](https://ais-pre-5bbpqp76kckuezeo4f6gak-6592840303.europe-west1.run.app/components).
+Or copy the source code directly from our [Component Registry](https://ground-steeple-tq7q.here.now/public/r).
 
 ---
 
