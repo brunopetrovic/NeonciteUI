@@ -8,7 +8,7 @@ export const Route = createFileRoute("/docs/installation")({
       { title: "Installation — Neoncite/UI" },
       {
         name: "description",
-        content: "Install Neoncite/UI source components in a React project with the Neoncite CLI.",
+        content: "Install Neoncite/UI source components in a React + Tailwind CSS v4 project with the Neoncite CLI.",
       },
     ],
   }),
@@ -24,25 +24,26 @@ function InstallationPage() {
       </h1>
       <p className="text-[15px] text-muted-foreground leading-relaxed mb-10 max-w-2xl">
         Neoncite ships components as source files into your repo via a CLI, giving you ownership of
-        the installed component code.
+        the installed component code while keeping the design tokens and local aliases predictable.
       </p>
 
       <section className="mb-10">
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-3">1. Initialize</h2>
         <p className="text-[14px] text-muted-foreground mb-4">
-          Creates <code className="text-foreground">neoncite.json</code> with your registry and local
-          alias configuration. Theme-token bootstrapping is being hardened separately, so the docs do
-          not claim that <code className="text-foreground">init</code> writes CSS until the CLI actually
-          does so.
+          Creates <code className="text-foreground">neoncite.json</code>, installs the shared utility
+          dependencies, scaffolds <code className="text-foreground">cn()</code> when missing, and wires
+          the Neoncite Tailwind v4 theme into the detected global stylesheet. Use <code className="text-foreground">-y</code>{" "}
+          for non-interactive defaults.
         </p>
-        <CodeBlock code="npx neoncite@latest init" language="bash" filename="terminal" />
+        <CodeBlock code="npx neoncite@latest init -y" language="bash" filename="terminal" />
       </section>
 
       <section className="mb-10">
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-3">2. Add a component</h2>
         <p className="text-[14px] text-muted-foreground mb-4">
-          Resolves registry dependencies, installs required npm packages, and writes component source
-          into the paths declared by the Neoncite registry.
+          Resolves registry dependencies, installs required npm packages, rewrites internal imports to
+          your configured aliases, and writes component source under <code className="text-foreground">@/components/neoncite</code>{" "}
+          with the default configuration.
         </p>
         <InstallTabs slug="button" />
       </section>
@@ -63,7 +64,7 @@ function InstallationPage() {
         <ul className="text-[13px] text-muted-foreground space-y-1.5">
           <li>• React 18 or 19</li>
           <li>• Tailwind CSS v4</li>
-          <li>• TypeScript path aliases compatible with the registry output</li>
+          <li>• A TypeScript alias where the default <code className="text-foreground">@/</code> resolves to <code className="text-foreground">src/</code>, or equivalent custom aliases configured during init</li>
         </ul>
       </section>
     </article>
