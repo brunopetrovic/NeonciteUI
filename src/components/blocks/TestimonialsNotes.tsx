@@ -14,14 +14,16 @@ export function TestimonialsNotes() {
     {
       name: "Jordan Lee",
       role: "Example customer · Design",
-      quote: "The machined surfaces give technical tools a strong identity without sacrificing clarity.",
+      quote:
+        "The machined surfaces give technical tools a strong identity without sacrificing clarity.",
       initials: "JL",
       accent: "cyan" as const,
     },
     {
       name: "Sam Rivera",
       role: "Example customer · Engineering",
-      quote: "Source ownership makes it straightforward to compose the primitives around product needs.",
+      quote:
+        "Source ownership makes it straightforward to compose the primitives around product needs.",
       initials: "SR",
       accent: "green" as const,
     },
