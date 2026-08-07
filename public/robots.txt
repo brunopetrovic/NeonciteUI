@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://neoncite-ui.brunopetrovic33.workers.dev/sitemap.xml
