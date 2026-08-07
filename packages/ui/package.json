@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/neoncite/ui"
+    "url": "https://github.com/brunopetrovic/NeonciteUI"
   },
   "keywords": [
     "ui",
@@ -77,6 +77,12 @@
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.8.3"
   },
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean"
