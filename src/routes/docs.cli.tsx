@@ -54,8 +54,8 @@ function CliPage() {
       <h1 className="text-[40px] font-mono font-bold tracking-tighter neon-white mb-4">CLI</h1>
       <p className="text-[15px] text-muted-foreground leading-relaxed mb-3 max-w-2xl">
         The <code className="text-foreground">neoncite</code> CLI manages your local copy of the
-        design system. Its registry format follows the same source-install model used by shadcn-style
-        registries, while Neoncite keeps its own configuration and visual system.
+        design system. Its registry format follows the same source-install model used by
+        shadcn-style registries, while Neoncite keeps its own configuration and visual system.
       </p>
       <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-10">
         Current release target: CLI 0.2.0
