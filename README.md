@@ -24,7 +24,8 @@ Neoncite/UI is under active pre-1.0 development. The public registry currently c
 - React 18 or 19
 - Tailwind CSS v4
 - TypeScript recommended
-- A project alias compatible with your Neoncite configuration (the default `@/` maps to `src/`)
+
+Installed Neoncite components use relative imports for their internal component dependencies and for the generated `cn()` utility, so the source itself does not require a project-specific `@/` alias to compile.
 
 ## Installation
 
@@ -42,13 +43,17 @@ Then install one or more components:
 npx neoncite add button card dialog
 ```
 
-With the default aliases, installed component source lives under:
+With the default configuration, installed component source lives under:
 
 ```text
 src/components/neoncite/
 ```
 
+The aliases stored in `neoncite.json` control where Neoncite writes components and utilities. The CLI resolves those locations to relative imports inside installed source, avoiding an extra bundler-alias requirement.
+
 ## Usage
+
+If your app already has the common `@/` alias, you can import components like this:
 
 ```tsx
 import { Button } from "@/components/neoncite/button";
@@ -78,6 +83,8 @@ export function DashboardWidget() {
 }
 ```
 
+Otherwise, import from the component path relative to your application source as you would any local module.
+
 ## CLI
 
 Current CLI 0.2 release target:
@@ -104,7 +111,7 @@ npm run validate:generated
 npm run validate
 ```
 
-`validate:registry` verifies that component imports are represented by `dependencies` or `registryDependencies`. `validate:generated` detects drift between canonical source and generated registry/package output.
+`validate:registry` verifies that component imports are represented by `dependencies` or `registryDependencies`. `validate:generated` detects drift between canonical source and generated registry/package/SEO output.
 
 ## Project structure
 
@@ -121,6 +128,7 @@ scripts/
   build-registry.mjs
   build-package.mjs
   build-cli-theme.mjs
+  build-sitemap.mjs
   validate-registry-deps.mjs
 public/r/               Generated public registry JSON
 ```
