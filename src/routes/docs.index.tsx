@@ -60,8 +60,9 @@ function DocsOverview() {
         Build with Neoncite.
       </h1>
       <p className="max-w-2xl text-[15px] leading-relaxed text-muted-foreground mb-10">
-        Neoncite/UI is a dark-only, source-first React component system for technical products. Start
-        with the CLI, inspect the registry source, then compose the primitives directly in your app.
+        Neoncite/UI is a dark-only, source-first React component system for technical products.
+        Start with the CLI, inspect the registry source, then compose the primitives directly in
+        your app.
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
