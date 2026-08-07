@@ -74,8 +74,13 @@ for (const dep of dependencyNames) {
   }
   dependencyVersions[dep] = version;
 }
-dependencyVersions.clsx = rootPackage.dependencies.clsx;
-dependencyVersions["tailwind-merge"] = rootPackage.dependencies["tailwind-merge"];
+
+// Shared runtime utilities used by generated package source and tokens.css.
+for (const dep of ["clsx", "tailwind-merge", "tw-animate-css"]) {
+  const version = rootPackage.dependencies?.[dep] ?? rootPackage.devDependencies?.[dep];
+  if (!version) throw new Error(`[pkg] no root package version found for dependency ${dep}`);
+  dependencyVersions[dep] = version;
+}
 
 uiPackage.dependencies = Object.fromEntries(
   Object.entries(dependencyVersions).sort(([a], [b]) => a.localeCompare(b)),
