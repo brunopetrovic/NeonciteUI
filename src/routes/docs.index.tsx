@@ -63,7 +63,7 @@ function DocsOverview() {
           <Link
             key={card.title}
             to={card.to}
-            className="group rounded-[16px] border border-[color:var(--hairline)] bg-gradient-to-b from-[color:var(--surface-2)] to-[color:var(--surface-1)] p-5 transition-all hover:border-white/15"
+            className="group rounded-[16px] border border-[color:var(--hairline)] bg-gradient-to-b from-[color:var(--surface-2)] to-[color:var(--surface-1)] p-5 transition-all hover:border-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-0)]"
           >
             <card.icon size={18} className={`${card.accent} mb-4`} strokeWidth={2} />
             <div className="flex items-center justify-between gap-3">
