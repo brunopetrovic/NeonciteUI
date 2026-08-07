@@ -27,7 +27,9 @@ export function SiteHeader() {
             <Hexagon size={16} className="neon-pink" strokeWidth={2.5} />
           </div>
           <div className="flex items-baseline gap-1.5">
-            <span className="font-mono text-[14px] font-bold tracking-tight neon-white">neoncite</span>
+            <span className="font-mono text-[14px] font-bold tracking-tight neon-white">
+              neoncite
+            </span>
             <span className="hidden font-mono text-[10px] uppercase tracking-widest text-muted-foreground sm:inline">
               /ui
             </span>
