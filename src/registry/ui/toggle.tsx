@@ -3,8 +3,7 @@ import * as React from "react";
 import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { cn } from "@/lib/utils";
 
-export interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> {
+export interface ToggleProps extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> {
   /** @deprecated Use `pressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */
   checked?: boolean;
   /** @deprecated Use `defaultPressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */
@@ -13,10 +12,7 @@ export interface ToggleProps
   onCheckedChange?: (checked: boolean) => void;
 }
 
-export const Toggle = React.forwardRef<
-  React.ElementRef<typeof TogglePrimitive.Root>,
-  ToggleProps
->(
+export const Toggle = React.forwardRef<React.ElementRef<typeof TogglePrimitive.Root>, ToggleProps>(
   (
     {
       className,
