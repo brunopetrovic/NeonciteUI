@@ -16,6 +16,9 @@ dist-ssr
 .nitro
 *.local
 
+# Generated package artifacts
+packages/cli/theme.css
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
