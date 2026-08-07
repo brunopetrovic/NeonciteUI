@@ -78,7 +78,10 @@ export function PricingTiersAlternative() {
               <ul className="space-y-2.5">
                 {tier.features.map((f) => (
                   <li key={f} className="flex items-start gap-2.5 text-[13px] text-foreground">
-                    <Check className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--neon-green)]" strokeWidth={2.5} />
+                    <Check
+                      className="h-4 w-4 mt-0.5 shrink-0 text-[color:var(--neon-green)]"
+                      strokeWidth={2.5}
+                    />
                     <span>{f}</span>
                   </li>
                 ))}
