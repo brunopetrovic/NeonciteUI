@@ -8,7 +8,8 @@ export const Route = createFileRoute("/docs/installation")({
       { title: "Installation — Neoncite/UI" },
       {
         name: "description",
-        content: "Install Neoncite/UI source components in a React + Tailwind CSS v4 project with the Neoncite CLI.",
+        content:
+          "Install Neoncite/UI source components in a React + Tailwind CSS v4 project with the Neoncite CLI.",
       },
     ],
   }),
@@ -31,9 +32,9 @@ function InstallationPage() {
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-3">1. Initialize</h2>
         <p className="text-[14px] text-muted-foreground mb-4">
           Creates <code className="text-foreground">neoncite.json</code>, installs the shared utility
-          dependencies, scaffolds <code className="text-foreground">cn()</code> when missing, and wires
-          the Neoncite Tailwind v4 theme into the detected global stylesheet. Use <code className="text-foreground">-y</code>{" "}
-          for non-interactive defaults.
+          dependencies, scaffolds <code className="text-foreground">cn()</code> when missing, and
+          wires the Neoncite Tailwind v4 theme into the detected global stylesheet. Use{" "}
+          <code className="text-foreground">-y</code> for non-interactive defaults.
         </p>
         <CodeBlock code="npx neoncite@latest init -y" language="bash" filename="terminal" />
       </section>
@@ -41,9 +42,10 @@ function InstallationPage() {
       <section className="mb-10">
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-3">2. Add a component</h2>
         <p className="text-[14px] text-muted-foreground mb-4">
-          Resolves registry dependencies, installs required npm packages, rewrites internal imports to
-          your configured aliases, and writes component source under <code className="text-foreground">@/components/neoncite</code>{" "}
-          with the default configuration.
+          Resolves registry dependencies, installs required npm packages, rewrites internal imports
+          to your configured aliases, and writes component source under{" "}
+          <code className="text-foreground">@/components/neoncite</code> with the default
+          configuration.
         </p>
         <InstallTabs slug="button" />
       </section>
@@ -64,7 +66,11 @@ function InstallationPage() {
         <ul className="text-[13px] text-muted-foreground space-y-1.5">
           <li>• React 18 or 19</li>
           <li>• Tailwind CSS v4</li>
-          <li>• A TypeScript alias where the default <code className="text-foreground">@/</code> resolves to <code className="text-foreground">src/</code>, or equivalent custom aliases configured during init</li>
+          <li>
+            • A TypeScript alias where the default <code className="text-foreground">@/</code>{" "}
+            resolves to <code className="text-foreground">src/</code>, or equivalent custom aliases
+            configured during init
+          </li>
         </ul>
       </section>
     </article>
