@@ -82,7 +82,7 @@
     "description": "Modal dialog with scan-line backdrop and machined panel.",
     "category": "overlay",
     "targetPath": "components/neoncite/dialog.tsx",
-    "dependencies": ["@radix-ui/react-dialog"],
+    "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
     "registryDeps": ["button"],
     "accent": "text-neon-purple",
     "icon": "MessageSquare"
