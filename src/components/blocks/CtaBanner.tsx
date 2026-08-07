@@ -36,7 +36,7 @@ export function CtaBanner() {
             </Button>
           </div>
           <code className="font-mono text-[11px] text-muted-foreground bg-[color:var(--surface-2)] border border-[color:var(--hairline)] rounded-[8px] px-3 py-1.5">
-            npx anthracite-ui add button
+            npx neoncite add button
           </code>
         </div>
       </div>

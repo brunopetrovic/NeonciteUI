@@ -11,7 +11,7 @@ export function AuthSignin() {
         <div className="absolute inset-0 bg-grid opacity-40" />
         <div className="absolute -top-20 -left-20 h-[300px] w-[300px] rounded-full bg-[color:var(--neon-pink)]/15 blur-[100px]" />
         <div className="relative">
-          <Badge variant="pink">Anthracite/UI</Badge>
+          <Badge variant="pink">Neoncite/UI</Badge>
           <h2 className="mt-6 text-[28px] font-mono font-bold tracking-tighter neon-white leading-tight">
             Welcome back,
             <br />

@@ -9,7 +9,7 @@ export function FaqFolded() {
   const faqs = [
     {
       id: "q1",
-      q: "Is Anthracite/UI free?",
+      q: "Is Neoncite/UI free?",
       a: "Yes. MIT licensed for the components and CLI. Pro blocks and Figma kit are paid.",
     },
     {
@@ -25,7 +25,7 @@ export function FaqFolded() {
     {
       id: "q4",
       q: "How is this different from shadcn/ui?",
-      a: "Same registry pattern, very different aesthetic. Anthracite is opinionated about dark, neon, and machined surfaces.",
+      a: "Same registry pattern, very different aesthetic. Neoncite is opinionated about dark, neon, and machined surfaces.",
     },
   ];
 
