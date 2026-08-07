@@ -12,7 +12,9 @@ export function SiteFooter() {
             >
               ●
             </span>
-            <span className="font-mono text-[14px] font-bold neon-white">neoncite/ui</span>
+            <span className="font-mono text-[14px] font-bold neon-white">
+              neoncite/ui
+            </span>
           </div>
           <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground">
             A dark-only machined React component system with OLED surfaces, hardware rim lighting,
@@ -68,7 +70,10 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link to="/changelog" className="text-foreground transition-colors hover:neon-cyan">
+              <Link
+                to="/changelog"
+                className="text-foreground transition-colors hover:neon-cyan"
+              >
                 Changelog
               </Link>
             </li>
