@@ -10,7 +10,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
 
-const DEFAULT_REGISTRY = "https://ground-steeple-tq7q.here.now/public/r";
+const DEFAULT_REGISTRY = "https://neoncite-ui.brunopetrovic33.workers.dev/r";
 
 const RegistryFile = z.object({
   path: z.string(),
@@ -115,7 +115,7 @@ program
       { type: "text", name: "utils", message: "Utils alias", initial: "@/lib/utils" },
     ]);
     const config = {
-      $schema: "https://ground-steeple-tq7q.here.now/public/r/schema.json",
+      $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
       style: "neoncite",
       registry: opts.registry,
       aliases: { components: answers.components, utils: answers.utils },
