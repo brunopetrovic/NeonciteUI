@@ -18,10 +18,7 @@ function packageName(specifier) {
 
 function importsFrom(source) {
   const imports = new Set();
-  const patterns = [
-    /\bfrom\s+["']([^"']+)["']/g,
-    /\bimport\s+["']([^"']+)["']/g,
-  ];
+  const patterns = [/\bfrom\s+["']([^"']+)["']/g, /\bimport\s+["']([^"']+)["']/g];
 
   for (const pattern of patterns) {
     for (const match of source.matchAll(pattern)) imports.add(match[1]);
