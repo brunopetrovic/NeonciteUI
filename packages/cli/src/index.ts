@@ -216,19 +216,24 @@ async function ensureThemeCss(cwd: string) {
   if (!entryContent.includes(importLine)) {
     const lines = entryContent.split("\n");
     let insertAt = 0;
-    while (insertAt < lines.length && (lines[insertAt].trim() === "" || lines[insertAt].trim().startsWith("@import "))) {
+    while (
+      insertAt < lines.length &&
+      (lines[insertAt].trim() === "" || lines[insertAt].trim().startsWith("@import "))
+    ) {
       insertAt += 1;
     }
     lines.splice(insertAt, 0, importLine);
     entryContent = lines.join("\n");
     await fs.writeFile(cssEntry.path, entryContent);
-    console.log(kleur.green("  ~ ") + `${path.relative(cwd, cssEntry.path)} (imported Neoncite theme)`);
+    console.log(
+      kleur.green("  ~ ") + `${path.relative(cwd, cssEntry.path)} (imported Neoncite theme)`,
+    );
   }
 
   if (!entryContent.includes("tailwindcss")) {
     console.log(
       kleur.yellow("  ! ") +
-        `${path.relative(cwd, cssEntry.path)} does not appear to import Tailwind CSS. Add @import \"tailwindcss\"; before the Neoncite import.`,
+        `${path.relative(cwd, cssEntry.path)} does not appear to import Tailwind CSS. Add @import "tailwindcss"; before the Neoncite import.`,
     );
   }
 
@@ -259,7 +264,9 @@ program
     }
     if (!tailwindVersion) {
       console.log(
-        kleur.yellow("! Tailwind CSS was not found in package.json. Neoncite requires Tailwind CSS v4."),
+        kleur.yellow(
+          "! Tailwind CSS was not found in package.json. Neoncite requires Tailwind CSS v4.",
+        ),
       );
     }
 
@@ -273,7 +280,12 @@ program
       const answers = opts.yes
         ? { components: "@/components", utils: "@/lib/utils" }
         : await prompts([
-            { type: "text", name: "components", message: "Components alias", initial: "@/components" },
+            {
+              type: "text",
+              name: "components",
+              message: "Components alias",
+              initial: "@/components",
+            },
             { type: "text", name: "utils", message: "Utils alias", initial: "@/lib/utils" },
           ]);
 
@@ -326,7 +338,9 @@ program
       return;
     }
 
-    console.log(kleur.dim(`Resolving ${componentsToResolve.length} component(s) and dependencies…`));
+    console.log(
+      kleur.dim(`Resolving ${componentsToResolve.length} component(s) and dependencies…`),
+    );
     const items = await resolveAll(registry, componentsToResolve);
 
     console.log(kleur.cyan("\nResolved components:"));
@@ -396,8 +410,11 @@ program
       }
       const localText = await fs.readFile(local, "utf8");
       const upstream = rewriteRegistrySource(f.content, config);
-      if (localText === upstream) console.log(kleur.green("  same    ") + path.relative(cwd, local));
-      else console.log(kleur.yellow("  drifted ") + path.relative(cwd, local));
+      if (localText === upstream) {
+        console.log(kleur.green("  same    ") + path.relative(cwd, local));
+      } else {
+        console.log(kleur.yellow("  drifted ") + path.relative(cwd, local));
+      }
     }
   });
 
