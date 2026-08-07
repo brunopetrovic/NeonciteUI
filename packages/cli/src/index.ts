@@ -111,6 +111,12 @@ function withTsExtension(filePath: string) {
   return /\.[cm]?[jt]sx?$/.test(filePath) ? filePath : `${filePath}.ts`;
 }
 
+function relativeImport(fromFile: string, toFile: string) {
+  const withoutExtension = toFile.replace(/\.[cm]?[jt]sx?$/, "");
+  const relative = path.relative(path.dirname(fromFile), withoutExtension).replace(/\\/g, "/");
+  return relative.startsWith(".") ? relative : `./${relative}`;
+}
+
 async function fetchItem(registry: string, name: string): Promise<TRegistryItem> {
   const url = `${registry.replace(/\/$/, "")}/${name}.json`;
   const res = await fetch(url);
@@ -141,11 +147,18 @@ async function installDeps(deps: string[], pm: string, cwd: string) {
   await execa(pm, cmd, { cwd, stdio: "inherit" });
 }
 
-function rewriteRegistrySource(content: string, config: NeonciteConfig) {
-  const componentAlias = config.aliases.components.replace(/\/$/, "");
+function rewriteRegistrySource(
+  content: string,
+  cwd: string,
+  config: NeonciteConfig,
+  target: string,
+) {
+  const utilsPath = withTsExtension(aliasToFsPath(cwd, config.aliases.utils, "src/lib/utils"));
+  const utilsImport = relativeImport(target, utilsPath);
+
   return content
-    .replace(/@\/registry\/ui\//g, `${componentAlias}/neoncite/`)
-    .replace(/@\/lib\/utils/g, config.aliases.utils);
+    .replace(/@\/registry\/ui\/([a-z0-9-]+)/g, "./$1")
+    .replace(/@\/lib\/utils/g, utilsImport);
 }
 
 function registryTarget(cwd: string, file: z.infer<typeof RegistryFile>, config: NeonciteConfig) {
@@ -377,7 +390,7 @@ program
           continue;
         }
         await fs.mkdir(path.dirname(target), { recursive: true });
-        await fs.writeFile(target, rewriteRegistrySource(f.content, config));
+        await fs.writeFile(target, rewriteRegistrySource(f.content, cwd, config, target));
         console.log(kleur.green("  + ") + path.relative(cwd, target));
       }
     }
@@ -409,7 +422,7 @@ program
         continue;
       }
       const localText = await fs.readFile(local, "utf8");
-      const upstream = rewriteRegistrySource(f.content, config);
+      const upstream = rewriteRegistrySource(f.content, cwd, config, local);
       if (localText === upstream) {
         console.log(kleur.green("  same    ") + path.relative(cwd, local));
       } else {
