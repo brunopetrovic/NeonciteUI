@@ -7,7 +7,7 @@ export const Route = createFileRoute("/docs/cli")({
       { title: "CLI Reference — Neoncite/UI" },
       {
         name: "description",
-        content: "The neoncite CLI: init, add, diff, theme. Full reference.",
+        content: "The neoncite CLI: init, add, list, and diff. Full reference.",
       },
     ],
   }),
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/docs/cli")({
 const commands = [
   {
     cmd: "init",
-    desc: "Set up Neoncite in a project. Writes tokens, theme, and components.json.",
+    desc: "Create neoncite.json for the current project and configure the registry plus local aliases.",
     example: "npx neoncite@latest init",
   },
   {
@@ -26,14 +26,14 @@ const commands = [
     example: "npx neoncite add button card dialog",
   },
   {
-    cmd: "diff <component>",
-    desc: "Show local-vs-upstream drift. Useful before upgrading.",
-    example: "npx neoncite diff button",
+    cmd: "list",
+    desc: "List every component currently available from the configured Neoncite registry.",
+    example: "npx neoncite list",
   },
   {
-    cmd: "theme <name>",
-    desc: "Switch the active theme. Built-in: neoncite, neoncite-mono.",
-    example: "npx neoncite theme neoncite-mono",
+    cmd: "diff <component>",
+    desc: "Show local-vs-upstream drift for a component so you can inspect changes before updating it.",
+    example: "npx neoncite diff button",
   },
 ];
 
@@ -44,8 +44,8 @@ function CliPage() {
       <h1 className="text-[40px] font-mono font-bold tracking-tighter neon-white mb-4">CLI</h1>
       <p className="text-[15px] text-muted-foreground leading-relaxed mb-10 max-w-2xl">
         The <code className="text-foreground">neoncite</code> CLI manages your local copy of the
-        design system. It's schema-compatible with shadcn registries, so it works with any registry
-        that follows the same format.
+        design system. Its registry format follows the same source-install model used by shadcn-style
+        registries, while Neoncite keeps its own configuration and visual system.
       </p>
 
       <div className="space-y-8">
