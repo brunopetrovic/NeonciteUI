@@ -25,7 +25,9 @@ export const Route = createFileRoute("/components/$slug")({
   loader: ({ params }) => {
     const item = getRegistryItem(params.slug);
     if (!item) throw notFound();
-    return { item };
+    // Only return serializable data — the icon ComponentType contains Symbols
+    // that Seroval cannot serialize during SSR.
+    return { slug: item.slug };
   },
   component: ComponentPage,
   notFoundComponent: () => (
@@ -65,8 +67,9 @@ function SectionTitle({
 }
 
 function ComponentPage() {
-  const { item } = Route.useLoaderData() as { item: RegistryItem };
-  const showcase = useComponentShowcase(item.slug);
+  const { slug } = Route.useLoaderData() as { slug: string };
+  const item = getRegistryItem(slug)!;
+  const showcase = useComponentShowcase(slug);
   const docs = getComponentDocs(item);
   const idx = REGISTRY.findIndex((registryItem) => registryItem.slug === item.slug);
   const prev = idx > 0 ? REGISTRY[idx - 1] : null;
