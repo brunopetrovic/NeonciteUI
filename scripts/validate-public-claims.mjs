@@ -10,7 +10,10 @@ const forbidden = [
   { pattern: /@Lovable\b/i, reason: "starter-project social metadata" },
   { pattern: /\b29 components\b/i, reason: "stale hard-coded component count" },
   { pattern: /\b60\+ Pro blocks\b/i, reason: "unsupported commercial Block claim" },
-  { pattern: /Figma (kit|library).*(included|access)/i, reason: "unsupported Figma entitlement claim" },
+  {
+    pattern: /Figma (kit|library).*(included|access)/i,
+    reason: "unsupported Figma entitlement claim",
+  },
   { pattern: /\bSLA support\b/i, reason: "unsupported support entitlement claim" },
 ];
 const allowedExtensions = new Set([".ts", ".tsx", ".md", ".txt", ".json", ".css"]);

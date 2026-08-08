@@ -79,7 +79,9 @@ function CliPage() {
       </div>
 
       <section className="mt-10 rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-5">
-        <h2 className="font-mono text-[11px] uppercase tracking-widest neon-cyan">Inspect before you trust</h2>
+        <h2 className="font-mono text-[11px] uppercase tracking-widest neon-cyan">
+          Inspect before you trust
+        </h2>
         <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
           Registry installs write source into your repository. You can inspect any item at
           <code className="mx-1 text-foreground">/r/&lt;item&gt;.json</code> before installing it,

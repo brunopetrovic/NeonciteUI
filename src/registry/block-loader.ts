@@ -22,9 +22,15 @@ export function useBlockPreview(slug: string) {
     let active = true;
     setPreview(null);
     const block = getBlock(slug);
-    if (!block) return () => { active = false; };
+    if (!block)
+      return () => {
+        active = false;
+      };
     const loader = blockModules[`../components/blocks/${block.source}`];
-    if (!loader) return () => { active = false; };
+    if (!loader)
+      return () => {
+        active = false;
+      };
 
     loader().then((module) => {
       if (!active) return;

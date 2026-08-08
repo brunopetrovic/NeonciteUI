@@ -66,17 +66,24 @@ function BlockDetailPage() {
 
         <header className="mb-8 flex flex-col gap-5 border-b border-[color:var(--hairline)] pb-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="font-mono text-[10px] uppercase tracking-[.2em] neon-cyan">registry:block</p>
+            <p className="font-mono text-[10px] uppercase tracking-[.2em] neon-cyan">
+              registry:block
+            </p>
             <h1 className="mt-2 font-mono text-[36px] font-bold tracking-tighter neon-white md:text-[52px]">
               {block.name}
             </h1>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              Installable source Block composed from public Neoncite primitives. Preview data is illustrative and should be replaced with your product content.
+              Installable source Block composed from public Neoncite primitives. Preview data is
+              illustrative and should be replaced with your product content.
             </p>
           </div>
           <div className="flex flex-wrap gap-2">
             <Button variant="outline" size="sm" onClick={copy}>
-              {copied ? <Check className="h-3.5 w-3.5 text-[color:var(--neon-green)]" /> : <Copy className="h-3.5 w-3.5" />}
+              {copied ? (
+                <Check className="h-3.5 w-3.5 text-[color:var(--neon-green)]" />
+              ) : (
+                <Copy className="h-3.5 w-3.5" />
+              )}
               {copied ? "Copied" : "Copy install"}
             </Button>
             <a
@@ -102,11 +109,13 @@ function BlockDetailPage() {
           <div className="mb-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <code className="font-mono text-[11px] text-muted-foreground">{command}</code>
             <div className="inline-flex self-start rounded-[9px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-1">
-              {([
-                ["desktop", Monitor, "Desktop"],
-                ["tablet", Tablet, "Tablet"],
-                ["mobile", Smartphone, "Mobile"],
-              ] as const).map(([id, Icon, label]) => (
+              {(
+                [
+                  ["desktop", Monitor, "Desktop"],
+                  ["tablet", Tablet, "Tablet"],
+                  ["mobile", Smartphone, "Mobile"],
+                ] as const
+              ).map(([id, Icon, label]) => (
                 <button
                   key={id}
                   type="button"
@@ -147,17 +156,33 @@ function BlockDetailPage() {
 
         <nav className="grid grid-cols-2 gap-3 border-t border-[color:var(--hairline)] pt-8">
           {previous ? (
-            <Link to="/blocks/$slug" params={{ slug: previous.slug }} className="rounded-[12px] border border-[color:var(--hairline)] p-4 text-sm text-muted-foreground hover:bg-white/[.03] hover:text-foreground">
-              <span className="block font-mono text-[9px] uppercase tracking-widest text-muted-foreground">Previous</span>
+            <Link
+              to="/blocks/$slug"
+              params={{ slug: previous.slug }}
+              className="rounded-[12px] border border-[color:var(--hairline)] p-4 text-sm text-muted-foreground hover:bg-white/[.03] hover:text-foreground"
+            >
+              <span className="block font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                Previous
+              </span>
               <span className="mt-1 block text-foreground">{previous.name}</span>
             </Link>
-          ) : <div />}
+          ) : (
+            <div />
+          )}
           {next ? (
-            <Link to="/blocks/$slug" params={{ slug: next.slug }} className="col-start-2 rounded-[12px] border border-[color:var(--hairline)] p-4 text-right text-sm text-muted-foreground hover:bg-white/[.03] hover:text-foreground">
-              <span className="block font-mono text-[9px] uppercase tracking-widest text-muted-foreground">Next</span>
+            <Link
+              to="/blocks/$slug"
+              params={{ slug: next.slug }}
+              className="col-start-2 rounded-[12px] border border-[color:var(--hairline)] p-4 text-right text-sm text-muted-foreground hover:bg-white/[.03] hover:text-foreground"
+            >
+              <span className="block font-mono text-[9px] uppercase tracking-widest text-muted-foreground">
+                Next
+              </span>
               <span className="mt-1 block text-foreground">{next.name}</span>
             </Link>
-          ) : <div />}
+          ) : (
+            <div />
+          )}
         </nav>
       </main>
       <SiteFooter />

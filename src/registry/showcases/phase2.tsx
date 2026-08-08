@@ -1,13 +1,5 @@
 import * as React from "react";
-import {
-  Bold,
-  Database,
-  FileText,
-  Folder,
-  Italic,
-  Settings,
-  Trash2,
-} from "lucide-react";
+import { Bold, Database, FileText, Folder, Italic, Settings, Trash2 } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,

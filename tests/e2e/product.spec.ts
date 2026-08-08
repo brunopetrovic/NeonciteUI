@@ -21,9 +21,10 @@ test("home is accessible and visually stable", async ({ page }, testInfo) => {
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Machined components");
   await expectNoSeriousA11yViolations(page);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  const gridAnimation = await page.locator(".bg-grid-drift").first().evaluate((element) =>
-    getComputedStyle(element).animationName,
-  );
+  const gridAnimation = await page
+    .locator(".bg-grid-drift")
+    .first()
+    .evaluate((element) => getComputedStyle(element).animationName);
   expect(gridAnimation).toBe("none");
   if (testInfo.project.name === "chromium-desktop") {
     await expect(page).toHaveScreenshot("home-desktop.png", { fullPage: true });
@@ -58,7 +59,7 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
   await page.getByRole("button", { name: /Ocean/ }).click();
   await page.getByRole("button", { name: /Persist active/ }).click();
   await page.reload();
-  await expect(page.getByText("Active:").locator(".." )).toContainText("Custom");
+  await expect(page.getByText("Active:").locator("..")).toContainText("Custom");
   await expectNoSeriousA11yViolations(page);
   if (testInfo.project.name === "chromium-desktop") {
     await expect(page).toHaveScreenshot("theme-builder-desktop.png", { fullPage: true });
