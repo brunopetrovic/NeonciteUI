@@ -469,6 +469,7 @@ function ThemesPage() {
 
             <pre
               aria-label="Generated CSS"
+              tabIndex={-1}
               className="max-h-[300px] overflow-auto rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] p-4"
             >
               <code className="whitespace-pre font-mono text-[10px] leading-relaxed text-foreground">
