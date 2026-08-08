@@ -6,7 +6,7 @@ import { CodeBlock } from "@/components/docs/CodeBlock";
 import { InstallTabs } from "@/components/docs/InstallTabs";
 import { getRegistryItem, REGISTRY, type RegistryItem } from "@/registry";
 import { getComponentDocs } from "@/registry/component-docs";
-import { SHOWCASES } from "@/registry/showcases";
+import { useComponentShowcase } from "@/registry/showcase-loader";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/components/$slug")({
@@ -66,7 +66,7 @@ function SectionTitle({
 
 function ComponentPage() {
   const { item } = Route.useLoaderData() as { item: RegistryItem };
-  const showcase = SHOWCASES[item.slug];
+  const showcase = useComponentShowcase(item.slug);
   const docs = getComponentDocs(item);
   const idx = REGISTRY.findIndex((registryItem) => registryItem.slug === item.slug);
   const prev = idx > 0 ? REGISTRY[idx - 1] : null;
