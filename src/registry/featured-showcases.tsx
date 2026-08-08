@@ -20,35 +20,58 @@ const rows = [
   { service: "worker-sync", region: "iad-1", status: "Building" },
 ];
 
-export const FEATURED_SHOWCASES: Record<string, React.ReactNode> = {
-  button: <Button variant="primary">Deploy</Button>,
-  "data-table": (
+const columns = [
+  { accessorKey: "service", header: "Service" },
+  { accessorKey: "region", header: "Region" },
+  { accessorKey: "status", header: "Status" },
+];
+
+function ButtonShowcase() {
+  return <Button variant="primary">Deploy</Button>;
+}
+
+function DataTableShowcase() {
+  return (
     <div className="w-[260px] scale-[.72] origin-center">
-      <DataTable
-        columns={[
-          { accessorKey: "service", header: "Service" },
-          { accessorKey: "region", header: "Region" },
-          { accessorKey: "status", header: "Status" },
-        ]}
-        data={rows}
-      />
+      <DataTable columns={columns} data={rows} />
     </div>
-  ),
-  terminal: (
+  );
+}
+
+function TerminalShowcase() {
+  return (
     <Terminal className="w-[280px]" status="ready">
       <TerminalLine>neoncite doctor</TerminalLine>
       <TerminalOutput>{`registry: ok\nbuild: ready`}</TerminalOutput>
     </Terminal>
-  ),
-  "server-card": (
+  );
+}
+
+function ServerCardShowcase() {
+  return (
     <div className="w-[260px] scale-[.72] origin-center">
       <ServerCard name="edge-07" region="fra-1" cpu={34} memory={61} storage={48} />
     </div>
-  ),
-  gauge: <Gauge value={72} label="CPU" unit="%" />,
-  "command-bar": (
+  );
+}
+
+function GaugeShowcase() {
+  return <Gauge value={72} label="CPU" unit="%" />;
+}
+
+function CommandBarShowcase() {
+  return (
     <div className="w-[280px]">
       <CommandBar>Search systems…</CommandBar>
     </div>
-  ),
+  );
+}
+
+export const FEATURED_SHOWCASES: Record<string, React.ComponentType> = {
+  button: ButtonShowcase,
+  "data-table": DataTableShowcase,
+  terminal: TerminalShowcase,
+  "server-card": ServerCardShowcase,
+  gauge: GaugeShowcase,
+  "command-bar": CommandBarShowcase,
 };
