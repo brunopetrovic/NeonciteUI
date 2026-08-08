@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "theme-forest",
+  "type": "registry:theme",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/styles/theme-forest.css",
+      "content": "/* Neoncite Forest — dark-only registry theme */\n:root, .dark {\n  --primary: #00ff66;\n  --ring: #00ff66;\n  --accent: #ccff00;\n  --radius: 1rem;\n  --surface-0: #010c04;\n  --surface-1: #051408;\n  --surface-2: #0a1c0e;\n  --surface-3: #122916;\n  --hairline: #1a3a1f;\n  --background: #010c04;\n  --foreground: #d8f5e0;\n  --card: #051408;\n  --card-foreground: #d8f5e0;\n  --popover: #0a1c0e;\n  --popover-foreground: #d8f5e0;\n  --secondary: #122916;\n  --secondary-foreground: #d8f5e0;\n  --muted: #0a1c0e;\n  --muted-foreground: #76a983;\n  --input: #122916;\n  --border: #122916;\n}",
+      "type": "registry:theme",
+      "target": ""
+    }
+  ]
+}

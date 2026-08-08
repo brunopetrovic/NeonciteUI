@@ -38,7 +38,7 @@ const widths: Record<Viewport, string> = {
 };
 
 function BlockDetailPage() {
-  const { block } = Route.useLoaderData();
+  const { block } = Route.useLoaderData() as { block: ReturnType<typeof getBlock> & object };
   const Preview = useBlockPreview(block.slug);
   const [viewport, setViewport] = React.useState<Viewport>("desktop");
   const [copied, setCopied] = React.useState(false);

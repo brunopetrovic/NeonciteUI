@@ -335,7 +335,7 @@
     "description": "Sortable, filterable, paginated table built on TanStack Table.",
     "category": "data",
     "targetPath": "components/neoncite/data-table.tsx",
-    "dependencies": ["@tanstack/react-table", "lucide-react"],
+    "dependencies": ["@tanstack/react-table@^8", "lucide-react"],
     "registryDeps": [],
     "accent": "text-neon-blue",
     "icon": "Table2"
@@ -346,7 +346,7 @@
     "description": "Date picker calendar built on react-day-picker.",
     "category": "form",
     "targetPath": "components/neoncite/calendar.tsx",
-    "dependencies": ["react-day-picker", "date-fns", "lucide-react"],
+    "dependencies": ["react-day-picker@^9", "date-fns@^4", "lucide-react"],
     "registryDeps": [],
     "accent": "text-neon-pink",
     "icon": "CalendarDays"

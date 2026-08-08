@@ -114,7 +114,7 @@ for (const itemMeta of ITEMS) {
   if (!content.includes("export") || content.length < 10)
     throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
   const item = {
-    $schema: "https://neoncite.dev/schema/registry-item.json",
+    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: itemMeta.slug,
     type: "registry:ui",
     dependencies: itemMeta.dependencies,
@@ -138,7 +138,7 @@ for (const blockMeta of BLOCKS) {
   const { dependencies, registryDependencies } = blockDependencies(content, blockMeta.slug);
   const targetPath = `components/neoncite/blocks/${blockMeta.slug}.tsx`;
   const item = {
-    $schema: "https://neoncite.dev/schema/registry-item.json",
+    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: blockMeta.slug,
     type: "registry:block",
     dependencies,
@@ -152,7 +152,7 @@ for (const blockMeta of BLOCKS) {
 
 for (const theme of THEMES) {
   const item = {
-    $schema: "https://neoncite.dev/schema/registry-item.json",
+    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: theme.slug,
     type: "registry:theme",
     dependencies: [],
@@ -179,7 +179,11 @@ for (const theme of THEMES) {
 fs.writeFileSync(
   path.join(OUT, "index.json"),
   JSON.stringify(
-    { $schema: "https://neoncite.dev/schema/registry.json", name: "neoncite", items: index },
+    {
+      $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+      name: "neoncite",
+      items: index,
+    },
     null,
     2,
   ),

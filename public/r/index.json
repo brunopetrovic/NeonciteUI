@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite.dev/schema/registry.json",
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "neoncite",
   "items": [
     {
@@ -250,7 +250,7 @@
       "name": "data-table",
       "type": "registry:ui",
       "dependencies": [
-        "@tanstack/react-table",
+        "@tanstack/react-table@^8",
         "lucide-react"
       ],
       "registryDependencies": []
@@ -259,8 +259,8 @@
       "name": "calendar",
       "type": "registry:ui",
       "dependencies": [
-        "react-day-picker",
-        "date-fns",
+        "react-day-picker@^9",
+        "date-fns@^4",
         "lucide-react"
       ],
       "registryDependencies": []
@@ -276,6 +276,642 @@
       "registryDependencies": [
         "label"
       ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-alert-dialog"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-aspect-ratio"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-collapsible"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-scroll-area"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-toggle-group",
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-context-menu",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-menubar",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "dependencies": [
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "dependencies": [
+        "react-resizable-panels",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "dependencies": [
+        "input-otp",
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "dependencies": [
+        "vaul"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "dependencies": [
+        "embla-carousel-react",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "command",
+        "popover"
+      ]
+    },
+    {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "dependencies": [
+        "date-fns@^4",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "calendar",
+        "popover"
+      ]
+    },
+    {
+      "name": "empty-state",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "loading-overlay",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "spinner"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "code",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "button"
+      ]
+    },
+    {
+      "name": "status-indicator",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "search-input",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "password-input",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "number-field",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "stepper",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "timeline",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "data-list",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "tree-view",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "terminal",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "log-viewer",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "status-led",
+      "type": "registry:ui",
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "connection-status",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "status-led"
+      ]
+    },
+    {
+      "name": "telemetry-panel",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "gauge",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "sparkline-metric",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "resource-meter",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "latency-indicator",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "system-health",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "status-led"
+      ]
+    },
+    {
+      "name": "deployment-status",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "activity-stream",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": [
+        "status-led"
+      ]
+    },
+    {
+      "name": "server-card",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "resource-meter",
+        "status-led"
+      ]
+    },
+    {
+      "name": "hud-panel",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "diagnostic-panel",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "command-bar",
+      "type": "registry:ui",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "kbd"
+      ]
+    },
+    {
+      "name": "metric-grid",
+      "type": "registry:ui",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "hero-console",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
+      "name": "stats-strip",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "kpi-card"
+      ]
+    },
+    {
+      "name": "pricing-three-tiers",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "separator"
+      ]
+    },
+    {
+      "name": "status-health",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge",
+        "card",
+        "progress"
+      ]
+    },
+    {
+      "name": "auth-console",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "checkbox",
+        "input",
+        "label"
+      ]
+    },
+    {
+      "name": "features-grid",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": []
+    },
+    {
+      "name": "testimonials",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card"
+      ]
+    },
+    {
+      "name": "faq-folded",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "accordion"
+      ]
+    },
+    {
+      "name": "pricing-tiers-alternative",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card"
+      ]
+    },
+    {
+      "name": "cta-banner",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge",
+        "button"
+      ]
+    },
+    {
+      "name": "dashboard-activity",
+      "type": "registry:block",
+      "dependencies": [
+        "recharts"
+      ],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "chart",
+        "separator"
+      ]
+    },
+    {
+      "name": "dashboard-shell",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "command-bar",
+        "kpi-card",
+        "metric-grid",
+        "server-card",
+        "status-indicator"
+      ]
+    },
+    {
+      "name": "telemetry-dashboard",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "gauge",
+        "latency-indicator",
+        "sparkline-metric",
+        "system-health",
+        "telemetry-panel"
+      ]
+    },
+    {
+      "name": "deployment-dashboard",
+      "type": "registry:block",
+      "dependencies": [],
+      "registryDependencies": [
+        "activity-stream",
+        "deployment-status",
+        "diagnostic-panel"
+      ]
+    },
+    {
+      "name": "ai-agent-console",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input-group",
+        "log-viewer",
+        "status-indicator",
+        "terminal"
+      ]
+    },
+    {
+      "name": "settings-panel",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "separator",
+        "switch"
+      ]
+    },
+    {
+      "name": "onboarding-panel",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "stepper"
+      ]
+    },
+    {
+      "name": "error-state-page",
+      "type": "registry:block",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "diagnostic-panel"
+      ]
+    },
+    {
+      "name": "theme-neoncite",
+      "type": "registry:theme",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "theme-ocean",
+      "type": "registry:theme",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "theme-ember",
+      "type": "registry:theme",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "theme-forest",
+      "type": "registry:theme",
+      "dependencies": [],
+      "registryDependencies": []
+    },
+    {
+      "name": "theme-ultraviolet",
+      "type": "registry:theme",
+      "dependencies": [],
+      "registryDependencies": []
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "loading-overlay",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "spinner"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/loading-overlay.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Spinner } from \"@/registry/ui/spinner\";\n\nexport interface LoadingOverlayProps extends React.HTMLAttributes<HTMLDivElement> {\n  label?: React.ReactNode;\n  description?: React.ReactNode;\n}\n\nexport function LoadingOverlay({\n  label = \"Loading\",\n  description,\n  className,\n  ...props\n}: LoadingOverlayProps) {\n  return (\n    <div\n      className={cn(\n        \"absolute inset-0 z-40 flex items-center justify-center bg-black/65 p-6 backdrop-blur-sm\",\n        className,\n      )}\n      aria-live=\"polite\"\n      aria-busy=\"true\"\n      {...props}\n    >\n      <div className=\"flex min-w-[180px] flex-col items-center rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-5 text-center shadow-[0_24px_48px_rgba(0,0,0,.65),var(--rim-light-shadow)]\">\n        <Spinner className=\"h-5 w-5\" />\n        <div className=\"mt-3 font-mono text-[11px] uppercase tracking-[.18em] text-foreground\">\n          {label}\n        </div>\n        {description && <div className=\"mt-1 text-xs text-muted-foreground\">{description}</div>}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

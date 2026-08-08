@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "theme-ultraviolet",
+  "type": "registry:theme",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "src/styles/theme-ultraviolet.css",
+      "content": "/* Neoncite Ultraviolet — dark-only registry theme */\n:root, .dark {\n  --primary: #b829ff;\n  --ring: #b829ff;\n  --accent: #ff2a9d;\n  --radius: 0.75rem;\n  --surface-0: #07001a;\n  --surface-1: #0d0528;\n  --surface-2: #140a38;\n  --surface-3: #1e1049;\n  --hairline: #2a1960;\n  --background: #07001a;\n  --foreground: #ede5ff;\n  --card: #0d0528;\n  --card-foreground: #ede5ff;\n  --popover: #140a38;\n  --popover-foreground: #ede5ff;\n  --secondary: #1e1049;\n  --secondary-foreground: #ede5ff;\n  --muted: #140a38;\n  --muted-foreground: #9d8fbd;\n  --input: #1e1049;\n  --border: #1e1049;\n}",
+      "type": "registry:theme",
+      "target": ""
+    }
+  ]
+}

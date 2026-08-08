@@ -1,9 +1,9 @@
 {
-  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "data-table",
   "type": "registry:ui",
   "dependencies": [
-    "@tanstack/react-table",
+    "@tanstack/react-table@^8",
     "lucide-react"
   ],
   "registryDependencies": [],

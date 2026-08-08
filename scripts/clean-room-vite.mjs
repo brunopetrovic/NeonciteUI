@@ -38,7 +38,7 @@ try {
   );
   await new Promise((resolve) => setTimeout(resolve, 800));
 
-  run("npm", ["create", "vite@latest", appDir, "--", "--template", "react-ts"]);
+  run("npm", ["create", "vite@latest", ".", "--", "--template", "react-ts"], { cwd: appDir });
   run("npm", ["install", "--no-audit", "--no-fund"], { cwd: appDir });
   run("npm", ["install", "tailwindcss@^4", "@tailwindcss/vite@^4", "--no-audit", "--no-fund"], {
     cwd: appDir,

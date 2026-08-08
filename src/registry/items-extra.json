@@ -159,7 +159,7 @@
     "description": "Single-date picker composed from Calendar and Popover.",
     "category": "form",
     "targetPath": "components/neoncite/date-picker.tsx",
-    "dependencies": ["date-fns", "lucide-react"],
+    "dependencies": ["date-fns@^4", "lucide-react"],
     "registryDeps": ["button", "calendar", "popover"],
     "accent": "text-neon-pink",
     "icon": "CalendarDays"
@@ -373,7 +373,6 @@
     "accent": "text-neon-cyan",
     "icon": "ChevronsUpDown"
   },
-
   {
     "slug": "terminal",
     "name": "Terminal",

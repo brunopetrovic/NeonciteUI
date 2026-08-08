@@ -1,0 +1,51 @@
+name: Preview Deploy
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.13.0
+          cache: npm
+          cache-dependency-path: |
+            package.json
+            packages/cli/package.json
+            packages/ui/package.json
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Approve blocked postinstall scripts
+        run: |
+          npx npm-install-scripts approve esbuild 2>/dev/null \
+            || npx install-scripts approve esbuild 2>/dev/null \
+            || true
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy preview Worker
+        run: |
+          npx wrangler deploy --config wrangler.deploy.jsonc \
+            --name neoncite-ui-pr-${{ github.event.pull_request.number }}

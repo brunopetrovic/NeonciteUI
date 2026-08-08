@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "activity-stream",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "status-led"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/activity-stream.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { StatusLed } from \"@/registry/ui/status-led\";\n\nexport interface ActivityItem {\n  id?: string;\n  title: React.ReactNode;\n  detail?: React.ReactNode;\n  time?: React.ReactNode;\n  status?: \"online\" | \"warning\" | \"error\" | \"info\" | \"idle\";\n  icon?: React.ReactNode;\n}\nexport interface ActivityStreamProps extends React.HTMLAttributes<HTMLDivElement> {\n  items: ActivityItem[];\n}\n\nexport function ActivityStream({ items, className, ...props }: ActivityStreamProps) {\n  return (\n    <div className={cn(\"relative\", className)} {...props}>\n      <div\n        className=\"absolute bottom-3 left-[7px] top-3 w-px bg-[color:var(--hairline)]\"\n        aria-hidden=\"true\"\n      />\n      <div className=\"space-y-4\">\n        {items.map((item, index) => (\n          <div key={item.id ?? index} className=\"relative grid grid-cols-[16px_1fr_auto] gap-3\">\n            <div className=\"relative z-10 flex items-start justify-center pt-1\">\n              {item.icon ?? <StatusLed status={item.status ?? \"idle\"} size=\"sm\" />}\n            </div>\n            <div className=\"min-w-0\">\n              <div className=\"text-sm text-foreground\">{item.title}</div>\n              {item.detail && (\n                <div className=\"mt-1 text-xs leading-relaxed text-muted-foreground\">\n                  {item.detail}\n                </div>\n              )}\n            </div>\n            {item.time && (\n              <div className=\"font-mono text-[10px] tabular-nums text-muted-foreground\">\n                {item.time}\n              </div>\n            )}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

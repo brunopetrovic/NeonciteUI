@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "code",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/code.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function InlineCode({ className, ...props }: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <code\n      className={cn(\n        \"rounded-[6px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] px-1.5 py-0.5 font-mono text-[.9em] text-[color:var(--neon-cyan)]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function Code({ className, ...props }: React.HTMLAttributes<HTMLElement>) {\n  return <code className={cn(\"font-mono text-[13px] text-foreground\", className)} {...props} />;\n}\n\nexport function CodeBlock({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) {\n  return (\n    <pre\n      className={cn(\n        \"overflow-x-auto rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] p-4 font-mono text-[12px] leading-relaxed text-foreground shadow-[var(--recessed-shadow)]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

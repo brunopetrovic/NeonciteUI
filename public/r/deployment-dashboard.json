@@ -1,0 +1,19 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "deployment-dashboard",
+  "type": "registry:block",
+  "dependencies": [],
+  "registryDependencies": [
+    "activity-stream",
+    "deployment-status",
+    "diagnostic-panel"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/deployment-dashboard.tsx",
+      "content": "import { ActivityStream } from \"@/registry/ui/activity-stream\";\nimport { DeploymentStatus } from \"@/registry/ui/deployment-status\";\nimport { DiagnosticPanel } from \"@/registry/ui/diagnostic-panel\";\n\nexport function DeploymentDashboard() {\n  return (\n    <div className=\"grid gap-4 rounded-[18px] border border-[color:var(--hairline)] bg-[color:var(--surface-0)] p-5 lg:grid-cols-[1.1fr_.9fr]\">\n      <div>\n        <div className=\"mb-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground\">\n          Deployments\n        </div>\n        <div className=\"space-y-3\">\n          <DeploymentStatus\n            name=\"api-edge\"\n            environment=\"production\"\n            status=\"ready\"\n            commit=\"9f31a2c\"\n            duration=\"52s\"\n          />\n          <DeploymentStatus\n            name=\"worker-sync\"\n            environment=\"production\"\n            status=\"building\"\n            commit=\"5a7d104\"\n            duration=\"18s\"\n          />\n          <DeploymentStatus name=\"console\" environment=\"preview\" status=\"queued\" commit=\"83bb0d2\" />\n        </div>\n        <div className=\"mt-5\">\n          <ActivityStream\n            items={[\n              {\n                title: \"api-edge deployed\",\n                detail: \"12 regions updated\",\n                time: \"2m\",\n                status: \"online\",\n              },\n              {\n                title: \"worker-sync build started\",\n                detail: \"cache restored\",\n                time: \"now\",\n                status: \"info\",\n              },\n            ]}\n          />\n        </div>\n      </div>\n      <DiagnosticPanel\n        title=\"Release diagnostics\"\n        items={[\n          { severity: \"pass\", title: \"Typecheck\" },\n          { severity: \"pass\", title: \"Registry integrity\" },\n          { severity: \"warning\", title: \"p95 latency\", detail: \"184ms, target 180ms\" },\n          { severity: \"pass\", title: \"Artifact parity\" },\n        ]}\n      />\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

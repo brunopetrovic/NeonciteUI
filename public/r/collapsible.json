@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "collapsible",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/collapsible.tsx",
+      "content": "\"use client\";\nimport * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\nexport const CollapsibleTrigger = CollapsiblePrimitive.Trigger;\nexport const CollapsibleContent = CollapsiblePrimitive.Content;\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

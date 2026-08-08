@@ -16,8 +16,12 @@ const bySlug = new Map(items.map((item) => [item.slug, item]));
 const errors = [];
 
 function packageName(specifier) {
-  if (specifier.startsWith("@")) return specifier.split("/").slice(0, 2).join("/");
-  return specifier.split("/")[0];
+  // Strip version specifier (e.g. @tanstack/react-table@^8 → @tanstack/react-table)
+  if (specifier.startsWith("@")) {
+    const withoutVersion = specifier.slice(1).split("@")[0];
+    return "@" + withoutVersion;
+  }
+  return specifier.split("@")[0].split("/")[0];
 }
 
 function importsFrom(source) {
@@ -40,7 +44,7 @@ for (const item of items) {
     if (!bySlug.has(dep)) errors.push(`${item.slug}: unknown registry dependency "${dep}"`);
   }
 
-  const declaredPackages = new Set(item.dependencies ?? []);
+  const declaredPackages = new Set((item.dependencies ?? []).map((d) => packageName(d)));
   const declaredRegistry = new Set(item.registryDeps ?? []);
   const source = fs.readFileSync(sourcePath, "utf8");
 

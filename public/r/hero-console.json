@@ -1,0 +1,18 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "hero-console",
+  "type": "registry:block",
+  "dependencies": [],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/hero-console.tsx",
+      "content": "import { Badge } from \"@/registry/ui/badge\";\nimport { Button } from \"@/registry/ui/button\";\n\nexport function HeroBrutal() {\n  return (\n    <div className=\"relative overflow-hidden rounded-[20px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-10 md:p-16\">\n      <div className=\"absolute inset-0 bg-grid opacity-50\" />\n      <div className=\"relative max-w-2xl\">\n        <Badge variant=\"cyan\" className=\"mb-5\">\n          v0.1 — alpha\n        </Badge>\n        <h2 className=\"text-[44px] md:text-[64px] font-mono font-bold tracking-tighter neon-white leading-none mb-5\">\n          Ship faster.\n          <br />\n          <span className=\"neon-pink\">Look sharper.</span>\n        </h2>\n        <p className=\"text-[15px] text-muted-foreground mb-8 max-w-lg\">\n          A design system for builders who think interfaces should feel like instruments, not lobby\n          art.\n        </p>\n        <div className=\"flex flex-wrap gap-3\">\n          <Button variant=\"primary\" size=\"lg\">\n            Get started\n          </Button>\n          <Button variant=\"neon\" size=\"lg\">\n            View components →\n          </Button>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

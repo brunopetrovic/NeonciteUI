@@ -62,10 +62,16 @@ console.log("[pkg] wrote src/index.ts");
 
 const dependencyNames = [...new Set(ITEMS.flatMap((item) => item.dependencies))].sort();
 const dependencyVersions = {};
+function stripVersion(dep) {
+  // Strip @version suffix (e.g. @tanstack/react-table@^8 → @tanstack/react-table)
+  if (dep.startsWith("@")) return "@" + dep.slice(1).split("@")[0];
+  return dep.split("@")[0];
+}
 for (const dep of dependencyNames) {
-  const version = rootPackage.dependencies?.[dep] ?? rootPackage.devDependencies?.[dep];
+  const base = stripVersion(dep);
+  const version = rootPackage.dependencies?.[base] ?? rootPackage.devDependencies?.[base];
   if (!version) throw new Error(`[pkg] no root package version found for dependency ${dep}`);
-  dependencyVersions[dep] = version;
+  dependencyVersions[base] = version;
 }
 for (const dep of ["clsx", "tailwind-merge", "tw-animate-css"]) {
   const version = rootPackage.dependencies?.[dep] ?? rootPackage.devDependencies?.[dep];

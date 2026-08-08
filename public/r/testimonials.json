@@ -1,0 +1,19 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "testimonials",
+  "type": "registry:block",
+  "dependencies": [],
+  "registryDependencies": [
+    "avatar",
+    "badge",
+    "card"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/testimonials.tsx",
+      "content": "import { Avatar, AvatarFallback } from \"@/registry/ui/avatar\";\nimport { Badge } from \"@/registry/ui/badge\";\nimport { Card, CardContent } from \"@/registry/ui/card\";\n\nexport function TestimonialsNotes() {\n  const testimonials = [\n    {\n      name: \"Alex Chen\",\n      role: \"Example customer · Platform\",\n      quote: \"The interface stays readable even when the dashboard gets dense and operational.\",\n      initials: \"AC\",\n      accent: \"pink\" as const,\n    },\n    {\n      name: \"Jordan Lee\",\n      role: \"Example customer · Design\",\n      quote:\n        \"The machined surfaces give technical tools a strong identity without sacrificing clarity.\",\n      initials: \"JL\",\n      accent: \"cyan\" as const,\n    },\n    {\n      name: \"Sam Rivera\",\n      role: \"Example customer · Engineering\",\n      quote:\n        \"Source ownership makes it straightforward to compose the primitives around product needs.\",\n      initials: \"SR\",\n      accent: \"green\" as const,\n    },\n  ];\n\n  return (\n    <div className=\"space-y-3\">\n      <p className=\"font-mono text-[10px] uppercase tracking-widest text-muted-foreground\">\n        Demo content · fictional names and quotes for layout preview only\n      </p>\n      <div className=\"grid md:grid-cols-3 gap-3\">\n        {testimonials.map((t) => (\n          <Card key={t.name}>\n            <CardContent className=\"pt-6 space-y-4\">\n              <p className=\"text-[13.5px] text-foreground leading-relaxed\">\"{t.quote}\"</p>\n              <div className=\"flex items-center gap-3\">\n                <Avatar>\n                  <AvatarFallback>{t.initials}</AvatarFallback>\n                </Avatar>\n                <div>\n                  <div className=\"text-[13px] font-semibold neon-white\">{t.name}</div>\n                  <div className=\"font-mono text-[10px] uppercase tracking-widest text-muted-foreground\">\n                    {t.role}\n                  </div>\n                </div>\n                <Badge variant={t.accent} className=\"ml-auto\">\n                  demo\n                </Badge>\n              </div>\n            </CardContent>\n          </Card>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

@@ -8,7 +8,7 @@ Neoncite/UI is an opinionated, dark-mode-only React component system built aroun
 
 ## Status
 
-Neoncite/UI is under active pre-1.0 development. The public registry currently contains 33 component items. APIs and installation behavior are being hardened before a stable 1.0 release.
+Neoncite/UI is under active pre-1.0 development. The public registry currently contains 84 UI components, 18 blocks, and 5 installable dark themes. APIs and installation behavior are being hardened before a stable 1.0 release.
 
 ## Design principles
 
@@ -57,12 +57,7 @@ If your app already has the common `@/` alias, you can import components like th
 
 ```tsx
 import { Button } from "@/components/neoncite/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/neoncite/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/neoncite/card";
 
 export function DashboardWidget() {
   return (

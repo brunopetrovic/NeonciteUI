@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/timeline.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TimelineItem {\n  id?: string;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  time?: React.ReactNode;\n  icon?: React.ReactNode;\n}\nexport interface TimelineProps extends React.HTMLAttributes<HTMLDivElement> {\n  items: TimelineItem[];\n}\n\nexport function Timeline({ items, className, ...props }: TimelineProps) {\n  return (\n    <div className={cn(\"relative space-y-6\", className)} {...props}>\n      <div className=\"absolute bottom-3 left-4 top-3 w-px bg-[color:var(--hairline)]\" />\n      {items.map((item, index) => (\n        <div key={item.id ?? index} className=\"relative grid grid-cols-[32px_1fr] gap-3\">\n          <div className=\"relative z-10 flex h-8 w-8 items-center justify-center rounded-full border border-[color:var(--hairline)] bg-[color:var(--surface-2)] text-[color:var(--neon-cyan)] shadow-[var(--rim-light-shadow)]\">\n            {item.icon ?? (\n              <span className=\"h-2 w-2 rounded-full bg-current shadow-[0_0_8px_currentColor]\" />\n            )}\n          </div>\n          <div className=\"pt-1\">\n            <div className=\"flex flex-wrap items-baseline justify-between gap-2\">\n              <div className=\"text-sm font-medium text-foreground\">{item.title}</div>\n              {item.time && (\n                <div className=\"font-mono text-[10px] text-muted-foreground\">{item.time}</div>\n              )}\n            </div>\n            {item.description && (\n              <div className=\"mt-1 text-sm leading-relaxed text-muted-foreground\">\n                {item.description}\n              </div>\n            )}\n          </div>\n        </div>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

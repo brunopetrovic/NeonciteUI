@@ -9,31 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ThemesRouteImport } from './routes/themes'
-import { Route as DocsRouteImport } from './routes/docs'
-import { Route as ChangelogRouteImport } from './routes/changelog'
-import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as BlocksRouteImport } from './routes/blocks'
+import { Route as ChangelogRouteImport } from './routes/changelog'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as BlocksSlugRouteImport } from './routes/blocks.$slug'
 import { Route as ComponentsIndexRouteImport } from './routes/components.index'
-import { Route as DocsThemingRouteImport } from './routes/docs.theming'
-import { Route as DocsInstallationRouteImport } from './routes/docs.installation'
-import { Route as DocsCliRouteImport } from './routes/docs.cli'
 import { Route as ComponentsSlugRouteImport } from './routes/components.$slug'
+import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as DocsCliRouteImport } from './routes/docs.cli'
+import { Route as DocsInstallationRouteImport } from './routes/docs.installation'
+import { Route as DocsThemingRouteImport } from './routes/docs.theming'
 
-const ThemesRoute = ThemesRouteImport.update({
-  id: '/themes',
-  path: '/themes',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChangelogRoute = ChangelogRouteImport.update({
-  id: '/changelog',
-  path: '/changelog',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlocksRoute = BlocksRouteImport.update({
@@ -41,9 +32,34 @@ const BlocksRoute = BlocksRouteImport.update({
   path: '/blocks',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ChangelogRoute = ChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThemesRoute = ThemesRouteImport.update({
+  id: '/themes',
+  path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlocksSlugRoute = BlocksSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlocksRoute,
+} as any)
+const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
+  id: '/components/',
+  path: '/components/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSlugRoute = ComponentsSlugRouteImport.update({
+  id: '/components/$slug',
+  path: '/components/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsIndexRoute = DocsIndexRouteImport.update({
@@ -51,14 +67,9 @@ const DocsIndexRoute = DocsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DocsRoute,
 } as any)
-const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
-  id: '/components/',
-  path: '/components/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DocsThemingRoute = DocsThemingRouteImport.update({
-  id: '/theming',
-  path: '/theming',
+const DocsCliRoute = DocsCliRouteImport.update({
+  id: '/cli',
+  path: '/cli',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsInstallationRoute = DocsInstallationRouteImport.update({
@@ -66,23 +77,19 @@ const DocsInstallationRoute = DocsInstallationRouteImport.update({
   path: '/installation',
   getParentRoute: () => DocsRoute,
 } as any)
-const DocsCliRoute = DocsCliRouteImport.update({
-  id: '/cli',
-  path: '/cli',
+const DocsThemingRoute = DocsThemingRouteImport.update({
+  id: '/theming',
+  path: '/theming',
   getParentRoute: () => DocsRoute,
-} as any)
-const ComponentsSlugRoute = ComponentsSlugRouteImport.update({
-  id: '/components/$slug',
-  path: '/components/$slug',
-  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/blocks': typeof BlocksRoute
+  '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
   '/docs': typeof DocsRouteWithChildren
   '/themes': typeof ThemesRoute
+  '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
@@ -92,9 +99,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/blocks': typeof BlocksRoute
+  '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
   '/themes': typeof ThemesRoute
+  '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
@@ -105,10 +113,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/blocks': typeof BlocksRoute
+  '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
   '/docs': typeof DocsRouteWithChildren
   '/themes': typeof ThemesRoute
+  '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/changelog'
     | '/docs'
     | '/themes'
+    | '/blocks/$slug'
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/changelog'
     | '/themes'
+    | '/blocks/$slug'
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/changelog'
     | '/docs'
     | '/themes'
+    | '/blocks/$slug'
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
@@ -159,7 +171,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BlocksRoute: typeof BlocksRoute
+  BlocksRoute: typeof BlocksRouteWithChildren
   ChangelogRoute: typeof ChangelogRoute
   DocsRoute: typeof DocsRouteWithChildren
   ThemesRoute: typeof ThemesRoute
@@ -169,25 +181,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/themes': {
-      id: '/themes'
-      path: '/themes'
-      fullPath: '/themes'
-      preLoaderRoute: typeof ThemesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/changelog': {
-      id: '/changelog'
-      path: '/changelog'
-      fullPath: '/changelog'
-      preLoaderRoute: typeof ChangelogRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blocks': {
@@ -197,11 +195,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlocksRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/changelog': {
+      id: '/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof ChangelogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/themes': {
+      id: '/themes'
+      path: '/themes'
+      fullPath: '/themes'
+      preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blocks/$slug': {
+      id: '/blocks/$slug'
+      path: '/$slug'
+      fullPath: '/blocks/$slug'
+      preLoaderRoute: typeof BlocksSlugRouteImport
+      parentRoute: typeof BlocksRoute
+    }
+    '/components/': {
+      id: '/components/'
+      path: '/components'
+      fullPath: '/components/'
+      preLoaderRoute: typeof ComponentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/$slug': {
+      id: '/components/$slug'
+      path: '/components/$slug'
+      fullPath: '/components/$slug'
+      preLoaderRoute: typeof ComponentsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/': {
@@ -211,18 +244,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof DocsRoute
     }
-    '/components/': {
-      id: '/components/'
-      path: '/components'
-      fullPath: '/components/'
-      preLoaderRoute: typeof ComponentsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/docs/theming': {
-      id: '/docs/theming'
-      path: '/theming'
-      fullPath: '/docs/theming'
-      preLoaderRoute: typeof DocsThemingRouteImport
+    '/docs/cli': {
+      id: '/docs/cli'
+      path: '/cli'
+      fullPath: '/docs/cli'
+      preLoaderRoute: typeof DocsCliRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/installation': {
@@ -232,22 +258,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsInstallationRouteImport
       parentRoute: typeof DocsRoute
     }
-    '/docs/cli': {
-      id: '/docs/cli'
-      path: '/cli'
-      fullPath: '/docs/cli'
-      preLoaderRoute: typeof DocsCliRouteImport
+    '/docs/theming': {
+      id: '/docs/theming'
+      path: '/theming'
+      fullPath: '/docs/theming'
+      preLoaderRoute: typeof DocsThemingRouteImport
       parentRoute: typeof DocsRoute
-    }
-    '/components/$slug': {
-      id: '/components/$slug'
-      path: '/components/$slug'
-      fullPath: '/components/$slug'
-      preLoaderRoute: typeof ComponentsSlugRouteImport
-      parentRoute: typeof rootRouteImport
     }
   }
 }
+
+interface BlocksRouteChildren {
+  BlocksSlugRoute: typeof BlocksSlugRoute
+}
+
+const BlocksRouteChildren: BlocksRouteChildren = {
+  BlocksSlugRoute: BlocksSlugRoute,
+}
+
+const BlocksRouteWithChildren =
+  BlocksRoute._addFileChildren(BlocksRouteChildren)
 
 interface DocsRouteChildren {
   DocsCliRoute: typeof DocsCliRoute
@@ -267,7 +297,7 @@ const DocsRouteWithChildren = DocsRoute._addFileChildren(DocsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BlocksRoute: BlocksRoute,
+  BlocksRoute: BlocksRouteWithChildren,
   ChangelogRoute: ChangelogRoute,
   DocsRoute: DocsRouteWithChildren,
   ThemesRoute: ThemesRoute,

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "stats-strip",
+  "type": "registry:block",
+  "dependencies": [],
+  "registryDependencies": [
+    "kpi-card"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/stats-strip.tsx",
+      "content": "import { KpiCard } from \"@/registry/ui/kpi-card\";\n\nexport function StatsStrip() {\n  return (\n    <div className=\"grid sm:grid-cols-2 lg:grid-cols-4 gap-3\">\n      <KpiCard label=\"Requests\" value=\"14.2K\" delta=\"+12.3%\" trend=\"up\" accent=\"green\" />\n      <KpiCard label=\"Latency\" value=\"84ms\" delta=\"-4ms\" trend=\"down\" accent=\"cyan\" />\n      <KpiCard label=\"Errors\" value=\"0.02%\" delta=\"-0.1%\" trend=\"down\" accent=\"yellow\" />\n      <KpiCard label=\"Uptime\" value=\"99.98%\" delta=\"30d\" trend=\"flat\" accent=\"purple\" />\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}
