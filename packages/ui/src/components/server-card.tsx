@@ -54,6 +54,7 @@ export function ServerCard({
                 CPU
               </span>
             }
+            ariaLabel="CPU"
             value={cpu}
           />
         )}
@@ -66,6 +67,7 @@ export function ServerCard({
                 Storage
               </span>
             }
+            ariaLabel="Storage"
             value={storage}
           />
         )}

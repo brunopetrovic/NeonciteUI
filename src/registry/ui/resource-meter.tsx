@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 
 export interface ResourceMeterProps extends React.HTMLAttributes<HTMLDivElement> {
   label: React.ReactNode;
+  ariaLabel?: string;
   value: number;
   max?: number;
   unit?: React.ReactNode;
@@ -11,6 +12,7 @@ export interface ResourceMeterProps extends React.HTMLAttributes<HTMLDivElement>
 
 export function ResourceMeter({
   label,
+  ariaLabel,
   value,
   max = 100,
   unit = "%",
@@ -38,6 +40,7 @@ export function ResourceMeter({
       <div
         className="h-2 overflow-hidden rounded-full border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] shadow-[var(--recessed-shadow)]"
         role="meter"
+        aria-label={ariaLabel ?? `${label}: ${value}${unit}`}
         aria-valuemin={0}
         aria-valuemax={max}
         aria-valuenow={value}

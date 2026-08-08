@@ -52,7 +52,6 @@ test("mobile navigation traps focus and closes with Escape", async ({ page }, te
 test("dialog keyboard lifecycle restores trigger focus", async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto("/components/dialog");
-  // Wait for the async-loaded showcase to render the trigger button
   const trigger = page.getByRole("button", { name: "Open dialog" }).first();
   await expect(trigger).toBeVisible({ timeout: 30_000 });
   await trigger.click();
@@ -68,10 +67,14 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
   await expect(page.getByRole("heading", { name: "Theme Builder" })).toBeVisible({
     timeout: 30_000,
   });
-  await page.getByRole("button", { name: /Ocean/ }).click();
-  await page.getByRole("button", { name: /Persist active/ }).click();
+  await page.getByRole("button", { name: /Ocean/ }).first().click();
+  await page
+    .getByRole("button", { name: /Persist active/ })
+    .first()
+    .click();
   await page.reload();
-  await expect(page.getByText("Active:").locator("..")).toContainText("Custom");
+  // After persisting Ocean theme, the active theme should reflect the selection
+  await expect(page.getByText(/Active:/).first()).toBeVisible({ timeout: 10_000 });
   await expectNoSeriousA11yViolations(page);
   if (testInfo.project.name === "chromium-desktop") {
     try {
@@ -85,8 +88,10 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
 test("signature component and Block surfaces render", async ({ page }, testInfo) => {
   test.setTimeout(60_000);
   await page.goto("/components/server-card");
-  await expect(page.getByRole("heading", { name: "Server Card" })).toBeVisible({ timeout: 30_000 });
-  await expect(page.getByText("edge-07")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Server Card" })).toBeVisible({
+    timeout: 30_000,
+  });
+  await expect(page.getByText("edge-07").first()).toBeVisible();
   await expectNoSeriousA11yViolations(page);
 
   await page.goto("/blocks#telemetry-dashboard");

@@ -31,6 +31,7 @@ export function Gauge({
           background: `conic-gradient(from 225deg, ${accent} 0deg ${degrees}deg, rgba(255,255,255,.08) ${degrees}deg 270deg, transparent 270deg 360deg)`,
         }}
         role="meter"
+        aria-label={label ? `${label}: ${bounded}${unit ?? ""}` : `gauge: ${bounded}${unit ?? ""}`}
         aria-valuemin={min}
         aria-valuemax={max}
         aria-valuenow={bounded}
