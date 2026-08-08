@@ -12,7 +12,18 @@ export interface CopyButtonProps extends Omit<ButtonProps, "onClick"> {
 }
 
 export const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
-  ({ value, copiedLabel = "Copied", idleLabel = "Copy", resetAfter = 1600, onCopied, children, ...props }, ref) => {
+  (
+    {
+      value,
+      copiedLabel = "Copied",
+      idleLabel = "Copy",
+      resetAfter = 1600,
+      onCopied,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
     const [copied, setCopied] = React.useState(false);
     async function copy() {
       await navigator.clipboard.writeText(value);
@@ -22,7 +33,16 @@ export const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
     }
     return (
       <Button ref={ref} type="button" variant="outline" size="sm" onClick={copy} {...props}>
-        {children ?? <>{copied ? <Check className="h-3.5 w-3.5 text-[color:var(--neon-green)]" /> : <Copy className="h-3.5 w-3.5" />}{copied ? copiedLabel : idleLabel}</>}
+        {children ?? (
+          <>
+            {copied ? (
+              <Check className="h-3.5 w-3.5 text-[color:var(--neon-green)]" />
+            ) : (
+              <Copy className="h-3.5 w-3.5" />
+            )}
+            {copied ? copiedLabel : idleLabel}
+          </>
+        )}
       </Button>
     );
   },

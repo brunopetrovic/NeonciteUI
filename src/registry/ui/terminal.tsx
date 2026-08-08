@@ -56,5 +56,7 @@ export function TerminalLine({
 }
 
 export function TerminalOutput({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) {
-  return <pre className={cn("mt-2 whitespace-pre-wrap text-muted-foreground", className)} {...props} />;
+  return (
+    <pre className={cn("mt-2 whitespace-pre-wrap text-muted-foreground", className)} {...props} />
+  );
 }

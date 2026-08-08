@@ -42,7 +42,11 @@ export function DatePicker({
         <Button
           variant="outline"
           disabled={disabled}
-          className={cn("w-[240px] justify-start gap-2 text-left font-normal", !selected && "text-muted-foreground", className)}
+          className={cn(
+            "w-[240px] justify-start gap-2 text-left font-normal",
+            !selected && "text-muted-foreground",
+            className,
+          )}
         >
           <CalendarDays className="h-4 w-4 text-[color:var(--primary)]" />
           {selected ? format(selected, "PPP") : placeholder}

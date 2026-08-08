@@ -28,15 +28,21 @@ try {
   run("npm", ["run", "build:registry"]);
   run("npm", ["run", "build", "--prefix", "packages/cli"]);
 
-  server = spawn(process.execPath, [path.join(root, "scripts/serve-registry.mjs"), path.join(root, "public/r"), String(port)], {
-    cwd: root,
-    stdio: "inherit",
-  });
+  server = spawn(
+    process.execPath,
+    [path.join(root, "scripts/serve-registry.mjs"), path.join(root, "public/r"), String(port)],
+    {
+      cwd: root,
+      stdio: "inherit",
+    },
+  );
   await new Promise((resolve) => setTimeout(resolve, 800));
 
   run("npm", ["create", "vite@latest", appDir, "--", "--template", "react-ts"]);
   run("npm", ["install", "--no-audit", "--no-fund"], { cwd: appDir });
-  run("npm", ["install", "tailwindcss@^4", "@tailwindcss/vite@^4", "--no-audit", "--no-fund"], { cwd: appDir });
+  run("npm", ["install", "tailwindcss@^4", "@tailwindcss/vite@^4", "--no-audit", "--no-fund"], {
+    cwd: appDir,
+  });
 
   const cssPath = path.join(appDir, "src/index.css");
   fs.writeFileSync(cssPath, '@import "tailwindcss";\n');

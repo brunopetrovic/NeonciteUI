@@ -3,7 +3,14 @@ import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/ui/button";
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/registry/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover";
 
 export interface ComboboxOption {
@@ -56,7 +63,9 @@ export function Combobox({
           disabled={disabled}
           className={cn("w-[220px] justify-between font-normal", className)}
         >
-          <span className={cn("truncate", !selected && "text-muted-foreground")}>{selected?.label ?? placeholder}</span>
+          <span className={cn("truncate", !selected && "text-muted-foreground")}>
+            {selected?.label ?? placeholder}
+          </span>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -73,7 +82,12 @@ export function Combobox({
                   disabled={option.disabled}
                   onSelect={() => select(option.value)}
                 >
-                  <Check className={cn("mr-2 h-4 w-4 text-[color:var(--primary)]", selectedValue === option.value ? "opacity-100" : "opacity-0")} />
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4 text-[color:var(--primary)]",
+                      selectedValue === option.value ? "opacity-100" : "opacity-0",
+                    )}
+                  />
                   {option.label}
                 </CommandItem>
               ))}

@@ -45,19 +45,24 @@ for (const item of items) {
   const source = fs.readFileSync(sourcePath, "utf8");
 
   for (const specifier of importsFrom(source)) {
-    if (specifier === "react" || specifier === "react-dom" || specifier.startsWith("react-dom/")) continue;
+    if (specifier === "react" || specifier === "react-dom" || specifier.startsWith("react-dom/"))
+      continue;
 
     if (specifier.startsWith("@/registry/ui/")) {
       const slug = specifier.slice("@/registry/ui/".length).split("/")[0];
-      if (!bySlug.has(slug)) errors.push(`${item.slug}: imports unknown registry component "${slug}"`);
-      else if (!declaredRegistry.has(slug)) errors.push(`${item.slug}: imports registry component "${slug}" but does not declare it`);
+      if (!bySlug.has(slug))
+        errors.push(`${item.slug}: imports unknown registry component "${slug}"`);
+      else if (!declaredRegistry.has(slug))
+        errors.push(`${item.slug}: imports registry component "${slug}" but does not declare it`);
       continue;
     }
 
-    if (specifier.startsWith("@/") || specifier.startsWith("./") || specifier.startsWith("../")) continue;
+    if (specifier.startsWith("@/") || specifier.startsWith("./") || specifier.startsWith("../"))
+      continue;
 
     const pkg = packageName(specifier);
-    if (!declaredPackages.has(pkg)) errors.push(`${item.slug}: imports npm package "${pkg}" but does not declare it`);
+    if (!declaredPackages.has(pkg))
+      errors.push(`${item.slug}: imports npm package "${pkg}" but does not declare it`);
   }
 }
 

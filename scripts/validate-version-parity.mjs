@@ -19,6 +19,10 @@ const versions = {
 };
 const unique = new Set(Object.values(versions));
 if (unique.size !== 1) {
-  throw new Error(`[version] version drift: ${Object.entries(versions).map(([name, version]) => `${name}=${version}`).join(", ")}`);
+  throw new Error(
+    `[version] version drift: ${Object.entries(versions)
+      .map(([name, version]) => `${name}=${version}`)
+      .join(", ")}`,
+  );
 }
 console.log(`[version] parity passed (${cliPackage.version})`);

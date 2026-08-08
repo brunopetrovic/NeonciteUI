@@ -23,9 +23,18 @@ const ItemSchema = z.object({
 });
 const BlockSchema = z.object({ slug: z.string(), source: z.string(), name: z.string() });
 const ThemeSchema = z.object({
-  slug: z.string(), name: z.string(), primary: z.string(), accent: z.string(), surface0: z.string(),
-  surface1: z.string(), surface2: z.string(), surface3: z.string(), hairline: z.string(),
-  foreground: z.string(), mutedFg: z.string(), radius: z.number(),
+  slug: z.string(),
+  name: z.string(),
+  primary: z.string(),
+  accent: z.string(),
+  surface0: z.string(),
+  surface1: z.string(),
+  surface2: z.string(),
+  surface3: z.string(),
+  hairline: z.string(),
+  foreground: z.string(),
+  mutedFg: z.string(),
+  radius: z.number(),
 });
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
@@ -54,15 +63,20 @@ function blockDependencies(content, slug) {
   for (const specifier of sourceImports(content)) {
     const uiMatch = specifier.match(/^@\/registry\/ui\/([a-z0-9-]+)$/);
     if (uiMatch) {
-      if (!ITEM_SLUGS.has(uiMatch[1])) throw new Error(`[registry] block ${slug} imports unknown UI item ${uiMatch[1]}`);
+      if (!ITEM_SLUGS.has(uiMatch[1]))
+        throw new Error(`[registry] block ${slug} imports unknown UI item ${uiMatch[1]}`);
       registryDependencies.add(uiMatch[1]);
       continue;
     }
     if (specifier === "react" || specifier.startsWith("react/")) continue;
-    if (specifier.startsWith("@/") || specifier.startsWith(".") || specifier.startsWith("/")) continue;
+    if (specifier.startsWith("@/") || specifier.startsWith(".") || specifier.startsWith("/"))
+      continue;
     dependencies.add(packageName(specifier));
   }
-  return { dependencies: [...dependencies].sort(), registryDependencies: [...registryDependencies].sort() };
+  return {
+    dependencies: [...dependencies].sort(),
+    registryDependencies: [...registryDependencies].sort(),
+  };
 }
 
 function themeCss(theme) {
@@ -97,7 +111,8 @@ for (const itemMeta of ITEMS) {
   const srcPath = path.join(REG_SRC, `${itemMeta.slug}.tsx`);
   if (!fs.existsSync(srcPath)) throw new Error(`[registry] missing canonical source ${srcPath}`);
   const content = fs.readFileSync(srcPath, "utf8");
-  if (!content.includes("export") || content.length < 10) throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
+  if (!content.includes("export") || content.length < 10)
+    throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
   const item = {
     $schema: "https://neoncite.dev/schema/registry-item.json",
     name: itemMeta.slug,
@@ -107,7 +122,12 @@ for (const itemMeta of ITEMS) {
     files: [{ path: itemMeta.targetPath, content, type: "registry:ui", target: "" }],
   };
   fs.writeFileSync(path.join(OUT, `${itemMeta.slug}.json`), JSON.stringify(item, null, 2));
-  index.push({ name: itemMeta.slug, type: "registry:ui", dependencies: itemMeta.dependencies, registryDependencies: itemMeta.registryDeps });
+  index.push({
+    name: itemMeta.slug,
+    type: "registry:ui",
+    dependencies: itemMeta.dependencies,
+    registryDependencies: itemMeta.registryDeps,
+  });
   console.log(`[registry] validated and wrote ${itemMeta.slug}.json`);
 }
 
@@ -137,12 +157,33 @@ for (const theme of THEMES) {
     type: "registry:theme",
     dependencies: [],
     registryDependencies: [],
-    files: [{ path: `src/styles/${theme.slug}.css`, content: themeCss(theme), type: "registry:theme", target: "" }],
+    files: [
+      {
+        path: `src/styles/${theme.slug}.css`,
+        content: themeCss(theme),
+        type: "registry:theme",
+        target: "",
+      },
+    ],
   };
   fs.writeFileSync(path.join(OUT, `${theme.slug}.json`), JSON.stringify(item, null, 2));
-  index.push({ name: theme.slug, type: "registry:theme", dependencies: [], registryDependencies: [] });
+  index.push({
+    name: theme.slug,
+    type: "registry:theme",
+    dependencies: [],
+    registryDependencies: [],
+  });
   console.log(`[registry] validated and wrote theme ${theme.slug}.json`);
 }
 
-fs.writeFileSync(path.join(OUT, "index.json"), JSON.stringify({ $schema: "https://neoncite.dev/schema/registry.json", name: "neoncite", items: index }, null, 2));
-console.log(`[registry] wrote index.json (${ITEMS.length} UI, ${BLOCKS.length} blocks, ${THEMES.length} themes)`);
+fs.writeFileSync(
+  path.join(OUT, "index.json"),
+  JSON.stringify(
+    { $schema: "https://neoncite.dev/schema/registry.json", name: "neoncite", items: index },
+    null,
+    2,
+  ),
+);
+console.log(
+  `[registry] wrote index.json (${ITEMS.length} UI, ${BLOCKS.length} blocks, ${THEMES.length} themes)`,
+);

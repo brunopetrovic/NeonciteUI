@@ -94,9 +94,12 @@ export function contrastRatio(a: string, b: string) {
 }
 
 function assertDarkTheme(config: ThemeConfig) {
-  const surfaceLuminances = [config.surface0, config.surface1, config.surface2, config.surface3].map(
-    relativeLuminance,
-  );
+  const surfaceLuminances = [
+    config.surface0,
+    config.surface1,
+    config.surface2,
+    config.surface3,
+  ].map(relativeLuminance);
   if (surfaceLuminances.some((value) => value > 0.22)) {
     throw new Error("Neoncite themes are dark-only. One or more surface tokens are too bright.");
   }
@@ -192,7 +195,18 @@ export function useThemeBuilder() {
       mutedFg,
       radius: radius[0] ?? DEFAULTS.radius,
     }),
-    [primary, accent, surface0, surface1, surface2, surface3, hairline, foreground, mutedFg, radius],
+    [
+      primary,
+      accent,
+      surface0,
+      surface1,
+      surface2,
+      surface3,
+      hairline,
+      foreground,
+      mutedFg,
+      radius,
+    ],
   );
 
   const applyConfig = useCallback((config: ThemeConfig, label = "Custom") => {
@@ -260,7 +274,18 @@ export function useThemeBuilder() {
     ];
     tokens.forEach(([key, value]) => root.style.setProperty(key, value));
     return () => tokens.forEach(([key]) => root.style.removeProperty(key));
-  }, [primary, accent, surface0, surface1, surface2, surface3, hairline, foreground, mutedFg, radius]);
+  }, [
+    primary,
+    accent,
+    surface0,
+    surface1,
+    surface2,
+    surface3,
+    hairline,
+    foreground,
+    mutedFg,
+    radius,
+  ]);
 
   const saveTheme = useCallback(() => {
     localStorage.setItem(ACTIVE_THEME_KEY, JSON.stringify(currentConfig));

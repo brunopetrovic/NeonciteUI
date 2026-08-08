@@ -6,8 +6,12 @@ import test from "node:test";
 const root = process.cwd();
 const registrySourceDir = path.join(root, "src/registry/ui");
 const publicRegistryDir = path.join(root, "public/r");
-const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
-const items = [...readJson("src/registry/items.json"), ...readJson("src/registry/items-extra.json")];
+const readJson = (relativePath) =>
+  JSON.parse(fs.readFileSync(path.join(root, relativePath), "utf8"));
+const items = [
+  ...readJson("src/registry/items.json"),
+  ...readJson("src/registry/items-extra.json"),
+];
 const blocks = readJson("src/registry/blocks.json");
 const themes = readJson("src/registry/themes.json");
 const bySlug = new Map(items.map((item) => [item.slug, item]));
@@ -16,21 +20,32 @@ test("registry slugs and target paths are unique", () => {
   const slugs = items.map((item) => item.slug);
   const targetPaths = items.map((item) => item.targetPath);
   assert.equal(new Set(slugs).size, slugs.length, "registry contains duplicate slugs");
-  assert.equal(new Set(targetPaths).size, targetPaths.length, "registry contains duplicate target paths");
+  assert.equal(
+    new Set(targetPaths).size,
+    targetPaths.length,
+    "registry contains duplicate target paths",
+  );
 });
 
 test("every registry item has canonical source and a Neoncite target path", () => {
   for (const item of items) {
     const sourcePath = path.join(registrySourceDir, `${item.slug}.tsx`);
     assert.ok(fs.existsSync(sourcePath), `${item.slug} is missing canonical source`);
-    assert.match(item.targetPath, /^components\/neoncite\/[a-z0-9-]+\.tsx$/, `${item.slug} has an unexpected target path`);
+    assert.match(
+      item.targetPath,
+      /^components\/neoncite\/[a-z0-9-]+\.tsx$/,
+      `${item.slug} has an unexpected target path`,
+    );
   }
 });
 
 test("every registry dependency refers to another registered UI item", () => {
   for (const item of items) {
     for (const dependency of item.registryDeps ?? []) {
-      assert.ok(bySlug.has(dependency), `${item.slug} references unknown registry dependency ${dependency}`);
+      assert.ok(
+        bySlug.has(dependency),
+        `${item.slug} references unknown registry dependency ${dependency}`,
+      );
     }
   }
 });
@@ -52,7 +67,9 @@ test("generated public UI metadata matches canonical metadata", () => {
 
 test("all canonical Blocks are published as registry:block", () => {
   const index = readJson("public/r/index.json");
-  const blockIndex = new Set(index.items.filter((item) => item.type === "registry:block").map((item) => item.name));
+  const blockIndex = new Set(
+    index.items.filter((item) => item.type === "registry:block").map((item) => item.name),
+  );
   assert.equal(blockIndex.size, blocks.length, "public block count is stale");
   for (const block of blocks) {
     assert.ok(blockIndex.has(block.slug), `${block.slug} missing from registry index`);
@@ -64,7 +81,9 @@ test("all canonical Blocks are published as registry:block", () => {
 
 test("all five dark presets are published as registry:theme", () => {
   const index = readJson("public/r/index.json");
-  const themeIndex = new Set(index.items.filter((item) => item.type === "registry:theme").map((item) => item.name));
+  const themeIndex = new Set(
+    index.items.filter((item) => item.type === "registry:theme").map((item) => item.name),
+  );
   assert.equal(themeIndex.size, themes.length, "public theme count is stale");
   for (const theme of themes) {
     assert.ok(themeIndex.has(theme.slug), `${theme.slug} missing from registry index`);

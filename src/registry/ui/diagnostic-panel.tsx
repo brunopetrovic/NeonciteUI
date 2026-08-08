@@ -9,8 +9,7 @@ export interface DiagnosticItem {
   detail?: React.ReactNode;
 }
 
-export interface DiagnosticPanelProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
+export interface DiagnosticPanelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   items: DiagnosticItem[];
   title?: React.ReactNode;
 }

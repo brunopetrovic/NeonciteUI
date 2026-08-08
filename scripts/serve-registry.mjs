@@ -6,7 +6,9 @@ const directory = path.resolve(process.argv[2] ?? "public/r");
 const port = Number(process.argv[3] ?? 4174);
 
 const server = http.createServer((request, response) => {
-  const pathname = decodeURIComponent(new URL(request.url ?? "/", `http://127.0.0.1:${port}`).pathname);
+  const pathname = decodeURIComponent(
+    new URL(request.url ?? "/", `http://127.0.0.1:${port}`).pathname,
+  );
   const relative = pathname.replace(/^\/+/, "");
   const file = path.resolve(directory, relative || "index.json");
   if (!file.startsWith(directory + path.sep) && file !== directory) {
