@@ -1,16 +1,17 @@
 {
   "name": "neoncite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "CLI for the Neoncite UI design system",
   "type": "module",
   "bin": {
     "neoncite": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "theme.css"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm --target node18 --clean",
+    "build": "node ../../scripts/build-cli-theme.mjs && tsup src/index.ts --format esm --target node18 --clean",
     "dev": "tsup src/index.ts --format esm --target node18 --watch"
   },
   "devDependencies": {

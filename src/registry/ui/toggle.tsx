@@ -1,32 +1,50 @@
 "use client";
 import * as React from "react";
-import * as SwitchPrimitive from "@radix-ui/react-switch";
+import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { cn } from "@/lib/utils";
 
-export const Toggle = React.forwardRef<
-  React.ElementRef<typeof SwitchPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <SwitchPrimitive.Root
-    ref={ref}
-    className={cn(
-      "peer inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full border transition-all",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      "data-[state=unchecked]:bg-[color:var(--recessed-bg)] data-[state=unchecked]:border-[color:var(--hairline)] data-[state=unchecked]:shadow-[var(--recessed-shadow)]",
-      "data-[state=checked]:bg-[#00ff66]/20 data-[state=checked]:border-[#00ff66]/60 data-[state=checked]:shadow-[0_0_24px_rgba(0,255,102,0.3),inset_0_2px_8px_rgba(0,0,0,0.5)]",
+export interface ToggleProps extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> {
+  /** @deprecated Use `pressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */
+  checked?: boolean;
+  /** @deprecated Use `defaultPressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */
+  defaultChecked?: boolean;
+  /** @deprecated Use `onPressedChange` for a Toggle. Kept temporarily for Switch-style migration compatibility. */
+  onCheckedChange?: (checked: boolean) => void;
+}
+
+export const Toggle = React.forwardRef<React.ElementRef<typeof TogglePrimitive.Root>, ToggleProps>(
+  (
+    {
       className,
-    )}
-    {...props}
-  >
-    <SwitchPrimitive.Thumb
+      checked,
+      defaultChecked,
+      onCheckedChange,
+      pressed,
+      defaultPressed,
+      onPressedChange,
+      ...props
+    },
+    ref,
+  ) => (
+    <TogglePrimitive.Root
+      ref={ref}
+      pressed={pressed ?? checked}
+      defaultPressed={defaultPressed ?? defaultChecked}
+      onPressedChange={(nextPressed) => {
+        onPressedChange?.(nextPressed);
+        onCheckedChange?.(nextPressed);
+      }}
       className={cn(
-        "pointer-events-none block h-5 w-5 rounded-full ring-0 transition-transform",
-        "bg-gradient-to-b from-[#e5e5ea] to-[#8e8e93] shadow-[0_2px_4px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.5)]",
-        "data-[state=checked]:translate-x-[22px] data-[state=checked]:from-[#00ff66] data-[state=checked]:to-[#00cc52] data-[state=checked]:shadow-[0_0_12px_rgba(0,255,102,0.8)]",
-        "data-[state=unchecked]:translate-x-1",
+        "inline-flex h-9 items-center justify-center gap-2 rounded-[10px] border px-3 font-mono text-[11px] font-semibold uppercase tracking-wider transition-all",
+        "border-[color:var(--hairline)] bg-[color:var(--surface-1)] text-muted-foreground shadow-[var(--rim-light-shadow)]",
+        "hover:border-white/15 hover:bg-[color:var(--surface-2)] hover:text-foreground",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]",
+        "disabled:pointer-events-none disabled:opacity-40",
+        "data-[state=on]:border-[color:var(--neon-green)]/60 data-[state=on]:bg-[color:var(--neon-green)]/10 data-[state=on]:text-[color:var(--neon-green)] data-[state=on]:shadow-[0_0_18px_var(--neon-green-glow),var(--rim-light-shadow)]",
+        className,
       )}
+      {...props}
     />
-  </SwitchPrimitive.Root>
-));
+  ),
+);
 Toggle.displayName = "Toggle";

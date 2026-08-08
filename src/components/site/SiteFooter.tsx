@@ -2,76 +2,102 @@ import { Link } from "@tanstack/react-router";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[color:var(--hairline)] bg-[color:var(--surface-1)] mt-24">
-      <div className="mx-auto max-w-[1400px] px-4 md:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <footer className="mt-24 border-t border-[color:var(--hairline)] bg-[color:var(--surface-1)]">
+      <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-4 py-12 md:grid-cols-4 md:px-8">
         <div className="col-span-2">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-[color:var(--neon-pink)] animate-pulse-glow">●</span>
-            <span className="font-mono text-[14px] font-bold neon-white">neoncite/ui</span>
+          <div className="mb-3 flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className="animate-pulse-glow text-[color:var(--neon-pink)]"
+            >
+              ●
+            </span>
+            <span className="font-mono text-[14px] font-bold neon-white">
+              neoncite/ui
+            </span>
           </div>
-          <p className="text-[13px] text-muted-foreground max-w-md leading-relaxed">
-            A premium machined UI design system. OLED blacks, hardware rim lighting, vibrant neon
-            accents. Open source, copy-paste, your code.
+          <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground">
+            A dark-only machined React component system with OLED surfaces, hardware rim lighting,
+            and neon accents. Open source, source-first, and built for technical products.
+          </p>
+          <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+            Pre-1.0 · APIs and release tooling are actively being hardened
           </p>
         </div>
+
         <div>
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-3">
+          <h4 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             Resources
           </h4>
           <ul className="space-y-2 text-[13px]">
             <li>
+              <Link to="/docs" className="text-foreground transition-colors hover:neon-cyan">
+                Documentation
+              </Link>
+            </li>
+            <li>
               <Link
                 to="/docs/installation"
-                className="text-foreground hover:neon-cyan transition-colors"
+                className="text-foreground transition-colors hover:neon-cyan"
               >
                 Installation
               </Link>
             </li>
             <li>
               <Link
-                to="/docs/theming"
-                className="text-foreground hover:neon-cyan transition-colors"
+                to="/components"
+                className="text-foreground transition-colors hover:neon-cyan"
               >
-                Theming
+                Components
               </Link>
             </li>
             <li>
-              <Link to="/components" className="text-foreground hover:neon-cyan transition-colors">
-                Components
+              <Link to="/themes" className="text-foreground transition-colors hover:neon-cyan">
+                Themes
               </Link>
             </li>
           </ul>
         </div>
+
         <div>
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-3">
-            Community
+          <h4 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            Project
           </h4>
           <ul className="space-y-2 text-[13px]">
+            <li>
+              <Link to="/blocks" className="text-foreground transition-colors hover:neon-cyan">
+                Blocks
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/changelog"
+                className="text-foreground transition-colors hover:neon-cyan"
+              >
+                Changelog
+              </Link>
+            </li>
             <li>
               <a
                 href="https://github.com/brunopetrovic/NeonciteUI"
                 target="_blank"
                 rel="noreferrer"
-                className="text-foreground hover:neon-cyan transition-colors"
+                className="text-foreground transition-colors hover:neon-cyan"
               >
                 GitHub
               </a>
             </li>
-            <li>
-              <Link to="/blocks" className="text-foreground hover:neon-cyan transition-colors">
-                Blocks
-              </Link>
-            </li>
           </ul>
         </div>
       </div>
+
       <div className="border-t border-[color:var(--hairline)]/60 py-4 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-        Built By <span className="neon-pink">●</span>{" "}
+        Built by <span className="neon-pink">●</span>{" "}
         <a
           href="https://thorus.ai"
           target="_blank"
           rel="noreferrer"
-          className="text-foreground hover:neon-pink transition-colors underline decoration-dotted underline-offset-4"
+          className="text-foreground underline decoration-dotted underline-offset-4 transition-colors hover:neon-pink"
         >
           Thorus
         </a>

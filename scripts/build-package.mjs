@@ -1,5 +1,9 @@
-// Mirrors canonical registry source into packages/ui and keeps the npm package
-// barrel/dependencies aligned with src/registry/items.json.
+// Mirrors canonical registry component source into packages/ui and keeps the npm
+// package barrel/dependencies aligned with src/registry/items.json.
+//
+// packages/ui/tokens.css is the canonical distributable token stylesheet. Do not
+// generate it from src/styles.css: src/styles.css is only the docs site's small
+// Tailwind source wrapper around the package stylesheet.
 
 import fs from "node:fs";
 import path from "node:path";
@@ -12,10 +16,15 @@ const DEST = path.join(ROOT, "packages/ui/src/components");
 const ITEMS_PATH = path.join(ROOT, "src/registry/items.json");
 const ROOT_PACKAGE_PATH = path.join(ROOT, "package.json");
 const UI_PACKAGE_PATH = path.join(ROOT, "packages/ui/package.json");
+const TOKENS_PATH = path.join(ROOT, "packages/ui/tokens.css");
 
 const ITEMS = JSON.parse(fs.readFileSync(ITEMS_PATH, "utf8"));
 const rootPackage = JSON.parse(fs.readFileSync(ROOT_PACKAGE_PATH, "utf8"));
 const uiPackage = JSON.parse(fs.readFileSync(UI_PACKAGE_PATH, "utf8"));
+
+if (!fs.existsSync(TOKENS_PATH)) {
+  throw new Error(`[pkg] missing canonical token stylesheet ${TOKENS_PATH}`);
+}
 
 fs.mkdirSync(DEST, { recursive: true });
 
@@ -65,15 +74,17 @@ for (const dep of dependencyNames) {
   }
   dependencyVersions[dep] = version;
 }
-dependencyVersions.clsx = rootPackage.dependencies.clsx;
-dependencyVersions["tailwind-merge"] = rootPackage.dependencies["tailwind-merge"];
+
+// Shared runtime utilities used by generated package source and tokens.css.
+for (const dep of ["clsx", "tailwind-merge", "tw-animate-css"]) {
+  const version = rootPackage.dependencies?.[dep] ?? rootPackage.devDependencies?.[dep];
+  if (!version) throw new Error(`[pkg] no root package version found for dependency ${dep}`);
+  dependencyVersions[dep] = version;
+}
 
 uiPackage.dependencies = Object.fromEntries(
   Object.entries(dependencyVersions).sort(([a], [b]) => a.localeCompare(b)),
 );
 fs.writeFileSync(UI_PACKAGE_PATH, `${JSON.stringify(uiPackage, null, 2)}\n`);
 console.log("[pkg] wrote package.json dependencies");
-
-const tokens = fs.readFileSync(path.join(ROOT, "src/styles.css"), "utf8");
-fs.writeFileSync(path.join(ROOT, "packages/ui/tokens.css"), tokens);
-console.log("[pkg] wrote tokens.css");
+console.log("[pkg] preserved canonical tokens.css");

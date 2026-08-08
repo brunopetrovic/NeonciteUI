@@ -59,7 +59,8 @@
       "name": "dialog",
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-dialog"
+        "@radix-ui/react-dialog",
+        "lucide-react"
       ],
       "registryDependencies": [
         "button"
@@ -85,7 +86,7 @@
       "name": "toggle",
       "type": "registry:ui",
       "dependencies": [
-        "@radix-ui/react-switch"
+        "@radix-ui/react-toggle"
       ],
       "registryDependencies": []
     },
