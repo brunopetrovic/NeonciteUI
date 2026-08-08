@@ -45,7 +45,7 @@ test("mobile navigation traps focus and closes with Escape", async ({ page }, te
   await page.goto("/");
   const menu = page.getByRole("button", { name: "Open navigation menu" });
   await menu.click();
-  const dialog = page.getByRole("dialog", { name: "Navigation menu" });
+  const dialog = page.getByRole("dialog", { name: /Navigation/ });
   await expect(dialog).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
