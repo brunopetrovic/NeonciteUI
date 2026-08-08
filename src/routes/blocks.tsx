@@ -13,6 +13,13 @@ import { FaqFolded } from "@/components/blocks/FaqFolded";
 import { PricingTiersAlternative } from "@/components/blocks/PricingTiersAlternative";
 import { CtaBanner } from "@/components/blocks/CtaBanner";
 import { DashboardActivity } from "@/components/blocks/DashboardActivity";
+import { DashboardShell } from "@/components/blocks/DashboardShell";
+import { TelemetryDashboard } from "@/components/blocks/TelemetryDashboard";
+import { DeploymentDashboard } from "@/components/blocks/DeploymentDashboard";
+import { AiAgentConsole } from "@/components/blocks/AiAgentConsole";
+import { SettingsPanel } from "@/components/blocks/SettingsPanel";
+import { OnboardingPanel } from "@/components/blocks/OnboardingPanel";
+import { ErrorStatePage } from "@/components/blocks/ErrorStatePage";
 
 export const Route = createFileRoute("/blocks")({
   head: () => ({
@@ -26,7 +33,8 @@ export const Route = createFileRoute("/blocks")({
       { property: "og:title", content: "Blocks — Neoncite/UI" },
       {
         property: "og:description",
-        content: "Installable Neoncite sections for dashboards, auth, status and product surfaces.",
+        content:
+          "Installable Neoncite sections for dashboards, AI, deployment, auth, status and product surfaces.",
       },
     ],
   }),
@@ -57,6 +65,21 @@ const blocks = [
     label: "11 · Dashboard — Activity Overview",
     component: DashboardActivity,
   },
+  { slug: "dashboard-shell", label: "12 · App — Dashboard Shell", component: DashboardShell },
+  {
+    slug: "telemetry-dashboard",
+    label: "13 · Observability — Telemetry Dashboard",
+    component: TelemetryDashboard,
+  },
+  {
+    slug: "deployment-dashboard",
+    label: "14 · DevOps — Deployment Dashboard",
+    component: DeploymentDashboard,
+  },
+  { slug: "ai-agent-console", label: "15 · AI — Agent Console", component: AiAgentConsole },
+  { slug: "settings-panel", label: "16 · App — Settings", component: SettingsPanel },
+  { slug: "onboarding-panel", label: "17 · App — Onboarding", component: OnboardingPanel },
+  { slug: "error-state-page", label: "18 · State — Runtime Error", component: ErrorStatePage },
 ];
 
 function BlocksPage() {
