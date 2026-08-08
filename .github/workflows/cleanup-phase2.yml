@@ -1,0 +1,32 @@
+name: Cleanup Phase 2
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.head_ref == 'agent/product-excellence-phase-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Remove known unused showcase imports and self-delete
+        shell: bash
+        run: |
+          sed -i '/^  Activity,$/d; /^  Search,$/d; /^  ShieldCheck,$/d; /^  Wifi,$/d' src/registry/showcases/phase2.tsx
+          rm .github/workflows/cleanup-phase2.yml
+          if git diff --quiet; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/registry/showcases/phase2.tsx .github/workflows/cleanup-phase2.yml
+          git commit -m "chore: clean phase 2 showcase imports"
+          git push origin HEAD:${{ github.head_ref }}
