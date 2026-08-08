@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
+    "test:e2e": "playwright test",
     "validate:registry": "node scripts/validate-registry-deps.mjs",
     "validate": "npm run validate:registry && npm run validate:generated && npm run lint && npm run typecheck && npm run test && npm run build",
     "validate:generated": "npm run build:dist && npm run build:sitemap && node scripts/validate-generated.mjs",
@@ -80,8 +81,10 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "^1.5.1",
+    "@playwright/test": "^1.62.0",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
@@ -95,7 +98,7 @@
     "globals": "^15.15.0",
     "kleur": "^4.1.5",
     "prettier": "^3.7.3",
-    "prompts": "^2.4.2",
+    "prompts": "^4.2.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1"
