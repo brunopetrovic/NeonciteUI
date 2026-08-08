@@ -31,7 +31,9 @@ const palette = [
 function ThemingPage() {
   return (
     <article>
-      <p className="font-mono text-[11px] uppercase tracking-widest neon-purple mb-3">Foundations</p>
+      <p className="font-mono text-[11px] uppercase tracking-widest neon-purple mb-3">
+        Foundations
+      </p>
       <h1 className="text-[40px] font-mono font-bold tracking-tighter neon-white mb-4">Theming</h1>
       <p className="text-[15px] text-muted-foreground leading-relaxed mb-10 max-w-2xl">
         Neoncite is intentionally dark-only. Components read semantic CSS variables, so you can
@@ -43,16 +45,27 @@ function ThemingPage() {
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-4">Official dark presets</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           {THEME_PRESETS.map((preset) => (
-            <div key={preset.slug} className="rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4">
+            <div
+              key={preset.slug}
+              className="rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4"
+            >
               <div className="flex items-center gap-3">
                 <div className="flex gap-1.5">
                   {[preset.primary, preset.accent, preset.surface2].map((color) => (
-                    <span key={color} className="h-5 w-5 rounded-full border border-white/10" style={{ backgroundColor: color }} />
+                    <span
+                      key={color}
+                      className="h-5 w-5 rounded-full border border-white/10"
+                      style={{ backgroundColor: color }}
+                    />
                   ))}
                 </div>
                 <strong className="font-mono text-[12px] text-foreground">{preset.name}</strong>
               </div>
-              <CodeBlock language="bash" filename="terminal" code={`npx neoncite add ${preset.slug}`} />
+              <CodeBlock
+                language="bash"
+                filename="terminal"
+                code={`npx neoncite add ${preset.slug}`}
+              />
             </div>
           ))}
         </div>
@@ -68,7 +81,13 @@ function ThemingPage() {
               onClick={() => navigator.clipboard.writeText(color.hex)}
               className="group flex items-center gap-3 p-3 rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] hover:bg-[color:var(--surface-2)] transition-colors text-left"
             >
-              <div className="h-10 w-10 rounded-[8px] shrink-0" style={{ background: color.hex, boxShadow: `0 0 16px ${color.hex}66, inset 0 1px 1px rgba(255,255,255,.15)` }} />
+              <div
+                className="h-10 w-10 rounded-[8px] shrink-0"
+                style={{
+                  background: color.hex,
+                  boxShadow: `0 0 16px ${color.hex}66, inset 0 1px 1px rgba(255,255,255,.15)`,
+                }}
+              />
               <div className="min-w-0">
                 <div className="text-[12px] font-semibold neon-white truncate">{color.name}</div>
                 <div className={`font-mono text-[11px] ${color.cls}`}>{color.hex}</div>
@@ -90,11 +109,23 @@ function ThemingPage() {
       <section className="mb-12">
         <h2 className="text-[20px] font-mono font-bold neon-cyan mb-4">Theme Builder workflow</h2>
         <div className="space-y-2 text-[13px] leading-relaxed text-muted-foreground">
-          <p>Use the Theme Builder to preview production Neoncite components while editing the same tokens shipped to users.</p>
-          <p>It supports named local themes, validated JSON import/export, CSS export, DTCG-compatible token JSON, contrast checks, and shareable URL state.</p>
-          <p>Imported surface colors are validated as dark surfaces; the Theme Builder does not create a light-mode variant.</p>
+          <p>
+            Use the Theme Builder to preview production Neoncite components while editing the same
+            tokens shipped to users.
+          </p>
+          <p>
+            It supports named local themes, validated JSON import/export, CSS export,
+            DTCG-compatible token JSON, contrast checks, and shareable URL state.
+          </p>
+          <p>
+            Imported surface colors are validated as dark surfaces; the Theme Builder does not
+            create a light-mode variant.
+          </p>
         </div>
-        <Link to="/themes" className="mt-4 inline-flex rounded-[9px] border border-[color:var(--neon-purple)]/40 bg-[color:var(--neon-purple)]/10 px-3 py-2 font-mono text-[11px] uppercase tracking-wider neon-purple">
+        <Link
+          to="/themes"
+          className="mt-4 inline-flex rounded-[9px] border border-[color:var(--neon-purple)]/40 bg-[color:var(--neon-purple)]/10 px-3 py-2 font-mono text-[11px] uppercase tracking-wider neon-purple"
+        >
           Open Theme Builder
         </Link>
       </section>

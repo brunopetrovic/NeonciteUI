@@ -46,9 +46,7 @@ function SidebarContent({ path, onNavigate }: { path: string; onNavigate?: () =>
           <nav className="flex flex-col gap-0.5" aria-label={`${section.label} documentation`}>
             {section.items.map((item) => {
               const active =
-                item.to === "/docs/"
-                  ? path === "/docs" || path === "/docs/"
-                  : path === item.to;
+                item.to === "/docs/" ? path === "/docs" || path === "/docs/" : path === item.to;
               return (
                 <Link
                   key={item.to}
@@ -80,7 +78,10 @@ function DocsLayout() {
     <div className="min-h-screen flex flex-col bg-[color:var(--surface-0)]">
       <SiteHeader />
       <div className="flex-1 mx-auto w-full max-w-[1300px] px-4 md:px-8 py-8 grid md:grid-cols-[220px_1fr] gap-10">
-        <aside className="hidden md:block sticky top-20 self-start" aria-label="Documentation sidebar">
+        <aside
+          className="hidden md:block sticky top-20 self-start"
+          aria-label="Documentation sidebar"
+        >
           <SidebarContent path={path} />
         </aside>
 
