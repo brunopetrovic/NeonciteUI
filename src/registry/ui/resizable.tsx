@@ -1,11 +1,16 @@
 "use client";
 import * as React from "react";
-import { Group, Panel, Separator } from "react-resizable-panels";
+import {
+  Group,
+  Panel,
+  Separator,
+  type GroupImperativeHandle,
+} from "react-resizable-panels";
 import { GripVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const ResizablePanelGroup = React.forwardRef<
-  HTMLDivElement,
+  GroupImperativeHandle,
   React.ComponentProps<typeof Group>
 >(({ className, ...props }, ref) => (
   <Group
