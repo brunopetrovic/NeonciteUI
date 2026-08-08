@@ -62,7 +62,7 @@ try {
       "date-picker",
       "terminal",
       "server-card",
-      "hero-console",
+      "telemetry-dashboard",
       "theme-neoncite",
       "-y",
     ],
@@ -77,7 +77,7 @@ import { Combobox } from "./components/neoncite/combobox";
 import { DatePicker } from "./components/neoncite/date-picker";
 import { Terminal, TerminalLine } from "./components/neoncite/terminal";
 import { ServerCard } from "./components/neoncite/server-card";
-import { HeroBrutal } from "./components/neoncite/blocks/hero-console";
+import { TelemetryDashboard } from "./components/neoncite/blocks/telemetry-dashboard";
 
 export default function App() {
   return (
@@ -90,7 +90,7 @@ export default function App() {
         </div>
         <Terminal><TerminalLine>neoncite doctor</TerminalLine></Terminal>
         <ServerCard name="edge-01" region="fra" cpu={34} memory={61} storage={48} />
-        <HeroBrutal />
+        <TelemetryDashboard />
       </div>
     </main>
   );
