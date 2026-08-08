@@ -154,7 +154,7 @@ function Landing() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {REGISTRY.map((item) => {
+          {REGISTRY.slice(0, 6).map((item) => {
             const showcase = SHOWCASES[item.slug];
             return (
               <div
