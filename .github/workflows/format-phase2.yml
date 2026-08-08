@@ -1,0 +1,56 @@
+name: Format Phase 2
+
+on:
+  push:
+    branches: [agent/product-excellence-phase-2]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: format-phase-2
+  cancel-in-progress: true
+
+jobs:
+  format:
+    if: >-
+      github.event.head_commit.message != 'chore: format phase 2 sources' &&
+      github.event.head_commit.message != 'chore: remove one-time formatter'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          ref: agent/product-excellence-phase-2
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.13.0
+          cache: npm
+
+      - name: Install formatter
+        run: npm install --no-audit --no-fund
+
+      - name: Format authored sources
+        run: >-
+          npx prettier --write
+          "src/**/*.{ts,tsx,json,css}"
+          "scripts/**/*.mjs"
+          "tests/**/*.mjs"
+          "packages/cli/src/**/*.ts"
+          "package.json"
+
+      - name: Commit formatting
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No formatting changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src scripts tests packages/cli/src package.json
+          git commit -m "chore: format phase 2 sources"
+          git push origin HEAD:agent/product-excellence-phase-2
