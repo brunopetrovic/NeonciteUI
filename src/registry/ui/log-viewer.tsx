@@ -43,7 +43,7 @@ export function LogViewer({ entries, compact = false, className, ...props }: Log
               compact ? "py-1 text-[10px]" : "py-2 text-[11px]",
             )}
           >
-            <span className="tabular-nums text-muted-foreground/70">{entry.timestamp ?? "—"}</span>
+            <span className="tabular-nums text-muted-foreground">{entry.timestamp ?? "—"}</span>
             <span className={cn("w-14 uppercase tracking-wider", levelClass[level])}>{level}</span>
             <span className="min-w-0 break-words text-foreground">
               <span>{entry.message}</span>

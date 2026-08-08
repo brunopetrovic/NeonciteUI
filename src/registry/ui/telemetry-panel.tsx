@@ -61,7 +61,7 @@ export function TelemetryRow({
         <div className="font-mono text-[10px] uppercase tracking-[.15em] text-muted-foreground">
           {label}
         </div>
-        {detail && <div className="mt-1 truncate text-xs text-muted-foreground/70">{detail}</div>}
+        {detail && <div className="mt-1 truncate text-xs text-muted-foreground">{detail}</div>}
       </div>
       <div className={cn("font-mono text-sm font-semibold tabular-nums", tones[tone])}>{value}</div>
     </div>

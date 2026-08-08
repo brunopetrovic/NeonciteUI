@@ -55,7 +55,7 @@ function Landing() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12">
             <Link
               to="/docs/installation"
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-[10px] bg-[color:var(--neon-pink)] text-white font-mono text-[13px] font-semibold uppercase tracking-wider shadow-[0_0_32px_rgba(255,42,157,0.5),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_48px_rgba(255,42,157,0.7)] transition-all"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-[10px] bg-[#d11a7d] text-white font-mono text-[13px] font-semibold uppercase tracking-wider shadow-[0_0_32px_rgba(255,42,157,0.5),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_48px_rgba(255,42,157,0.7)] transition-all"
             >
               Get started <ArrowRight size={14} />
             </Link>

@@ -30,7 +30,7 @@ export function ResourceMeter({
           <div className="font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground">
             {label}
           </div>
-          {detail && <div className="mt-0.5 text-xs text-muted-foreground/70">{detail}</div>}
+          {detail && <div className="mt-0.5 text-xs text-muted-foreground">{detail}</div>}
         </div>
         <div className="font-mono text-sm font-semibold tabular-nums text-foreground">
           {value}

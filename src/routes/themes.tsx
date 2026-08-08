@@ -305,6 +305,7 @@ function ThemesPage() {
                   value={themeName}
                   onChange={(event) => setThemeName(event.target.value)}
                   placeholder="Theme name"
+                  aria-label="Theme name"
                 />
                 <Button
                   variant="outline"
@@ -465,7 +466,10 @@ function ThemesPage() {
               </div>
             </div>
 
-            <pre className="max-h-[300px] overflow-auto rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] p-4">
+            <pre
+              aria-label="Generated CSS"
+              className="max-h-[300px] overflow-auto rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] p-4"
+            >
               <code className="whitespace-pre font-mono text-[10px] leading-relaxed text-foreground">
                 {theme.generateCSS()}
               </code>
