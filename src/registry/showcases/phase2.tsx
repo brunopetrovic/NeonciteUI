@@ -1,16 +1,12 @@
 import * as React from "react";
 import {
-  Activity,
   Bold,
   Database,
   FileText,
   Folder,
   Italic,
-  Search,
   Settings,
-  ShieldCheck,
   Trash2,
-  Wifi,
 } from "lucide-react";
 import {
   AlertDialog,
