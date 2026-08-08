@@ -32,8 +32,8 @@ export function DashboardShell() {
         <MetricGrid className="mt-5">
           <KpiCard label="Requests" value="14.2K" delta="+8.4%" trend="up" accent="green" />
           <KpiCard label="Latency" value="84ms" delta="-7ms" trend="down" accent="cyan" />
-          <KpiCard label="Errors" value="0.4%" delta="-0.1%" trend="down" accent="pink" />
-          <KpiCard label="Regions" value="12" delta="+1" trend="up" accent="purple" />
+          <KpiCard label="Errors" value="0.4%" delta="-0.1%" trend="down" accent="green" />
+          <KpiCard label="Regions" value="12" delta="+1" trend="up" accent="cyan" />
         </MetricGrid>
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           <ServerCard name="edge-07" region="fra-1" cpu={34} memory={61} storage={48} />
