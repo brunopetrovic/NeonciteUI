@@ -100,6 +100,7 @@ function ThemesPage() {
               ref={fileInput}
               type="file"
               accept="application/json,.json"
+              aria-label="Import theme JSON file"
               className="sr-only"
               onChange={(event) => importFile(event.target.files?.[0])}
             />

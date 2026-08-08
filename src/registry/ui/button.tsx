@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "bg-gradient-to-b from-[#2c2c2e] to-[#1c1c1e] text-foreground border border-[color:var(--hairline)] shadow-[0_4px_12px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] hover:from-[#3a3a3c] hover:to-[#252527]",
         primary:
-          "bg-[color:var(--neon-pink)] text-white border border-[color:var(--neon-pink)] shadow-[0_0_24px_rgba(255,42,157,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_32px_rgba(255,42,157,0.6),inset_0_1px_1px_rgba(255,255,255,0.4)]",
+          "bg-[#d11a7d] text-white border border-[#d11a7d] shadow-[0_0_24px_rgba(255,42,157,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_32px_rgba(255,42,157,0.6),inset_0_1px_1px_rgba(255,255,255,0.4)]",
         neon: "bg-transparent border border-[#00f0ff]/40 text-[#00f0ff] [text-shadow:0_0_12px_rgba(0,240,255,0.5)] hover:bg-[#00f0ff]/10 hover:border-[#00f0ff] hover:shadow-[0_0_24px_rgba(0,240,255,0.3)]",
         ghost: "bg-transparent text-muted-foreground hover:bg-white/5 hover:text-foreground",
         outline:
