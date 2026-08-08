@@ -11,7 +11,7 @@ export const ResizablePanelGroup = React.forwardRef<
   <Group
     {...props}
     className={cn("flex h-full w-full data-[orientation=vertical]:flex-col", className)}
-    groupRef={ref as never}
+    groupRef={ref}
   />
 ));
 ResizablePanelGroup.displayName = "ResizablePanelGroup";
@@ -24,7 +24,7 @@ export const ResizableHandle = React.forwardRef<
 >(({ className, withHandle, ...props }, ref) => (
   <Separator
     {...props}
-    separatorRef={ref as never}
+    elementRef={ref}
     className={cn(
       "relative flex w-px items-center justify-center bg-[color:var(--hairline)] outline-none transition-colors focus-visible:ring-1 focus-visible:ring-[color:var(--ring)] data-[orientation=vertical]:h-px data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-1 data-[orientation=vertical]:after:w-full [&[data-orientation=vertical]>div]:rotate-90",
       "after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 hover:bg-[color:var(--primary)]/50",
