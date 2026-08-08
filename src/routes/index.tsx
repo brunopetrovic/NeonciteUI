@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { REGISTRY } from "@/registry";
-import { SHOWCASES } from "@/registry/showcases";
+import { FEATURED_SHOWCASES, FEATURED_SLUGS } from "@/registry/featured-showcases";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -154,8 +154,8 @@ function Landing() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {REGISTRY.slice(0, 6).map((item) => {
-            const showcase = SHOWCASES[item.slug];
+          {FEATURED_SLUGS.map((slug) => REGISTRY.find((item) => item.slug === slug)!).map((item) => {
+            const showcase = FEATURED_SHOWCASES[item.slug];
             return (
               <div
                 key={item.slug}
@@ -163,7 +163,7 @@ function Landing() {
                 className="group rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] overflow-hidden hover:border-white/10 transition-all cursor-pointer"
               >
                 <div className="relative h-[180px] flex items-center justify-center bg-grid bg-[color:var(--surface-2)]/40 overflow-hidden pointer-events-none">
-                  <div className="scale-90">{showcase?.preview}</div>
+                  <div className="scale-90">{showcase}</div>
                 </div>
                 <div className="border-t border-[color:var(--hairline)] p-4 flex items-center justify-between">
                   <div>
