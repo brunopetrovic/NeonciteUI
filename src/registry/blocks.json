@@ -1,21 +1,20 @@
 [
   { "slug": "hero-console", "source": "HeroBrutal.tsx", "name": "Hero Console" },
   { "slug": "stats-strip", "source": "StatsStrip.tsx", "name": "Stats Strip" },
-  {
-    "slug": "pricing-three-tiers",
-    "source": "PricingThreeTiers.tsx",
-    "name": "Pricing Three Tiers"
-  },
+  { "slug": "pricing-three-tiers", "source": "PricingThreeTiers.tsx", "name": "Pricing Three Tiers" },
   { "slug": "status-health", "source": "StatusHealth.tsx", "name": "Status Health" },
   { "slug": "auth-console", "source": "AuthSignin.tsx", "name": "Auth Console" },
   { "slug": "features-grid", "source": "FeaturesGrid.tsx", "name": "Features Grid" },
   { "slug": "testimonials", "source": "TestimonialsNotes.tsx", "name": "Testimonials" },
   { "slug": "faq-folded", "source": "FaqFolded.tsx", "name": "FAQ Folded" },
-  {
-    "slug": "pricing-tiers-alternative",
-    "source": "PricingTiersAlternative.tsx",
-    "name": "Pricing Tiers Alternative"
-  },
+  { "slug": "pricing-tiers-alternative", "source": "PricingTiersAlternative.tsx", "name": "Pricing Tiers Alternative" },
   { "slug": "cta-banner", "source": "CtaBanner.tsx", "name": "CTA Banner" },
-  { "slug": "dashboard-activity", "source": "DashboardActivity.tsx", "name": "Dashboard Activity" }
+  { "slug": "dashboard-activity", "source": "DashboardActivity.tsx", "name": "Dashboard Activity" },
+  { "slug": "dashboard-shell", "source": "DashboardShell.tsx", "name": "Dashboard Shell" },
+  { "slug": "telemetry-dashboard", "source": "TelemetryDashboard.tsx", "name": "Telemetry Dashboard" },
+  { "slug": "deployment-dashboard", "source": "DeploymentDashboard.tsx", "name": "Deployment Dashboard" },
+  { "slug": "ai-agent-console", "source": "AiAgentConsole.tsx", "name": "AI Agent Console" },
+  { "slug": "settings-panel", "source": "SettingsPanel.tsx", "name": "Settings Panel" },
+  { "slug": "onboarding-panel", "source": "OnboardingPanel.tsx", "name": "Onboarding Panel" },
+  { "slug": "error-state-page", "source": "ErrorStatePage.tsx", "name": "Error State Page" }
 ]
