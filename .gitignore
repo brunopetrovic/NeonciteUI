@@ -34,3 +34,4 @@ packages/cli/theme.css
 *.njsproj
 *.sln
 *.sw?
+test-results/
