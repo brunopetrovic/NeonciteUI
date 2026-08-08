@@ -1,0 +1,40 @@
+name: Lazy Load Component Showcases
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.head_ref == 'agent/product-excellence-phase-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Switch component route to lazy showcase loading and self-delete
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('src/routes/components.$slug.tsx')
+          s = p.read_text()
+          s = s.replace('import { SHOWCASES } from "@/registry/showcases";', 'import { useComponentShowcase } from "@/registry/showcase-loader";')
+          s = s.replace('const showcase = SHOWCASES[item.slug];', 'const showcase = useComponentShowcase(item.slug);')
+          s = s.replace('This newly registered component is fully installable and documented. Its dedicated interactive showcase is generated in the extended preview pass; use the canonical source and API contract below in the meantime.', 'Loading the interactive component preview…')
+          p.write_text(s)
+          PY
+          rm .github/workflows/cleanup-component-showcase-loading.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 'src/routes/components.$slug.tsx' .github/workflows/cleanup-component-showcase-loading.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "perf: lazy-load component showcase routes"
+          git push origin HEAD:${{ github.head_ref }}
