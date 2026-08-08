@@ -1,0 +1,47 @@
+name: Complete Phase 2 Cleanup List
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.head_ref == 'agent/product-excellence-phase-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR head
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Make convergence cleanup exhaustive and self-delete
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('.github/workflows/phase2-converge.yml')
+          s = p.read_text()
+          anchor = '            .github/workflows/cleanup-homepage.yml \\\n'
+          extra = (
+              '            .github/workflows/cleanup-featured-home.yml \\\n'
+              '            .github/workflows/cleanup-component-showcase-loading.yml \\\n'
+              '            .github/workflows/cleanup-root-deps.yml \\\n'
+              '            .github/workflows/cleanup-sitemap-block-routes.yml \\\n'
+              '            .github/workflows/cleanup-converge-list.yml \\\n'
+          )
+          if anchor in s and 'cleanup-featured-home.yml' not in s:
+              s = s.replace(anchor, anchor + extra)
+          p.write_text(s)
+          PY
+          rm .github/workflows/cleanup-converge-list.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/phase2-converge.yml .github/workflows/cleanup-converge-list.yml
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "ci: make Phase 2 bootstrap cleanup exhaustive"
+          git push origin HEAD:${{ github.head_ref }}
