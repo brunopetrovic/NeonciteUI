@@ -31,11 +31,7 @@ test("home is accessible and visually stable", async ({ page }, testInfo) => {
     .evaluate((element) => getComputedStyle(element).animationName);
   expect(gridAnimation).toBe("none");
   if (testInfo.project.name === "chromium-desktop") {
-    try {
-      await expect(page).toHaveScreenshot("home-desktop.png", { fullPage: true });
-    } catch {
-      // Baseline not yet established — skip visual comparison
-    }
+    await expect(page).toHaveScreenshot("home-desktop.png", { fullPage: true });
   }
 });
 
@@ -43,10 +39,12 @@ test("mobile navigation traps focus and closes with Escape", async ({ page }, te
   test.skip(testInfo.project.name !== "chromium-mobile", "mobile-only interaction");
   test.setTimeout(60_000);
   await page.goto("/");
+  await page.waitForLoadState("networkidle");
   const menu = page.getByRole("button", { name: "Open navigation menu" });
+  await expect(menu).toBeVisible();
   await menu.click();
   const dialog = page.getByRole("dialog", { name: /Navigation/ });
-  await expect(dialog).toBeVisible();
+  await expect(dialog).toBeVisible({ timeout: 15_000 });
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
   await expect(menu).toBeFocused();
@@ -79,11 +77,7 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
   await expect(page.getByText(/Active:/).first()).toBeVisible({ timeout: 10_000 });
   await expectNoSeriousA11yViolations(page);
   if (testInfo.project.name === "chromium-desktop") {
-    try {
-      await expect(page).toHaveScreenshot("theme-builder-desktop.png", { fullPage: true });
-    } catch {
-      // Baseline not yet established — skip visual comparison
-    }
+    await expect(page).toHaveScreenshot("theme-builder-desktop.png", { fullPage: true });
   }
 });
 
@@ -93,19 +87,13 @@ test("signature component and Block surfaces render", async ({ page }, testInfo)
   await expect(page.getByRole("heading", { name: "Server Card" })).toBeVisible({
     timeout: 30_000,
   });
-  await expect(page.getByText("edge-07").first()).toBeVisible();
+  await expect(page.getByText("edge-07").first()).toBeVisible({ timeout: 30_000 });
   await expectNoSeriousA11yViolations(page);
 
   await page.goto("/blocks#telemetry-dashboard");
   await expect(page.locator("#telemetry-dashboard")).toBeVisible({ timeout: 30_000 });
   await expect(page.getByText("Runtime overview")).toBeVisible();
   if (testInfo.project.name === "chromium-desktop") {
-    try {
-      await expect(page.locator("#telemetry-dashboard")).toHaveScreenshot(
-        "telemetry-dashboard.png",
-      );
-    } catch {
-      // Baseline not yet established — skip visual comparison
-    }
+    await expect(page.locator("#telemetry-dashboard")).toHaveScreenshot("telemetry-dashboard.png");
   }
 });

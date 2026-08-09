@@ -80,6 +80,8 @@ export function CodeBlock({ code, language = "tsx", filename, className }: CodeB
           <pre
             className={cn(hlClass, "overflow-x-auto p-4 text-[12.5px] leading-relaxed font-mono")}
             style={{ ...style, background: "transparent" }}
+            aria-label={filename ? `${filename} source code` : `${language} source code`}
+            tabIndex={0}
           >
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line })}>

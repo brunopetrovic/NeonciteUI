@@ -29,7 +29,7 @@ export const TabsTrigger = React.forwardRef<
     className={cn(
       "inline-flex h-8 items-center justify-center rounded-[7px] px-3 font-mono text-[11px] uppercase tracking-wider text-muted-foreground transition-all",
       "hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)]",
-      "data-[state=active]:bg-[color:var(--neon-pink)] data-[state=active]:text-white data-[state=active]:shadow-[0_0_12px_rgba(255,42,157,0.4)]",
+      "data-[state=active]:bg-[#d11a7d] data-[state=active]:text-white data-[state=active]:shadow-[0_0_12px_rgba(255,42,157,0.4)]",
       className,
     )}
     {...props}

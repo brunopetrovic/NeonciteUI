@@ -182,7 +182,12 @@ function ComponentPage() {
 
         <section className="mb-12">
           <SectionTitle tone="purple">API Reference</SectionTitle>
-          <div className="overflow-x-auto rounded-[14px] border border-[color:var(--hairline)]">
+          <div
+            className="overflow-x-auto rounded-[14px] border border-[color:var(--hairline)]"
+            role="region"
+            aria-label={`${item.name} API reference`}
+            tabIndex={0}
+          >
             <table className="w-full min-w-[680px] border-collapse text-left text-[12px]">
               <thead className="bg-[color:var(--surface-2)] font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
                 <tr>
