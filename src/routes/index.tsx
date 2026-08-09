@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { REGISTRY } from "@/registry";
-import { SHOWCASES } from "@/registry/showcases";
+import { FEATURED_SHOWCASES, FEATURED_SLUGS } from "@/registry/featured-showcases";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,7 +55,7 @@ function Landing() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mb-12">
             <Link
               to="/docs/installation"
-              className="inline-flex items-center gap-2 h-11 px-6 rounded-[10px] bg-[color:var(--neon-pink)] text-white font-mono text-[13px] font-semibold uppercase tracking-wider shadow-[0_0_32px_rgba(255,42,157,0.5),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_48px_rgba(255,42,157,0.7)] transition-all"
+              className="inline-flex items-center gap-2 h-11 px-6 rounded-[10px] bg-[#d11a7d] text-white font-mono text-[13px] font-semibold uppercase tracking-wider shadow-[0_0_32px_rgba(255,42,157,0.5),inset_0_1px_1px_rgba(255,255,255,0.3)] hover:shadow-[0_0_48px_rgba(255,42,157,0.7)] transition-all"
             >
               Get started <ArrowRight size={14} />
             </Link>
@@ -154,49 +154,51 @@ function Landing() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {REGISTRY.map((item) => {
-            const showcase = SHOWCASES[item.slug];
-            return (
-              <div
-                key={item.slug}
-                onClick={() => navigate({ to: "/components/$slug", params: { slug: item.slug } })}
-                className="group rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] overflow-hidden hover:border-white/10 transition-all cursor-pointer"
-              >
-                <div className="relative h-[180px] flex items-center justify-center bg-grid bg-[color:var(--surface-2)]/40 overflow-hidden pointer-events-none">
-                  <div className="scale-90">{showcase?.preview}</div>
-                </div>
-                <div className="border-t border-[color:var(--hairline)] p-4 flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <item.icon size={13} className={item.accent} strokeWidth={2.5} />
-                      <Link
-                        to="/components/$slug"
-                        params={{ slug: item.slug }}
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-[14px] font-semibold neon-white hover:underline"
-                      >
-                        {item.name}
-                      </Link>
-                    </div>
-                    <p className="text-[12px] text-muted-foreground line-clamp-1">
-                      {item.description}
-                    </p>
+          {FEATURED_SLUGS.map((slug) => REGISTRY.find((item) => item.slug === slug)!).map(
+            (item) => {
+              const Showcase = FEATURED_SHOWCASES[item.slug];
+              return (
+                <div
+                  key={item.slug}
+                  onClick={() => navigate({ to: "/components/$slug", params: { slug: item.slug } })}
+                  className="group rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] overflow-hidden hover:border-white/10 transition-all cursor-pointer"
+                >
+                  <div className="relative h-[180px] flex items-center justify-center bg-grid bg-[color:var(--surface-2)]/40 overflow-hidden pointer-events-none">
+                    <div className="scale-90">{Showcase ? <Showcase /> : null}</div>
                   </div>
-                  <Link
-                    to="/components/$slug"
-                    params={{ slug: item.slug }}
-                    onClick={(e) => e.stopPropagation()}
-                    aria-label={`View ${item.name}`}
-                  >
-                    <ArrowRight
-                      size={14}
-                      className="text-muted-foreground group-hover:translate-x-0.5 group-hover:text-foreground transition-all"
-                    />
-                  </Link>
+                  <div className="border-t border-[color:var(--hairline)] p-4 flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center gap-2 mb-0.5">
+                        <item.icon size={13} className={item.accent} strokeWidth={2.5} />
+                        <Link
+                          to="/components/$slug"
+                          params={{ slug: item.slug }}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-[14px] font-semibold neon-white hover:underline"
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+                      <p className="text-[12px] text-muted-foreground line-clamp-1">
+                        {item.description}
+                      </p>
+                    </div>
+                    <Link
+                      to="/components/$slug"
+                      params={{ slug: item.slug }}
+                      onClick={(e) => e.stopPropagation()}
+                      aria-label={`View ${item.name}`}
+                    >
+                      <ArrowRight
+                        size={14}
+                        className="text-muted-foreground group-hover:translate-x-0.5 group-hover:text-foreground transition-all"
+                      />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            },
+          )}
         </div>
       </section>
 

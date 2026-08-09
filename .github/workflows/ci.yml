@@ -9,13 +9,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.ref }}
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -39,17 +39,23 @@ jobs:
       - name: Install UI package dependencies
         run: npm install --prefix packages/ui --no-audit --no-fund
 
+      - name: Validate release version parity
+        run: node scripts/validate-version-parity.mjs
+
       - name: Validate registry dependencies
         run: npm run validate:registry
 
       - name: Validate generated artifacts
         run: npm run validate:generated
 
-      - name: Lint
-        run: npm run lint
+      - name: Validate public claims
+        run: node scripts/validate-public-claims.mjs
 
       - name: Typecheck
         run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
 
       - name: Test
         run: npm run test
@@ -62,3 +68,12 @@ jobs:
 
       - name: Build UI package
         run: npm run build --prefix packages/ui
+
+      - name: Fresh Vite + Tailwind v4 clean-room install
+        run: node scripts/clean-room-vite.mjs
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser accessibility and visual regression
+        run: npm run test:e2e

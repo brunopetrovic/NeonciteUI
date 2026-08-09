@@ -33,6 +33,7 @@ import * as TabsShowcase from "./showcases/tabs";
 import * as TextareaShowcase from "./showcases/textarea";
 import * as ToggleShowcase from "./showcases/toggle";
 import * as TooltipShowcase from "./showcases/tooltip";
+import { PHASE2_SHOWCASES } from "./showcases/phase2";
 
 export interface Showcase {
   preview: React.ReactNode;
@@ -42,18 +43,22 @@ export interface Showcase {
 }
 
 const mapShowcase = (
-  s: {
+  showcase: {
     usage: string;
     preview: React.ReactNode;
     variations?: { name: string; preview: React.ReactNode; usage: string }[];
   },
   slug: string,
 ): Showcase => ({
-  usage: s.usage,
-  preview: s.preview,
-  variations: s.variations,
+  usage: showcase.usage,
+  preview: showcase.preview,
+  variations: showcase.variations,
   source: `// canonical source at src/registry/ui/${slug}.tsx`,
 });
+
+const phase2Showcases = Object.fromEntries(
+  Object.entries(PHASE2_SHOWCASES).map(([slug, showcase]) => [slug, mapShowcase(showcase, slug)]),
+);
 
 export const SHOWCASES: Record<string, Showcase> = {
   accordion: mapShowcase(AccordionShowcase, "accordion"),
@@ -89,4 +94,5 @@ export const SHOWCASES: Record<string, Showcase> = {
   textarea: mapShowcase(TextareaShowcase, "textarea"),
   toggle: mapShowcase(ToggleShowcase, "toggle"),
   tooltip: mapShowcase(TooltipShowcase, "tooltip"),
+  ...phase2Showcases,
 };

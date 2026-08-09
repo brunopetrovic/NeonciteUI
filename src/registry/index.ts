@@ -1,5 +1,6 @@
-// Shared registry metadata lives in items.json so docs, package builds, and
-// public registry generation cannot drift.
+// Shared registry metadata lives in JSON so docs, package builds, and public
+// registry generation cannot drift. Phase-2 additions are isolated in
+// items-extra.json to keep the original inventory reviewable.
 
 import {
   Activity,
@@ -37,6 +38,7 @@ import {
 } from "lucide-react";
 import type { ComponentType } from "react";
 import items from "./items.json";
+import extraItems from "./items-extra.json";
 
 export type Category = "primitives" | "feedback" | "form" | "overlay" | "neoncite" | "data";
 
@@ -125,7 +127,7 @@ const icons = {
   User,
 } satisfies Record<RegistryIconName, RegistryItem["icon"]>;
 
-export const REGISTRY_METADATA = items as RegistryItemMetadata[];
+export const REGISTRY_METADATA = [...items, ...extraItems] as RegistryItemMetadata[];
 
 export const REGISTRY: RegistryItem[] = REGISTRY_METADATA.map(({ icon, ...item }) => ({
   ...item,

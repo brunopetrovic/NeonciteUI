@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "metric-grid",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/metric-grid.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function MetricGrid({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"grid gap-3 sm:grid-cols-2 lg:grid-cols-4\", className)} {...props} />;\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

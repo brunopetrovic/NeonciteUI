@@ -1,0 +1,23 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "ai-agent-console",
+  "type": "registry:block",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input-group",
+    "log-viewer",
+    "status-indicator",
+    "terminal"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/ai-agent-console.tsx",
+      "content": "import { Bot, Send } from \"lucide-react\";\nimport { Button } from \"@/registry/ui/button\";\nimport { InputGroup, InputGroupAddon, InputGroupInput } from \"@/registry/ui/input-group\";\nimport { LogViewer } from \"@/registry/ui/log-viewer\";\nimport { StatusIndicator } from \"@/registry/ui/status-indicator\";\nimport { Terminal, TerminalLine, TerminalOutput } from \"@/registry/ui/terminal\";\n\nexport function AiAgentConsole() {\n  return (\n    <div className=\"grid gap-4 rounded-[18px] border border-[color:var(--hairline)] bg-[color:var(--surface-0)] p-5 lg:grid-cols-[1fr_1fr]\">\n      <div className=\"space-y-4\">\n        <div className=\"flex items-center justify-between\">\n          <div className=\"flex items-center gap-2\">\n            <Bot className=\"h-4 w-4 text-[color:var(--neon-purple)]\" />\n            <span className=\"font-mono text-sm font-semibold text-foreground\">Operator Agent</span>\n          </div>\n          <StatusIndicator status=\"online\">Ready</StatusIndicator>\n        </div>\n        <div className=\"space-y-3 rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4 text-sm\">\n          <div className=\"rounded-[10px] bg-white/[.04] p-3 text-muted-foreground\">\n            Inspect the latest deployment and surface anything that needs attention.\n          </div>\n          <div className=\"ml-6 rounded-[10px] border border-[color:var(--neon-purple)]/25 bg-[color:var(--neon-purple)]/[.05] p-3 text-foreground\">\n            The deployment is healthy. One warning: p95 latency is 184ms in fra-1, 4ms above target.\n          </div>\n        </div>\n        <InputGroup>\n          <InputGroupAddon>\n            <Bot className=\"h-4 w-4\" />\n          </InputGroupAddon>\n          <InputGroupInput placeholder=\"Ask the agent…\" />\n          <InputGroupAddon>\n            <Button size=\"icon\" variant=\"ghost\" aria-label=\"Send\">\n              <Send className=\"h-4 w-4\" />\n            </Button>\n          </InputGroupAddon>\n        </InputGroup>\n      </div>\n      <div className=\"space-y-4\">\n        <Terminal status=\"agent/tool\">\n          <TerminalLine prompt=\">\">inspect deployment api-edge</TerminalLine>\n          <TerminalOutput>{`status: ready\\nregions: 12\\np95: 184ms`}</TerminalOutput>\n        </Terminal>\n        <LogViewer\n          compact\n          entries={[\n            {\n              timestamp: \"14:22:01\",\n              level: \"info\",\n              message: \"tool call: deployment.get\",\n              source: \"agent\",\n            },\n            {\n              timestamp: \"14:22:02\",\n              level: \"success\",\n              message: \"result received\",\n              source: \"agent\",\n            },\n            {\n              timestamp: \"14:22:02\",\n              level: \"warn\",\n              message: \"latency threshold exceeded\",\n              source: \"fra-1\",\n            },\n          ]}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

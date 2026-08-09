@@ -1,0 +1,22 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "pricing-three-tiers",
+  "type": "registry:block",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "card",
+    "separator"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/pricing-three-tiers.tsx",
+      "content": "import { Badge } from \"@/registry/ui/badge\";\nimport { Button } from \"@/registry/ui/button\";\nimport {\n  Card,\n  CardHeader,\n  CardTitle,\n  CardDescription,\n  CardContent,\n  CardFooter,\n} from \"@/registry/ui/card\";\nimport { Separator } from \"@/registry/ui/separator\";\nimport { Check } from \"lucide-react\";\n\nexport function PricingThreeTiers() {\n  const tiers = [\n    {\n      name: \"Starter\",\n      price: \"0\",\n      tag: null,\n      cta: \"Start free\",\n      features: [\"3 projects\", \"Core analytics\", \"Community workspace\"],\n    },\n    {\n      name: \"Team\",\n      price: \"29\",\n      tag: \"Popular\",\n      cta: \"Choose Team\",\n      features: [\"Unlimited projects\", \"Team roles\", \"Audit history\"],\n    },\n    {\n      name: \"Scale\",\n      price: \"99\",\n      tag: null,\n      cta: \"Contact sales\",\n      features: [\"Advanced controls\", \"Custom retention\", \"Priority routing\"],\n    },\n  ];\n\n  return (\n    <div className=\"space-y-3\">\n      <p className=\"font-mono text-[10px] uppercase tracking-widest text-muted-foreground\">\n        Demo pricing · example product copy, not Neoncite plans\n      </p>\n      <div className=\"grid md:grid-cols-3 gap-4\">\n        {tiers.map((tier) => (\n          <Card\n            key={tier.name}\n            className={\n              tier.tag\n                ? \"border-[color:var(--neon-pink)]/40 shadow-[0_0_32px_rgba(255,42,157,0.15)]\"\n                : \"\"\n            }\n          >\n            <CardHeader>\n              <div className=\"flex items-center justify-between\">\n                <CardTitle className=\"text-[18px]\">{tier.name}</CardTitle>\n                {tier.tag && <Badge variant=\"pink\">{tier.tag}</Badge>}\n              </div>\n              <CardDescription>\n                <span className=\"text-[36px] font-mono font-bold neon-white tabular-nums\">\n                  ${tier.price}\n                </span>\n                <span className=\"text-muted-foreground\"> /mo</span>\n              </CardDescription>\n            </CardHeader>\n            <CardContent>\n              <Separator className=\"mb-4\" />\n              <ul className=\"space-y-2\">\n                {tier.features.map((f) => (\n                  <li key={f} className=\"flex items-center gap-2 text-[13px] text-muted-foreground\">\n                    <Check size={14} className=\"text-[color:var(--neon-green)]\" strokeWidth={3} />\n                    {f}\n                  </li>\n                ))}\n              </ul>\n            </CardContent>\n            <CardFooter>\n              <Button variant={tier.tag ? \"primary\" : \"outline\"} className=\"w-full\">\n                {tier.cta}\n              </Button>\n            </CardFooter>\n          </Card>\n        ))}\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

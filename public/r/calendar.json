@@ -1,10 +1,10 @@
 {
-  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "calendar",
   "type": "registry:ui",
   "dependencies": [
-    "react-day-picker",
-    "date-fns",
+    "react-day-picker@^9",
+    "date-fns@^4",
     "lucide-react"
   ],
   "registryDependencies": [],

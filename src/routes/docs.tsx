@@ -16,7 +16,21 @@ const sections = [
       { to: "/docs/", label: "Overview" },
       { to: "/docs/installation", label: "Installation" },
       { to: "/docs/cli", label: "CLI" },
+    ],
+  },
+  {
+    label: "Foundations",
+    items: [
       { to: "/docs/theming", label: "Theming" },
+      { to: "/docs/dark-mode", label: "Dark-only design" },
+      { to: "/docs/accessibility", label: "Accessibility" },
+    ],
+  },
+  {
+    label: "Project",
+    items: [
+      { to: "/docs/roadmap", label: "Roadmap" },
+      { to: "/changelog", label: "Changelog" },
     ],
   },
 ];
@@ -24,28 +38,28 @@ const sections = [
 function SidebarContent({ path, onNavigate }: { path: string; onNavigate?: () => void }) {
   return (
     <>
-      {sections.map((sec) => (
-        <div key={sec.label} className="mb-6">
-          <h4 className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-2 px-3">
-            {sec.label}
+      {sections.map((section) => (
+        <div key={section.label} className="mb-6">
+          <h4 className="mb-2 px-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+            {section.label}
           </h4>
-          <nav className="flex flex-col gap-0.5" aria-label={`${sec.label} documentation`}>
-            {sec.items.map((it) => {
+          <nav className="flex flex-col gap-0.5" aria-label={`${section.label} documentation`}>
+            {section.items.map((item) => {
               const active =
-                it.to === "/docs/" ? path === "/docs" || path === "/docs/" : path === it.to;
+                item.to === "/docs/" ? path === "/docs" || path === "/docs/" : path === item.to;
               return (
                 <Link
-                  key={it.to}
-                  to={it.to}
+                  key={item.to}
+                  to={item.to}
                   onClick={onNavigate}
                   className={cn(
-                    "px-3 py-1.5 rounded-[8px] text-[13px] transition-colors",
+                    "rounded-[8px] border px-3 py-1.5 text-[13px] transition-colors",
                     active
-                      ? "bg-white/[0.06] text-foreground border border-[color:var(--hairline)]"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/[0.03] border border-transparent",
+                      ? "border-[color:var(--hairline)] bg-white/[0.06] text-foreground"
+                      : "border-transparent text-muted-foreground hover:bg-white/[0.03] hover:text-foreground",
                   )}
                 >
-                  {it.label}
+                  {item.label}
                 </Link>
               );
             })}
@@ -57,7 +71,7 @@ function SidebarContent({ path, onNavigate }: { path: string; onNavigate?: () =>
 }
 
 function DocsLayout() {
-  const path = useRouterState({ select: (s) => s.location.pathname });
+  const path = useRouterState({ select: (state) => state.location.pathname });
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (

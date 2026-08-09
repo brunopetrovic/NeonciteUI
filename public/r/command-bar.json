@@ -1,0 +1,19 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "command-bar",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "kbd"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/command-bar.tsx",
+      "content": "import * as React from \"react\";\nimport { Search } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { Kbd } from \"@/registry/ui/kbd\";\n\nexport interface CommandBarProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {\n  shortcut?: React.ReactNode;\n}\nexport const CommandBar = React.forwardRef<HTMLButtonElement, CommandBarProps>(\n  (\n    {\n      className,\n      children = \"Search commands…\",\n      shortcut = (\n        <>\n          <Kbd>⌘</Kbd>\n          <Kbd>K</Kbd>\n        </>\n      ),\n      ...props\n    },\n    ref,\n  ) => (\n    <button\n      ref={ref}\n      type=\"button\"\n      className={cn(\n        \"flex h-10 w-full items-center gap-2 rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] px-3 text-left text-sm text-muted-foreground shadow-[var(--recessed-shadow)] transition-all hover:border-white/15 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)]\",\n        className,\n      )}\n      {...props}\n    >\n      <Search className=\"h-4 w-4 text-[color:var(--neon-cyan)]\" />\n      <span className=\"min-w-0 flex-1 truncate\">{children}</span>\n      <span className=\"flex items-center gap-1\">{shortcut}</span>\n    </button>\n  ),\n);\nCommandBar.displayName = \"CommandBar\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

@@ -2,14 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Button } from "@/registry/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from "@/registry/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/ui/card";
 import { Slider } from "@/registry/ui/slider";
 import { Badge } from "@/registry/ui/badge";
 import { Input } from "@/registry/ui/input";
@@ -20,8 +13,18 @@ import { Checkbox } from "@/registry/ui/checkbox";
 import { Separator } from "@/registry/ui/separator";
 import { Switch } from "@/registry/ui/switch";
 import { neonColors, THEME_PRESETS, useThemeBuilder } from "@/hooks/use-theme-builder";
-import { Copy, Check, RotateCcw } from "lucide-react";
-import { useState } from "react";
+import {
+  Check,
+  Copy,
+  Download,
+  Link2,
+  RotateCcw,
+  Save,
+  ShieldCheck,
+  Trash2,
+  Upload,
+} from "lucide-react";
+import { useRef, useState } from "react";
 
 export const Route = createFileRoute("/themes")({
   head: () => ({
@@ -30,63 +33,56 @@ export const Route = createFileRoute("/themes")({
       {
         name: "description",
         content:
-          "Build, preview, and export custom Neoncite themes. Live component preview with real-time token injection.",
+          "Build, validate, save, share, import, and export dark-only Neoncite themes with real component previews.",
       },
     ],
   }),
   component: ThemesPage,
 });
 
+function downloadText(filename: string, content: string, type = "text/plain") {
+  const blob = new Blob([content], { type });
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = filename;
+  anchor.click();
+  URL.revokeObjectURL(url);
+}
+
 function ThemesPage() {
   const theme = useThemeBuilder();
-  const [copied, setCopied] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const {
-    activePreset,
-    accent,
-    applyPreset,
-    foreground,
-    generateCSS,
-    saveTheme,
-    hairline,
-    mutedFg,
-    primary,
-    radius,
-    resetToDefaults,
-    setAccent,
-    setActivePreset,
-    setForeground,
-    setHairline,
-    setMutedFg,
-    setPrimary,
-    setRadius,
-    setSurface0,
-    setSurface1,
-    setSurface2,
-    setSurface3,
-    surface0,
-    surface1,
-    surface2,
-    surface3,
-  } = theme;
+  const fileInput = useRef<HTMLInputElement>(null);
+  const [themeName, setThemeName] = useState("");
+  const [notice, setNotice] = useState("");
 
-  const copyCSS = () => {
-    navigator.clipboard.writeText(generateCSS());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const flash = (message: string) => {
+    setNotice(message);
+    window.setTimeout(() => setNotice(""), 1800);
   };
 
-  const onSave = () => {
-    saveTheme();
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+  const copy = async (value: string, message: string) => {
+    await navigator.clipboard.writeText(value);
+    flash(message);
+  };
+
+  const importFile = async (file?: File) => {
+    if (!file) return;
+    try {
+      theme.importThemeJSON(await file.text());
+      flash("Theme imported");
+    } catch (error) {
+      flash(error instanceof Error ? error.message : "Invalid theme file");
+    } finally {
+      if (fileInput.current) fileInput.current.value = "";
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-[color:var(--surface-0)]">
       <SiteHeader />
       <main className="flex-1 mx-auto w-full max-w-[1400px] px-4 md:px-8 py-12 md:py-16">
-        <header className="mb-10 flex items-end justify-between">
+        <header className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-widest neon-purple mb-3">
               Visual
@@ -94,261 +90,276 @@ function ThemesPage() {
             <h1 className="text-[40px] md:text-[56px] font-mono font-bold tracking-tighter neon-white mb-3">
               Theme Builder
             </h1>
-            <p className="text-[15px] text-muted-foreground max-w-2xl">
-              Start from a preset, customize every token, preview live, and export the CSS to drop
-              into your project.
+            <p className="text-[15px] text-muted-foreground max-w-2xl leading-relaxed">
+              Build a dark-only Neoncite theme, validate contrast, save named variants, share the
+              exact state, or export CSS, Neoncite JSON, and DTCG design tokens.
             </p>
           </div>
-          <div className="flex gap-3 mb-2">
-            <Button variant="ghost" size="sm" onClick={onSave}>
-              {saved ? <Check size={14} className="mr-2" /> : <Copy size={14} className="mr-2" />}
-              {saved ? "Saved" : "Save to Storage"}
+          <div className="flex flex-wrap gap-2">
+            <input
+              ref={fileInput}
+              type="file"
+              accept="application/json,.json"
+              aria-label="Import theme JSON file"
+              className="sr-only"
+              onChange={(event) => importFile(event.target.files?.[0])}
+            />
+            <Button variant="outline" size="sm" onClick={() => fileInput.current?.click()}>
+              <Upload className="h-3.5 w-3.5" /> Import JSON
             </Button>
-            <Button variant="primary" size="sm" onClick={copyCSS}>
-              {copied ? <Check size={14} className="mr-2" /> : <Copy size={14} className="mr-2" />}
-              {copied ? "Copied" : "Copy CSS"}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => copy(theme.generateShareUrl(), "Share URL copied")}
+            >
+              <Link2 className="h-3.5 w-3.5" /> Share
+            </Button>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => copy(theme.generateCSS(), "CSS copied")}
+            >
+              <Copy className="h-3.5 w-3.5" /> Copy CSS
             </Button>
           </div>
         </header>
 
-        {/* ─── Presets ─── */}
+        {notice && (
+          <div
+            className="fixed bottom-5 right-5 z-50 rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] px-4 py-2 font-mono text-[11px] text-foreground shadow-[var(--machined-shadow)]"
+            role="status"
+          >
+            {notice}
+          </div>
+        )}
+
         <section className="mb-10">
-          <h2 className="font-mono text-[12px] uppercase tracking-widest text-muted-foreground mb-4">
-            Presets
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {THEME_PRESETS.map((p) => (
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <div>
+              <h2 className="font-mono text-[12px] uppercase tracking-widest text-muted-foreground">
+                Presets
+              </h2>
+              <p className="mt-1 text-xs text-muted-foreground">
+                All official presets remain intentionally dark.
+              </p>
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+              Active: <span className="text-foreground">{theme.activePreset}</span>
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+            {THEME_PRESETS.map((preset) => (
               <button
-                key={p.name}
-                onClick={() => applyPreset(p)}
-                className={`group relative flex flex-col items-center gap-2.5 p-4 rounded-[14px] border transition-all ${
-                  activePreset === p.name
-                    ? "border-white/20 bg-white/[0.06] shadow-[0_0_20px_rgba(255,255,255,0.05)]"
-                    : "border-[color:var(--hairline)] bg-[color:var(--surface-1)] hover:border-white/10 hover:-translate-y-0.5"
+                key={preset.slug}
+                type="button"
+                onClick={() => theme.applyPreset(preset)}
+                className={`group relative rounded-[14px] border p-4 text-left transition-all ${
+                  theme.activePreset === preset.name
+                    ? "border-white/20 bg-white/[0.06] shadow-[0_0_20px_rgba(255,255,255,.05)]"
+                    : "border-[color:var(--hairline)] bg-[color:var(--surface-1)] hover:border-white/10"
                 }`}
               >
-                <div className="flex gap-1">
-                  <div
-                    className="h-5 w-5 rounded-full border border-white/10"
-                    style={{ backgroundColor: p.primary, boxShadow: `0 0 8px ${p.primary}40` }}
-                  />
-                  <div
-                    className="h-5 w-5 rounded-full border border-white/10"
-                    style={{ backgroundColor: p.surface0 }}
-                  />
-                  <div
-                    className="h-5 w-5 rounded-full border border-white/10"
-                    style={{ backgroundColor: p.surface2 }}
-                  />
+                <div className="mb-3 flex gap-1.5">
+                  {[preset.primary, preset.accent, preset.surface2].map((color) => (
+                    <span
+                      key={color}
+                      className="h-5 w-5 rounded-full border border-white/10"
+                      style={{ backgroundColor: color }}
+                    />
+                  ))}
                 </div>
-                <span className="text-[12px] font-mono font-semibold text-foreground">
-                  {p.name}
-                </span>
-                {activePreset === p.name && (
-                  <div
-                    className="absolute -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: p.primary }}
-                  >
-                    <Check size={10} className="text-white" strokeWidth={3} />
-                  </div>
-                )}
+                <div className="font-mono text-[12px] font-semibold text-foreground">
+                  {preset.name}
+                </div>
+                <code className="mt-2 block truncate font-mono text-[9px] text-muted-foreground">
+                  npx neoncite add {preset.slug}
+                </code>
               </button>
             ))}
           </div>
         </section>
 
-        <div className="grid lg:grid-cols-[1fr_420px] gap-8">
-          {/* ─── Controls ─── */}
-          <div className="space-y-8">
-            {/* Accent colors */}
-            <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
-              <h3 className="text-[13px] font-semibold uppercase tracking-wider text-foreground mb-5">
-                Accent Colors
-              </h3>
-              <div className="space-y-5">
-                <div>
-                  <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground block mb-3">
-                    Primary
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {neonColors.map((c) => (
-                      <button
-                        key={c.name}
-                        onClick={() => {
-                          setPrimary(c.value);
-                          setActivePreset("Custom");
-                        }}
-                        className={`w-8 h-8 rounded-full border-2 transition-all ${primary === c.value ? "border-white scale-110" : "border-transparent hover:scale-105"}`}
-                        style={{
-                          backgroundColor: c.value,
-                          boxShadow: primary === c.value ? `0 0 12px ${c.value}80` : "none",
-                        }}
-                        title={c.name}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <Separator />
-                <div>
-                  <label className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground block mb-3">
-                    Accent
-                  </label>
-                  <div className="flex flex-wrap gap-2">
-                    {neonColors.map((c) => (
-                      <button
-                        key={c.name}
-                        onClick={() => {
-                          setAccent(c.value);
-                          setActivePreset("Custom");
-                        }}
-                        className={`w-8 h-8 rounded-full border-2 transition-all ${accent === c.value ? "border-white scale-110" : "border-transparent hover:scale-105"}`}
-                        style={{
-                          backgroundColor: c.value,
-                          boxShadow: accent === c.value ? `0 0 12px ${c.value}80` : "none",
-                        }}
-                        title={c.name}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Surface scale */}
-            <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
-              <h3 className="text-[13px] font-semibold uppercase tracking-wider text-foreground mb-5">
-                Surface Scale
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                {(
-                  [
-                    { label: "Surface 0", value: surface0, set: setSurface0 },
-                    { label: "Surface 1", value: surface1, set: setSurface1 },
-                    { label: "Surface 2", value: surface2, set: setSurface2 },
-                    { label: "Surface 3", value: surface3, set: setSurface3 },
-                    { label: "Hairline", value: hairline, set: setHairline },
-                  ] as const
-                ).map((s) => (
-                  <div key={s.label}>
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block mb-1.5">
-                      {s.label}
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <label
-                        className="h-8 w-8 rounded-[8px] border border-[color:var(--hairline)] cursor-pointer shrink-0 shadow-[inset_0_1px_2px_rgba(0,0,0,0.4)]"
-                        style={{ backgroundColor: s.value }}
-                      >
-                        <input
-                          type="color"
-                          value={s.value}
-                          onChange={(e) => {
-                            s.set(e.target.value);
-                            setActivePreset("Custom");
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_440px]">
+          <div className="space-y-6">
+            <section className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
+              <h2 className="mb-5 font-mono text-[12px] uppercase tracking-widest text-foreground">
+                Accent colors
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2">
+                {[
+                  { label: "Primary", value: theme.primary, set: theme.setPrimary },
+                  { label: "Accent", value: theme.accent, set: theme.setAccent },
+                ].map((field) => (
+                  <div key={field.label}>
+                    <Label className="mb-3 block">{field.label}</Label>
+                    <div className="flex flex-wrap gap-2">
+                      {neonColors.map((color) => (
+                        <button
+                          key={color.name}
+                          type="button"
+                          aria-label={`${field.label}: ${color.name}`}
+                          onClick={() => {
+                            field.set(color.value);
+                            theme.setActivePreset("Custom");
                           }}
-                          className="sr-only"
+                          className={`h-8 w-8 rounded-full border-2 transition-transform ${field.value === color.value ? "scale-110 border-white" : "border-transparent hover:scale-105"}`}
+                          style={{
+                            backgroundColor: color.value,
+                            boxShadow:
+                              field.value === color.value ? `0 0 12px ${color.value}80` : "none",
+                          }}
                         />
-                      </label>
-                      <code className="text-[10px] font-mono text-muted-foreground">{s.value}</code>
+                      ))}
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </section>
 
-            {/* Typography + Radius */}
-            <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
-              <h3 className="text-[13px] font-semibold uppercase tracking-wider text-foreground mb-5">
-                Typography & Shape
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                <div>
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block mb-1.5">
-                    Foreground
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <label
-                      className="h-8 w-8 rounded-[8px] border border-[color:var(--hairline)] cursor-pointer shrink-0"
-                      style={{ backgroundColor: foreground }}
-                    >
-                      <input
-                        type="color"
-                        value={foreground}
-                        onChange={(e) => {
-                          setForeground(e.target.value);
-                          setActivePreset("Custom");
-                        }}
-                        className="sr-only"
-                      />
-                    </label>
-                    <code className="text-[10px] font-mono text-muted-foreground">
-                      {foreground}
-                    </code>
-                  </div>
-                </div>
-                <div>
-                  <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground block mb-1.5">
-                    Muted FG
-                  </label>
-                  <div className="flex items-center gap-2">
-                    <label
-                      className="h-8 w-8 rounded-[8px] border border-[color:var(--hairline)] cursor-pointer shrink-0"
-                      style={{ backgroundColor: mutedFg }}
-                    >
-                      <input
-                        type="color"
-                        value={mutedFg}
-                        onChange={(e) => {
-                          setMutedFg(e.target.value);
-                          setActivePreset("Custom");
-                        }}
-                        className="sr-only"
-                      />
-                    </label>
-                    <code className="text-[10px] font-mono text-muted-foreground">{mutedFg}</code>
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1.5">
-                    <label className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                      Radius
-                    </label>
-                    <span className="text-[10px] font-mono text-muted-foreground">
-                      {radius[0]}rem
+            <section className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
+              <h2 className="mb-5 font-mono text-[12px] uppercase tracking-widest text-foreground">
+                Surface scale
+              </h2>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                {[
+                  { label: "Surface 0", value: theme.surface0, set: theme.setSurface0 },
+                  { label: "Surface 1", value: theme.surface1, set: theme.setSurface1 },
+                  { label: "Surface 2", value: theme.surface2, set: theme.setSurface2 },
+                  { label: "Surface 3", value: theme.surface3, set: theme.setSurface3 },
+                  { label: "Hairline", value: theme.hairline, set: theme.setHairline },
+                  { label: "Foreground", value: theme.foreground, set: theme.setForeground },
+                  { label: "Muted FG", value: theme.mutedFg, set: theme.setMutedFg },
+                ].map((field) => (
+                  <label key={field.label} className="block">
+                    <span className="mb-2 block font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {field.label}
                     </span>
-                  </div>
-                  <Slider
-                    value={radius}
-                    onValueChange={(v) => {
-                      setRadius(v);
-                      setActivePreset("Custom");
-                    }}
-                    max={1.5}
-                    min={0}
-                    step={0.125}
-                  />
-                </div>
+                    <span className="flex items-center gap-2">
+                      <input
+                        type="color"
+                        value={field.value}
+                        onChange={(event) => {
+                          field.set(event.target.value);
+                          theme.setActivePreset("Custom");
+                        }}
+                        className="h-8 w-8 cursor-pointer rounded-[8px] border border-[color:var(--hairline)] bg-transparent"
+                      />
+                      <code className="font-mono text-[10px] text-muted-foreground">
+                        {field.value}
+                      </code>
+                    </span>
+                  </label>
+                ))}
               </div>
-            </div>
+              <Separator className="my-6" />
+              <div className="max-w-md">
+                <div className="mb-2 flex justify-between font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
+                  <span>Radius</span>
+                  <span>{theme.radius[0]}rem</span>
+                </div>
+                <Slider
+                  value={theme.radius}
+                  onValueChange={(value) => {
+                    theme.setRadius(value);
+                    theme.setActivePreset("Custom");
+                  }}
+                  min={0}
+                  max={1.5}
+                  step={0.125}
+                />
+              </div>
+            </section>
 
-            {/* Reset */}
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={resetToDefaults}
-                className="gap-1.5 text-[11px]"
-              >
-                <RotateCcw size={12} /> Reset to defaults
+            <section className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
+              <div className="mb-5 flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-[color:var(--neon-green)]" />
+                <h2 className="font-mono text-[12px] uppercase tracking-widest text-foreground">
+                  Contrast checks
+                </h2>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2">
+                {theme.contrastChecks.map((check) => {
+                  const passes = check.ratio >= check.threshold;
+                  return (
+                    <div
+                      key={check.label}
+                      className="flex items-center justify-between gap-3 rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] px-3 py-2"
+                    >
+                      <span className="text-xs text-muted-foreground">{check.label}</span>
+                      <span
+                        className={`font-mono text-[10px] ${passes ? "text-[color:var(--neon-green)]" : "text-[color:var(--neon-red)]"}`}
+                      >
+                        {check.ratio.toFixed(2)}:1 · {passes ? "PASS" : "FAIL"}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            <section className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6">
+              <h2 className="mb-4 font-mono text-[12px] uppercase tracking-widest text-foreground">
+                Saved themes
+              </h2>
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Input
+                  value={themeName}
+                  onChange={(event) => setThemeName(event.target.value)}
+                  placeholder="Theme name"
+                  aria-label="Theme name"
+                />
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    try {
+                      theme.saveNamedTheme(themeName);
+                      setThemeName("");
+                      flash("Named theme saved");
+                    } catch (error) {
+                      flash(error instanceof Error ? error.message : "Unable to save theme");
+                    }
+                  }}
+                >
+                  <Save className="h-4 w-4" /> Save
+                </Button>
+              </div>
+              {theme.savedThemes.length > 0 && (
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                  {theme.savedThemes.map((saved) => (
+                    <div
+                      key={saved.name}
+                      className="flex items-center gap-2 rounded-[10px] border border-[color:var(--hairline)] px-3 py-2"
+                    >
+                      <button
+                        className="min-w-0 flex-1 truncate text-left font-mono text-[11px] text-foreground"
+                        onClick={() => theme.loadSavedTheme(saved.name)}
+                      >
+                        {saved.name}
+                      </button>
+                      <button
+                        aria-label={`Delete ${saved.name}`}
+                        className="text-muted-foreground hover:text-[color:var(--neon-red)]"
+                        onClick={() => theme.deleteSavedTheme(saved.name)}
+                      >
+                        <Trash2 className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+
+            <div className="flex flex-wrap gap-2">
+              <Button variant="outline" size="sm" onClick={theme.resetToDefaults}>
+                <RotateCcw className="h-3.5 w-3.5" /> Reset
               </Button>
-              <span className="text-[11px] font-mono text-muted-foreground">
-                Active: <span className="text-foreground">{activePreset}</span>
-              </span>
+              <Button variant="outline" size="sm" onClick={theme.saveTheme}>
+                <Check className="h-3.5 w-3.5" /> Persist active
+              </Button>
             </div>
           </div>
 
-          {/* ─── Right column: Live Preview + Export ─── */}
-          <div className="space-y-6">
-            {/* Live Component Preview */}
+          <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
             <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] overflow-hidden">
               <div className="border-b border-[color:var(--hairline)] px-4 h-10 flex items-center">
                 <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
@@ -356,7 +367,6 @@ function ThemesPage() {
                 </span>
               </div>
               <div className="p-5 space-y-5 bg-[color:var(--surface-0)]">
-                {/* Buttons */}
                 <div className="flex flex-wrap gap-2">
                   <Button variant="primary" size="sm">
                     Deploy
@@ -367,115 +377,106 @@ function ThemesPage() {
                   <Button variant="default" size="sm">
                     Settings
                   </Button>
-                  <Button variant="outline" size="sm">
-                    Cancel
-                  </Button>
-                  <Button variant="ghost" size="sm">
-                    Help
-                  </Button>
                 </div>
-
-                <Separator />
-
-                {/* Badges */}
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="green">Online</Badge>
                   <Badge variant="yellow">Degraded</Badge>
                   <Badge variant="red">Down</Badge>
-                  <Badge variant="cyan">Beta</Badge>
-                  <Badge variant="pink">v2.0</Badge>
                 </div>
-
-                <Separator />
-
-                {/* Card */}
                 <Card>
                   <CardHeader className="pb-2">
                     <CardTitle className="text-[14px]">Cluster Status</CardTitle>
-                    <CardDescription>3 nodes online · 99.98% uptime</CardDescription>
+                    <CardDescription>Demo telemetry preview</CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-3">
-                    <div className="space-y-1.5">
-                      <div className="flex justify-between text-[11px] font-mono">
-                        <span className="text-muted-foreground">CPU</span>
-                        <span className="text-foreground">34%</span>
-                      </div>
-                      <Progress value={34} />
-                    </div>
-                    <div className="space-y-1.5">
-                      <div className="flex justify-between text-[11px] font-mono">
-                        <span className="text-muted-foreground">Memory</span>
-                        <span className="text-foreground">68%</span>
-                      </div>
-                      <Progress value={68} />
+                    <Progress value={64} />
+                    <div className="grid grid-cols-2 gap-3">
+                      <KpiCard
+                        label="Requests"
+                        value="14.2K"
+                        delta="+12.3%"
+                        trend="up"
+                        accent="green"
+                      />
+                      <KpiCard
+                        label="Latency"
+                        value="84ms"
+                        delta="-4ms"
+                        trend="down"
+                        accent="cyan"
+                      />
                     </div>
                   </CardContent>
-                  <CardFooter className="pt-0 justify-end">
-                    <Button variant="primary" size="sm">
-                      Inspect
-                    </Button>
-                  </CardFooter>
                 </Card>
-
-                <Separator />
-
-                {/* KPI Cards */}
-                <div className="grid grid-cols-2 gap-3">
-                  <KpiCard
-                    label="Requests"
-                    value="14.2K"
-                    delta="+12.3%"
-                    trend="up"
-                    accent="green"
-                  />
-                  <KpiCard label="Latency" value="84ms" delta="-4ms" trend="down" accent="cyan" />
-                </div>
-
-                <Separator />
-
-                {/* Form controls */}
                 <div className="space-y-3">
                   <div className="space-y-1.5">
-                    <Label htmlFor="theme-input">Hostname</Label>
-                    <Input id="theme-input" placeholder="cluster-01.local" />
+                    <Label htmlFor="theme-host">Hostname</Label>
+                    <Input id="theme-host" placeholder="cluster-01.local" />
                   </div>
-                  <div className="flex items-center gap-6">
-                    <label className="flex items-center gap-2 text-[12px]">
-                      <Checkbox defaultChecked /> Enable telemetry
+                  <div className="flex items-center gap-5 text-[12px]">
+                    <label className="flex items-center gap-2">
+                      <Checkbox defaultChecked /> Telemetry
                     </label>
-                    <div className="flex items-center gap-2 text-[12px]">
-                      <Switch defaultChecked />
-                      <span className="text-muted-foreground">Auto-restart</span>
-                    </div>
+                    <label className="flex items-center gap-2">
+                      <Switch defaultChecked /> Restart
+                    </label>
                   </div>
-                  <Slider defaultValue={[64]} max={100} step={1} />
                 </div>
               </div>
             </div>
 
-            {/* Export CSS */}
-            <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] overflow-hidden">
-              <div className="border-b border-[color:var(--hairline)] px-4 h-10 flex items-center justify-between">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-                  Export CSS
-                </span>
+            <div className="rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4">
+              <h2 className="mb-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
+                Export
+              </h2>
+              <div className="grid gap-2">
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={copyCSS}
-                  className="h-7 text-[11px] gap-1.5"
+                  className="justify-start"
+                  onClick={() =>
+                    downloadText("neoncite-theme.css", theme.generateCSS(), "text/css")
+                  }
                 >
-                  {copied ? <Check size={12} className="neon-green" /> : <Copy size={12} />}
-                  {copied ? "Copied" : "Copy"}
+                  <Download className="h-3.5 w-3.5" /> CSS
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="justify-start"
+                  onClick={() =>
+                    downloadText("neoncite-theme.json", theme.generateJSON(), "application/json")
+                  }
+                >
+                  <Download className="h-3.5 w-3.5" /> Neoncite JSON
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="justify-start"
+                  onClick={() =>
+                    downloadText(
+                      "neoncite-theme.dtcg.json",
+                      theme.generateDTCG(),
+                      "application/json",
+                    )
+                  }
+                >
+                  <Download className="h-3.5 w-3.5" /> DTCG JSON
                 </Button>
               </div>
-              <pre className="p-4 overflow-x-auto bg-[color:var(--recessed-bg)] max-h-[320px]">
-                <code className="text-[11px] font-mono text-[#e5e5ea] leading-relaxed whitespace-pre">
-                  {generateCSS()}
-                </code>
-              </pre>
             </div>
-          </div>
+
+            <pre
+              aria-label="Generated CSS"
+              tabIndex={-1}
+              className="max-h-[300px] overflow-auto rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] p-4"
+            >
+              <code className="whitespace-pre font-mono text-[10px] leading-relaxed text-foreground">
+                {theme.generateCSS()}
+              </code>
+            </pre>
+          </aside>
         </div>
       </main>
       <SiteFooter />

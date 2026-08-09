@@ -4,7 +4,7 @@
   "description": "CLI for the Neoncite UI design system",
   "type": "module",
   "bin": {
-    "neoncite": "./dist/index.js"
+    "neoncite": "dist/index.js"
   },
   "files": [
     "dist",

@@ -7,14 +7,14 @@ import { Button } from "@/components/neoncite/button"
 
 export function Demo() {
   return (
-    <Button onClick={() => toast.success("Deployed", { description: "v1.0.0 is live" })}>Show toast</Button>
+    <Button onClick={() => toast.success("Deployed", { description: "v0.2.0 is live" })}>Show toast</Button>
   )
 }`;
 
 export const preview = (
   <Button
     variant="neon"
-    onClick={() => toast.success("Deployed", { description: "v1.0.0 is live" })}
+    onClick={() => toast.success("Deployed", { description: "v0.2.0 is live" })}
   >
     Show toast
   </Button>

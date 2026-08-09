@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#121214"/><stop offset="1" stop-color="#050505"/></linearGradient>
+    <radialGradient id="pinkGlow"><stop stop-color="#ff2a9d" stop-opacity=".24"/><stop offset="1" stop-color="#ff2a9d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="cyanGlow"><stop stop-color="#00f0ff" stop-opacity=".16"/><stop offset="1" stop-color="#00f0ff" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+    <filter id="glow"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="630" fill="#000"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="265" cy="310" r="260" fill="url(#pinkGlow)"/>
+  <circle cx="930" cy="250" r="330" fill="url(#cyanGlow)"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="url(#panel)" stroke="#2c2c2e"/>
+  <path d="M254 162 343 213.5v103L254 368l-89-51.5v-103Z" fill="#09090b" stroke="#ff2a9d" stroke-width="7" filter="url(#glow)"/>
+  <path d="M254 201 309 233v64l-55 32-55-32v-64Z" fill="none" stroke="#00f0ff" stroke-width="4" opacity=".9"/>
+  <circle cx="254" cy="265" r="10" fill="#ff2a9d"/>
+  <text x="410" y="245" fill="#f2f2f7" font-family="JetBrains Mono, monospace" font-size="68" font-weight="700" letter-spacing="-4">neoncite/ui</text>
+  <text x="414" y="302" fill="#8e8e93" font-family="Inter, sans-serif" font-size="25">Machined React components for technical products.</text>
+  <text x="414" y="360" fill="#00f0ff" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="3">OLED BLACK · RADIX · TAILWIND V4 · SOURCE OWNERSHIP</text>
+  <line x1="414" y1="408" x2="1030" y2="408" stroke="#2c2c2e"/>
+  <text x="414" y="455" fill="#8e8e93" font-family="JetBrains Mono, monospace" font-size="17">components · blocks · dark themes · CLI · registry</text>
+  <circle cx="1012" cy="456" r="6" fill="#00ff66"/>
+  <text x="1030" y="462" fill="#00ff66" font-family="JetBrains Mono, monospace" font-size="15">SYSTEM READY</text>
+</svg>

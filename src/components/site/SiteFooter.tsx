@@ -6,15 +6,10 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[1400px] grid-cols-2 gap-8 px-4 py-12 md:grid-cols-4 md:px-8">
         <div className="col-span-2">
           <div className="mb-3 flex items-center gap-2">
-            <span
-              aria-hidden="true"
-              className="animate-pulse-glow text-[color:var(--neon-pink)]"
-            >
+            <span aria-hidden="true" className="animate-pulse-glow text-[color:var(--neon-pink)]">
               ●
             </span>
-            <span className="font-mono text-[14px] font-bold neon-white">
-              neoncite/ui
-            </span>
+            <span className="font-mono text-[14px] font-bold neon-white">neoncite/ui</span>
           </div>
           <p className="max-w-md text-[13px] leading-relaxed text-muted-foreground">
             A dark-only machined React component system with OLED surfaces, hardware rim lighting,
@@ -44,10 +39,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/components"
-                className="text-foreground transition-colors hover:neon-cyan"
-              >
+              <Link to="/components" className="text-foreground transition-colors hover:neon-cyan">
                 Components
               </Link>
             </li>
@@ -70,10 +62,7 @@ export function SiteFooter() {
               </Link>
             </li>
             <li>
-              <Link
-                to="/changelog"
-                className="text-foreground transition-colors hover:neon-cyan"
-              >
+              <Link to="/changelog" className="text-foreground transition-colors hover:neon-cyan">
                 Changelog
               </Link>
             </li>

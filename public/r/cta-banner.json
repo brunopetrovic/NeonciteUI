@@ -1,0 +1,18 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "cta-banner",
+  "type": "registry:block",
+  "dependencies": [],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/blocks/cta-banner.tsx",
+      "content": "import { Badge } from \"@/registry/ui/badge\";\nimport { Button } from \"@/registry/ui/button\";\n\nexport function CtaBanner() {\n  return (\n    <div className=\"relative overflow-hidden rounded-[20px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-10 md:p-16\">\n      <div className=\"absolute inset-0 bg-grid opacity-40\" />\n      <div\n        className=\"absolute -inset-px opacity-60 pointer-events-none\"\n        style={{\n          background:\n            \"radial-gradient(600px 200px at 80% 0%, rgba(255,42,157,0.18), transparent 60%), radial-gradient(500px 180px at 0% 100%, rgba(0,240,255,0.14), transparent 60%)\",\n        }}\n      />\n      <div className=\"relative flex flex-col md:flex-row md:items-center md:justify-between gap-8\">\n        <div className=\"max-w-xl\">\n          <Badge variant=\"pink\" className=\"mb-4\">\n            Ready when you are\n          </Badge>\n          <h2 className=\"text-[32px] md:text-[44px] font-mono font-bold tracking-tighter neon-white leading-tight mb-3\">\n            Build the interface\n            <br />\n            you actually want.\n          </h2>\n          <p className=\"text-[14px] text-muted-foreground\">\n            One CLI command. Plain TSX into your project. No runtime, no lock-in, no apologies.\n          </p>\n        </div>\n        <div className=\"flex flex-col gap-3 md:items-end\">\n          <div className=\"flex flex-wrap gap-3\">\n            <Button variant=\"primary\" size=\"lg\">\n              Get started\n            </Button>\n            <Button variant=\"ghost\" size=\"lg\">\n              Read docs →\n            </Button>\n          </div>\n          <code className=\"font-mono text-[11px] text-muted-foreground bg-[color:var(--surface-2)] border border-[color:var(--hairline)] rounded-[8px] px-3 py-1.5\">\n            npx neoncite add button\n          </code>\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "type": "registry:block",
+      "target": ""
+    }
+  ]
+}

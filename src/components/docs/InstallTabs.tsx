@@ -22,7 +22,7 @@ export function InstallTabs({ slug, className }: { slug: string; className?: str
             className={cn(
               "h-7 px-3 rounded-[7px] text-[11px] font-mono uppercase tracking-wider transition-colors",
               active === t.id
-                ? "bg-[color:var(--neon-pink)] text-white shadow-[0_0_12px_rgba(255,42,157,0.4)]"
+                ? "bg-[#d11a7d] text-white shadow-[0_0_12px_rgba(255,42,157,0.4)]"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >

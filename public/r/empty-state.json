@@ -1,0 +1,15 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "empty-state",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/empty-state.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface EmptyStateProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\"> {\n  icon?: React.ReactNode;\n  title: React.ReactNode;\n  description?: React.ReactNode;\n  action?: React.ReactNode;\n}\n\nexport function EmptyState({\n  icon,\n  title,\n  description,\n  action,\n  className,\n  ...props\n}: EmptyStateProps) {\n  return (\n    <div\n      className={cn(\n        \"relative flex min-h-[220px] flex-col items-center justify-center overflow-hidden rounded-[16px] border border-dashed border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-8 text-center\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"pointer-events-none absolute inset-0 bg-grid opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_72%)]\" />\n      {icon && (\n        <div className=\"relative mb-4 flex h-11 w-11 items-center justify-center rounded-[12px] border border-[color:var(--primary)]/30 bg-[color:var(--primary)]/5 text-[color:var(--primary)] shadow-[0_0_24px_color-mix(in_srgb,var(--primary)_18%,transparent)]\">\n          {icon}\n        </div>\n      )}\n      <h3 className=\"relative font-mono text-base font-semibold tracking-tight text-foreground\">\n        {title}\n      </h3>\n      {description && (\n        <p className=\"relative mt-2 max-w-md text-sm leading-relaxed text-muted-foreground\">\n          {description}\n        </p>\n      )}\n      {action && <div className=\"relative mt-5\">{action}</div>}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

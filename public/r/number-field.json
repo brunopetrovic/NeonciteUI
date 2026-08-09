@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "number-field",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/number-field.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Minus, Plus } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface NumberFieldProps extends Omit<\n  React.InputHTMLAttributes<HTMLInputElement>,\n  \"type\" | \"onChange\" | \"value\" | \"defaultValue\"\n> {\n  value?: number;\n  defaultValue?: number;\n  onValueChange?: (value: number) => void;\n  step?: number;\n}\n\nexport const NumberField = React.forwardRef<HTMLInputElement, NumberFieldProps>(\n  (\n    { className, value, defaultValue = 0, onValueChange, min, max, step = 1, disabled, ...props },\n    ref,\n  ) => {\n    const [internal, setInternal] = React.useState(defaultValue);\n    const current = value ?? internal;\n    const update = (next: number) => {\n      const minValue = typeof min === \"number\" ? min : -Infinity;\n      const maxValue = typeof max === \"number\" ? max : Infinity;\n      const bounded = Math.min(maxValue, Math.max(minValue, next));\n      if (value === undefined) setInternal(bounded);\n      onValueChange?.(bounded);\n    };\n    return (\n      <div\n        className={cn(\n          \"inline-flex h-10 items-stretch overflow-hidden rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] shadow-[var(--recessed-shadow)] focus-within:border-[color:var(--ring)]\",\n          className,\n        )}\n      >\n        <button\n          type=\"button\"\n          disabled={disabled}\n          onClick={() => update(current - step)}\n          aria-label=\"Decrease value\"\n          className=\"w-9 border-r border-[color:var(--hairline)] text-muted-foreground hover:bg-white/5 hover:text-foreground disabled:opacity-40\"\n        >\n          <Minus className=\"mx-auto h-3.5 w-3.5\" />\n        </button>\n        <input\n          ref={ref}\n          type=\"number\"\n          value={current}\n          min={min}\n          max={max}\n          step={step}\n          disabled={disabled}\n          onChange={(event) => update(Number(event.target.value))}\n          className=\"w-20 bg-transparent px-2 text-center font-mono text-[12px] tabular-nums text-foreground outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none\"\n          {...props}\n        />\n        <button\n          type=\"button\"\n          disabled={disabled}\n          onClick={() => update(current + step)}\n          aria-label=\"Increase value\"\n          className=\"w-9 border-l border-[color:var(--hairline)] text-muted-foreground hover:bg-white/5 hover:text-foreground disabled:opacity-40\"\n        >\n          <Plus className=\"mx-auto h-3.5 w-3.5\" />\n        </button>\n      </div>\n    );\n  },\n);\nNumberField.displayName = \"NumberField\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

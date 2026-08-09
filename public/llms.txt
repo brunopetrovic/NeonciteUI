@@ -1,0 +1,35 @@
+# Neoncite/UI
+
+Neoncite/UI is a dark-only React source-component design system for developer tools, AI products, infrastructure, observability, and technical dashboards.
+
+Canonical website: https://neoncite-ui.brunopetrovic33.workers.dev/
+Documentation: https://neoncite-ui.brunopetrovic33.workers.dev/docs/
+Components: https://neoncite-ui.brunopetrovic33.workers.dev/components
+Blocks: https://neoncite-ui.brunopetrovic33.workers.dev/blocks
+Theme Builder: https://neoncite-ui.brunopetrovic33.workers.dev/themes
+Registry index: https://neoncite-ui.brunopetrovic33.workers.dev/r/index.json
+Repository: https://github.com/brunopetrovic/NeonciteUI
+
+## AI implementation rules
+
+- Reuse existing Neoncite components before inventing new controls.
+- Preserve dark-only OLED surfaces, machined rim-light treatment, and semantic neon accents.
+- Never generate a light theme or generic beige/pastel shadcn styling.
+- Prefer composition of registered primitives and Blocks.
+- Respect keyboard navigation, focus management, ARIA semantics, and reduced motion.
+- Use semantic CSS variables/tokens rather than hardcoded replacement palettes.
+- Inspect registry source before installation when trust/security matters.
+
+## Distribution
+
+Use the CLI:
+
+npx neoncite@latest init -y
+npx neoncite add button combobox terminal
+npx neoncite add telemetry-dashboard
+npx neoncite add theme-ocean
+
+Registry item types include registry:ui, registry:block, and registry:theme.
+Official dark theme presets: Neoncite, Ocean, Ember, Forest, Ultraviolet.
+
+Each component page documents installation, API/props, states, accessibility, keyboard interactions when applicable, tokens, SSR/RTL notes, and canonical source.

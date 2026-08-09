@@ -15,6 +15,7 @@ dist-ssr
 .tanstack/**
 .nitro
 *.local
+package-lock.json
 
 # Generated package artifacts
 packages/cli/theme.css
@@ -33,3 +34,4 @@ packages/cli/theme.css
 *.njsproj
 *.sln
 *.sw?
+test-results/

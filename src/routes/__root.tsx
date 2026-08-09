@@ -16,6 +16,8 @@ import "../styles.css";
 import { Toaster } from "@/registry/ui/sonner";
 import { CommandPaletteProvider } from "@/components/site/CommandPalette";
 
+const ORIGIN = "https://neoncite-ui.brunopetrovic33.workers.dev";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -40,7 +42,6 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
@@ -79,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "theme-color", content: "#000000" },
       { title: "Neoncite/UI — Machined components for the web" },
       {
         name: "description",
@@ -94,13 +96,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Neoncite/UI" },
+      { property: "og:image", content: `${ORIGIN}/og-neoncite.svg` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Neoncite/UI — machined React components for technical products",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: `${ORIGIN}/og-neoncite.svg` },
+      {
+        name: "twitter:image:alt",
+        content: "Neoncite/UI — machined React components for technical products",
+      },
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+      { rel: "manifest", href: "/site.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -132,13 +145,9 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const location = useLocation();
-
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.scrollTo(0, 0);
-    }
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
   }, [location.pathname]);
-
   return (
     <QueryClientProvider client={queryClient}>
       <CommandPaletteProvider>

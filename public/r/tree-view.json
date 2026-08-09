@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "tree-view",
+  "type": "registry:ui",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/tree-view.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { ChevronRight, Folder, FolderOpen } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface TreeNode {\n  id: string;\n  label: React.ReactNode;\n  children?: TreeNode[];\n  icon?: React.ReactNode;\n  disabled?: boolean;\n}\n\nexport interface TreeViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"onSelect\"> {\n  nodes: TreeNode[];\n  selectedId?: string;\n  defaultExpanded?: string[];\n  onSelect?: (node: TreeNode) => void;\n}\n\nexport function TreeView({\n  nodes,\n  selectedId,\n  defaultExpanded = [],\n  onSelect,\n  className,\n  ...props\n}: TreeViewProps) {\n  const [expanded, setExpanded] = React.useState(() => new Set(defaultExpanded));\n\n  const renderNode = (node: TreeNode, depth: number): React.ReactNode => {\n    const open = expanded.has(node.id);\n    const hasChildren = Boolean(node.children?.length);\n\n    return (\n      <div key={node.id} role=\"treeitem\" aria-expanded={hasChildren ? open : undefined}>\n        <button\n          type=\"button\"\n          disabled={node.disabled}\n          onClick={() => {\n            if (hasChildren) {\n              setExpanded((current) => {\n                const next = new Set(current);\n                if (next.has(node.id)) next.delete(node.id);\n                else next.add(node.id);\n                return next;\n              });\n            }\n            onSelect?.(node);\n          }}\n          className={cn(\n            \"flex h-8 w-full items-center gap-1.5 rounded-[8px] pr-2 text-left text-[12px] text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] disabled:opacity-40\",\n            selectedId === node.id && \"bg-[color:var(--primary)]/10 text-[color:var(--primary)]\",\n          )}\n          style={{ paddingLeft: `${8 + depth * 16}px` }}\n        >\n          <ChevronRight\n            className={cn(\n              \"h-3.5 w-3.5 shrink-0 transition-transform\",\n              open && \"rotate-90\",\n              !hasChildren && \"opacity-0\",\n            )}\n          />\n          {node.icon ??\n            (hasChildren ? (\n              open ? (\n                <FolderOpen className=\"h-3.5 w-3.5 text-[color:var(--neon-cyan)]\" />\n              ) : (\n                <Folder className=\"h-3.5 w-3.5 text-[color:var(--neon-cyan)]\" />\n              )\n            ) : (\n              <span className=\"h-1.5 w-1.5 rounded-full bg-white/20\" />\n            ))}\n          <span className=\"truncate\">{node.label}</span>\n        </button>\n        {open && node.children?.length ? (\n          <div role=\"group\">{node.children.map((child) => renderNode(child, depth + 1))}</div>\n        ) : null}\n      </div>\n    );\n  };\n\n  return (\n    <div role=\"tree\" className={cn(\"font-mono\", className)} {...props}>\n      {nodes.map((node) => renderNode(node, 0))}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

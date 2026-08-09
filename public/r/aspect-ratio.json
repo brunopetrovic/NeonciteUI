@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "dependencies": [
+    "@radix-ui/react-aspect-ratio"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "components/neoncite/aspect-ratio.tsx",
+      "content": "\"use client\";\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\n\nexport const AspectRatio = AspectRatioPrimitive.Root;\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite.dev/schema/registry-item.json",
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "form",
   "type": "registry:ui",
   "dependencies": [

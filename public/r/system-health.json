@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "system-health",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "status-led"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/system-health.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { StatusLed } from \"@/registry/ui/status-led\";\n\nexport interface HealthCheck {\n  label: React.ReactNode;\n  status: \"online\" | \"warning\" | \"error\" | \"idle\";\n  value?: React.ReactNode;\n  detail?: React.ReactNode;\n}\n\nexport interface SystemHealthProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\"> {\n  checks: HealthCheck[];\n  title?: React.ReactNode;\n}\n\nexport function SystemHealth({\n  checks,\n  title = \"System health\",\n  className,\n  ...props\n}: SystemHealthProps) {\n  return (\n    <div\n      className={cn(\n        \"overflow-hidden rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] shadow-[var(--machined-shadow)]\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"border-b border-[color:var(--hairline)] px-4 py-3 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground\">\n        {title}\n      </div>\n      {checks.map((check, index) => (\n        <div\n          key={index}\n          className=\"grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-white/[.04] px-4 py-3 last:border-b-0\"\n        >\n          <StatusLed\n            status={check.status}\n            pulse={check.status === \"warning\"}\n            label={typeof check.label === \"string\" ? check.label : check.status}\n          />\n          <div className=\"min-w-0\">\n            <div className=\"text-sm text-foreground\">{check.label}</div>\n            {check.detail && (\n              <div className=\"mt-0.5 truncate text-xs text-muted-foreground\">{check.detail}</div>\n            )}\n          </div>\n          {check.value && (\n            <div className=\"font-mono text-[11px] tabular-nums text-muted-foreground\">\n              {check.value}\n            </div>\n          )}\n        </div>\n      ))}\n    </div>\n  );\n}\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

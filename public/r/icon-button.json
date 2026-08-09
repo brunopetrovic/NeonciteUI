@@ -1,0 +1,17 @@
+{
+  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "name": "icon-button",
+  "type": "registry:ui",
+  "dependencies": [],
+  "registryDependencies": [
+    "button"
+  ],
+  "files": [
+    {
+      "path": "components/neoncite/icon-button.tsx",
+      "content": "import * as React from \"react\";\nimport { Button, type ButtonProps } from \"@/registry/ui/button\";\n\nexport interface IconButtonProps extends Omit<ButtonProps, \"size\"> {\n  label: string;\n  size?: \"sm\" | \"md\" | \"lg\";\n}\n\nexport const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(\n  ({ label, size = \"md\", ...props }, ref) => {\n    const dimensions = size === \"sm\" ? \"h-8 w-8\" : size === \"lg\" ? \"h-12 w-12\" : \"h-10 w-10\";\n    return <Button ref={ref} size=\"icon\" aria-label={label} className={dimensions} {...props} />;\n  },\n);\nIconButton.displayName = \"IconButton\";\n",
+      "type": "registry:ui",
+      "target": ""
+    }
+  ]
+}

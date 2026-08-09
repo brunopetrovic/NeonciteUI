@@ -38,7 +38,10 @@ export function ComponentPreview({ preview, code, filename, className }: Compone
         </div>
       </div>
       {tab === "preview" ? (
-        <div className="relative min-h-[260px] flex items-center justify-center p-10 bg-grid">
+        <div
+          data-preview-container
+          className="relative min-h-[260px] flex items-center justify-center p-10 bg-grid"
+        >
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[color:var(--surface-1)]/40 pointer-events-none" />
           <div className="relative z-10">{preview}</div>
         </div>

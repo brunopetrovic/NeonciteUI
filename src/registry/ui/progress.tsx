@@ -9,6 +9,7 @@ export const Progress = React.forwardRef<
 >(({ className, value, ...props }, ref) => (
   <ProgressPrimitive.Root
     ref={ref}
+    aria-label="progress"
     className={cn(
       "relative h-2 w-full overflow-hidden rounded-full bg-[color:var(--recessed-bg)] border border-[color:var(--hairline)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]",
       className,

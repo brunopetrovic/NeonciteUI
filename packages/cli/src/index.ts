@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Neoncite CLI — fetches components from the public registry and writes them
+// Neoncite CLI — fetches registry items from the public registry and writes them
 // into the user's project. Compatible with the shadcn-style registry-item schema.
 
 import { Command } from "commander";
@@ -155,14 +155,24 @@ function rewriteRegistrySource(
 ) {
   const utilsPath = withTsExtension(aliasToFsPath(cwd, config.aliases.utils, "src/lib/utils"));
   const utilsImport = relativeImport(target, utilsPath);
+  const componentsDir = aliasToFsPath(cwd, config.aliases.components, "src/components");
 
   return content
-    .replace(/@\/registry\/ui\/([a-z0-9-]+)/g, "./$1")
+    .replace(/@\/registry\/ui\/([a-z0-9-]+)/g, (_match, slug: string) =>
+      relativeImport(target, path.join(componentsDir, "neoncite", `${slug}.tsx`)),
+    )
     .replace(/@\/lib\/utils/g, utilsImport);
 }
 
 function registryTarget(cwd: string, file: z.infer<typeof RegistryFile>, config: NeonciteConfig) {
-  if (file.type === "registry:ui" || file.path.includes("components/neoncite/")) {
+  const marker = "components/neoncite/";
+  const markerIndex = file.path.replace(/\\/g, "/").indexOf(marker);
+  if (markerIndex >= 0) {
+    const componentsDir = aliasToFsPath(cwd, config.aliases.components, "src/components");
+    const nestedPath = file.path.replace(/\\/g, "/").slice(markerIndex + marker.length);
+    return path.join(componentsDir, "neoncite", nestedPath);
+  }
+  if (file.type === "registry:ui") {
     const componentsDir = aliasToFsPath(cwd, config.aliases.components, "src/components");
     return path.join(componentsDir, "neoncite", path.basename(file.path));
   }
@@ -326,9 +336,9 @@ program
   });
 
 program
-  .command("add [components...]")
-  .description("Add one or more components from the Neoncite registry")
-  .option("-a, --all", "Add all components from the registry")
+  .command("add [items...]")
+  .description("Add one or more components, blocks, or themes from the Neoncite registry")
+  .option("-a, --all", "Add all UI components from the registry")
   .option("-y, --yes", "Skip confirmation prompts")
   .option("-o, --overwrite", "Overwrite existing files")
   .action(async (names: string[], opts: { all?: boolean; yes?: boolean; overwrite?: boolean }) => {
@@ -337,30 +347,28 @@ program
     const registry = config.registry || DEFAULT_REGISTRY;
     const pm = await detectPackageManager(cwd);
 
-    let componentsToResolve = names;
+    let itemsToResolve = names;
     if (opts.all) {
       console.log(kleur.dim(`Fetching full registry index from ${registry}…`));
       const res = await fetch(`${registry.replace(/\/$/, "")}/index.json`);
       if (!res.ok) throw new Error(`Failed to fetch index: ${res.status}`);
-      const index = (await res.json()) as { items: { name: string }[] };
-      componentsToResolve = index.items.map((i) => i.name);
+      const index = (await res.json()) as { items: { name: string; type?: string }[] };
+      itemsToResolve = index.items.filter((item) => item.type === "registry:ui").map((i) => i.name);
     }
 
-    if (componentsToResolve.length === 0) {
-      console.log(kleur.red("No components specified."));
+    if (itemsToResolve.length === 0) {
+      console.log(kleur.red("No registry items specified."));
       return;
     }
 
-    console.log(
-      kleur.dim(`Resolving ${componentsToResolve.length} component(s) and dependencies…`),
-    );
-    const items = await resolveAll(registry, componentsToResolve);
+    console.log(kleur.dim(`Resolving ${itemsToResolve.length} registry item(s) and dependencies…`));
+    const items = await resolveAll(registry, itemsToResolve);
 
-    console.log(kleur.cyan("\nResolved components:"));
+    console.log(kleur.cyan("\nResolved registry items:"));
     for (const item of items) {
       const deps = [...item.dependencies, ...item.registryDependencies];
       console.log(
-        `  ${kleur.bold(item.name)} ${deps.length ? kleur.dim(`(requires: ${deps.join(", ")})`) : ""}`,
+        `  ${kleur.bold(item.name)} ${kleur.dim(`[${item.type}]`)} ${deps.length ? kleur.dim(`(requires: ${deps.join(", ")})`) : ""}`,
       );
     }
 
@@ -394,23 +402,25 @@ program
         console.log(kleur.green("  + ") + path.relative(cwd, target));
       }
     }
-    console.log(kleur.green(`\n✓ Added ${items.length} component(s).`));
+    console.log(kleur.green(`\n✓ Added ${items.length} registry item(s).`));
   });
 
 program
   .command("list")
-  .description("List every component available in the registry")
+  .description("List every item available in the registry")
   .option("--registry <url>", "Registry URL", DEFAULT_REGISTRY)
   .action(async (opts: { registry: string }) => {
     const res = await fetch(`${opts.registry.replace(/\/$/, "")}/index.json`);
     if (!res.ok) throw new Error(`Failed to fetch registry index: ${res.status}`);
-    const json = (await res.json()) as { items: { name: string }[] };
-    for (const it of json.items) console.log("  " + kleur.cyan(it.name));
+    const json = (await res.json()) as { items: { name: string; type?: string }[] };
+    for (const it of json.items) {
+      console.log("  " + kleur.cyan(it.name) + kleur.dim(`  ${it.type ?? "registry:item"}`));
+    }
   });
 
 program
-  .command("diff <component>")
-  .description("Show drift between local copy and the registry version")
+  .command("diff <item>")
+  .description("Show drift between a local registry item and the upstream version")
   .action(async (name: string) => {
     const cwd = process.cwd();
     const config = (await readConfig(cwd)) ?? ConfigSchema.parse({});

@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "theme-neoncite",
+    "name": "Neoncite",
+    "primary": "#ff2a9d",
+    "accent": "#00f0ff",
+    "surface0": "#000000",
+    "surface1": "#09090b",
+    "surface2": "#121214",
+    "surface3": "#1c1c1e",
+    "hairline": "#2c2c2e",
+    "foreground": "#f2f2f7",
+    "mutedFg": "#8e8e93",
+    "radius": 0.75
+  },
+  {
+    "slug": "theme-ocean",
+    "name": "Ocean",
+    "primary": "#3399ff",
+    "accent": "#00f0ff",
+    "surface0": "#020617",
+    "surface1": "#0c1425",
+    "surface2": "#131d33",
+    "surface3": "#1c2842",
+    "hairline": "#253352",
+    "foreground": "#e2e8f0",
+    "mutedFg": "#94a3b8",
+    "radius": 0.75
+  },
+  {
+    "slug": "theme-ember",
+    "name": "Ember",
+    "primary": "#ff6600",
+    "accent": "#ffcc00",
+    "surface0": "#0c0403",
+    "surface1": "#140a07",
+    "surface2": "#1c110b",
+    "surface3": "#2a1810",
+    "hairline": "#3d2418",
+    "foreground": "#fde8d8",
+    "mutedFg": "#b99a84",
+    "radius": 0.5
+  },
+  {
+    "slug": "theme-forest",
+    "name": "Forest",
+    "primary": "#00ff66",
+    "accent": "#ccff00",
+    "surface0": "#010c04",
+    "surface1": "#051408",
+    "surface2": "#0a1c0e",
+    "surface3": "#122916",
+    "hairline": "#1a3a1f",
+    "foreground": "#d8f5e0",
+    "mutedFg": "#76a983",
+    "radius": 1
+  },
+  {
+    "slug": "theme-ultraviolet",
+    "name": "Ultraviolet",
+    "primary": "#b829ff",
+    "accent": "#ff2a9d",
+    "surface0": "#07001a",
+    "surface1": "#0d0528",
+    "surface2": "#140a38",
+    "surface3": "#1e1049",
+    "hairline": "#2a1960",
+    "foreground": "#ede5ff",
+    "mutedFg": "#9d8fbd",
+    "radius": 0.75
+  }
+]

@@ -65,7 +65,7 @@ export function SiteHeader() {
           </a>
           <Link
             to="/docs/installation"
-            className="hidden h-8 items-center gap-1.5 rounded-[10px] bg-[color:var(--neon-pink)] px-3.5 font-mono text-[12px] font-semibold uppercase tracking-wider text-white shadow-[0_0_24px_rgba(255,42,157,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] transition-all hover:shadow-[0_0_32px_rgba(255,42,157,0.6)] sm:inline-flex"
+            className="hidden h-8 items-center gap-1.5 rounded-[10px] bg-[#d11a7d] px-3.5 font-mono text-[12px] font-semibold uppercase tracking-wider text-white shadow-[0_0_24px_rgba(255,42,157,0.4),inset_0_1px_1px_rgba(255,255,255,0.3)] transition-all hover:shadow-[0_0_32px_rgba(255,42,157,0.6)] sm:inline-flex"
           >
             Install
           </Link>
