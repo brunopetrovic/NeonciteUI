@@ -32,18 +32,9 @@ function Landing() {
         <div className="absolute left-1/4 top-64 h-[300px] w-[400px] rounded-full bg-[color:var(--neon-cyan)]/10 blur-[120px] pointer-events-none" />
 
         <div className="relative mx-auto max-w-[1100px] px-4 md:px-8 pt-20 md:pt-32 pb-16 md:pb-24 text-center">
-          <div className="inline-flex items-center gap-2 mb-8 px-3 py-1 rounded-full border border-[color:var(--hairline)] bg-[color:var(--surface-2)]/60 backdrop-blur">
-            <span className="text-[color:var(--neon-green)] animate-pulse-glow text-[10px]">●</span>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-              Pre-1.0 · actively evolving
-            </span>
-          </div>
-
-          <h1 className="font-mono text-[40px] md:text-[72px] leading-[0.95] font-bold tracking-tighter mb-6">
-            <span className="block neon-white">Machined components</span>
-            <span className="block bg-gradient-to-r from-[color:var(--neon-pink)] via-[color:var(--neon-purple)] to-[color:var(--neon-cyan)] bg-clip-text text-transparent">
-              for the modern web.
-            </span>
+          <h1 className="font-mono text-[40px] md:text-[72px] leading-[0.95] font-bold tracking-tighter mb-6 text-white">
+            <span className="block">Machined components</span>
+            <span className="block">for the modern web.</span>
           </h1>
 
           <p className="mx-auto max-w-[640px] text-[15px] md:text-[17px] text-muted-foreground leading-relaxed mb-10">

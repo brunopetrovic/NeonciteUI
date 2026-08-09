@@ -35,3 +35,4 @@ packages/cli/theme.css
 *.sln
 *.sw?
 test-results/
+playwright-report/

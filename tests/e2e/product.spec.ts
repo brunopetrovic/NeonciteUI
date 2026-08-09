@@ -19,6 +19,27 @@ async function expectNoSeriousA11yViolations(page: import("@playwright/test").Pa
   ).toEqual([]);
 }
 
+test("home hero has no pre-release pill and uses solid white heading text", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("Pre-1.0 · actively evolving", { exact: true })).toHaveCount(0);
+
+  const heading = page.getByRole("heading", {
+    level: 1,
+    name: "Machined components for the modern web.",
+  });
+  await expect(heading).toBeVisible();
+  const segmentColors = await heading.locator("span").evaluateAll((segments) =>
+    segments.map((segment) => ({
+      color: getComputedStyle(segment).color,
+      backgroundImage: getComputedStyle(segment).backgroundImage,
+    })),
+  );
+  expect(segmentColors).toEqual([
+    { color: "rgb(255, 255, 255)", backgroundImage: "none" },
+    { color: "rgb(255, 255, 255)", backgroundImage: "none" },
+  ]);
+});
+
 test("home is accessible and visually stable", async ({ page }, testInfo) => {
   test.setTimeout(60_000);
   await page.goto("/");
