@@ -19,8 +19,9 @@ const expectedRegistry = new Set([
   ...blocks.map((block) => `${block.slug}.json`),
   ...themes.map((theme) => `${theme.slug}.json`),
   "index.json",
+  "schema.json",
 ]);
-const ignoredRegistry = new Set(["schema.json", "theme.schema.json"]);
+const ignoredRegistry = new Set(["theme.schema.json"]);
 
 for (const file of expectedRegistry) {
   if (!fs.existsSync(path.join(registryDir, file)))
@@ -43,6 +44,13 @@ for (const file of fs.readdirSync(packageComponentsDir)) {
 }
 
 const index = readJson("public/r/index.json");
+const schema = readJson("public/r/schema.json");
+if (schema.$id !== "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json") {
+  throw new Error(`[generated] registry schema has an unexpected $id: ${schema.$id}`);
+}
+if (!Array.isArray(schema.anyOf) || schema.anyOf.length !== 2) {
+  throw new Error("[generated] registry schema must validate both registry indexes and items");
+}
 const expectedCount = items.length + blocks.length + themes.length;
 if (index.items.length !== expectedCount) {
   throw new Error(
