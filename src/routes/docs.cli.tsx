@@ -65,7 +65,7 @@ function CliPage() {
         there is no hidden runtime renderer.
       </p>
       <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-10">
-        Coordinated release candidate: 0.2.0
+        Current coordinated release: 0.2.0
       </p>
 
       <div className="space-y-8">

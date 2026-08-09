@@ -16,7 +16,7 @@ export function SiteFooter() {
             and neon accents. Open source, source-first, and built for technical products.
           </p>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            Pre-1.0 · APIs and release tooling are actively being hardened
+            v0.2.0 · Active development
           </p>
         </div>
 

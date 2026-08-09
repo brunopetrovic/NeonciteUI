@@ -1,6 +1,6 @@
 # Support
 
-Neoncite/UI is currently an actively developed pre-1.0 open-source project.
+Neoncite/UI v0.2.0 is the current actively developed open-source release.
 
 For reproducible bugs, use GitHub Issues and include the component or CLI command involved, your React/Tailwind versions, reproduction steps, and relevant error output.
 

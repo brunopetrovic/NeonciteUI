@@ -17,18 +17,19 @@ export const Route = createFileRoute("/changelog")({
 
 const releases = [
   {
-    version: "CLI 0.2.0",
-    status: "release candidate",
+    version: "Neoncite/UI 0.2.0",
+    status: "current release",
     textAccent: "neon-pink",
     dotAccent: "bg-[color:var(--neon-pink)]",
-    summary: "Production-readiness foundation for installation, registry integrity, and trust.",
+    summary:
+      "Current published release of the complete Neoncite/UI component, Block, theme, CLI, and package system.",
     changes: [
-      "init -y now bootstraps Neoncite configuration, cn(), utility dependencies, and the Tailwind v4 theme layer.",
-      "Component installation rewrites internal registry imports to the consuming project's configured aliases.",
-      "Registry dependency declarations are validated automatically across every registered component.",
-      "Generated registry and @neoncite/ui package artifacts are checked for drift from canonical source.",
-      "Toggle now uses pressed/unpressed action semantics instead of duplicating Switch behavior, with temporary migration aliases.",
-      "CI validates registry integrity, generated parity, lint, TypeScript, tests, site build, CLI build, and UI-package build.",
+      "Expanded the canonical registry to 84 UI components, including the Neoncite Signature family for technical products.",
+      "Published 18 application-grade Blocks and five installable dark themes.",
+      "Published neoncite@0.2.0 and @neoncite/ui@0.2.0 to npm with root and component subpath exports.",
+      "CLI init, add, list, and diff workflows now resolve registry dependencies and rewrite internal imports for consuming projects.",
+      "Documentation now covers live previews, installation, APIs, states, accessibility, keyboard behavior, tokens, SSR, RTL, and canonical source.",
+      "Read-only CI validates registry integrity, generated parity, TypeScript, tests, builds, clean-room installation, accessibility, and visual regression before Cloudflare deployment.",
     ],
   },
   {
@@ -36,7 +37,7 @@ const releases = [
     status: "public preview",
     textAccent: "neon-cyan",
     dotAccent: "bg-[color:var(--neon-cyan)]",
-    summary: "Initial pre-1.0 Neoncite/UI component and registry preview.",
+    summary: "Initial Neoncite/UI component and registry preview.",
     changes: [
       "Introduced the dark-only OLED surface system and nine-color neon token palette.",
       "Published the initial source-first component registry and Neoncite CLI workflow.",
@@ -55,9 +56,8 @@ function ChangelogPage() {
           Changelog
         </h1>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Release notes for Neoncite/UI. Until stable 1.0, entries distinguish shipped
-          public-preview work from release candidates so the site never implies a package has been
-          published before it actually has.
+          Published Neoncite/UI releases and their coordinated CLI, package, registry, and
+          documentation changes.
         </p>
 
         <div className="mt-12 space-y-8">

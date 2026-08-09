@@ -92,9 +92,8 @@ function DocsOverview() {
           Project status
         </p>
         <p className="text-[13px] leading-relaxed text-muted-foreground">
-          Neoncite is under active pre-1.0 development. Public APIs and installation workflows are
-          being hardened before a stable 1.0 release; migration notes will accompany intentional
-          breaking changes.
+          Neoncite/UI v0.2.0 is the current public release. APIs and installation workflows remain
+          under active development; migration notes will accompany intentional breaking changes.
         </p>
       </section>
     </article>

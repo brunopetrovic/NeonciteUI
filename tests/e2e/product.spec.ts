@@ -19,6 +19,20 @@ async function expectNoSeriousA11yViolations(page: import("@playwright/test").Pa
   ).toEqual([]);
 }
 
+test("published surfaces identify v0.2.0 as the current release", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("v0.2.0 · Active development", { exact: true })).toBeVisible();
+  await expect(page.getByText(/pre-1\.0/i)).toHaveCount(0);
+
+  await page.goto("/changelog");
+  await expect(page.getByRole("heading", { level: 2, name: "Neoncite/UI 0.2.0" })).toBeVisible();
+  await expect(page.getByText("current release", { exact: true })).toBeVisible();
+  await expect(page.getByText(/release candidate/i)).toHaveCount(0);
+
+  await page.goto("/docs");
+  await expect(page.getByText(/Neoncite\/UI v0\.2\.0 is the current public release/)).toBeVisible();
+});
+
 test("home hero has no pre-release pill and uses solid white heading text", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByText("Pre-1.0 · actively evolving", { exact: true })).toHaveCount(0);

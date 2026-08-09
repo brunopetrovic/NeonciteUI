@@ -4,9 +4,15 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
-const roots = ["src", "README.md", "public/llms.txt"];
+const roots = ["src", "README.md", "SUPPORT.md", "public/llms.txt"];
 const forbidden = [
   { pattern: /v1\.0\.0\s*[—-]\s*Initial release/i, reason: "false stable 1.0 release claim" },
+  {
+    pattern: /\bpre-1\.0\b/i,
+    reason: "ambiguous stale lifecycle label; state current release version",
+  },
+  { pattern: /\bstable 1\.0\b/i, reason: "future-version copy obscures current release version" },
+  { pattern: /\brelease candidate\b/i, reason: "stale prerelease status after publication" },
   { pattern: /@Lovable\b/i, reason: "starter-project social metadata" },
   { pattern: /\b29 components\b/i, reason: "stale hard-coded component count" },
   { pattern: /\b60\+ Pro blocks\b/i, reason: "unsupported commercial Block claim" },
