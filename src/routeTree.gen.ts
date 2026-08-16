@@ -20,6 +20,7 @@ import { Route as ComponentsSlugRouteImport } from './routes/components.$slug'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
 import { Route as DocsCliRouteImport } from './routes/docs.cli'
 import { Route as DocsInstallationRouteImport } from './routes/docs.installation'
+import { Route as DocsMotionRouteImport } from './routes/docs.motion'
 import { Route as DocsThemingRouteImport } from './routes/docs.theming'
 
 const IndexRoute = IndexRouteImport.update({
@@ -77,6 +78,11 @@ const DocsInstallationRoute = DocsInstallationRouteImport.update({
   path: '/installation',
   getParentRoute: () => DocsRoute,
 } as any)
+const DocsMotionRoute = DocsMotionRouteImport.update({
+  id: '/motion',
+  path: '/motion',
+  getParentRoute: () => DocsRoute,
+} as any)
 const DocsThemingRoute = DocsThemingRouteImport.update({
   id: '/theming',
   path: '/theming',
@@ -93,6 +99,7 @@ export interface FileRoutesByFullPath {
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
+  '/docs/motion': typeof DocsMotionRoute
   '/docs/theming': typeof DocsThemingRoute
   '/components/': typeof ComponentsIndexRoute
   '/docs/': typeof DocsIndexRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByTo {
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
+  '/docs/motion': typeof DocsMotionRoute
   '/docs/theming': typeof DocsThemingRoute
   '/components': typeof ComponentsIndexRoute
   '/docs': typeof DocsIndexRoute
@@ -121,6 +129,7 @@ export interface FileRoutesById {
   '/components/$slug': typeof ComponentsSlugRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
+  '/docs/motion': typeof DocsMotionRoute
   '/docs/theming': typeof DocsThemingRoute
   '/components/': typeof ComponentsIndexRoute
   '/docs/': typeof DocsIndexRoute
@@ -137,6 +146,7 @@ export interface FileRouteTypes {
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
+    | '/docs/motion'
     | '/docs/theming'
     | '/components/'
     | '/docs/'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
+    | '/docs/motion'
     | '/docs/theming'
     | '/components'
     | '/docs'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/components/$slug'
     | '/docs/cli'
     | '/docs/installation'
+    | '/docs/motion'
     | '/docs/theming'
     | '/components/'
     | '/docs/'
@@ -258,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsInstallationRouteImport
       parentRoute: typeof DocsRoute
     }
+    '/docs/motion': {
+      id: '/docs/motion'
+      path: '/motion'
+      fullPath: '/docs/motion'
+      preLoaderRoute: typeof DocsMotionRouteImport
+      parentRoute: typeof DocsRoute
+    }
     '/docs/theming': {
       id: '/docs/theming'
       path: '/theming'
@@ -282,6 +301,7 @@ const BlocksRouteWithChildren =
 interface DocsRouteChildren {
   DocsCliRoute: typeof DocsCliRoute
   DocsInstallationRoute: typeof DocsInstallationRoute
+  DocsMotionRoute: typeof DocsMotionRoute
   DocsThemingRoute: typeof DocsThemingRoute
   DocsIndexRoute: typeof DocsIndexRoute
 }
@@ -289,6 +309,7 @@ interface DocsRouteChildren {
 const DocsRouteChildren: DocsRouteChildren = {
   DocsCliRoute: DocsCliRoute,
   DocsInstallationRoute: DocsInstallationRoute,
+  DocsMotionRoute: DocsMotionRoute,
   DocsThemingRoute: DocsThemingRoute,
   DocsIndexRoute: DocsIndexRoute,
 }

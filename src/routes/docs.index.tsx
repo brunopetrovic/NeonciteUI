@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Blocks, Braces, Palette, Terminal } from "lucide-react";
+import { ArrowRight, Blocks, Braces, Palette, Terminal, Zap } from "lucide-react";
 
 export const Route = createFileRoute("/docs/")({
   head: () => ({
@@ -39,6 +39,14 @@ const cards = [
     title: "Theming",
     description:
       "Understand Neoncite's dark-only semantic tokens, accents, surfaces, glow, and presets.",
+  },
+  {
+    to: "/docs/motion" as const,
+    icon: Zap,
+    accent: "neon-yellow",
+    title: "Motion Lab",
+    description:
+      "Tune spring recipes, inspect CSS/React/prompt output, and preserve reduced-motion behavior.",
   },
   {
     to: "/components" as const,
