@@ -4,7 +4,7 @@
 
 Neoncite/UI is an opinionated, dark-mode-only React component system built around OLED-black surfaces, hardware-inspired rim lighting, nine neon accents, Radix UI primitives, and Tailwind CSS v4. It is designed for developer tools, AI interfaces, observability products, dashboards, and other high-density applications.
 
-[Live site](https://neoncite-ui.brunopetrovic33.workers.dev/) · [Components](https://neoncite-ui.brunopetrovic33.workers.dev/components) · [Docs](https://neoncite-ui.brunopetrovic33.workers.dev/docs/installation) · [Registry](https://neoncite-ui.brunopetrovic33.workers.dev/r/index.json)
+[Live site](https://neoncite-ui.brunopetrovic33.workers.dev/) · [Components](https://neoncite-ui.brunopetrovic33.workers.dev/components) · [Docs](https://neoncite-ui.brunopetrovic33.workers.dev/docs/installation) · [Motion Lab source](src/routes/docs.motion.tsx) · [Registry](https://neoncite-ui.brunopetrovic33.workers.dev/r/index.json)
 
 ## Status
 

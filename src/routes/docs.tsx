@@ -22,6 +22,7 @@ const sections = [
     label: "Foundations",
     items: [
       { to: "/docs/theming", label: "Theming" },
+      { to: "/docs/motion", label: "Motion Lab" },
       { to: "/docs/dark-mode", label: "Dark-only design" },
       { to: "/docs/accessibility", label: "Accessibility" },
     ],

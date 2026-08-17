@@ -33,6 +33,7 @@ const PAGES = [
   { to: "/docs/installation", label: "Installation", icon: BookOpen },
   { to: "/docs/cli", label: "CLI", icon: Terminal },
   { to: "/docs/theming", label: "Theming", icon: Palette },
+  { to: "/docs/motion", label: "Motion Lab", icon: Sparkles },
 ] as const;
 
 export function CommandPaletteProvider({ children }: { children: React.ReactNode }) {
