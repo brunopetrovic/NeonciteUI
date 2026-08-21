@@ -3,6 +3,13 @@ import path from "node:path";
 
 const ROOT = process.cwd();
 const readJson = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
+const readJsonc = (file) => {
+  const source = fs.readFileSync(path.join(ROOT, file), "utf8");
+  const withoutBlockComments = source.replace(/\/\*[\s\S]*?\*\//g, "");
+  const withoutLineComments = withoutBlockComments.replace(/(^|[^:\\])\/\/.*$/gm, "$1");
+  const withoutTrailingCommas = withoutLineComments.replace(/,\s*([}\]])/g, "$1");
+  return JSON.parse(withoutTrailingCommas);
+};
 const writeJson = (file, value) =>
   fs.writeFileSync(path.join(ROOT, file), `${JSON.stringify(value, null, 2)}\n`);
 
@@ -47,7 +54,7 @@ pkg.peerDependenciesMeta = {
 };
 writeJson("package.json", pkg);
 
-const tsconfig = readJson("tsconfig.json");
+const tsconfig = readJsonc("tsconfig.json");
 tsconfig.compilerOptions.noUnusedLocals = true;
 tsconfig.compilerOptions.noUnusedParameters = true;
 tsconfig.compilerOptions.verbatimModuleSyntax = true;
@@ -63,6 +70,11 @@ fs.writeFileSync(eslintPath, eslint);
 
 const components = readJson("components.json");
 components.tailwind.baseColor = "neutral";
+components.neoncite = {
+  ...(components.neoncite ?? {}),
+  baseColorNote:
+    "shadcn compatibility shim only; Neoncite surfaces are defined in packages/ui/tokens.css",
+};
 writeJson("components.json", components);
 
 const gitignorePath = path.join(ROOT, ".gitignore");
