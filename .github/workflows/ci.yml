@@ -45,6 +45,9 @@ jobs:
       - name: Validate registry dependencies
         run: npm run validate:registry
 
+      - name: Audit registry motion and token usage
+        run: node scripts/validate-registry-style.mjs
+
       - name: Validate generated artifacts
         run: npm run validate:generated
 
