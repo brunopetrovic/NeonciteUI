@@ -9,7 +9,7 @@ export function HudPanel({ label, corner, className, children, ...props }: HudPa
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-[4px] border border-[color:var(--neon-cyan)]/25 bg-[color:var(--surface-1)] p-5 shadow-[inset_0_0_32px_rgba(0,240,255,.025)]",
+        "relative overflow-hidden rounded-[4px] border border-[color:var(--neon-cyan)]/25 bg-[color:var(--surface-1)] p-5 shadow-[var(--shadow-hud)]",
         className,
       )}
       {...props}

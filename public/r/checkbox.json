@@ -2,15 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "checkbox",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-checkbox",
-    "lucide-react"
-  ],
+  "description": "Recessed checkbox with neon-pink checked state.",
+  "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
   "registryDependencies": [],
+  "integrity": "sha256-haJNSLeGTwDxZt3wowBbl4s6xAb+1fm+ZpKiEnc+Rfc=",
   "files": [
     {
       "path": "components/neoncite/checkbox.tsx",
-      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { Check } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Checkbox = React.forwardRef<\n  React.ElementRef<typeof CheckboxPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <CheckboxPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"peer h-4 w-4 shrink-0 rounded-[4px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)]\",\n      \"shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] transition-all\",\n      \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]\",\n      \"disabled:cursor-not-allowed disabled:opacity-40\",\n      \"data-[state=checked]:bg-[color:var(--neon-pink)] data-[state=checked]:border-[color:var(--neon-pink)] data-[state=checked]:shadow-[0_0_12px_rgba(255,42,157,0.5)] data-[state=checked]:text-white\",\n      className,\n    )}\n    {...props}\n  >\n    <CheckboxPrimitive.Indicator className=\"flex items-center justify-center text-current\">\n      <Check className=\"h-3 w-3\" strokeWidth={3} />\n    </CheckboxPrimitive.Indicator>\n  </CheckboxPrimitive.Root>\n));\nCheckbox.displayName = \"Checkbox\";\n",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as CheckboxPrimitive from \"@radix-ui/react-checkbox\";\nimport { Check } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Checkbox = React.forwardRef<\n  React.ElementRef<typeof CheckboxPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <CheckboxPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"peer h-4 w-4 shrink-0 rounded-[4px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)]\",\n      \"shadow-[var(--shadow-recessed-compact)] transition-all\",\n      \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]\",\n      \"disabled:cursor-not-allowed disabled:opacity-40\",\n      \"data-[state=checked]:bg-[color:var(--neon-pink)] data-[state=checked]:border-[color:var(--neon-pink)] data-[state=checked]:shadow-[var(--glow-pink)] data-[state=checked]:text-[color:var(--surface-0)]\",\n      className,\n    )}\n    {...props}\n  >\n    <CheckboxPrimitive.Indicator className=\"flex items-center justify-center text-current\">\n      <Check className=\"h-3 w-3\" strokeWidth={3} />\n    </CheckboxPrimitive.Indicator>\n  </CheckboxPrimitive.Root>\n));\nCheckbox.displayName = \"Checkbox\";\n",
+      "integrity": "sha256-haJNSLeGTwDxZt3wowBbl4s6xAb+1fm+ZpKiEnc+Rfc=",
       "type": "registry:ui",
       "target": ""
     }

@@ -2,14 +2,14 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "features-grid",
   "type": "registry:block",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [],
+  "integrity": "sha256-xYCt2Y5Y7bDiR9vafMvUOovC+sBAPwVkbOk7QaUC83o=",
   "files": [
     {
       "path": "components/neoncite/blocks/features-grid.tsx",
       "content": "import { Zap, Shield, Layers, Cpu, Workflow, Sparkles } from \"lucide-react\";\n\nexport function FeaturesGrid() {\n  const features = [\n    {\n      icon: Zap,\n      color: \"neon-pink\",\n      title: \"Instant install\",\n      body: \"One CLI command writes typed source into your repo. No black box.\",\n    },\n    {\n      icon: Shield,\n      color: \"neon-cyan\",\n      title: \"Accessible by default\",\n      body: \"Radix primitives ship with focus, ARIA, and keyboard wired in.\",\n    },\n    {\n      icon: Layers,\n      color: \"neon-purple\",\n      title: \"Composable tokens\",\n      body: \"CSS variable tokens cascade — theme without forking a single component.\",\n    },\n    {\n      icon: Cpu,\n      color: \"neon-green\",\n      title: \"Tailwind v4 native\",\n      body: \"Built on the new engine. No PostCSS plugin gymnastics.\",\n    },\n    {\n      icon: Workflow,\n      color: \"neon-yellow\",\n      title: \"Registry compatible\",\n      body: \"shadcn-style registry schema. Works with existing tooling.\",\n    },\n    {\n      icon: Sparkles,\n      color: \"neon-orange\",\n      title: \"Motion with intent\",\n      body: \"Restraint by default, kinetic when it matters. Reduced-motion respected.\",\n    },\n  ];\n\n  return (\n    <div className=\"grid sm:grid-cols-2 lg:grid-cols-3 gap-3\">\n      {features.map((f) => (\n        <div\n          key={f.title}\n          className=\"rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-5 hover:border-white/10 transition-colors\"\n        >\n          <div className=\"inline-flex h-9 w-9 items-center justify-center rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] mb-3\">\n            <f.icon size={16} className={f.color} strokeWidth={2} />\n          </div>\n          <h3 className=\"text-[14px] font-semibold neon-white mb-1\">{f.title}</h3>\n          <p className=\"text-[12.5px] text-muted-foreground leading-relaxed\">{f.body}</p>\n        </div>\n      ))}\n    </div>\n  );\n}\n",
+      "integrity": "sha256-xYCt2Y5Y7bDiR9vafMvUOovC+sBAPwVkbOk7QaUC83o=",
       "type": "registry:block",
       "target": ""
     }

@@ -2,14 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "stepper",
   "type": "registry:ui",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "description": "Multi-step progress indicator with complete and active states.",
+  "dependencies": ["lucide-react"],
   "registryDependencies": [],
+  "integrity": "sha256-JRDuZmB2vOUz/UOI+nkt+x+eA7a/DOdWsdMt38lbJ90=",
   "files": [
     {
       "path": "components/neoncite/stepper.tsx",
       "content": "import * as React from \"react\";\nimport { Check } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface StepperItem {\n  title: React.ReactNode;\n  description?: React.ReactNode;\n}\nexport interface StepperProps extends React.HTMLAttributes<HTMLOListElement> {\n  items: StepperItem[];\n  current: number;\n}\n\nexport function Stepper({ items, current, className, ...props }: StepperProps) {\n  return (\n    <ol className={cn(\"flex flex-col gap-4 sm:flex-row sm:gap-0\", className)} {...props}>\n      {items.map((item, index) => {\n        const complete = index < current;\n        const active = index === current;\n        return (\n          <li\n            key={index}\n            className=\"relative flex flex-1 items-start gap-3 sm:flex-col sm:items-center sm:text-center\"\n          >\n            <div\n              className={cn(\n                \"relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border font-mono text-[11px] font-semibold\",\n                complete &&\n                  \"border-[color:var(--neon-green)] bg-[color:var(--neon-green)]/15 text-[color:var(--neon-green)]\",\n                active &&\n                  \"border-[color:var(--primary)] bg-[color:var(--primary)]/15 text-[color:var(--primary)] shadow-[0_0_18px_color-mix(in_srgb,var(--primary)_30%,transparent)]\",\n                !complete &&\n                  !active &&\n                  \"border-[color:var(--hairline)] bg-[color:var(--surface-2)] text-muted-foreground\",\n              )}\n            >\n              {complete ? <Check className=\"h-4 w-4\" /> : index + 1}\n            </div>\n            {index < items.length - 1 && (\n              <div\n                className={cn(\n                  \"absolute left-4 top-8 h-[calc(100%+1rem)] w-px -translate-x-1/2 bg-[color:var(--hairline)] sm:left-1/2 sm:top-4 sm:h-px sm:w-full sm:translate-x-4\",\n                  complete && \"bg-[color:var(--neon-green)]/50\",\n                )}\n                aria-hidden=\"true\"\n              />\n            )}\n            <div>\n              <div\n                className={cn(\n                  \"text-sm font-medium\",\n                  active || complete ? \"text-foreground\" : \"text-muted-foreground\",\n                )}\n              >\n                {item.title}\n              </div>\n              {item.description && (\n                <div className=\"mt-1 text-xs text-muted-foreground\">{item.description}</div>\n              )}\n            </div>\n          </li>\n        );\n      })}\n    </ol>\n  );\n}\n",
+      "integrity": "sha256-JRDuZmB2vOUz/UOI+nkt+x+eA7a/DOdWsdMt38lbJ90=",
       "type": "registry:ui",
       "target": ""
     }

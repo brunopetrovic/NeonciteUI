@@ -4,10 +4,12 @@
   "type": "registry:theme",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-YQSSdguozlpnCSjVcaxXY7kZdlnOR4L2b/qMZcxktWo=",
   "files": [
     {
       "path": "src/styles/theme-ocean.css",
       "content": "/* Neoncite Ocean — dark-only registry theme */\n:root, .dark {\n  --primary: #3399ff;\n  --ring: #3399ff;\n  --accent: #00f0ff;\n  --radius: 0.75rem;\n  --surface-0: #020617;\n  --surface-1: #0c1425;\n  --surface-2: #131d33;\n  --surface-3: #1c2842;\n  --hairline: #253352;\n  --background: #020617;\n  --foreground: #e2e8f0;\n  --card: #0c1425;\n  --card-foreground: #e2e8f0;\n  --popover: #131d33;\n  --popover-foreground: #e2e8f0;\n  --secondary: #1c2842;\n  --secondary-foreground: #e2e8f0;\n  --muted: #131d33;\n  --muted-foreground: #94a3b8;\n  --input: #1c2842;\n  --border: #1c2842;\n}",
+      "integrity": "sha256-YQSSdguozlpnCSjVcaxXY7kZdlnOR4L2b/qMZcxktWo=",
       "type": "registry:theme",
       "target": ""
     }

@@ -2,15 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "resizable",
   "type": "registry:ui",
-  "dependencies": [
-    "react-resizable-panels",
-    "lucide-react"
-  ],
+  "description": "Keyboard-accessible resizable application panel layouts.",
+  "dependencies": ["react-resizable-panels", "lucide-react"],
   "registryDependencies": [],
+  "integrity": "sha256-nFTUq22wov5ieR9RU67qG+q/C0CfAAmGwdUCX8AAI8I=",
   "files": [
     {
       "path": "components/neoncite/resizable.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport { Group, Panel, Separator, type GroupImperativeHandle } from \"react-resizable-panels\";\nimport { GripVertical } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport const ResizablePanelGroup = React.forwardRef<\n  GroupImperativeHandle,\n  React.ComponentProps<typeof Group>\n>(({ className, ...props }, ref) => (\n  <Group\n    {...props}\n    className={cn(\"flex h-full w-full data-[orientation=vertical]:flex-col\", className)}\n    groupRef={ref}\n  />\n));\nResizablePanelGroup.displayName = \"ResizablePanelGroup\";\n\nexport const ResizablePanel = Panel;\n\nexport const ResizableHandle = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentProps<typeof Separator> & { withHandle?: boolean }\n>(({ className, withHandle, ...props }, ref) => (\n  <Separator\n    {...props}\n    elementRef={ref}\n    className={cn(\n      \"relative flex w-px items-center justify-center bg-[color:var(--hairline)] outline-none transition-colors focus-visible:ring-1 focus-visible:ring-[color:var(--ring)] data-[orientation=vertical]:h-px data-[orientation=vertical]:w-full data-[orientation=vertical]:after:left-0 data-[orientation=vertical]:after:h-1 data-[orientation=vertical]:after:w-full [&[data-orientation=vertical]>div]:rotate-90\",\n      \"after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 hover:bg-[color:var(--primary)]/50\",\n      className,\n    )}\n  >\n    {withHandle && (\n      <div className=\"z-10 flex h-5 w-4 items-center justify-center rounded-[5px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] shadow-[var(--rim-light-shadow)]\">\n        <GripVertical className=\"h-3 w-3 text-muted-foreground\" />\n      </div>\n    )}\n  </Separator>\n));\nResizableHandle.displayName = \"ResizableHandle\";\n",
+      "integrity": "sha256-nFTUq22wov5ieR9RU67qG+q/C0CfAAmGwdUCX8AAI8I=",
       "type": "registry:ui",
       "target": ""
     }

@@ -3,13 +3,13 @@
   "name": "faq-folded",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": [
-    "accordion"
-  ],
+  "registryDependencies": ["accordion"],
+  "integrity": "sha256-3R+Atht8HkB3tkk6k/q1lrgMonK4RDeOySUbaSJ3z28=",
   "files": [
     {
       "path": "components/neoncite/blocks/faq-folded.tsx",
       "content": "import {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/ui/accordion\";\n\nexport function FaqFolded() {\n  const faqs = [\n    {\n      id: \"q1\",\n      q: \"Is Neoncite/UI free?\",\n      a: \"Yes. MIT licensed for the components and CLI. Pro blocks and Figma kit are paid.\",\n    },\n    {\n      id: \"q2\",\n      q: \"Does it work with Next, Remix, TanStack?\",\n      a: \"Anywhere React renders. The registry writes plain TSX into your project — framework-agnostic.\",\n    },\n    {\n      id: \"q3\",\n      q: \"Can I theme it?\",\n      a: \"Yes — every visual decision is a CSS variable. Three themes ship by default; rolling your own is a single token block.\",\n    },\n    {\n      id: \"q4\",\n      q: \"How is this different from shadcn/ui?\",\n      a: \"Same registry pattern, very different aesthetic. Neoncite is opinionated about dark, neon, and machined surfaces.\",\n    },\n  ];\n\n  return (\n    <div className=\"rounded-[16px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] px-6\">\n      <Accordion type=\"single\" collapsible defaultValue=\"q1\">\n        {faqs.map((f) => (\n          <AccordionItem key={f.id} value={f.id}>\n            <AccordionTrigger>{f.q}</AccordionTrigger>\n            <AccordionContent>{f.a}</AccordionContent>\n          </AccordionItem>\n        ))}\n      </Accordion>\n    </div>\n  );\n}\n",
+      "integrity": "sha256-3R+Atht8HkB3tkk6k/q1lrgMonK4RDeOySUbaSJ3z28=",
       "type": "registry:block",
       "target": ""
     }

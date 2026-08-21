@@ -2,12 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "log-viewer",
   "type": "registry:ui",
+  "description": "Structured live-log surface with severity, timestamp and source fields.",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-05DjxsUVp9lNFuL6Y2oZx3Gwz0zKeojCjLhfNppa54Y=",
   "files": [
     {
       "path": "components/neoncite/log-viewer.tsx",
       "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport type LogLevel = \"debug\" | \"info\" | \"success\" | \"warn\" | \"error\";\nexport interface LogEntry {\n  id?: string;\n  timestamp?: string;\n  level?: LogLevel;\n  message: React.ReactNode;\n  source?: string;\n}\nexport interface LogViewerProps extends React.HTMLAttributes<HTMLDivElement> {\n  entries: LogEntry[];\n  compact?: boolean;\n}\n\nconst levelClass: Record<LogLevel, string> = {\n  debug: \"text-muted-foreground\",\n  info: \"text-[color:var(--neon-cyan)]\",\n  success: \"text-[color:var(--neon-green)]\",\n  warn: \"text-[color:var(--neon-yellow)]\",\n  error: \"text-[color:var(--neon-red)]\",\n};\n\nexport function LogViewer({ entries, compact = false, className, ...props }: LogViewerProps) {\n  return (\n    <div\n      className={cn(\n        \"overflow-auto rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] font-mono shadow-[var(--recessed-shadow)]\",\n        className,\n      )}\n      role=\"log\"\n      aria-live=\"polite\"\n      {...props}\n    >\n      {entries.map((entry, index) => {\n        const level = entry.level ?? \"info\";\n        return (\n          <div\n            key={entry.id ?? index}\n            className={cn(\n              \"grid grid-cols-[auto_auto_1fr] gap-3 border-b border-white/[.04] px-3 last:border-b-0\",\n              compact ? \"py-1 text-[10px]\" : \"py-2 text-[11px]\",\n            )}\n          >\n            <span className=\"tabular-nums text-muted-foreground\">{entry.timestamp ?? \"—\"}</span>\n            <span className={cn(\"w-14 uppercase tracking-wider\", levelClass[level])}>{level}</span>\n            <span className=\"min-w-0 break-words text-foreground\">\n              <span>{entry.message}</span>\n              {entry.source && <span className=\"ml-2 text-muted-foreground\">[{entry.source}]</span>}\n            </span>\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n",
+      "integrity": "sha256-05DjxsUVp9lNFuL6Y2oZx3Gwz0zKeojCjLhfNppa54Y=",
       "type": "registry:ui",
       "target": ""
     }

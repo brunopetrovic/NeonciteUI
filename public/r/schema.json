@@ -62,24 +62,15 @@
               "description": "Whether more items are available beyond this page."
             }
           },
-          "required": [
-            "total",
-            "offset",
-            "limit",
-            "hasMore"
-          ]
+          "required": ["total", "offset", "limit", "hasMore"]
         }
       },
       "anyOf": [
         {
-          "required": [
-            "items"
-          ]
+          "required": ["items"]
         },
         {
-          "required": [
-            "include"
-          ]
+          "required": ["include"]
         }
       ]
     },
@@ -180,25 +171,15 @@
             "if": {
               "properties": {
                 "type": {
-                  "enum": [
-                    "registry:file",
-                    "registry:page"
-                  ]
+                  "enum": ["registry:file", "registry:page"]
                 }
               }
             },
             "then": {
-              "required": [
-                "path",
-                "type",
-                "target"
-              ]
+              "required": ["path", "type", "target"]
             },
             "else": {
-              "required": [
-                "path",
-                "type"
-              ]
+              "required": ["path", "type"]
             }
           }
         },
@@ -316,9 +297,7 @@
             },
             "provider": {
               "type": "string",
-              "enum": [
-                "google"
-              ],
+              "enum": ["google"],
               "description": "The font provider. Currently only 'google' is supported."
             },
             "import": {
@@ -352,18 +331,10 @@
               "description": "The npm package to install for the font in non-Next.js projects (e.g., '@fontsource-variable/inter', '@fontsource/lato')."
             }
           },
-          "required": [
-            "family",
-            "provider",
-            "import",
-            "variable"
-          ]
+          "required": ["family", "provider", "import", "variable"]
         }
       },
-      "required": [
-        "name",
-        "type"
-      ],
+      "required": ["name", "type"],
       "allOf": [
         {
           "if": {
@@ -374,11 +345,7 @@
             }
           },
           "then": {
-            "required": [
-              "name",
-              "type",
-              "font"
-            ]
+            "required": ["name", "type", "font"]
           },
           "else": {
             "properties": {

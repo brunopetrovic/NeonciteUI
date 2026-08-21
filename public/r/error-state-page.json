@@ -2,17 +2,14 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "error-state-page",
   "type": "registry:block",
-  "dependencies": [
-    "lucide-react"
-  ],
-  "registryDependencies": [
-    "button",
-    "diagnostic-panel"
-  ],
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["button", "diagnostic-panel"],
+  "integrity": "sha256-t4oBit1tkOQpgN5x5pRgBI8XQFqgTxTJ8eI8fTUJYRo=",
   "files": [
     {
       "path": "components/neoncite/blocks/error-state-page.tsx",
       "content": "import { AlertTriangle, Home, RotateCcw } from \"lucide-react\";\nimport { Button } from \"@/registry/ui/button\";\nimport { DiagnosticPanel } from \"@/registry/ui/diagnostic-panel\";\n\nexport function ErrorStatePage() {\n  return (\n    <div className=\"rounded-[18px] border border-[color:var(--hairline)] bg-[color:var(--surface-0)] p-8\">\n      <div className=\"mx-auto max-w-2xl text-center\">\n        <div className=\"mx-auto flex h-12 w-12 items-center justify-center rounded-[14px] border border-[color:var(--neon-red)]/35 bg-[color:var(--neon-red)]/10 text-[color:var(--neon-red)]\">\n          <AlertTriangle className=\"h-5 w-5\" />\n        </div>\n        <div className=\"mt-4 font-mono text-[10px] uppercase tracking-[.22em] text-[color:var(--neon-red)]\">\n          Runtime fault\n        </div>\n        <h3 className=\"mt-2 font-mono text-2xl font-bold text-foreground\">\n          Unable to reach the control plane\n        </h3>\n        <p className=\"mx-auto mt-2 max-w-lg text-sm text-muted-foreground\">\n          The interface is intact, but the upstream service did not respond. Retry or inspect\n          diagnostics before continuing.\n        </p>\n        <div className=\"mt-5 flex justify-center gap-2\">\n          <Button variant=\"primary\">\n            <RotateCcw className=\"h-4 w-4\" /> Retry\n          </Button>\n          <Button variant=\"outline\">\n            <Home className=\"h-4 w-4\" /> Dashboard\n          </Button>\n        </div>\n        <DiagnosticPanel\n          className=\"mt-7 text-left\"\n          items={[\n            {\n              severity: \"error\",\n              title: \"API gateway unavailable\",\n              detail: \"Connection timed out after 8s.\",\n            },\n            { severity: \"pass\", title: \"Client configuration valid\" },\n            { severity: \"info\", title: \"Last successful heartbeat\", detail: \"42 seconds ago\" },\n          ]}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "integrity": "sha256-t4oBit1tkOQpgN5x5pRgBI8XQFqgTxTJ8eI8fTUJYRo=",
       "type": "registry:block",
       "target": ""
     }

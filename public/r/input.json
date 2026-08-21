@@ -2,12 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "input",
   "type": "registry:ui",
+  "description": "Recessed input with rim lighting and neon focus ring.",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-58xySXiU4fbQ3O2tcv1KZAaHAwjvwFxDAUJBx0hCOCg=",
   "files": [
     {
       "path": "components/neoncite/input.tsx",
       "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport type InputProps = React.InputHTMLAttributes<HTMLInputElement>;\n\nexport const Input = React.forwardRef<HTMLInputElement, InputProps>(\n  ({ className, type = \"text\", ...props }, ref) => (\n    <input\n      ref={ref}\n      type={type}\n      className={cn(\n        \"flex h-10 w-full rounded-[10px] bg-[color:var(--recessed-bg)] px-3.5 py-2 text-[13px] text-foreground\",\n        \"border border-[color:var(--hairline)] shadow-[var(--recessed-shadow)]\",\n        \"placeholder:text-muted-foreground/60 file:border-0 file:bg-transparent file:text-sm\",\n        \"focus-visible:outline-none focus-visible:border-[color:var(--ring)]/60 focus-visible:shadow-[var(--recessed-shadow)] focus-visible:ring-[3px] focus-visible:ring-[color:var(--ring)]/15\",\n        \"transition-all disabled:cursor-not-allowed disabled:opacity-40\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nInput.displayName = \"Input\";\n",
+      "integrity": "sha256-58xySXiU4fbQ3O2tcv1KZAaHAwjvwFxDAUJBx0hCOCg=",
       "type": "registry:ui",
       "target": ""
     }

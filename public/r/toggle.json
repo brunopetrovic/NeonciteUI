@@ -2,14 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "toggle",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-toggle"
-  ],
+  "description": "Pressed/unpressed action control with a machined neon-active state.",
+  "dependencies": ["@radix-ui/react-toggle"],
   "registryDependencies": [],
+  "integrity": "sha256-y6uUJNIkIUezZerHP+ZTX3WXEVEKToMfYJajNJpQptQ=",
   "files": [
     {
       "path": "components/neoncite/toggle.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport * as TogglePrimitive from \"@radix-ui/react-toggle\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface ToggleProps extends React.ComponentPropsWithoutRef<typeof TogglePrimitive.Root> {\n  /** @deprecated Use `pressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */\n  checked?: boolean;\n  /** @deprecated Use `defaultPressed` for a Toggle. Kept temporarily for Switch-style migration compatibility. */\n  defaultChecked?: boolean;\n  /** @deprecated Use `onPressedChange` for a Toggle. Kept temporarily for Switch-style migration compatibility. */\n  onCheckedChange?: (checked: boolean) => void;\n}\n\nexport const Toggle = React.forwardRef<React.ElementRef<typeof TogglePrimitive.Root>, ToggleProps>(\n  (\n    {\n      className,\n      checked,\n      defaultChecked,\n      onCheckedChange,\n      pressed,\n      defaultPressed,\n      onPressedChange,\n      ...props\n    },\n    ref,\n  ) => (\n    <TogglePrimitive.Root\n      ref={ref}\n      pressed={pressed ?? checked}\n      defaultPressed={defaultPressed ?? defaultChecked}\n      onPressedChange={(nextPressed) => {\n        onPressedChange?.(nextPressed);\n        onCheckedChange?.(nextPressed);\n      }}\n      className={cn(\n        \"inline-flex h-9 items-center justify-center gap-2 rounded-[10px] border px-3 font-mono text-[11px] font-semibold uppercase tracking-wider transition-all\",\n        \"border-[color:var(--hairline)] bg-[color:var(--surface-1)] text-muted-foreground shadow-[var(--rim-light-shadow)]\",\n        \"hover:border-white/15 hover:bg-[color:var(--surface-2)] hover:text-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]\",\n        \"disabled:pointer-events-none disabled:opacity-40\",\n        \"data-[state=on]:border-[color:var(--neon-green)]/60 data-[state=on]:bg-[color:var(--neon-green)]/10 data-[state=on]:text-[color:var(--neon-green)] data-[state=on]:shadow-[0_0_18px_var(--neon-green-glow),var(--rim-light-shadow)]\",\n        className,\n      )}\n      {...props}\n    />\n  ),\n);\nToggle.displayName = \"Toggle\";\n",
+      "integrity": "sha256-y6uUJNIkIUezZerHP+ZTX3WXEVEKToMfYJajNJpQptQ=",
       "type": "registry:ui",
       "target": ""
     }

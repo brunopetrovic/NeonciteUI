@@ -2,9 +2,7 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "dashboard-shell",
   "type": "registry:block",
-  "dependencies": [
-    "lucide-react"
-  ],
+  "dependencies": ["lucide-react"],
   "registryDependencies": [
     "command-bar",
     "kpi-card",
@@ -12,10 +10,12 @@
     "server-card",
     "status-indicator"
   ],
+  "integrity": "sha256-EEv8aVyXDZx6ytoF2brATrSGzPCcfBLvfMnWya14Z/0=",
   "files": [
     {
       "path": "components/neoncite/blocks/dashboard-shell.tsx",
       "content": "import { Activity, Box, Search, Settings } from \"lucide-react\";\nimport { CommandBar } from \"@/registry/ui/command-bar\";\nimport { KpiCard } from \"@/registry/ui/kpi-card\";\nimport { MetricGrid } from \"@/registry/ui/metric-grid\";\nimport { ServerCard } from \"@/registry/ui/server-card\";\nimport { StatusIndicator } from \"@/registry/ui/status-indicator\";\n\nexport function DashboardShell() {\n  return (\n    <div className=\"grid min-h-[520px] grid-cols-[72px_1fr] overflow-hidden rounded-[18px] border border-[color:var(--hairline)] bg-[color:var(--surface-0)]\">\n      <aside className=\"flex flex-col items-center gap-3 border-r border-[color:var(--hairline)] bg-[color:var(--surface-1)] py-4\">\n        {[Box, Activity, Search, Settings].map((Icon, index) => (\n          <div\n            key={index}\n            className=\"flex h-9 w-9 items-center justify-center rounded-[9px] border border-[color:var(--hairline)] text-muted-foreground first:border-[color:var(--neon-pink)]/40 first:text-[color:var(--neon-pink)]\"\n          >\n            <Icon className=\"h-4 w-4\" />\n          </div>\n        ))}\n      </aside>\n      <div className=\"min-w-0 p-5\">\n        <div className=\"mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between\">\n          <div>\n            <div className=\"font-mono text-[10px] uppercase tracking-widest text-muted-foreground\">\n              Control plane\n            </div>\n            <h3 className=\"mt-1 font-mono text-xl font-bold text-foreground\">Operations</h3>\n          </div>\n          <StatusIndicator status=\"online\">All systems nominal</StatusIndicator>\n        </div>\n        <CommandBar>Search systems, deploys, logs…</CommandBar>\n        <MetricGrid className=\"mt-5\">\n          <KpiCard label=\"Requests\" value=\"14.2K\" delta=\"+8.4%\" trend=\"up\" accent=\"green\" />\n          <KpiCard label=\"Latency\" value=\"84ms\" delta=\"-7ms\" trend=\"down\" accent=\"cyan\" />\n          <KpiCard label=\"Errors\" value=\"0.4%\" delta=\"-0.1%\" trend=\"down\" accent=\"green\" />\n          <KpiCard label=\"Regions\" value=\"12\" delta=\"+1\" trend=\"up\" accent=\"cyan\" />\n        </MetricGrid>\n        <div className=\"mt-5 grid gap-4 lg:grid-cols-2\">\n          <ServerCard name=\"edge-07\" region=\"fra-1\" cpu={34} memory={61} storage={48} />\n          <ServerCard name=\"edge-11\" region=\"iad-1\" cpu={52} memory={44} storage={71} />\n        </div>\n      </div>\n    </div>\n  );\n}\n",
+      "integrity": "sha256-EEv8aVyXDZx6ytoF2brATrSGzPCcfBLvfMnWya14Z/0=",
       "type": "registry:block",
       "target": ""
     }

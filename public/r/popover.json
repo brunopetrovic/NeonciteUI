@@ -2,14 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "popover",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-popover"
-  ],
+  "description": "Floating panel anchored to a trigger.",
+  "dependencies": ["@radix-ui/react-popover"],
   "registryDependencies": [],
+  "integrity": "sha256-mlOGbabE446uhGiBQ6Yehvk7vZJiP1kPLsI9KJQnrdo=",
   "files": [
     {
       "path": "components/neoncite/popover.tsx",
-      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as PopoverPrimitive from \"@radix-ui/react-popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Popover = PopoverPrimitive.Root;\nexport const PopoverTrigger = PopoverPrimitive.Trigger;\nexport const PopoverAnchor = PopoverPrimitive.Anchor;\n\nexport const PopoverContent = React.forwardRef<\n  React.ElementRef<typeof PopoverPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>\n>(({ className, align = \"center\", sideOffset = 6, ...props }, ref) => (\n  <PopoverPrimitive.Portal>\n    <PopoverPrimitive.Content\n      ref={ref}\n      align={align}\n      sideOffset={sideOffset}\n      className={cn(\n        \"z-50 w-72 rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-4 text-foreground\",\n        \"shadow-[0_24px_48px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)]\",\n        \"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n        \"data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2\",\n        className,\n      )}\n      {...props}\n    />\n  </PopoverPrimitive.Portal>\n));\nPopoverContent.displayName = \"PopoverContent\";\n",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as PopoverPrimitive from \"@radix-ui/react-popover\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Popover = PopoverPrimitive.Root;\nexport const PopoverTrigger = PopoverPrimitive.Trigger;\nexport const PopoverAnchor = PopoverPrimitive.Anchor;\n\nexport const PopoverContent = React.forwardRef<\n  React.ElementRef<typeof PopoverPrimitive.Content>,\n  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>\n>(({ className, align = \"center\", sideOffset = 6, ...props }, ref) => (\n  <PopoverPrimitive.Portal>\n    <PopoverPrimitive.Content\n      ref={ref}\n      align={align}\n      sideOffset={sideOffset}\n      className={cn(\n        \"z-50 w-72 rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-4 text-foreground\",\n        \"shadow-[var(--shadow-floating)]\",\n        \"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0\",\n        \"data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2\",\n        className,\n      )}\n      {...props}\n    />\n  </PopoverPrimitive.Portal>\n));\nPopoverContent.displayName = \"PopoverContent\";\n",
+      "integrity": "sha256-mlOGbabE446uhGiBQ6Yehvk7vZJiP1kPLsI9KJQnrdo=",
       "type": "registry:ui",
       "target": ""
     }

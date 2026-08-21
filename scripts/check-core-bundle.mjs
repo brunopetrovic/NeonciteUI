@@ -35,7 +35,10 @@ const result = await build({
   ],
 });
 
-const bytes = result.outputFiles.reduce((total, file) => total + gzipSync(file.contents).byteLength, 0);
+const bytes = result.outputFiles.reduce(
+  (total, file) => total + gzipSync(file.contents).byteLength,
+  0,
+);
 const kib = (bytes / 1024).toFixed(2);
 console.log(`[bundle] core Button + Input + utils: ${kib} KiB gzipped (budget 20.00 KiB)`);
 if (bytes > MAX_GZIP_BYTES) {

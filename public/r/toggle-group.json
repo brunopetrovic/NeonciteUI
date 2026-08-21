@@ -2,15 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "toggle-group",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-toggle-group",
-    "class-variance-authority"
-  ],
+  "description": "Single or multi-select group of pressed-state controls.",
+  "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
   "registryDependencies": [],
+  "integrity": "sha256-cYmuscurPe5OXPOr6PHv3jnuwLB7CpwzH8nVADhezYs=",
   "files": [
     {
       "path": "components/neoncite/toggle-group.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport * as ToggleGroupPrimitive from \"@radix-ui/react-toggle-group\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst toggleGroupItemVariants = cva(\n  \"inline-flex h-9 min-w-9 items-center justify-center rounded-[9px] border border-transparent px-3 text-[12px] font-medium text-muted-foreground transition-all hover:bg-white/5 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] disabled:pointer-events-none disabled:opacity-40 data-[state=on]:border-[color:var(--primary)]/50 data-[state=on]:bg-[color:var(--primary)]/10 data-[state=on]:text-[color:var(--primary)] data-[state=on]:shadow-[0_0_16px_color-mix(in_srgb,var(--primary)_24%,transparent)]\",\n  {\n    variants: {\n      variant: {\n        default: \"\",\n        outline: \"border-[color:var(--hairline)] bg-[color:var(--surface-1)]\",\n      },\n      size: {\n        sm: \"h-8 min-w-8 px-2 text-[11px]\",\n        md: \"h-9 min-w-9 px-3\",\n        lg: \"h-10 min-w-10 px-4 text-[13px]\",\n      },\n    },\n    defaultVariants: { variant: \"default\", size: \"md\" },\n  },\n);\n\nconst ToggleGroupContext = React.createContext<VariantProps<typeof toggleGroupItemVariants>>({\n  size: \"md\",\n  variant: \"default\",\n});\n\nexport const ToggleGroup = React.forwardRef<\n  React.ElementRef<typeof ToggleGroupPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> &\n    VariantProps<typeof toggleGroupItemVariants>\n>(({ className, variant, size, children, ...props }, ref) => (\n  <ToggleGroupPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"inline-flex items-center gap-1 rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-1\",\n      className,\n    )}\n    {...props}\n  >\n    <ToggleGroupContext.Provider value={{ variant, size }}>{children}</ToggleGroupContext.Provider>\n  </ToggleGroupPrimitive.Root>\n));\nToggleGroup.displayName = \"ToggleGroup\";\n\nexport const ToggleGroupItem = React.forwardRef<\n  React.ElementRef<typeof ToggleGroupPrimitive.Item>,\n  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item> &\n    VariantProps<typeof toggleGroupItemVariants>\n>(({ className, variant, size, ...props }, ref) => {\n  const context = React.useContext(ToggleGroupContext);\n  return (\n    <ToggleGroupPrimitive.Item\n      ref={ref}\n      className={cn(\n        toggleGroupItemVariants({\n          variant: variant ?? context.variant,\n          size: size ?? context.size,\n        }),\n        className,\n      )}\n      {...props}\n    />\n  );\n});\nToggleGroupItem.displayName = \"ToggleGroupItem\";\n\nexport { toggleGroupItemVariants };\n",
+      "integrity": "sha256-cYmuscurPe5OXPOr6PHv3jnuwLB7CpwzH8nVADhezYs=",
       "type": "registry:ui",
       "target": ""
     }

@@ -2,14 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "collapsible",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-collapsible"
-  ],
+  "description": "Accessible disclosure primitive for expandable content.",
+  "dependencies": ["@radix-ui/react-collapsible"],
   "registryDependencies": [],
+  "integrity": "sha256-9N28p/HCpFhiVO7euHsC2qcIJmk1onn95N0ckSSJQxI=",
   "files": [
     {
       "path": "components/neoncite/collapsible.tsx",
       "content": "\"use client\";\nimport * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\";\n\nexport const Collapsible = CollapsiblePrimitive.Root;\nexport const CollapsibleTrigger = CollapsiblePrimitive.Trigger;\nexport const CollapsibleContent = CollapsiblePrimitive.Content;\n",
+      "integrity": "sha256-9N28p/HCpFhiVO7euHsC2qcIJmk1onn95N0ckSSJQxI=",
       "type": "registry:ui",
       "target": ""
     }

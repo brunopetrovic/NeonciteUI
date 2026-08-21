@@ -2,14 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "label",
   "type": "registry:ui",
-  "dependencies": [
-    "@radix-ui/react-label"
-  ],
+  "description": "Mono uppercase form label tuned to Neoncite tokens.",
+  "dependencies": ["@radix-ui/react-label"],
   "registryDependencies": [],
+  "integrity": "sha256-R1DSZu4T+TrhCsb8ozhPqdeVhaBX5ByGDA1mwpLHyHo=",
   "files": [
     {
       "path": "components/neoncite/label.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport * as LabelPrimitive from \"@radix-ui/react-label\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Label = React.forwardRef<\n  React.ElementRef<typeof LabelPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>\n>(({ className, ...props }, ref) => (\n  <LabelPrimitive.Root\n    ref={ref}\n    className={cn(\n      \"font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground\",\n      \"peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n      className,\n    )}\n    {...props}\n  />\n));\nLabel.displayName = \"Label\";\n",
+      "integrity": "sha256-R1DSZu4T+TrhCsb8ozhPqdeVhaBX5ByGDA1mwpLHyHo=",
       "type": "registry:ui",
       "target": ""
     }
