@@ -2,5 +2,5 @@
   "name": "Neoncite UI",
   "description": "A component library and UI showcase built with React, Tailwind CSS, and TanStack Router.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }
