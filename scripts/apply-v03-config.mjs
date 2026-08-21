@@ -53,6 +53,14 @@ pkg.peerDependenciesMeta = {
 writeJson("package.json", pkg);
 
 const tsconfig = readJsonc("tsconfig.json");
+tsconfig.include = [
+  "src/**/*.ts",
+  "src/**/*.tsx",
+  "tests/**/*.ts",
+  "tests/**/*.tsx",
+  "vite.config.ts",
+  "eslint.config.js",
+];
 tsconfig.compilerOptions.noUnusedLocals = true;
 tsconfig.compilerOptions.noUnusedParameters = true;
 tsconfig.compilerOptions.verbatimModuleSyntax = true;
@@ -72,6 +80,7 @@ components.neoncite = {
   ...(components.neoncite ?? {}),
   baseColorNote:
     "shadcn compatibility shim only; Neoncite surfaces are defined in packages/ui/tokens.css",
+  chartPeerDependency: "Requires recharts >=2.0.0 as a peer dependency.",
 };
 writeJson("components.json", components);
 
