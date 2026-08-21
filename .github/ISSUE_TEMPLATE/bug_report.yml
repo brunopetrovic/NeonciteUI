@@ -1,0 +1,75 @@
+name: Bug report
+description: Report a reproducible problem in Neoncite/UI.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component or area
+      description: Select the closest area, then name the exact component below if needed.
+      options:
+        - Registry UI component
+        - Block
+        - Theme Builder / tokens
+        - CLI / installer
+        - Documentation site
+        - Build / CI
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: component-name
+    attributes:
+      label: Component name
+      placeholder: e.g. dialog, data-table, button
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Include expected and actual behavior.
+    validations:
+      required: true
+  - type: input
+    id: reproduction
+    attributes:
+      label: Reproduction URL
+      description: Link to a minimal repository, StackBlitz, deployed reproduction, or failing PR.
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 130, Firefox 128, Safari 18
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: macOS 15, Windows 11, Ubuntu 24.04
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Install ...\n2. Render ...\n3. Press ..."
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or screenshots
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I reproduced this against the latest Neoncite/UI release or main branch.
+          required: true
+        - label: I searched existing issues for duplicates.
+          required: true
