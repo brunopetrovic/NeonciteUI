@@ -15,6 +15,7 @@ const EXTRA_ITEMS_PATH = path.join(ROOT, "src/registry/items-extra.json");
 const ROOT_PACKAGE_PATH = path.join(ROOT, "package.json");
 const UI_PACKAGE_PATH = path.join(ROOT, "packages/ui/package.json");
 const TOKENS_PATH = path.join(ROOT, "packages/ui/tokens.css");
+const OPTIONAL_PEERS = new Set(["framer-motion", "recharts"]);
 
 const ITEMS = [
   ...JSON.parse(fs.readFileSync(ITEMS_PATH, "utf8")),
@@ -60,10 +61,11 @@ fs.writeFileSync(
 );
 console.log("[pkg] wrote src/index.ts");
 
-const dependencyNames = [...new Set(ITEMS.flatMap((item) => item.dependencies))].sort();
+const dependencyNames = [...new Set(ITEMS.flatMap((item) => item.dependencies))]
+  .filter((dependency) => !OPTIONAL_PEERS.has(stripVersion(dependency)))
+  .sort();
 const dependencyVersions = {};
 function stripVersion(dep) {
-  // Strip @version suffix (e.g. @tanstack/react-table@^8 → @tanstack/react-table)
   if (dep.startsWith("@")) return "@" + dep.slice(1).split("@")[0];
   return dep.split("@")[0];
 }
@@ -82,6 +84,17 @@ for (const dep of ["clsx", "tailwind-merge", "tw-animate-css"]) {
 uiPackage.dependencies = Object.fromEntries(
   Object.entries(dependencyVersions).sort(([a], [b]) => a.localeCompare(b)),
 );
+uiPackage.peerDependencies = {
+  react: ">=18.0.0",
+  "react-dom": ">=18.0.0",
+  tailwindcss: ">=4.0.0",
+  "framer-motion": ">=10.0.0",
+  recharts: ">=2.0.0",
+};
+uiPackage.peerDependenciesMeta = {
+  "framer-motion": { optional: true },
+  recharts: { optional: true },
+};
 fs.writeFileSync(UI_PACKAGE_PATH, `${JSON.stringify(uiPackage, null, 2)}\n`);
-console.log("[pkg] wrote package.json dependencies");
+console.log("[pkg] wrote package.json dependencies and peer dependencies");
 console.log("[pkg] preserved canonical tokens.css");
