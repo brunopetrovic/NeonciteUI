@@ -19,6 +19,16 @@ async function expectNoSeriousA11yViolations(page: import("@playwright/test").Pa
   ).toEqual([]);
 }
 
+async function expectNoButtonNameViolations(page: import("@playwright/test").Page) {
+  const results = await new AxeBuilder({ page }).withRules(["button-name"]).analyze();
+  expect(
+    results.violations.map((violation) => ({
+      id: violation.id,
+      nodes: violation.nodes.map((node) => node.target),
+    })),
+  ).toEqual([]);
+}
+
 test("published surfaces identify v0.2.0 as the current release", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByText("v0.2.0 · Active development", { exact: true })).toBeVisible();
@@ -114,6 +124,49 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
   if (testInfo.project.name === "chromium-desktop") {
     await expect(page).toHaveScreenshot("theme-builder-desktop.png", { fullPage: true });
   }
+});
+
+test("Theme Builder compatibility route previews token overrides in real time", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.goto("/theme-builder");
+  await expect(page.getByRole("heading", { name: "Theme Builder" })).toBeVisible({
+    timeout: 30_000,
+  });
+
+  await page.getByRole("button", { name: "Primary: Green" }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.documentElement.style.getPropertyValue("--primary").trim()),
+    )
+    .toBe("#00ff66");
+
+  await page.getByRole("button", { name: "Accent: Purple" }).click();
+  await expect
+    .poll(() =>
+      page.evaluate(() => document.documentElement.style.getPropertyValue("--accent").trim()),
+    )
+    .toBe("#b829ff");
+});
+
+test("icon-only controls have accessible button names", async ({ page }) => {
+  test.setTimeout(90_000);
+  for (const path of [
+    "/components/data-table",
+    "/components/number-field",
+    "/components/time-picker",
+    "/components/password-input",
+    "/themes",
+  ]) {
+    await page.goto(path);
+    await page.waitForLoadState("networkidle");
+    await expectNoButtonNameViolations(page);
+  }
+});
+
+test("accessibility documentation states the dark-only constraint", async ({ page }) => {
+  await page.goto("/docs/accessibility");
+  await expect(page.getByRole("heading", { name: "Accessibility" })).toBeVisible();
+  await expect(page.getByText(/intentionally dark-mode only/i)).toBeVisible();
 });
 
 test("signature component and Block surfaces render", async ({ page }, testInfo) => {
