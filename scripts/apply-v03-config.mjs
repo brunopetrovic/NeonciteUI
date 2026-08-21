@@ -90,15 +90,12 @@ gitignore = gitignore.replace(/^package-lock\.json\n/m, "");
 fs.writeFileSync(gitignorePath, gitignore);
 
 const metadata = readJson("metadata.json");
-if (Array.isArray(metadata.capabilities)) {
-  metadata.capabilities = metadata.capabilities.filter(
-    (capability) => capability !== "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
-  );
-}
-if (Array.isArray(metadata.capabilityDeclarations)) {
-  metadata.capabilityDeclarations = metadata.capabilityDeclarations.filter(
-    (capability) => capability !== "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
-  );
+for (const key of ["capabilities", "capabilityDeclarations", "majorCapabilities"]) {
+  if (Array.isArray(metadata[key])) {
+    metadata[key] = metadata[key].filter(
+      (capability) => capability !== "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
+    );
+  }
 }
 writeJson("metadata.json", metadata);
 
