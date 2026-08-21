@@ -13,8 +13,6 @@ const readJsonc = (file) => {
 const writeJson = (file, value) =>
   fs.writeFileSync(path.join(ROOT, file), `${JSON.stringify(value, null, 2)}\n`);
 
-// Package/dependency policy: optional heavyweight peers stay installed in this
-// showcase workspace as devDependencies, but are not hard dependencies of the UI package.
 const pkg = readJson("package.json");
 pkg.engines = { node: ">=22.0.0", npm: ">=10.0.0" };
 pkg.scripts["test:unit"] = "vitest run";
@@ -22,7 +20,7 @@ pkg.scripts["check:bundle"] = "node scripts/check-core-bundle.mjs";
 pkg.scripts["build:analyze"] =
   "vite build --mode production && npx vite-bundle-visualizer --open false";
 pkg.scripts["validate:registry"] =
-  "node scripts/validate-registry-deps.mjs && node scripts/validate-registry-style.mjs";
+  "node scripts/validate-registry-deps.mjs && node scripts/validate-registry-style.mjs && node scripts/validate-registry-accessibility.mjs";
 pkg.scripts.validate =
   "npm run typecheck && npm run lint && npm run test && npm run test:unit && npm run validate:registry && npm run validate:generated && npm run build && npm run test:e2e && npm run check:bundle";
 
@@ -95,8 +93,6 @@ if (Array.isArray(metadata.capabilityDeclarations)) {
 }
 writeJson("metadata.json", metadata);
 
-// Registry metadata: Button/Badge no longer auto-install Framer Motion. Components
-// that truly import Recharts retain an explicit dependency so the CLI installs it.
 for (const manifestPath of ["src/registry/items.json", "src/registry/items-extra.json"]) {
   const items = readJson(manifestPath);
   for (const item of items) {
