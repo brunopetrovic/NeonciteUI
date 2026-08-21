@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
@@ -16,7 +15,7 @@ function Example({ onAction = () => {} }: { onAction?: () => void }) {
       <DialogTrigger asChild>
         <button type="button">Open dialog</button>
       </DialogTrigger>
-      <DialogContent aria-label="Example dialog">
+      <DialogContent>
         <DialogTitle>Example</DialogTitle>
         <DialogDescription>Dialog description</DialogDescription>
         <button type="button" onClick={onAction}>
@@ -33,7 +32,7 @@ describe("Dialog", () => {
     render(<Example />);
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "Open dialog" }));
-    expect(screen.getByRole("dialog", { name: "Example dialog" })).toBeInTheDocument();
+    expect(screen.getByRole("dialog", { name: "Example" })).toBeInTheDocument();
   });
 
   it("dismisses on Escape and restores focus to the trigger", async () => {
