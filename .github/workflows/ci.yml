@@ -6,7 +6,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -17,90 +17,49 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - name: Checkout PR head
+      - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7 as of 2026-08-21
         with:
-          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6 as of 2026-08-21
         with:
           node-version: 22.13.0
 
-      - name: Apply remaining v0.3 materialization
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
-        run: |
-          node scripts/apply-v03-config.mjs
-          node scripts/patch-cli-integrity.mjs
-          node scripts/fix-v03-strict.mjs
+      - name: 1 · Install root dependencies
+        run: npm ci
 
-      - name: Install root dependencies
-        run: npm install --no-audit --no-fund
+      - name: 2 · Install CLI dependencies
+        run: npm ci --prefix packages/cli
 
-      - name: Install CLI dependencies
-        run: npm install --prefix packages/cli --no-audit --no-fund
+      - name: 3 · Install UI package dependencies
+        run: npm ci --prefix packages/ui
 
-      - name: Install UI package dependencies
-        run: npm install --prefix packages/ui --no-audit --no-fund
-
-      - name: Format v0.3 sources and metadata
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
-        run: >-
-          npx prettier --write --ignore-unknown
-          README.md CONTRIBUTING.md CHANGELOG.md package.json tsconfig.json eslint.config.js
-          components.json metadata.json renovate.json .github src/registry src/routes tests scripts
-          packages/cli/src packages/ui/src packages/ui/package.json packages/ui/tokens.css
-
-      - name: Generate registry and package artifacts
-        run: npm run build:dist
-
-      - name: Build site and route tree
-        run: npm run build
-
-      - name: Validate registry and accessibility audits
-        run: npm run validate:registry
-
-      - name: Validate generated artifacts
-        run: npm run validate:generated
-
-      - name: Validate public claims and release parity
-        run: |
-          node scripts/validate-public-claims.mjs
-          node scripts/validate-version-parity.mjs
-
-      - name: Typecheck
-        run: npm run typecheck
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Registry tests
-        run: npm run test
-
-      - name: Component unit tests
-        run: npm run test:unit
-
-      - name: Core bundle budget
-        run: npm run check:bundle
-
-      - name: Install Chromium
+      - name: 4 · Install Chromium
         run: npx playwright install --with-deps chromium
 
-      - name: Browser accessibility and visual regression
-        run: npm run test:e2e
+      - name: 5 · Validate application and registry
+        run: npm run validate
 
-      - name: Analyze production bundle
+      - name: 6 · Build CLI
+        run: npm run build --prefix packages/cli
+
+      - name: 7 · Build UI package
+        run: npm run build --prefix packages/ui
+
+      - name: 8 · Analyze production bundle
         run: npm run build:analyze
 
-      - name: Commit validated generated and formatted changes
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No convergence changes to commit"
-          else
-            git commit -m "chore: converge v0.3 validation artifacts [v03-converge]"
-            git push origin HEAD:${{ github.event.pull_request.head.ref }}
-          fi
+      - name: 9 · Verify generated worktree is clean
+        run: git diff --exit-code
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4 as of 2026-08-21
+        with:
+          name: playwright-report
+          path: playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
