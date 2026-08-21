@@ -3,7 +3,11 @@
   "name": "deployment-dashboard",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["activity-stream", "deployment-status", "diagnostic-panel"],
+  "registryDependencies": [
+    "activity-stream",
+    "deployment-status",
+    "diagnostic-panel"
+  ],
   "integrity": "sha256-KYFLC7bXG6BHtcS21uoePKwuDMUEKofEcDKcOwPFlSI=",
   "files": [
     {

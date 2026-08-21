@@ -3,8 +3,13 @@
   "name": "dialog",
   "type": "registry:ui",
   "description": "Modal dialog with scan-line backdrop and machined panel.",
-  "dependencies": ["@radix-ui/react-dialog", "lucide-react"],
-  "registryDependencies": ["button"],
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
   "integrity": "sha256-5WZw+2XY/amUj6Ez7dkURevLHoMA8G+n6oz5LbNkrKE=",
   "files": [
     {

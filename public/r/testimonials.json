@@ -3,7 +3,11 @@
   "name": "testimonials",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["avatar", "badge", "card"],
+  "registryDependencies": [
+    "avatar",
+    "badge",
+    "card"
+  ],
   "integrity": "sha256-zI5H0W5afo6JGeJmFj9FhI4itnq9KIYbYLWELhdQyDs=",
   "files": [
     {

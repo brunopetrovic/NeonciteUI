@@ -2,8 +2,13 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "error-state-page",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["button", "diagnostic-panel"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "diagnostic-panel"
+  ],
   "integrity": "sha256-t4oBit1tkOQpgN5x5pRgBI8XQFqgTxTJ8eI8fTUJYRo=",
   "files": [
     {

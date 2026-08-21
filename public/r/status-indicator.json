@@ -3,7 +3,9 @@
   "name": "status-indicator",
   "type": "registry:ui",
   "description": "Compact labeled status dot with semantic neon states.",
-  "dependencies": ["class-variance-authority"],
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-L7dUA1KOVD7N5bmba5Tn27IJt+8xWYgD6umvX50Mr14=",
   "files": [

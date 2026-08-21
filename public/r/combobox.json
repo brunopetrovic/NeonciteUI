@@ -3,8 +3,14 @@
   "name": "combobox",
   "type": "registry:ui",
   "description": "Searchable select composed from Command and Popover.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["button", "command", "popover"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "command",
+    "popover"
+  ],
   "integrity": "sha256-sZG2AGg7OMysKWrhNcLNoWaF67m6HlLYqDtXYC9Vfqo=",
   "files": [
     {

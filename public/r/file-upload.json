@@ -3,7 +3,9 @@
   "name": "file-upload",
   "type": "registry:ui",
   "description": "Keyboard and drag-and-drop file selection surface.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-yWoVJtwFZGFjiqoIhwoPa0/52iuULo5OPNHqkuVyzWM=",
   "files": [

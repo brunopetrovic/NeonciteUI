@@ -3,7 +3,9 @@
   "name": "breadcrumb",
   "type": "registry:ui",
   "description": "Mono uppercase breadcrumb trail with chevron separators.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-utzYSnuEKAbtPPF5mWzQNt7AkSPlYC0lOdzJ28VGtH8=",
   "files": [

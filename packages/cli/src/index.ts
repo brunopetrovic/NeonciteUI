@@ -10,6 +10,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { createHash } from "node:crypto";
+import { createHash } from "node:crypto";
 import { z } from "zod";
 
 const CLI_VERSION = "0.2.0";
@@ -383,6 +384,7 @@ program
       console.log(
         `  ${kleur.bold(item.name)} ${kleur.dim(`[${item.type}]`)} ${deps.length ? kleur.dim(`(requires: ${deps.join(", ")})`) : ""}`,
       );
+      if (item.description) console.log(kleur.dim(`    ${item.description}`));
       if (item.description) console.log(kleur.dim(`    ${item.description}`));
       if (item.description) console.log(kleur.dim(`    ${item.description}`));
     }

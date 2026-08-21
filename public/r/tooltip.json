@@ -3,7 +3,9 @@
   "name": "tooltip",
   "type": "registry:ui",
   "description": "Compact uppercase tooltip with hairline border.",
-  "dependencies": ["@radix-ui/react-tooltip"],
+  "dependencies": [
+    "@radix-ui/react-tooltip"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-EHvNLYkG94JddeRJ0C2xrfmHew7YZ2sKfFZkRb2XvyI=",
   "files": [

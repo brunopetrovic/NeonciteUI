@@ -3,7 +3,9 @@
   "name": "label",
   "type": "registry:ui",
   "description": "Mono uppercase form label tuned to Neoncite tokens.",
-  "dependencies": ["@radix-ui/react-label"],
+  "dependencies": [
+    "@radix-ui/react-label"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-R1DSZu4T+TrhCsb8ozhPqdeVhaBX5ByGDA1mwpLHyHo=",
   "files": [

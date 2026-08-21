@@ -3,7 +3,9 @@
   "name": "spinner",
   "type": "registry:ui",
   "description": "Reduced-motion-aware loading spinner.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-0cI+8SzhRUuk/VBvL0cDMUWZLTkexFVwyawv6KsTqIY=",
   "files": [

@@ -56,11 +56,15 @@ if (browserApis.length) {
   console.log("[registry-a11y] browser-only API audit (inspect SSR placement):");
   for (const finding of browserApis) console.log(`- ${finding}`);
 } else {
-  console.log("[registry-a11y] no direct window/document/matchMedia access in registry UI or blocks");
+  console.log(
+    "[registry-a11y] no direct window/document/matchMedia access in registry UI or blocks",
+  );
 }
 
 if (unnamed.length) {
-  console.error(`[registry-a11y] found ${unnamed.length} statically icon-only button(s) without an accessible name:`);
+  console.error(
+    `[registry-a11y] found ${unnamed.length} statically icon-only button(s) without an accessible name:`,
+  );
   for (const finding of unnamed) console.error(`- ${finding}`);
   process.exitCode = 1;
 } else {

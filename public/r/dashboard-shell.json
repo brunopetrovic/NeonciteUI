@@ -2,7 +2,9 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "dashboard-shell",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [
     "command-bar",
     "kpi-card",

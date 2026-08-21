@@ -2,8 +2,16 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "settings-panel",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["button", "input", "label", "separator", "switch"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "label",
+    "separator",
+    "switch"
+  ],
   "integrity": "sha256-HBXanlrFTXZ6m9bTIgn7AUFkl5gmC2MqsPELmZo2waI=",
   "files": [
     {

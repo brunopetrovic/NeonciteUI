@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site/SiteFooter";
 import { ComponentPreview } from "@/components/docs/ComponentPreview";
 import { CodeBlock } from "@/components/docs/CodeBlock";
 import { InstallTabs } from "@/components/docs/InstallTabs";
-import { getRegistryItem, REGISTRY, type RegistryItem } from "@/registry";
+import { getRegistryItem, REGISTRY } from "@/registry";
 import { getComponentDocs } from "@/registry/component-docs";
 import { useComponentShowcase } from "@/registry/showcase-loader";
 import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";

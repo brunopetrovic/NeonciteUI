@@ -7,9 +7,10 @@ import { cn } from "../lib/utils";
 export const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>
->(({ className, ...props }, ref) => (
+>(({ className, label = "Command menu", ...props }, ref) => (
   <CommandPrimitive
     ref={ref}
+    label={label}
     className={cn(
       "flex h-full w-full flex-col overflow-hidden rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] text-foreground",
       className,

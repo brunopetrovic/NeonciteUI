@@ -1,4 +1,3 @@
-import * as React from "react";
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group";
 
 export const usage = `import { RadioGroup, RadioGroupItem } from "@/components/neoncite/radio-group"

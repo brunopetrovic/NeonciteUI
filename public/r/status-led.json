@@ -3,7 +3,9 @@
   "name": "status-led",
   "type": "registry:ui",
   "description": "Hardware-inspired semantic status LED with optional pulse.",
-  "dependencies": ["class-variance-authority"],
+  "dependencies": [
+    "class-variance-authority"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-8E2IFUPxI4t+1AoyXsYK5UeAw8A3b4va1eTrf5sz3J8=",
   "files": [

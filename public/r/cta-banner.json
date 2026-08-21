@@ -3,7 +3,10 @@
   "name": "cta-banner",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["badge", "button"],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ],
   "integrity": "sha256-EuBwtVuG9hgrgxugF0z9JUlkLzMDzvA1SH/sZwSWou0=",
   "files": [
     {

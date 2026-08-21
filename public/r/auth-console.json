@@ -3,7 +3,13 @@
   "name": "auth-console",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["badge", "button", "checkbox", "input", "label"],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "checkbox",
+    "input",
+    "label"
+  ],
   "integrity": "sha256-NztsCYzZ59yNTFEJ17b3oCdJwXJIWplGsPYLGN55ZCU=",
   "files": [
     {

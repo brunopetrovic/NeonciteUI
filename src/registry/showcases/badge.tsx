@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Badge } from "@/registry/ui/badge";
 
 export const usage = `import { Badge } from "@/components/neoncite/badge"

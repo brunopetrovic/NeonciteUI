@@ -3,7 +3,10 @@
   "name": "resizable",
   "type": "registry:ui",
   "description": "Keyboard-accessible resizable application panel layouts.",
-  "dependencies": ["react-resizable-panels", "lucide-react"],
+  "dependencies": [
+    "react-resizable-panels",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-nFTUq22wov5ieR9RU67qG+q/C0CfAAmGwdUCX8AAI8I=",
   "files": [

@@ -3,7 +3,9 @@
   "name": "drawer",
   "type": "registry:ui",
   "description": "Touch-friendly bottom drawer built on Vaul.",
-  "dependencies": ["vaul"],
+  "dependencies": [
+    "vaul"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-smjgn8nXIMGCTiZcqw+5vbbioISr/lwfRULNAhgSgC4=",
   "files": [

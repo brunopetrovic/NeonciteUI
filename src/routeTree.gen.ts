@@ -13,11 +13,13 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlocksRouteImport } from './routes/blocks'
 import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as DocsRouteImport } from './routes/docs'
+import { Route as ThemeBuilderRouteImport } from './routes/theme-builder'
 import { Route as ThemesRouteImport } from './routes/themes'
 import { Route as BlocksSlugRouteImport } from './routes/blocks.$slug'
 import { Route as ComponentsIndexRouteImport } from './routes/components.index'
 import { Route as ComponentsSlugRouteImport } from './routes/components.$slug'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as DocsAccessibilityRouteImport } from './routes/docs.accessibility'
 import { Route as DocsCliRouteImport } from './routes/docs.cli'
 import { Route as DocsInstallationRouteImport } from './routes/docs.installation'
 import { Route as DocsMotionRouteImport } from './routes/docs.motion'
@@ -43,6 +45,11 @@ const DocsRoute = DocsRouteImport.update({
   path: '/docs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThemeBuilderRoute = ThemeBuilderRouteImport.update({
+  id: '/theme-builder',
+  path: '/theme-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThemesRoute = ThemesRouteImport.update({
   id: '/themes',
   path: '/themes',
@@ -66,6 +73,11 @@ const ComponentsSlugRoute = ComponentsSlugRouteImport.update({
 const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsAccessibilityRoute = DocsAccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsCliRoute = DocsCliRouteImport.update({
@@ -94,9 +106,11 @@ export interface FileRoutesByFullPath {
   '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
   '/docs': typeof DocsRouteWithChildren
+  '/theme-builder': typeof ThemeBuilderRoute
   '/themes': typeof ThemesRoute
   '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
+  '/docs/accessibility': typeof DocsAccessibilityRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/motion': typeof DocsMotionRoute
@@ -108,9 +122,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
+  '/theme-builder': typeof ThemeBuilderRoute
   '/themes': typeof ThemesRoute
   '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
+  '/docs/accessibility': typeof DocsAccessibilityRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/motion': typeof DocsMotionRoute
@@ -124,9 +140,11 @@ export interface FileRoutesById {
   '/blocks': typeof BlocksRouteWithChildren
   '/changelog': typeof ChangelogRoute
   '/docs': typeof DocsRouteWithChildren
+  '/theme-builder': typeof ThemeBuilderRoute
   '/themes': typeof ThemesRoute
   '/blocks/$slug': typeof BlocksSlugRoute
   '/components/$slug': typeof ComponentsSlugRoute
+  '/docs/accessibility': typeof DocsAccessibilityRoute
   '/docs/cli': typeof DocsCliRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/motion': typeof DocsMotionRoute
@@ -141,9 +159,11 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/changelog'
     | '/docs'
+    | '/theme-builder'
     | '/themes'
     | '/blocks/$slug'
     | '/components/$slug'
+    | '/docs/accessibility'
     | '/docs/cli'
     | '/docs/installation'
     | '/docs/motion'
@@ -155,9 +175,11 @@ export interface FileRouteTypes {
     | '/'
     | '/blocks'
     | '/changelog'
+    | '/theme-builder'
     | '/themes'
     | '/blocks/$slug'
     | '/components/$slug'
+    | '/docs/accessibility'
     | '/docs/cli'
     | '/docs/installation'
     | '/docs/motion'
@@ -170,9 +192,11 @@ export interface FileRouteTypes {
     | '/blocks'
     | '/changelog'
     | '/docs'
+    | '/theme-builder'
     | '/themes'
     | '/blocks/$slug'
     | '/components/$slug'
+    | '/docs/accessibility'
     | '/docs/cli'
     | '/docs/installation'
     | '/docs/motion'
@@ -186,6 +210,7 @@ export interface RootRouteChildren {
   BlocksRoute: typeof BlocksRouteWithChildren
   ChangelogRoute: typeof ChangelogRoute
   DocsRoute: typeof DocsRouteWithChildren
+  ThemeBuilderRoute: typeof ThemeBuilderRoute
   ThemesRoute: typeof ThemesRoute
   ComponentsSlugRoute: typeof ComponentsSlugRoute
   ComponentsIndexRoute: typeof ComponentsIndexRoute
@@ -221,6 +246,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/theme-builder': {
+      id: '/theme-builder'
+      path: '/theme-builder'
+      fullPath: '/theme-builder'
+      preLoaderRoute: typeof ThemeBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/themes': {
       id: '/themes'
       path: '/themes'
@@ -254,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/docs/'
       preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/accessibility': {
+      id: '/docs/accessibility'
+      path: '/accessibility'
+      fullPath: '/docs/accessibility'
+      preLoaderRoute: typeof DocsAccessibilityRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/cli': {
@@ -299,6 +338,7 @@ const BlocksRouteWithChildren =
   BlocksRoute._addFileChildren(BlocksRouteChildren)
 
 interface DocsRouteChildren {
+  DocsAccessibilityRoute: typeof DocsAccessibilityRoute
   DocsCliRoute: typeof DocsCliRoute
   DocsInstallationRoute: typeof DocsInstallationRoute
   DocsMotionRoute: typeof DocsMotionRoute
@@ -307,6 +347,7 @@ interface DocsRouteChildren {
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
+  DocsAccessibilityRoute: DocsAccessibilityRoute,
   DocsCliRoute: DocsCliRoute,
   DocsInstallationRoute: DocsInstallationRoute,
   DocsMotionRoute: DocsMotionRoute,
@@ -321,6 +362,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlocksRoute: BlocksRouteWithChildren,
   ChangelogRoute: ChangelogRoute,
   DocsRoute: DocsRouteWithChildren,
+  ThemeBuilderRoute: ThemeBuilderRoute,
   ThemesRoute: ThemesRoute,
   ComponentsSlugRoute: ComponentsSlugRoute,
   ComponentsIndexRoute: ComponentsIndexRoute,

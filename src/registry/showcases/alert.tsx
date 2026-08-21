@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Alert, AlertTitle, AlertDescription } from "@/registry/ui/alert";
 import { AlertTriangle } from "lucide-react";
 

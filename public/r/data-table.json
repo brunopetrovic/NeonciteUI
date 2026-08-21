@@ -3,7 +3,10 @@
   "name": "data-table",
   "type": "registry:ui",
   "description": "Sortable, filterable, paginated table built on TanStack Table.",
-  "dependencies": ["@tanstack/react-table@^8", "lucide-react"],
+  "dependencies": [
+    "@tanstack/react-table@^8",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-e2NSsLwOhNWtQWhmdoDQdH2vxezymDwE0SERWRKG91M=",
   "files": [

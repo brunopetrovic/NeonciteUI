@@ -3,8 +3,13 @@
   "name": "carousel",
   "type": "registry:ui",
   "description": "Keyboard-friendly Embla carousel with Neoncite controls.",
-  "dependencies": ["embla-carousel-react", "lucide-react"],
-  "registryDependencies": ["button"],
+  "dependencies": [
+    "embla-carousel-react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
   "integrity": "sha256-QJrdUD2Kpv1H6RotgwFLt5gPCMnFFLLjk3Ai8gi66xk=",
   "files": [
     {

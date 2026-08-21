@@ -3,7 +3,9 @@
   "name": "chart",
   "type": "registry:ui",
   "description": "Requires recharts >=2.0.0 as a peer dependency.",
-  "dependencies": ["recharts"],
+  "dependencies": [
+    "recharts"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-DmNPX9JqCvLxDh9RmjSmXvZGEC2wiSgtiRmcJqZCNws=",
   "files": [

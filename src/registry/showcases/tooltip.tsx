@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/ui/tooltip";
 import { Button } from "@/registry/ui/button";
 

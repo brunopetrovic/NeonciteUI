@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Button } from "@/registry/ui/button";
 
 export const usage = `import { Button } from "@/components/neoncite/button"

@@ -3,7 +3,9 @@
   "name": "slider",
   "type": "registry:ui",
   "description": "Hardware slider with track ticks and a metallic thumb.",
-  "dependencies": ["@radix-ui/react-slider"],
+  "dependencies": [
+    "@radix-ui/react-slider"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-5sZ42jrCbNS+Gy4tjbBeT0bOYmSY928OczKriISXl0k=",
   "files": [

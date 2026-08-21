@@ -3,7 +3,9 @@
   "name": "avatar",
   "type": "registry:ui",
   "description": "Circular avatar with rim glow and machined fallback.",
-  "dependencies": ["@radix-ui/react-avatar"],
+  "dependencies": [
+    "@radix-ui/react-avatar"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-jIT/7mD6fr69dyRq19sps/IktGv6FAWHtgr+GdeGbR4=",
   "files": [

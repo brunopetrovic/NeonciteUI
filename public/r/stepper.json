@@ -3,7 +3,9 @@
   "name": "stepper",
   "type": "registry:ui",
   "description": "Multi-step progress indicator with complete and active states.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-JRDuZmB2vOUz/UOI+nkt+x+eA7a/DOdWsdMt38lbJ90=",
   "files": [

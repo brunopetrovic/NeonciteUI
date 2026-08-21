@@ -3,7 +3,11 @@
   "name": "navigation-menu",
   "type": "registry:ui",
   "description": "Accessible navigation with animated viewport content.",
-  "dependencies": ["@radix-ui/react-navigation-menu", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-navigation-menu",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-1VOG2yZFeN8uXWU+nSFJHwKHlUijGPLviJSgESNs4eQ=",
   "files": [

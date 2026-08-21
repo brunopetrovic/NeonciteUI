@@ -3,7 +3,9 @@
   "name": "hover-card",
   "type": "registry:ui",
   "description": "Rich hover-triggered preview floating panel.",
-  "dependencies": ["@radix-ui/react-hover-card"],
+  "dependencies": [
+    "@radix-ui/react-hover-card"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-yCbVN76D9Dia8CKv0aOQ4ePkAqv6mtPJqiFpp1iIiYA=",
   "files": [

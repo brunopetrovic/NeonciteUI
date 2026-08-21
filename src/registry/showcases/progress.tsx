@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Progress } from "@/registry/ui/progress";
 
 export const usage = `import { Progress } from "@/components/neoncite/progress"

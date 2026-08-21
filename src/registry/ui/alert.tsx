@@ -9,9 +9,12 @@ const alertVariants = cva(
       variant: {
         default: "bg-[color:var(--surface-2)] border-[color:var(--hairline)] text-foreground",
         info: "bg-[var(--neon-cyan)]/[0.04] border-[var(--neon-cyan)]/30 text-[var(--neon-cyan)]",
-        success: "bg-[var(--neon-green)]/[0.04] border-[var(--neon-green)]/30 text-[var(--neon-green)]",
-        warning: "bg-[var(--neon-yellow)]/[0.04] border-[var(--neon-yellow)]/30 text-[var(--neon-yellow)]",
-        destructive: "bg-[var(--neon-red)]/[0.04] border-[var(--neon-red)]/40 text-[var(--neon-red)]",
+        success:
+          "bg-[var(--neon-green)]/[0.04] border-[var(--neon-green)]/30 text-[var(--neon-green)]",
+        warning:
+          "bg-[var(--neon-yellow)]/[0.04] border-[var(--neon-yellow)]/30 text-[var(--neon-yellow)]",
+        destructive:
+          "bg-[var(--neon-red)]/[0.04] border-[var(--neon-red)]/40 text-[var(--neon-red)]",
       },
     },
     defaultVariants: { variant: "default" },

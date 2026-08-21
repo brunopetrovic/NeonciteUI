@@ -3,7 +3,9 @@
   "name": "progress",
   "type": "registry:ui",
   "description": "Recessed progress bar with neon spectrum fill.",
-  "dependencies": ["@radix-ui/react-progress"],
+  "dependencies": [
+    "@radix-ui/react-progress"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-jF+fx1GpsD1QgCeOMYDElBsU6x+tcKY3OVRUgb9i5pc=",
   "files": [

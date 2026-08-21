@@ -3,7 +3,9 @@
   "name": "collapsible",
   "type": "registry:ui",
   "description": "Accessible disclosure primitive for expandable content.",
-  "dependencies": ["@radix-ui/react-collapsible"],
+  "dependencies": [
+    "@radix-ui/react-collapsible"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-9N28p/HCpFhiVO7euHsC2qcIJmk1onn95N0ckSSJQxI=",
   "files": [

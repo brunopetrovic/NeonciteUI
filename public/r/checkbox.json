@@ -3,7 +3,10 @@
   "name": "checkbox",
   "type": "registry:ui",
   "description": "Recessed checkbox with neon-pink checked state.",
-  "dependencies": ["@radix-ui/react-checkbox", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-checkbox",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-haJNSLeGTwDxZt3wowBbl4s6xAb+1fm+ZpKiEnc+Rfc=",
   "files": [

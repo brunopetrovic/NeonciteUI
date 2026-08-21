@@ -3,8 +3,13 @@
   "name": "server-card",
   "type": "registry:ui",
   "description": "Server/node surface with health and resource utilization.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["resource-meter", "status-led"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "resource-meter",
+    "status-led"
+  ],
   "integrity": "sha256-86HP1l98UPraCLI6J6efDMQGzZM6t3IGujIVpzcLPjc=",
   "files": [
     {

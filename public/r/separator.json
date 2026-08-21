@@ -3,7 +3,9 @@
   "name": "separator",
   "type": "registry:ui",
   "description": "Hairline divider with horizontal and vertical orientations.",
-  "dependencies": ["@radix-ui/react-separator"],
+  "dependencies": [
+    "@radix-ui/react-separator"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-dbe/IQnL0nvG3lCUD5DRHn4lA3/qJPZO/HxXATnc+AA=",
   "files": [

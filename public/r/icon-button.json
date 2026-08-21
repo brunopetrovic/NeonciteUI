@@ -4,7 +4,9 @@
   "type": "registry:ui",
   "description": "Accessible icon-only Button wrapper requiring a label.",
   "dependencies": [],
-  "registryDependencies": ["button"],
+  "registryDependencies": [
+    "button"
+  ],
   "integrity": "sha256-aBOoW0zmz8jwvM6H1yZgekxhmrznk/nRlSWNJx3KPb0=",
   "files": [
     {

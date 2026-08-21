@@ -3,7 +3,11 @@
   "name": "calendar",
   "type": "registry:ui",
   "description": "Date picker calendar built on react-day-picker.",
-  "dependencies": ["react-day-picker@^9", "date-fns@^4", "lucide-react"],
+  "dependencies": [
+    "react-day-picker@^9",
+    "date-fns@^4",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-mF3NMeZVAMRiQge5cI0LkuTx0LXOBGaCn5L1/DUoo7o=",
   "files": [

@@ -2,8 +2,16 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "ai-agent-console",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["button", "input-group", "log-viewer", "status-indicator", "terminal"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input-group",
+    "log-viewer",
+    "status-indicator",
+    "terminal"
+  ],
   "integrity": "sha256-cdX9n6pVwUrQJAaK27pQNR040VXA3/dUGjOj4ZqjQ6Q=",
   "files": [
     {

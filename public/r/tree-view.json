@@ -3,7 +3,9 @@
   "name": "tree-view",
   "type": "registry:ui",
   "description": "Expandable hierarchical tree for files, nodes and resources.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-ksj5SWPtmfT/AAmhEWAbv5m09BvD7dGFaD/k+4Y/GPU=",
   "files": [

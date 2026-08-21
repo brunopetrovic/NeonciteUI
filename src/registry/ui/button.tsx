@@ -17,8 +17,7 @@ const buttonVariants = cva(
           "bg-gradient-to-b from-[color:var(--surface-3)] to-[color:var(--surface-2)] text-foreground border border-[color:var(--hairline)] shadow-[var(--shadow-button)] hover:brightness-125",
         primary:
           "bg-[color:var(--neon-pink)] text-[color:var(--surface-0)] border border-[color:var(--neon-pink)] shadow-[var(--glow-pink)] hover:shadow-[var(--glow-pink-strong)]",
-        neon:
-          "bg-transparent border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] [text-shadow:var(--text-glow-cyan)] hover:bg-[color:var(--neon-cyan)]/10 hover:border-[color:var(--neon-cyan)] hover:shadow-[var(--glow-cyan)]",
+        neon: "bg-transparent border border-[color:var(--neon-cyan)]/40 text-[color:var(--neon-cyan)] [text-shadow:var(--text-glow-cyan)] hover:bg-[color:var(--neon-cyan)]/10 hover:border-[color:var(--neon-cyan)] hover:shadow-[var(--glow-cyan)]",
         ghost:
           "bg-transparent text-muted-foreground border border-transparent hover:text-foreground hover:bg-[color:var(--surface-2)] hover:border-[color:var(--hairline)]",
         outline:

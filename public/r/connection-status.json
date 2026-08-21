@@ -3,8 +3,12 @@
   "name": "connection-status",
   "type": "registry:ui",
   "description": "Endpoint connection state with latency and signal treatment.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["status-led"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "status-led"
+  ],
   "integrity": "sha256-H+ZLlihAsmMQgCdPQb/sZrjBrmUznNoHf0QcBSxr9Wk=",
   "files": [
     {

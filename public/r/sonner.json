@@ -3,7 +3,9 @@
   "name": "sonner",
   "type": "registry:ui",
   "description": "Toast notifications themed for Neoncite (success/error/warn/info).",
-  "dependencies": ["sonner"],
+  "dependencies": [
+    "sonner"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-ZHylYm3cFBZZKztBpPD+E7XA8iOzyuJWFZfeWzkALsQ=",
   "files": [

@@ -3,7 +3,9 @@
   "name": "scroll-area",
   "type": "registry:ui",
   "description": "Custom scroll container with native scrolling behavior.",
-  "dependencies": ["@radix-ui/react-scroll-area"],
+  "dependencies": [
+    "@radix-ui/react-scroll-area"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-RtRVUaXAQp7gk5iZ2T92SsFtnvuV06+7H/gw/OgFH8Y=",
   "files": [

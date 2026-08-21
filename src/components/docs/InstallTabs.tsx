@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const tabs = [
   { id: "cli", label: "CLI", cmd: (slug: string) => `npx neoncite@latest add ${slug}` },
-  { id: "npm", label: "npm", cmd: (slug: string) => `npm install @neoncite/ui` },
+  { id: "npm", label: "npm", cmd: (_slug: string) => `npm install @neoncite/ui` },
   { id: "pnpm", label: "pnpm", cmd: (_: string) => `pnpm add @neoncite/ui` },
   { id: "bun", label: "bun", cmd: (_: string) => `bun add @neoncite/ui` },
 ] as const;

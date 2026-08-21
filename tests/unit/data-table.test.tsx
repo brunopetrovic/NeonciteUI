@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ColumnDef } from "@tanstack/react-table";
@@ -40,12 +39,7 @@ describe("DataTable", () => {
   it("filters rows using the labeled filter input", async () => {
     const user = userEvent.setup();
     render(
-      <DataTable
-        columns={columns}
-        data={data}
-        searchKey="name"
-        searchPlaceholder="Filter names"
-      />,
+      <DataTable columns={columns} data={data} searchKey="name" searchPlaceholder="Filter names" />,
     );
     const filter = screen.getByRole("textbox", { name: "Filter names" });
     await user.type(filter, "Gam");

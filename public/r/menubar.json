@@ -3,7 +3,10 @@
   "name": "menubar",
   "type": "registry:ui",
   "description": "Desktop-style application menu bar with keyboard navigation.",
-  "dependencies": ["@radix-ui/react-menubar", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-menubar",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-/OyWf/j9gjLRebAGVC2LfJC4P94l/vG8M+KP2mv0KAY=",
   "files": [

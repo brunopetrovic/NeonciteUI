@@ -3,7 +3,9 @@
   "name": "tabs",
   "type": "registry:ui",
   "description": "Segmented tabs with neon-active indicator.",
-  "dependencies": ["@radix-ui/react-tabs"],
+  "dependencies": [
+    "@radix-ui/react-tabs"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-KlONftWmoMC86RWCnUinvEaxzi/pGBnjDW9qg4AWbjw=",
   "files": [

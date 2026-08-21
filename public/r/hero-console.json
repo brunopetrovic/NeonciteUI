@@ -3,7 +3,10 @@
   "name": "hero-console",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["badge", "button"],
+  "registryDependencies": [
+    "badge",
+    "button"
+  ],
   "integrity": "sha256-yXbI0dHzD1vqXNjSj1AuB6jmfHEnGB8/TKN/uQmn+Ds=",
   "files": [
     {

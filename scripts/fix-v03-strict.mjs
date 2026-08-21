@@ -26,19 +26,39 @@ for (const relativeRoot of ["src/registry/showcases", "tests/unit"]) {
 const replacements = new Map([
   [
     "src/components/docs/CodeBlock.tsx",
-    [["import { Highlight, themes, type PrismTheme } from \"prism-react-renderer\";", "import { Highlight, type PrismTheme } from \"prism-react-renderer\";"]],
+    [
+      [
+        'import { Highlight, themes, type PrismTheme } from "prism-react-renderer";',
+        'import { Highlight, type PrismTheme } from "prism-react-renderer";',
+      ],
+    ],
   ],
   [
     "src/components/docs/InstallTabs.tsx",
-    [["{ id: \"npm\", label: \"npm\", cmd: (slug: string) => `npm install @neoncite/ui` }", "{ id: \"npm\", label: \"npm\", cmd: (_slug: string) => `npm install @neoncite/ui` }"]],
+    [
+      [
+        '{ id: "npm", label: "npm", cmd: (slug: string) => `npm install @neoncite/ui` }',
+        '{ id: "npm", label: "npm", cmd: (_slug: string) => `npm install @neoncite/ui` }',
+      ],
+    ],
   ],
   [
     "src/components/site/CommandPalette.tsx",
-    [["import { BookOpen, Layers, Palette, Sparkles, Terminal, Home, ScrollText } from \"lucide-react\";", "import { BookOpen, Layers, Palette, Sparkles, Terminal, Home } from \"lucide-react\";"]],
+    [
+      [
+        'import { BookOpen, Layers, Palette, Sparkles, Terminal, Home, ScrollText } from "lucide-react";',
+        'import { BookOpen, Layers, Palette, Sparkles, Terminal, Home } from "lucide-react";',
+      ],
+    ],
   ],
   [
     "src/routes/components.$slug.tsx",
-    [["import { getRegistryItem, REGISTRY, type RegistryItem } from \"@/registry\";", "import { getRegistryItem, REGISTRY } from \"@/registry\";"]],
+    [
+      [
+        'import { getRegistryItem, REGISTRY, type RegistryItem } from "@/registry";',
+        'import { getRegistryItem, REGISTRY } from "@/registry";',
+      ],
+    ],
   ],
 ]);
 

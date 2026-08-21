@@ -2,8 +2,13 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "onboarding-panel",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["button", "stepper"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "stepper"
+  ],
   "integrity": "sha256-+359eU001ytuaZRTzq5yq/aGng7I1m0cC/qqF2XbinY=",
   "files": [
     {

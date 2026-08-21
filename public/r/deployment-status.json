@@ -3,7 +3,9 @@
   "name": "deployment-status",
   "type": "registry:ui",
   "description": "Build/deploy state card with environment, commit and duration metadata.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-LnNlYW5949mM5ZSQ2wPhFzmMXGZXIoE2aGLoMg+cEXw=",
   "files": [

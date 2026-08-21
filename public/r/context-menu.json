@@ -3,7 +3,10 @@
   "name": "context-menu",
   "type": "registry:ui",
   "description": "Right-click menu with checkbox, radio and nested items.",
-  "dependencies": ["@radix-ui/react-context-menu", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-context-menu",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-vmjuZIzm2s2xjoR6TINvwLX8SQlUE3F8irFuGS3ZAF8=",
   "files": [

@@ -3,7 +3,9 @@
   "name": "stats-strip",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["kpi-card"],
+  "registryDependencies": [
+    "kpi-card"
+  ],
   "integrity": "sha256-9y2svR02ocy4toYaWl1rO12rbXKI4+wiy3rigtzanUo=",
   "files": [
     {

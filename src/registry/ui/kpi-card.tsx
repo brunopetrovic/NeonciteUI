@@ -20,7 +20,12 @@ const accentMap = {
 export const KpiCard = React.forwardRef<HTMLDivElement, KpiCardProps>(
   ({ className, label, value, delta, trend = "flat", accent = "cyan", ...props }, ref) => {
     const a = accentMap[accent];
-    const trendColor = trend === "up" ? "var(--neon-green)" : trend === "down" ? "var(--neon-red)" : "var(--muted-foreground)";
+    const trendColor =
+      trend === "up"
+        ? "var(--neon-green)"
+        : trend === "down"
+          ? "var(--neon-red)"
+          : "var(--muted-foreground)";
     return (
       <div
         ref={ref}

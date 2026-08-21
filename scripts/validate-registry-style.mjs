@@ -51,7 +51,9 @@ for (const sourceRoot of SOURCE_ROOTS) {
         }
       }
 
-      for (const match of line.matchAll(/<motion\.(button|a|div|span|input|textarea|select|form|label|section|article|aside|header|footer|main|nav|ul|ol|li|img|svg|path)\b/g)) {
+      for (const match of line.matchAll(
+        /<motion\.(button|a|div|span|input|textarea|select|form|label|section|article|aside|header|footer|main|nav|ul|ol|li|img|svg|path)\b/g,
+      )) {
         add(
           file,
           lineNumber,
@@ -66,9 +68,7 @@ for (const sourceRoot of SOURCE_ROOTS) {
 if (violations.length) {
   console.error(`[registry-style] found ${violations.length} violation(s):`);
   for (const violation of violations) {
-    console.error(
-      `- ${violation.file}:${violation.line} [${violation.kind}] ${violation.detail}`,
-    );
+    console.error(`- ${violation.file}:${violation.line} [${violation.kind}] ${violation.detail}`);
   }
   process.exitCode = 1;
 } else {

@@ -4,7 +4,9 @@
   "type": "registry:ui",
   "description": "Aggregated system checks with per-service health states.",
   "dependencies": [],
-  "registryDependencies": ["status-led"],
+  "registryDependencies": [
+    "status-led"
+  ],
   "integrity": "sha256-Q2HhFW96tRsj9S8BOKOo4R6V33Qr/y1QDy3C6MZ+Cmw=",
   "files": [
     {

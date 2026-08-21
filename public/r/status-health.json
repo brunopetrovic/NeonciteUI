@@ -3,7 +3,11 @@
   "name": "status-health",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["badge", "card", "progress"],
+  "registryDependencies": [
+    "badge",
+    "card",
+    "progress"
+  ],
   "integrity": "sha256-3rsMyRm/A3BKB1wxHpvDKG1Jz8ERtxqyJ5+4K03XFHM=",
   "files": [
     {

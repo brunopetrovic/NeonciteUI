@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Input } from "@/registry/ui/input";
 
 export const usage = `import { Input } from "@/components/neoncite/input"

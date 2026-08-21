@@ -2,8 +2,14 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "pricing-tiers-alternative",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["badge", "button", "card"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "card"
+  ],
   "integrity": "sha256-73Ofg20ZSNTzWoa9uLHBvoZFKc6U9Y0E2qCCxx0vFdc=",
   "files": [
     {

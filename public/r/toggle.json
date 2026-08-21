@@ -3,7 +3,9 @@
   "name": "toggle",
   "type": "registry:ui",
   "description": "Pressed/unpressed action control with a machined neon-active state.",
-  "dependencies": ["@radix-ui/react-toggle"],
+  "dependencies": [
+    "@radix-ui/react-toggle"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-y6uUJNIkIUezZerHP+ZTX3WXEVEKToMfYJajNJpQptQ=",
   "files": [

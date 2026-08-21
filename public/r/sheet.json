@@ -3,7 +3,11 @@
   "name": "sheet",
   "type": "registry:ui",
   "description": "Side panel that slides from any edge of the viewport.",
-  "dependencies": ["@radix-ui/react-dialog", "class-variance-authority", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-dialog",
+    "class-variance-authority",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-3w/JKsAVoXvhejWxEO9mQcJ6os/b+RgnPKtgCaWMi/M=",
   "files": [

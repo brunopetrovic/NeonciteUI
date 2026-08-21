@@ -3,8 +3,15 @@
   "name": "form",
   "type": "registry:ui",
   "description": "Validated forms with react-hook-form and zod schema.",
-  "dependencies": ["react-hook-form", "@hookform/resolvers", "zod", "@radix-ui/react-slot"],
-  "registryDependencies": ["label"],
+  "dependencies": [
+    "react-hook-form",
+    "@hookform/resolvers",
+    "zod",
+    "@radix-ui/react-slot"
+  ],
+  "registryDependencies": [
+    "label"
+  ],
   "integrity": "sha256-TeBLbuKXF+cenNi85ectIAQCxXMWq3YPHKEiazagmrc=",
   "files": [
     {

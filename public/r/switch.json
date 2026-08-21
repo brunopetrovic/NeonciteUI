@@ -3,7 +3,9 @@
   "name": "switch",
   "type": "registry:ui",
   "description": "Hardware toggle switch with neon-pink active state.",
-  "dependencies": ["@radix-ui/react-switch"],
+  "dependencies": [
+    "@radix-ui/react-switch"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-mcdgjdfrT5bnW/ZlT/PwxImdXX1DWxWFSFpFQSfI7Bo=",
   "files": [

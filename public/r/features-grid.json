@@ -2,7 +2,9 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "features-grid",
   "type": "registry:block",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-xYCt2Y5Y7bDiR9vafMvUOovC+sBAPwVkbOk7QaUC83o=",
   "files": [

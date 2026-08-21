@@ -3,7 +3,9 @@
   "name": "popover",
   "type": "registry:ui",
   "description": "Floating panel anchored to a trigger.",
-  "dependencies": ["@radix-ui/react-popover"],
+  "dependencies": [
+    "@radix-ui/react-popover"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-mlOGbabE446uhGiBQ6Yehvk7vZJiP1kPLsI9KJQnrdo=",
   "files": [

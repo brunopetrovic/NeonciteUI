@@ -3,7 +3,9 @@
   "name": "aspect-ratio",
   "type": "registry:ui",
   "description": "Keeps media and panels locked to a consistent aspect ratio.",
-  "dependencies": ["@radix-ui/react-aspect-ratio"],
+  "dependencies": [
+    "@radix-ui/react-aspect-ratio"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-CCaCn4oFqcPVP5TIdXcMLbk9OAEtF/j7XJ7P+FuLIsw=",
   "files": [

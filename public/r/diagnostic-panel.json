@@ -3,7 +3,9 @@
   "name": "diagnostic-panel",
   "type": "registry:ui",
   "description": "Severity-coded diagnostics for checks, warnings and failures.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-soJRFIjfqKDkMFfxXm+x904L5m8Mc5+BgiCGZ8w2Xds=",
   "files": [

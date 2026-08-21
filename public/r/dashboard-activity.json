@@ -3,8 +3,15 @@
   "name": "dashboard-activity",
   "type": "registry:block",
   "description": "Requires recharts >=2.0.0 as a peer dependency.",
-  "dependencies": ["recharts"],
-  "registryDependencies": ["badge", "button", "chart", "separator"],
+  "dependencies": [
+    "recharts"
+  ],
+  "registryDependencies": [
+    "badge",
+    "button",
+    "chart",
+    "separator"
+  ],
   "integrity": "sha256-92bmzW74CRd59tzzsjMUGAgK0LzJxVs+6X82TkNsCZU=",
   "files": [
     {

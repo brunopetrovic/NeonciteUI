@@ -3,7 +3,10 @@
   "name": "dropdown-menu",
   "type": "registry:ui",
   "description": "Keyboard-friendly menu with checkbox/radio items.",
-  "dependencies": ["@radix-ui/react-dropdown-menu", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-dropdown-menu",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-m+oGNmODZQxCq4Yi3n3vemI965BmI7xgjMu8jrfvLhQ=",
   "files": [

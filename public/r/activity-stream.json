@@ -4,7 +4,9 @@
   "type": "registry:ui",
   "description": "Vertical runtime activity feed with status markers and timestamps.",
   "dependencies": [],
-  "registryDependencies": ["status-led"],
+  "registryDependencies": [
+    "status-led"
+  ],
   "integrity": "sha256-agxT228vefIxjYTbsOK62BRVtRPSgKHYthBCNkiLzVw=",
   "files": [
     {

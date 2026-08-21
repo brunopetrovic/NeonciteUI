@@ -3,7 +3,10 @@
   "name": "radio-group",
   "type": "registry:ui",
   "description": "Recessed radios with neon-pink indicator.",
-  "dependencies": ["@radix-ui/react-radio-group", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-radio-group",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-7FHW9c8W9ngdCKpRMD6vqJTp/TUjvzLgAP3YxDGDgYU=",
   "files": [

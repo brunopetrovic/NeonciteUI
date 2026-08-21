@@ -97,7 +97,9 @@
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
     "tsup": "^8.5.1",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "framer-motion": "^12.39.0",
+    "recharts": "^2.15.4"
   },
   "scripts": {
     "build": "tsup src/index.ts src/components/*.tsx --format esm --dts --clean"

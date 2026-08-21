@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Highlight, themes, type PrismTheme } from "prism-react-renderer";
+import { Highlight, type PrismTheme } from "prism-react-renderer";
 import { Check, Copy } from "lucide-react";
 import { cn } from "@/lib/utils";
 

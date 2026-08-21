@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Separator } from "@/registry/ui/separator";
 
 export const usage = `import { Separator } from "@/components/neoncite/separator"

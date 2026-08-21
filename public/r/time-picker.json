@@ -3,7 +3,9 @@
   "name": "time-picker",
   "type": "registry:ui",
   "description": "Dark-native time input with Neoncite focus treatment.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-OrtuAjVKp3+nvLJh9ZgjjoC4Mwc0Ud2U39tehikNoUY=",
   "files": [

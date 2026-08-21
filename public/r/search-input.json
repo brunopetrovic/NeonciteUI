@@ -3,7 +3,9 @@
   "name": "search-input",
   "type": "registry:ui",
   "description": "Recessed search field with icon and clear affordance.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-nCC2E46EtojS+S3YWE/geemWRDyHhc1QhP+VRJtz81k=",
   "files": [

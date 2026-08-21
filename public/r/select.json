@@ -3,7 +3,10 @@
   "name": "select",
   "type": "registry:ui",
   "description": "Dropdown select with neon focus and machined surface.",
-  "dependencies": ["@radix-ui/react-select", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-select",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-z+tzOUUEZE/oyYbPHZQonei2/awgaJ/vSaVF1/4Xx/U=",
   "files": [

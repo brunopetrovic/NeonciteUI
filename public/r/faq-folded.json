@@ -3,7 +3,9 @@
   "name": "faq-folded",
   "type": "registry:block",
   "dependencies": [],
-  "registryDependencies": ["accordion"],
+  "registryDependencies": [
+    "accordion"
+  ],
   "integrity": "sha256-3R+Atht8HkB3tkk6k/q1lrgMonK4RDeOySUbaSJ3z28=",
   "files": [
     {

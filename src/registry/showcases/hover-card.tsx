@@ -1,4 +1,3 @@
-import * as React from "react";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card";
 
 export const usage = `import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/neoncite/hover-card"

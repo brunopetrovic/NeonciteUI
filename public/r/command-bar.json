@@ -3,8 +3,12 @@
   "name": "command-bar",
   "type": "registry:ui",
   "description": "Compact command/search trigger with keyboard shortcut hints.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["kbd"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "kbd"
+  ],
   "integrity": "sha256-5bCWIr4G9OIVOGwqEnVf3EJC6mwrLVzaoE5VxE8fdxc=",
   "files": [
     {

@@ -3,8 +3,12 @@
   "name": "alert-dialog",
   "type": "registry:ui",
   "description": "Confirmation dialog for destructive or consequential actions.",
-  "dependencies": ["@radix-ui/react-alert-dialog"],
-  "registryDependencies": ["button"],
+  "dependencies": [
+    "@radix-ui/react-alert-dialog"
+  ],
+  "registryDependencies": [
+    "button"
+  ],
   "integrity": "sha256-JvkKFxg2g/biZkRfbKydzVSFwwjuLlztwkiUbDUT+UE=",
   "files": [
     {

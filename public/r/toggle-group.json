@@ -3,7 +3,10 @@
   "name": "toggle-group",
   "type": "registry:ui",
   "description": "Single or multi-select group of pressed-state controls.",
-  "dependencies": ["@radix-ui/react-toggle-group", "class-variance-authority"],
+  "dependencies": [
+    "@radix-ui/react-toggle-group",
+    "class-variance-authority"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-cYmuscurPe5OXPOr6PHv3jnuwLB7CpwzH8nVADhezYs=",
   "files": [

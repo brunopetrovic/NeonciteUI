@@ -1,4 +1,3 @@
-import * as React from "react";
 import { KpiCard } from "@/registry/ui/kpi-card";
 
 export const usage = `import { KpiCard } from "@/components/neoncite/kpi-card"

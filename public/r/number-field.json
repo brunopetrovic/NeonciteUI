@@ -3,7 +3,9 @@
   "name": "number-field",
   "type": "registry:ui",
   "description": "Numeric input with bounded increment and decrement controls.",
-  "dependencies": ["lucide-react"],
+  "dependencies": [
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-CFzV5CQMSSvoKxtJ2c2YBuNfgd4Xo3qKhOUJH+mYRXE=",
   "files": [

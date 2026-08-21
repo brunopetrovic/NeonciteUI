@@ -3,8 +3,15 @@
   "name": "date-picker",
   "type": "registry:ui",
   "description": "Single-date picker composed from Calendar and Popover.",
-  "dependencies": ["date-fns@^4", "lucide-react"],
-  "registryDependencies": ["button", "calendar", "popover"],
+  "dependencies": [
+    "date-fns@^4",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "calendar",
+    "popover"
+  ],
   "integrity": "sha256-pkWPeC3CGgyBAC9vtE2FqsPCFu9R1NGVO5QKSS6djVI=",
   "files": [
     {

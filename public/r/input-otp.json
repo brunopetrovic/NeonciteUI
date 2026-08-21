@@ -3,7 +3,10 @@
   "name": "input-otp",
   "type": "registry:ui",
   "description": "Segmented one-time-password input with accessible caret behavior.",
-  "dependencies": ["input-otp", "lucide-react"],
+  "dependencies": [
+    "input-otp",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-CW2fJNafqzww6SPzdU7AoZHd4G5K3C8vt3a47y9Z1Zw=",
   "files": [

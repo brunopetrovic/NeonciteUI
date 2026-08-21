@@ -126,7 +126,9 @@ test("Theme Builder persists, shares, and remains accessible", async ({ page }, 
   }
 });
 
-test("Theme Builder compatibility route previews token overrides in real time", async ({ page }) => {
+test("Theme Builder compatibility route previews token overrides in real time", async ({
+  page,
+}) => {
   test.setTimeout(60_000);
   await page.goto("/theme-builder");
   await page.waitForURL(/\/themes(?:\?.*)?$/);

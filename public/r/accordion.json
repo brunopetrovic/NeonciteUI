@@ -3,7 +3,10 @@
   "name": "accordion",
   "type": "registry:ui",
   "description": "Collapsible sections with neon-pink active triggers.",
-  "dependencies": ["@radix-ui/react-accordion", "lucide-react"],
+  "dependencies": [
+    "@radix-ui/react-accordion",
+    "lucide-react"
+  ],
   "registryDependencies": [],
   "integrity": "sha256-g3PJak8vSncScvjl2A2d2XojVRg6yI62mt2PYuz1VY0=",
   "files": [

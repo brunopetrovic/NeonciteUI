@@ -35,22 +35,24 @@ function AccessibilityPage() {
           Dark-only constraint
         </h2>
         <p className="mt-3 text-sm leading-relaxed text-foreground">
-          Neoncite/UI is intentionally dark-mode only. It does not support light mode. Projects
-          with accessibility requirements for light interfaces or high-contrast modes should
-          evaluate whether this constraint is compatible with their needs. prefers-contrast: more
-          is partially supported through increased glow intensity.
+          Neoncite/UI is intentionally dark-mode only. It does not support light mode. Projects with
+          accessibility requirements for light interfaces or high-contrast modes should evaluate
+          whether this constraint is compatible with their needs. prefers-contrast: more is
+          partially supported through increased glow intensity.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           In the current token implementation, high-contrast preference strengthens hairlines and
-          muted text while reducing non-essential glows to limit visual noise. The sentence above
-          is retained verbatim as the public compatibility notice requested for the project.
+          muted text while reducing non-essential glows to limit visual noise. The sentence above is
+          retained verbatim as the public compatibility notice requested for the project.
         </p>
       </section>
 
       <section>
         <h2 className="font-mono text-xl font-semibold text-foreground">Interaction baseline</h2>
         <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
-          <li>• Interactive controls must expose an accessible name, including icon-only buttons.</li>
+          <li>
+            • Interactive controls must expose an accessible name, including icon-only buttons.
+          </li>
           <li>• Focus-visible indication must remain perceptible on OLED-black surfaces.</li>
           <li>• Radix-backed composites preserve their documented keyboard and focus behavior.</li>
           <li>• Non-essential animation respects prefers-reduced-motion.</li>
