@@ -43,7 +43,9 @@ for (const sourceRoot of SOURCE_ROOTS) {
         add(file, lineNumber, "hardcoded-color", `Hardcoded hex color ${match[0]}`);
       }
 
-      for (const match of line.matchAll(/\b(?:rgba?|hsla?)\([^)]*\)/gi)) {
+      // Do not require a word boundary: Tailwind arbitrary values commonly prefix
+      // color functions with an underscore, e.g. shadow-[0_0_8px_rgba(...)].
+      for (const match of line.matchAll(/(?:rgba?|hsla?)\([^)]*\)/gi)) {
         if (!match[0].includes("var(")) {
           add(file, lineNumber, "hardcoded-color", `Hardcoded color function ${match[0]}`);
         }
