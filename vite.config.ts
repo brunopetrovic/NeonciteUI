@@ -12,4 +12,11 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  vite: {
+    test: {
+      environment: "jsdom",
+      setupFiles: ["./tests/setup.ts"],
+      globals: true,
+    },
+  },
 });
