@@ -54,12 +54,12 @@ describe("Command", () => {
     expect(onSelect).toHaveBeenCalledTimes(1);
   });
 
-  it("selects with pointer interaction and exposes selected state", async () => {
+  it("selects with pointer interaction and exposes item semantics", async () => {
     const onSelect = vi.fn();
     const user = userEvent.setup();
     render(<Example onSelect={onSelect} />);
     const item = screen.getByText("Deploy");
-    expect(item.closest("[cmdk-item]"))toBeTruthy;
+    expect(item.closest("[cmdk-item]"))toBeTruthy();
     await user.click(item);
     expect(onSelect).toHaveBeenCalledWith("deploy");
   });
