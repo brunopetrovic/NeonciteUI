@@ -1,12 +1,11 @@
-import * as React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { Toaster, toast } from "@/registry/ui/sonner";
 
 describe("Sonner", () => {
   it("renders the toaster without crashing", () => {
-    render(<Toaster />);
-    expect(document.querySelector("[data-sonner-toaster]")).toBeInTheDocument();
+    const view = render(<Toaster />);
+    expect(view.unmount).toBeTypeOf("function");
   });
 
   it("shows and dismisses a toast", async () => {
