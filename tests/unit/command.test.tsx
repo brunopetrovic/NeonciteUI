@@ -1,4 +1,3 @@
-import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
@@ -12,8 +11,8 @@ import {
 
 function Example({ onSelect = () => {} }: { onSelect?: (value: string) => void }) {
   return (
-    <Command>
-      <CommandInput aria-label="Command search" placeholder="Search commands" />
+    <Command label="Command search">
+      <CommandInput placeholder="Search commands" />
       <CommandList>
         <CommandEmpty>No matches</CommandEmpty>
         <CommandItem value="deploy" onSelect={onSelect}>
@@ -30,7 +29,7 @@ function Example({ onSelect = () => {} }: { onSelect?: (value: string) => void }
 describe("Command", () => {
   it("renders without crashing and exposes the search field", () => {
     render(<Example />);
-    expect(screen.getByRole("textbox", { name: "Command search" })).toHaveAttribute(
+    expect(screen.getByRole("combobox", { name: "Command search" })).toHaveAttribute(
       "placeholder",
       "Search commands",
     );
@@ -39,7 +38,7 @@ describe("Command", () => {
   it("filters command items from search input", async () => {
     const user = userEvent.setup();
     render(<Example />);
-    await user.type(screen.getByRole("textbox", { name: "Command search" }), "roll");
+    await user.type(screen.getByRole("combobox", { name: "Command search" }), "roll");
     expect(screen.getByText("Rollback")).toBeInTheDocument();
     expect(screen.queryByText("Deploy")).not.toBeInTheDocument();
   });
@@ -48,7 +47,7 @@ describe("Command", () => {
     const onSelect = vi.fn();
     const user = userEvent.setup();
     render(<Example onSelect={onSelect} />);
-    const input = screen.getByRole("textbox", { name: "Command search" });
+    const input = screen.getByRole("combobox", { name: "Command search" });
     await user.click(input);
     await user.keyboard("{ArrowDown}{Enter}");
     expect(onSelect).toHaveBeenCalledTimes(1);
