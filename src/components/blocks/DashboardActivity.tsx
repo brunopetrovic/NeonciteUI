@@ -29,7 +29,7 @@ export function DashboardActivity() {
               19,550
             </div>
             <div className="flex items-center gap-1.5 text-[12px]">
-              <span className="text-[#00ff66]">↑ 12%</span>
+              <span className="text-[var(--neon-green)]">↑ 12%</span>
               <span className="text-muted-foreground">vs last week</span>
             </div>
           </div>
@@ -42,7 +42,7 @@ export function DashboardActivity() {
               142ms
             </div>
             <div className="flex items-center gap-1.5 text-[12px]">
-              <span className="text-[#00ff66]">↓ 8ms</span>
+              <span className="text-[var(--neon-green)]">↓ 8ms</span>
               <span className="text-muted-foreground">vs last week</span>
             </div>
           </div>
@@ -63,12 +63,12 @@ export function DashboardActivity() {
             <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="colorReq" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ff2a9d" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#ff2a9d" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--neon-pink)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--neon-pink)" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorLat" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#00f0ff" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#00f0ff" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--neon-cyan)" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="var(--neon-cyan)" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--hairline)" vertical={false} />
@@ -92,7 +92,7 @@ export function DashboardActivity() {
               <Area
                 type="monotone"
                 dataKey="requests"
-                stroke="#ff2a9d"
+                stroke="var(--neon-pink)"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorReq)"
@@ -100,7 +100,7 @@ export function DashboardActivity() {
               <Area
                 type="monotone"
                 dataKey="latency"
-                stroke="#00f0ff"
+                stroke="var(--neon-cyan)"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorLat)"

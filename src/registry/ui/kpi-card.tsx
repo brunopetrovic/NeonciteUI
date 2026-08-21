@@ -10,23 +10,23 @@ export interface KpiCardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const accentMap = {
-  pink: { color: "#ff2a9d", glow: "rgba(255,42,157,0.5)" },
-  cyan: { color: "#00f0ff", glow: "rgba(0,240,255,0.5)" },
-  green: { color: "#00ff66", glow: "rgba(0,255,102,0.5)" },
-  yellow: { color: "#ffcc00", glow: "rgba(255,204,0,0.5)" },
-  purple: { color: "#b829ff", glow: "rgba(184,41,255,0.5)" },
+  pink: { color: "var(--neon-pink)", glow: "var(--neon-pink-glow)" },
+  cyan: { color: "var(--neon-cyan)", glow: "var(--neon-cyan-glow)" },
+  green: { color: "var(--neon-green)", glow: "var(--neon-green-glow)" },
+  yellow: { color: "var(--neon-yellow)", glow: "var(--neon-yellow-glow)" },
+  purple: { color: "var(--neon-purple)", glow: "var(--neon-purple-glow)" },
 } as const;
 
 export const KpiCard = React.forwardRef<HTMLDivElement, KpiCardProps>(
   ({ className, label, value, delta, trend = "flat", accent = "cyan", ...props }, ref) => {
     const a = accentMap[accent];
-    const trendColor = trend === "up" ? "#00ff66" : trend === "down" ? "#ff003c" : "#8e8e93";
+    const trendColor = trend === "up" ? "var(--neon-green)" : trend === "down" ? "var(--neon-red)" : "var(--muted-foreground)";
     return (
       <div
         ref={ref}
         className={cn(
           "relative overflow-hidden rounded-[14px] border border-[color:var(--hairline)] p-5",
-          "bg-gradient-to-b from-[#121214] to-[#0a0a0c] shadow-[0_8px_24px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.05)]",
+          "bg-gradient-to-b from-[var(--surface-2)] to-[var(--card)] shadow-[var(--machined-shadow)]",
           className,
         )}
         {...props}

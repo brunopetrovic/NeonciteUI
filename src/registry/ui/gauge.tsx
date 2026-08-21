@@ -28,7 +28,7 @@ export function Gauge({
       <div
         className="relative h-32 w-32 rounded-full p-[9px]"
         style={{
-          background: `conic-gradient(from 225deg, ${accent} 0deg ${degrees}deg, rgba(255,255,255,.08) ${degrees}deg 270deg, transparent 270deg 360deg)`,
+          background: `conic-gradient(from 225deg, ${accent} 0deg ${degrees}deg, color-mix(in oklab, white 8%, transparent) ${degrees}deg 270deg, transparent 270deg 360deg)`,
         }}
         role="meter"
         aria-label={label ? `${label}: ${bounded}${unit ?? ""}` : `gauge: ${bounded}${unit ?? ""}`}
@@ -36,7 +36,7 @@ export function Gauge({
         aria-valuemax={max}
         aria-valuenow={bounded}
       >
-        <div className="flex h-full w-full flex-col items-center justify-center rounded-full border border-[color:var(--hairline)] bg-[color:var(--surface-1)] shadow-[inset_0_8px_24px_rgba(0,0,0,.7),var(--rim-light-shadow)]">
+        <div className="flex h-full w-full flex-col items-center justify-center rounded-full border border-[color:var(--hairline)] bg-[color:var(--surface-1)] shadow-[var(--recessed-shadow)]">
           <div className="font-mono text-2xl font-bold tabular-nums text-foreground">{bounded}</div>
           {unit && (
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">

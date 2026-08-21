@@ -5,7 +5,7 @@ export function Skeleton({ className, ...props }: React.HTMLAttributes<HTMLDivEl
   return (
     <div
       className={cn(
-        "animate-pulse rounded-[8px] bg-gradient-to-r from-[#0a0a0a] via-[#161618] to-[#0a0a0a]",
+        "animate-pulse rounded-[8px] bg-gradient-to-r from-[var(--surface-1)] via-[var(--surface-2)] to-[var(--surface-1)]",
         "border border-[color:var(--hairline)]",
         className,
       )}

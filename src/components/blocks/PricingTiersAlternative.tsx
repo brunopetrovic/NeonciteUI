@@ -55,7 +55,7 @@ export function PricingTiersAlternative() {
             key={tier.name}
             className={
               tier.tag === "popular"
-                ? "ring-1 ring-[color:var(--neon-pink)]/40 shadow-[0_0_32px_rgba(255,42,157,0.12)]"
+                ? "ring-1 ring-[color:var(--neon-pink)]/40 shadow-[var(--glow-pink)]"
                 : ""
             }
           >
