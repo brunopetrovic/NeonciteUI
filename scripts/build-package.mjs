@@ -95,6 +95,11 @@ uiPackage.peerDependenciesMeta = {
   "framer-motion": { optional: true },
   recharts: { optional: true },
 };
+uiPackage.devDependencies = {
+  ...(uiPackage.devDependencies ?? {}),
+  "framer-motion": rootPackage.devDependencies?.["framer-motion"],
+  recharts: rootPackage.devDependencies?.recharts,
+};
 fs.writeFileSync(UI_PACKAGE_PATH, `${JSON.stringify(uiPackage, null, 2)}\n`);
-console.log("[pkg] wrote package.json dependencies and peer dependencies");
+console.log("[pkg] wrote package.json dependencies and optional peer boundaries");
 console.log("[pkg] preserved canonical tokens.css");
