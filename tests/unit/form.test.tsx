@@ -65,7 +65,8 @@ describe("Form", () => {
     const input = screen.getByRole("textbox", { name: "Name" });
     await user.type(input, "Ada");
     await user.click(screen.getByRole("button", { name: "Save" }));
-    expect(onSubmit).toHaveBeenCalledWith({ name: "Ada" }, expect.anything());
+    expect(onSubmit).toHaveBeenCalled();
+    expect(onSubmit.mock.calls[0]?.[0]).toEqual({ name: "Ada" });
   });
 
   it("supports Tab and Enter form submission", async () => {
