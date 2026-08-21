@@ -103,6 +103,9 @@ for (const manifestPath of ["src/registry/items.json", "src/registry/items-extra
     if (["button", "badge"].includes(item.slug)) {
       item.dependencies = (item.dependencies ?? []).filter((dep) => dep !== "framer-motion");
     }
+    if (item.slug === "form") {
+      item.dependencies = [...new Set([...(item.dependencies ?? []), "@radix-ui/react-slot"])];
+    }
     const sourcePath = path.join(ROOT, "src/registry/ui", `${item.slug}.tsx`);
     if (fs.existsSync(sourcePath)) {
       const source = fs.readFileSync(sourcePath, "utf8");
