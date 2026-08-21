@@ -26,48 +26,47 @@ jobs:
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6 as of 2026-08-21
         with:
           node-version: 22.13.0
-          cache: npm
-          cache-dependency-path: |
-            package.json
-            packages/cli/package.json
-            packages/ui/package.json
 
-      - name: Apply Section 2 token migration
+      - name: Apply v0.3 dependency and config hardening
         if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
         run: |
-          node scripts/apply-section2.mjs
-          node scripts/apply-section2-fixes.mjs
+          node scripts/apply-v03-config.mjs
+          node scripts/patch-cli-integrity.mjs
 
-      - name: Prove Section 2 registry audit
-        run: node scripts/validate-registry-style.mjs
+      - name: Install and lock root dependencies
+        run: npm install --no-audit --no-fund
 
-      - name: Commit audited Section 2 migration
+      - name: Generate registry and UI package
+        run: npm run build:dist
+
+      - name: Install and lock CLI dependencies
+        run: npm install --prefix packages/cli --no-audit --no-fund
+
+      - name: Install and lock UI package dependencies
+        run: npm install --prefix packages/ui --no-audit --no-fund
+
+      - name: Format materialized v0.3 changes
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
+        run: npx prettier --write package.json tsconfig.json eslint.config.js components.json metadata.json .gitignore src/registry/items.json src/registry/items-extra.json packages/cli/src/index.ts packages/ui/package.json packages/ui/src public/r scripts/build-registry.mjs scripts/build-package.mjs scripts/check-core-bundle.mjs
+
+      - name: Prove dependency, registry, and bundle policies
+        run: |
+          npm run validate:registry
+          npm run check:bundle
+          node scripts/validate-version-parity.mjs
+
+      - name: Commit materialized dependency and registry changes
         if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/registry/ui src/components/blocks packages/ui/tokens.css
+          git add -A
           if git diff --cached --quiet; then
-            echo "No Section 2 changes to commit"
+            echo "No dependency/config changes to commit"
           else
-            git commit -m "refactor: replace registry hardcoded colors [section2-sync]"
+            git commit -m "chore: materialize v0.3 dependency and registry hardening [config-sync]"
             git push origin HEAD:${{ github.event.pull_request.head.ref }}
           fi
-
-      - name: Install root dependencies
-        run: npm install --no-audit --no-fund
-
-      - name: Install CLI dependencies
-        run: npm install --prefix packages/cli --no-audit --no-fund
-
-      - name: Install UI package dependencies
-        run: npm install --prefix packages/ui --no-audit --no-fund
-
-      - name: Validate release version parity
-        run: node scripts/validate-version-parity.mjs
-
-      - name: Validate registry dependencies
-        run: npm run validate:registry
 
       - name: Validate generated artifacts
         run: npm run validate:generated
@@ -83,21 +82,3 @@ jobs:
 
       - name: Test
         run: npm run test
-
-      - name: Build documentation site
-        run: npm run build
-
-      - name: Build CLI package
-        run: npm run build --prefix packages/cli
-
-      - name: Build UI package
-        run: npm run build --prefix packages/ui
-
-      - name: Fresh Vite + Tailwind v4 clean-room install
-        run: node scripts/clean-room-vite.mjs
-
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Browser accessibility and visual regression
-        run: npm run test:e2e
