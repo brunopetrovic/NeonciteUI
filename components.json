@@ -20,6 +20,7 @@
   },
   "registries": {},
   "neoncite": {
-    "baseColorNote": "shadcn compatibility shim only; Neoncite surfaces are defined in packages/ui/tokens.css"
+    "baseColorNote": "shadcn compatibility shim only; Neoncite surfaces are defined in packages/ui/tokens.css",
+    "chartPeerDependency": "Requires recharts >=2.0.0 as a peer dependency."
   }
 }
