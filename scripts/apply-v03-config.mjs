@@ -35,8 +35,8 @@ for (const name of ["framer-motion", "recharts", "@tanstack/react-start"]) {
 Object.assign(pkg.devDependencies, {
   "@testing-library/react": "^16.3.2",
   "@testing-library/user-event": "^14.6.5",
-  "@testing-library/jest-dom": "^7.0.1",
-  jsdom: "^30.0.1",
+  "@testing-library/jest-dom": "^6.6.3",
+  jsdom: "^26.1.0",
   vitest: "^4.1.10",
   esbuild: "^0.28.2",
   "vite-bundle-visualizer": "^1.2.1",
