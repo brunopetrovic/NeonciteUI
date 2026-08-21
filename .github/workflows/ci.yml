@@ -47,7 +47,7 @@ jobs:
 
       - name: Format materialized v0.3 changes
         if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
-        run: npx prettier --write package.json tsconfig.json eslint.config.js components.json metadata.json .gitignore src/registry/items.json src/registry/items-extra.json packages/cli/src/index.ts packages/ui/package.json packages/ui/src public/r scripts/build-registry.mjs scripts/build-package.mjs scripts/check-core-bundle.mjs
+        run: npx prettier --write package.json tsconfig.json eslint.config.js components.json metadata.json src/registry/items.json src/registry/items-extra.json packages/cli/src/index.ts packages/ui/package.json packages/ui/src public/r scripts/build-registry.mjs scripts/build-package.mjs scripts/check-core-bundle.mjs
 
       - name: Prove dependency, registry, and bundle policies
         run: |
