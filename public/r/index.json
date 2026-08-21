@@ -16,7 +16,7 @@
       "description": "Recessed input with rim lighting and neon focus ring.",
       "dependencies": [],
       "registryDependencies": [],
-      "integrity": "sha256-58xySXiU4fbQ3O2tcv1KZAaHAwjvwFxDAUJBx0hCOCg="
+      "integrity": "sha256-CjRtX8sufFooF0Hg/Bw/fuvRmHno0Th2IWsbWDs5++M="
     },
     {
       "name": "textarea",
@@ -248,7 +248,7 @@
       "description": "Sortable, filterable, paginated table built on TanStack Table.",
       "dependencies": ["@tanstack/react-table@^8", "lucide-react"],
       "registryDependencies": [],
-      "integrity": "sha256-ykPZIswtOUwWJbKpxZLB7wn5vq3k75WLzp+Rx9hj9bc="
+      "integrity": "sha256-e2NSsLwOhNWtQWhmdoDQdH2vxezymDwE0SERWRKG91M="
     },
     {
       "name": "calendar",
@@ -262,9 +262,9 @@
       "name": "form",
       "type": "registry:ui",
       "description": "Validated forms with react-hook-form and zod schema.",
-      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+      "dependencies": ["react-hook-form", "@hookform/resolvers", "zod", "@radix-ui/react-slot"],
       "registryDependencies": ["label"],
-      "integrity": "sha256-8YgrvF+th5TihdslOHKwQuQhTExygsM9RnT8Ke2pu4k="
+      "integrity": "sha256-TeBLbuKXF+cenNi85ectIAQCxXMWq3YPHKEiazagmrc="
     },
     {
       "name": "alert-dialog",

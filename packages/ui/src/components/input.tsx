@@ -13,6 +13,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         "border border-[color:var(--hairline)] shadow-[var(--recessed-shadow)]",
         "placeholder:text-muted-foreground/60 file:border-0 file:bg-transparent file:text-sm",
         "focus-visible:outline-none focus-visible:border-[color:var(--ring)]/60 focus-visible:shadow-[var(--recessed-shadow)] focus-visible:ring-[3px] focus-visible:ring-[color:var(--ring)]/15",
+        "aria-invalid:border-[color:var(--neon-red)] aria-invalid:ring-[3px] aria-invalid:ring-[color:var(--neon-red)]/20",
         "transition-all disabled:cursor-not-allowed disabled:opacity-40",
         className,
       )}

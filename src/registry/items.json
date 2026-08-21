@@ -357,7 +357,7 @@
     "description": "Validated forms with react-hook-form and zod schema.",
     "category": "form",
     "targetPath": "components/neoncite/form.tsx",
-    "dependencies": ["react-hook-form", "@hookform/resolvers", "zod"],
+    "dependencies": ["react-hook-form", "@hookform/resolvers", "zod", "@radix-ui/react-slot"],
     "registryDeps": ["label"],
     "accent": "text-neon-green",
     "icon": "FileInput"
