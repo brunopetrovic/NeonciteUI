@@ -2,9 +2,19 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+type LazyMotionSpanProps = React.HTMLAttributes<HTMLSpanElement> & {
+  whileHover?: { scale?: number; y?: number };
+  whileTap?: { scale?: number };
+};
+
 const LazyMotionSpan = React.lazy(async () => {
   const { motion } = await import("framer-motion");
-  return { default: motion.span };
+  // Framer Motion redeclares native drag callbacks with gesture-specific event
+  // types. Runtime support is compatible with normal span attributes; this
+  // boundary keeps Badge's public API aligned with native HTML span props.
+  return {
+    default: motion.span as unknown as React.ComponentType<LazyMotionSpanProps>,
+  };
 });
 
 const badgeVariants = cva(
