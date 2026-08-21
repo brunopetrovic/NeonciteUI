@@ -34,7 +34,9 @@ jobs:
 
       - name: Apply Section 2 token migration
         if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'chore/v0.3-hardening'
-        run: node scripts/apply-section2.mjs
+        run: |
+          node scripts/apply-section2.mjs
+          node scripts/apply-section2-fixes.mjs
 
       - name: Prove Section 2 registry audit
         run: node scripts/validate-registry-style.mjs
