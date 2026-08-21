@@ -45,7 +45,9 @@ export function PricingThreeTiers() {
         {tiers.map((tier) => (
           <Card
             key={tier.name}
-            className={tier.tag ? "border-[color:var(--neon-pink)]/40 shadow-[var(--glow-pink)]" : ""}
+            className={
+              tier.tag ? "border-[color:var(--neon-pink)]/40 shadow-[var(--glow-pink)]" : ""
+            }
           >
             <CardHeader>
               <div className="flex items-center justify-between">
