@@ -34,10 +34,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7 as of 2026-08-21
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6 as of 2026-08-21
         with:
           node-version: 22.13.0
           registry-url: https://registry.npmjs.org/
@@ -64,6 +64,7 @@ jobs:
         run: npm pack --dry-run=false && ls -la *.tgz
 
       - name: Publish neoncite CLI
+        if: ${{ !inputs.dry_run }}
         working-directory: packages/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -76,6 +77,7 @@ jobs:
           fi
 
       - name: Publish @neoncite/ui
+        if: ${{ !inputs.dry_run }}
         working-directory: packages/ui
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -88,10 +90,8 @@ jobs:
           fi
 
       - name: Verify published versions
-        env:
-          VERSION: ${{ github.event.inputs.dry_run && 'skip' || 'check' }}
+        if: ${{ !inputs.dry_run }}
         run: |
-          if [ "$VERSION" = "skip" ]; then echo "dry run — skipping verification"; exit 0; fi
           V=$(node -p "require('./packages/cli/package.json').version")
           npm view neoncite@${V} version
           npm view @neoncite/ui@${V} version
