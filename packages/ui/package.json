@@ -1,6 +1,6 @@
 {
   "name": "@neoncite/ui",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Neoncite/UI — an opinionated dark-mode-first React component system with OLED surfaces, machined lighting, and neon accents.",
   "type": "module",
   "license": "MIT",

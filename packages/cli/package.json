@@ -1,6 +1,6 @@
 {
   "name": "neoncite",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "CLI for the Neoncite UI design system",
   "type": "module",
   "bin": {

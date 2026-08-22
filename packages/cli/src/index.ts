@@ -13,7 +13,7 @@ import { createHash } from "node:crypto";
 import { createHash } from "node:crypto";
 import { z } from "zod";
 
-const CLI_VERSION = "0.2.0";
+const CLI_VERSION = "0.3.0";
 const DEFAULT_REGISTRY = "https://neoncite-ui.brunopetrovic33.workers.dev/r";
 const BOOTSTRAP_DEPS = ["clsx", "tailwind-merge", "tw-animate-css"];
 
