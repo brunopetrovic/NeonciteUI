@@ -1,21 +1,35 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion, type HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
+
+type LazyMotionSpanProps = React.HTMLAttributes<HTMLSpanElement> & {
+  whileHover?: { scale?: number; y?: number };
+  whileTap?: { scale?: number };
+};
+
+const LazyMotionSpan = React.lazy(async () => {
+  const { motion } = await import("framer-motion");
+  // Framer Motion redeclares native drag callbacks with gesture-specific event
+  // types. Runtime support is compatible with normal span attributes; this
+  // boundary keeps Badge's public API aligned with native HTML span props.
+  return {
+    default: motion.span as unknown as React.ComponentType<LazyMotionSpanProps>,
+  };
+});
 
 const badgeVariants = cva(
   "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest border transition-colors",
   {
     variants: {
       variant: {
-        default: "bg-white/[0.04] text-foreground border-[color:var(--hairline)]",
-        pink: "bg-[color:var(--neon-pink)]/10 text-[color:var(--neon-pink)] border-[color:var(--neon-pink)]/40 [text-shadow:0_0_8px_rgba(255,42,157,0.6)]",
-        cyan: "bg-[#00f0ff]/10 text-[#00f0ff] border-[#00f0ff]/40 [text-shadow:0_0_8px_rgba(0,240,255,0.6)]",
+        default: "bg-[color:var(--surface-2)] text-foreground border-[color:var(--hairline)]",
+        pink: "bg-[color:var(--neon-pink)]/10 text-[color:var(--neon-pink)] border-[color:var(--neon-pink)]/40 [text-shadow:var(--text-glow-pink)]",
+        cyan: "bg-[color:var(--neon-cyan)]/10 text-[color:var(--neon-cyan)] border-[color:var(--neon-cyan)]/40 [text-shadow:var(--text-glow-cyan)]",
         green:
-          "bg-[#00ff66]/10 text-[#00ff66] border-[#00ff66]/40 [text-shadow:0_0_8px_rgba(0,255,102,0.6)]",
+          "bg-[color:var(--neon-green)]/10 text-[color:var(--neon-green)] border-[color:var(--neon-green)]/40 [text-shadow:var(--text-glow-green)]",
         yellow:
-          "bg-[#ffcc00]/10 text-[#ffcc00] border-[#ffcc00]/40 [text-shadow:0_0_8px_rgba(255,204,0,0.6)]",
-        red: "bg-[#ff003c]/10 text-[#ff003c] border-[#ff003c]/40 [text-shadow:0_0_8px_rgba(255,0,60,0.6)]",
+          "bg-[color:var(--neon-yellow)]/10 text-[color:var(--neon-yellow)] border-[color:var(--neon-yellow)]/40 [text-shadow:var(--text-glow-yellow)]",
+        red: "bg-[color:var(--neon-red)]/10 text-[color:var(--neon-red)] border-[color:var(--neon-red)]/40 [text-shadow:var(--text-glow-red)]",
         outline: "bg-transparent text-muted-foreground border-[color:var(--hairline)]",
       },
     },
@@ -23,16 +37,28 @@ const badgeVariants = cva(
   },
 );
 
-export interface BadgeProps extends HTMLMotionProps<"span">, VariantProps<typeof badgeVariants> {}
+export interface BadgeProps
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {
+  /** Lazily loads Framer Motion and enables press/hover movement. */
+  animated?: boolean;
+}
 
-export function Badge({ className, variant, ...props }: BadgeProps) {
+export function Badge({ className, variant, animated = false, ...props }: BadgeProps) {
+  const classes = cn(badgeVariants({ variant }), className);
+
+  if (!animated) {
+    return <span className={classes} {...props} />;
+  }
+
   return (
-    <motion.span
-      whileHover={{ scale: 1.05, y: -1 }}
-      whileTap={{ scale: 0.95 }}
-      className={cn(badgeVariants({ variant }), className)}
-      {...props}
-    />
+    <React.Suspense fallback={<span className={classes} {...props} />}>
+      <LazyMotionSpan
+        whileHover={{ scale: 1.05, y: -1 }}
+        whileTap={{ scale: 0.95 }}
+        className={classes}
+        {...props}
+      />
+    </React.Suspense>
   );
 }
 

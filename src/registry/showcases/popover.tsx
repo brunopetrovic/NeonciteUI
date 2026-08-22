@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover";
 import { Button } from "@/registry/ui/button";
 

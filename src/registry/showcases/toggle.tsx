@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Bold, Star } from "lucide-react";
 import { Toggle } from "@/registry/ui/toggle";
 

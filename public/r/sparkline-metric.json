@@ -2,12 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "sparkline-metric",
   "type": "registry:ui",
+  "description": "Metric card with a lightweight inline SVG trend line.",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-CovrjsCmJp7OvCnaRYS9YsWbBql9dVySxK+aiM96nfM=",
   "files": [
     {
       "path": "components/neoncite/sparkline-metric.tsx",
       "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SparklineMetricProps extends React.HTMLAttributes<HTMLDivElement> {\n  label: React.ReactNode;\n  value: React.ReactNode;\n  data: number[];\n  delta?: React.ReactNode;\n  accent?: string;\n}\n\nfunction points(data: number[], width = 120, height = 34) {\n  if (data.length < 2) return \"\";\n  const min = Math.min(...data);\n  const max = Math.max(...data);\n  const span = max - min || 1;\n  return data\n    .map(\n      (value, index) =>\n        `${(index / (data.length - 1)) * width},${height - ((value - min) / span) * height}`,\n    )\n    .join(\" \");\n}\n\nexport function SparklineMetric({\n  label,\n  value,\n  data,\n  delta,\n  accent = \"var(--neon-cyan)\",\n  className,\n  ...props\n}: SparklineMetricProps) {\n  return (\n    <div\n      className={cn(\n        \"rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4 shadow-[var(--rim-light-shadow)]\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground\">\n        {label}\n      </div>\n      <div className=\"mt-2 flex items-end justify-between gap-4\">\n        <div>\n          <div className=\"font-mono text-2xl font-bold tabular-nums text-foreground\">{value}</div>\n          {delta && <div className=\"mt-1 text-xs text-muted-foreground\">{delta}</div>}\n        </div>\n        <svg\n          viewBox=\"0 0 120 34\"\n          className=\"h-[34px] w-[120px] overflow-visible\"\n          aria-hidden=\"true\"\n        >\n          <polyline\n            fill=\"none\"\n            stroke={accent}\n            strokeWidth=\"2\"\n            strokeLinecap=\"round\"\n            strokeLinejoin=\"round\"\n            points={points(data)}\n            style={{ filter: `drop-shadow(0 0 5px ${accent})` }}\n          />\n        </svg>\n      </div>\n    </div>\n  );\n}\n",
+      "integrity": "sha256-CovrjsCmJp7OvCnaRYS9YsWbBql9dVySxK+aiM96nfM=",
       "type": "registry:ui",
       "target": ""
     }

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Checkbox } from "@/registry/ui/checkbox";
 
 export const usage = `import { Checkbox } from "@/components/neoncite/checkbox"

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Avatar, AvatarFallback } from "@/registry/ui/avatar";
 
 export const usage = `import { Avatar, AvatarImage, AvatarFallback } from "@/components/neoncite/avatar"

@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "status-led",
   "type": "registry:ui",
+  "description": "Hardware-inspired semantic status LED with optional pulse.",
   "dependencies": [
     "class-variance-authority"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-8E2IFUPxI4t+1AoyXsYK5UeAw8A3b4va1eTrf5sz3J8=",
   "files": [
     {
       "path": "components/neoncite/status-led.tsx",
       "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\nconst ledVariants = cva(\"inline-block rounded-full bg-current shadow-[0_0_12px_currentColor]\", {\n  variants: {\n    status: {\n      online: \"text-[color:var(--neon-green)]\",\n      warning: \"text-[color:var(--neon-yellow)]\",\n      error: \"text-[color:var(--neon-red)]\",\n      info: \"text-[color:var(--neon-cyan)]\",\n      idle: \"text-muted-foreground\",\n    },\n    size: { sm: \"h-1.5 w-1.5\", md: \"h-2.5 w-2.5\", lg: \"h-3.5 w-3.5\" },\n  },\n  defaultVariants: { status: \"idle\", size: \"md\" },\n});\n\nexport interface StatusLedProps\n  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof ledVariants> {\n  pulse?: boolean;\n  label?: string;\n}\nexport function StatusLed({\n  status,\n  size,\n  pulse = false,\n  label,\n  className,\n  ...props\n}: StatusLedProps) {\n  return (\n    <span\n      role={label ? \"img\" : undefined}\n      aria-label={label}\n      className={cn(\n        ledVariants({ status, size }),\n        pulse && \"animate-pulse motion-reduce:animate-none\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\nexport { ledVariants };\n",
+      "integrity": "sha256-8E2IFUPxI4t+1AoyXsYK5UeAw8A3b4va1eTrf5sz3J8=",
       "type": "registry:ui",
       "target": ""
     }

@@ -67,6 +67,8 @@ function CommandBarShowcase() {
   );
 }
 
+// This registry intentionally exports component references as data, not a React component.
+// eslint-disable-next-line react-refresh/only-export-components
 export const FEATURED_SHOWCASES: Record<string, React.ComponentType> = {
   button: ButtonShowcase,
   "data-table": DataTableShowcase,

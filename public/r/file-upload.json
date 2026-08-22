@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "file-upload",
   "type": "registry:ui",
+  "description": "Keyboard and drag-and-drop file selection surface.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-yWoVJtwFZGFjiqoIhwoPa0/52iuULo5OPNHqkuVyzWM=",
   "files": [
     {
       "path": "components/neoncite/file-upload.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport { UploadCloud } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface FileUploadProps extends Omit<\n  React.InputHTMLAttributes<HTMLInputElement>,\n  \"type\" | \"onChange\"\n> {\n  label?: React.ReactNode;\n  description?: React.ReactNode;\n  onFilesChange?: (files: File[]) => void;\n}\n\nexport const FileUpload = React.forwardRef<HTMLInputElement, FileUploadProps>(\n  (\n    {\n      label = \"Drop files or browse\",\n      description,\n      onFilesChange,\n      className,\n      multiple,\n      accept,\n      disabled,\n      ...props\n    },\n    ref,\n  ) => {\n    const inputRef = React.useRef<HTMLInputElement | null>(null);\n    const setRef = (node: HTMLInputElement | null) => {\n      inputRef.current = node;\n      if (typeof ref === \"function\") ref(node);\n      else if (ref) ref.current = node;\n    };\n    const emit = (list: FileList | null) => onFilesChange?.(list ? Array.from(list) : []);\n    return (\n      <div\n        className={cn(\n          \"relative flex min-h-[150px] cursor-pointer flex-col items-center justify-center rounded-[14px] border border-dashed border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-6 text-center transition-colors hover:border-[color:var(--primary)]/50 hover:bg-[color:var(--primary)]/[.03]\",\n          disabled && \"pointer-events-none opacity-50\",\n          className,\n        )}\n        role=\"button\"\n        tabIndex={disabled ? -1 : 0}\n        onClick={() => inputRef.current?.click()}\n        onKeyDown={(event) => {\n          if (event.key === \"Enter\" || event.key === \" \") {\n            event.preventDefault();\n            inputRef.current?.click();\n          }\n        }}\n        onDragOver={(event) => event.preventDefault()}\n        onDrop={(event) => {\n          event.preventDefault();\n          emit(event.dataTransfer.files);\n        }}\n      >\n        <input\n          ref={setRef}\n          type=\"file\"\n          multiple={multiple}\n          accept={accept}\n          disabled={disabled}\n          className=\"sr-only\"\n          onChange={(event) => emit(event.target.files)}\n          {...props}\n        />\n        <UploadCloud className=\"h-7 w-7 text-[color:var(--neon-cyan)]\" />\n        <div className=\"mt-3 font-mono text-[11px] uppercase tracking-[.15em] text-foreground\">\n          {label}\n        </div>\n        {description && <div className=\"mt-1.5 text-xs text-muted-foreground\">{description}</div>}\n      </div>\n    );\n  },\n);\nFileUpload.displayName = \"FileUpload\";\n",
+      "integrity": "sha256-yWoVJtwFZGFjiqoIhwoPa0/52iuULo5OPNHqkuVyzWM=",
       "type": "registry:ui",
       "target": ""
     }

@@ -32,7 +32,7 @@ export function LatencyIndicator({
             className="w-[3px] rounded-[1px]"
             style={{
               height: `${bar * 25}%`,
-              background: bar <= bars ? tone : "rgba(255,255,255,.1)",
+              background: bar <= bars ? tone : "color-mix(in oklab, white 10%, transparent)",
               boxShadow: bar <= bars ? `0 0 6px ${tone}` : undefined,
             }}
           />

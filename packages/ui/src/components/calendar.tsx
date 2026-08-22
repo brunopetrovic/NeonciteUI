@@ -35,7 +35,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
           "h-9 w-9 p-0 font-normal inline-flex items-center justify-center rounded-[8px] transition-all",
           "text-foreground hover:bg-white/[0.06] hover:text-foreground",
           "focus:outline-none focus:ring-2 focus:ring-[color:var(--ring)] focus:ring-offset-0",
-          "aria-selected:bg-[color:var(--primary)] aria-selected:text-white aria-selected:shadow-[0_0_16px_rgba(255,42,157,0.4)] aria-selected:hover:bg-[color:var(--primary)]",
+          "aria-selected:bg-[color:var(--primary)] aria-selected:text-[color:var(--surface-0)] aria-selected:shadow-[var(--glow-pink)] aria-selected:hover:bg-[color:var(--primary)]",
         ),
         day_today: "border border-[color:var(--primary)]/40 text-[color:var(--primary)]",
         day_outside:

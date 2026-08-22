@@ -13,7 +13,7 @@ import {
   CommandShortcut,
 } from "@/registry/ui/command";
 import { REGISTRY } from "@/registry";
-import { BookOpen, Layers, Palette, Sparkles, Terminal, Home, ScrollText } from "lucide-react";
+import { BookOpen, Layers, Palette, Sparkles, Terminal, Home } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type Ctx = { open: boolean; setOpen: (v: boolean) => void };

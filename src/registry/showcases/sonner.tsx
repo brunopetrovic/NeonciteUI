@@ -1,4 +1,3 @@
-import * as React from "react";
 import { toast } from "@/registry/ui/sonner";
 import { Button } from "@/registry/ui/button";
 

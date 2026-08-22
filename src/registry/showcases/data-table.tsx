@@ -1,4 +1,3 @@
-import * as React from "react";
 import { DataTable, SortableHeader } from "@/registry/ui/data-table";
 import { type ColumnDef } from "@tanstack/react-table";
 

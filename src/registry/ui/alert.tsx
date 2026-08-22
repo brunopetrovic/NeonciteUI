@@ -8,10 +8,13 @@ const alertVariants = cva(
     variants: {
       variant: {
         default: "bg-[color:var(--surface-2)] border-[color:var(--hairline)] text-foreground",
-        info: "bg-[#00f0ff]/[0.04] border-[#00f0ff]/30 text-[#00f0ff]",
-        success: "bg-[#00ff66]/[0.04] border-[#00ff66]/30 text-[#00ff66]",
-        warning: "bg-[#ffcc00]/[0.04] border-[#ffcc00]/30 text-[#ffcc00]",
-        destructive: "bg-[#ff003c]/[0.04] border-[#ff003c]/40 text-[#ff003c]",
+        info: "bg-[var(--neon-cyan)]/[0.04] border-[var(--neon-cyan)]/30 text-[var(--neon-cyan)]",
+        success:
+          "bg-[var(--neon-green)]/[0.04] border-[var(--neon-green)]/30 text-[var(--neon-green)]",
+        warning:
+          "bg-[var(--neon-yellow)]/[0.04] border-[var(--neon-yellow)]/30 text-[var(--neon-yellow)]",
+        destructive:
+          "bg-[var(--neon-red)]/[0.04] border-[var(--neon-red)]/40 text-[var(--neon-red)]",
       },
     },
     defaultVariants: { variant: "default" },

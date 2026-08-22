@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Calendar } from "@/registry/ui/calendar";
 
 export const usage = `import { Calendar } from "@/components/neoncite/calendar"

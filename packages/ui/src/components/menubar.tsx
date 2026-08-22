@@ -41,7 +41,7 @@ export const MenubarTrigger = React.forwardRef<
 MenubarTrigger.displayName = "MenubarTrigger";
 
 const contentClass =
-  "z-50 min-w-[12rem] overflow-hidden rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-1 text-foreground shadow-[0_24px_48px_rgba(0,0,0,.65),var(--rim-light-shadow)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0";
+  "z-50 min-w-[12rem] overflow-hidden rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-1 text-foreground shadow-[var(--shadow-floating)] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0";
 const itemClass =
   "relative flex cursor-default select-none items-center gap-2 rounded-[8px] px-2.5 py-1.5 font-mono text-[12px] outline-none transition-colors focus:bg-white/[0.06] data-[disabled]:pointer-events-none data-[disabled]:opacity-40";
 

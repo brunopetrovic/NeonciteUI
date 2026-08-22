@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "search-input",
   "type": "registry:ui",
+  "description": "Recessed search field with icon and clear affordance.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-nCC2E46EtojS+S3YWE/geemWRDyHhc1QhP+VRJtz81k=",
   "files": [
     {
       "path": "components/neoncite/search-input.tsx",
       "content": "import * as React from \"react\";\nimport { Search, X } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface SearchInputProps extends Omit<\n  React.InputHTMLAttributes<HTMLInputElement>,\n  \"type\"\n> {\n  onClear?: () => void;\n}\nexport const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(\n  ({ className, value, defaultValue, onClear, ...props }, ref) => {\n    const hasValue =\n      value !== undefined\n        ? String(value).length > 0\n        : defaultValue !== undefined\n          ? String(defaultValue).length > 0\n          : false;\n    return (\n      <div\n        className={cn(\n          \"flex h-10 items-center rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)] px-3 shadow-[var(--recessed-shadow)] focus-within:border-[color:var(--ring)] focus-within:shadow-[0_0_0_1px_var(--ring),0_0_18px_color-mix(in_srgb,var(--ring)_20%,transparent)]\",\n          className,\n        )}\n      >\n        <Search className=\"h-4 w-4 shrink-0 text-[color:var(--neon-cyan)]\" />\n        <input\n          ref={ref}\n          type=\"search\"\n          value={value}\n          defaultValue={defaultValue}\n          className=\"h-full min-w-0 flex-1 bg-transparent px-2 text-[13px] text-foreground outline-none placeholder:text-muted-foreground\"\n          {...props}\n        />\n        {hasValue && onClear && (\n          <button\n            type=\"button\"\n            onClick={onClear}\n            aria-label=\"Clear search\"\n            className=\"text-muted-foreground hover:text-foreground\"\n          >\n            <X className=\"h-4 w-4\" />\n          </button>\n        )}\n      </div>\n    );\n  },\n);\nSearchInput.displayName = \"SearchInput\";\n",
+      "integrity": "sha256-nCC2E46EtojS+S3YWE/geemWRDyHhc1QhP+VRJtz81k=",
       "type": "registry:ui",
       "target": ""
     }

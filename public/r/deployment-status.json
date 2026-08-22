@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "deployment-status",
   "type": "registry:ui",
+  "description": "Build/deploy state card with environment, commit and duration metadata.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-LnNlYW5949mM5ZSQ2wPhFzmMXGZXIoE2aGLoMg+cEXw=",
   "files": [
     {
       "path": "components/neoncite/deployment-status.tsx",
       "content": "import * as React from \"react\";\nimport { CheckCircle2, CircleDashed, GitCommitHorizontal, XCircle } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface DeploymentStatusProps extends React.HTMLAttributes<HTMLDivElement> {\n  name: React.ReactNode;\n  environment?: React.ReactNode;\n  status: \"queued\" | \"building\" | \"ready\" | \"failed\";\n  commit?: React.ReactNode;\n  duration?: React.ReactNode;\n}\n\nexport function DeploymentStatus({\n  name,\n  environment,\n  status,\n  commit,\n  duration,\n  className,\n  ...props\n}: DeploymentStatusProps) {\n  const meta = {\n    queued: { label: \"Queued\", icon: CircleDashed, tone: \"text-muted-foreground\" },\n    building: { label: \"Building\", icon: CircleDashed, tone: \"text-[color:var(--neon-yellow)]\" },\n    ready: { label: \"Ready\", icon: CheckCircle2, tone: \"text-[color:var(--neon-green)]\" },\n    failed: { label: \"Failed\", icon: XCircle, tone: \"text-[color:var(--neon-red)]\" },\n  }[status];\n  const Icon = meta.icon;\n  return (\n    <div\n      className={cn(\n        \"flex items-center gap-3 rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] p-4 shadow-[var(--rim-light-shadow)]\",\n        className,\n      )}\n      {...props}\n    >\n      <div\n        className={cn(\n          \"flex h-9 w-9 items-center justify-center rounded-[10px] border border-current/25 bg-current/5\",\n          meta.tone,\n        )}\n      >\n        <Icon\n          className={cn(\n            \"h-4 w-4\",\n            status === \"building\" && \"animate-spin motion-reduce:animate-none\",\n          )}\n        />\n      </div>\n      <div className=\"min-w-0 flex-1\">\n        <div className=\"truncate text-sm font-medium text-foreground\">{name}</div>\n        <div className=\"mt-1 flex flex-wrap items-center gap-2 font-mono text-[10px] text-muted-foreground\">\n          {environment && <span className=\"uppercase tracking-wider\">{environment}</span>}\n          {commit && (\n            <span className=\"inline-flex items-center gap-1\">\n              <GitCommitHorizontal className=\"h-3 w-3\" />\n              {commit}\n            </span>\n          )}\n        </div>\n      </div>\n      <div className=\"text-right\">\n        <div className={cn(\"font-mono text-[10px] uppercase tracking-[.16em]\", meta.tone)}>\n          {meta.label}\n        </div>\n        {duration && (\n          <div className=\"mt-1 font-mono text-[10px] tabular-nums text-muted-foreground\">\n            {duration}\n          </div>\n        )}\n      </div>\n    </div>\n  );\n}\n",
+      "integrity": "sha256-LnNlYW5949mM5ZSQ2wPhFzmMXGZXIoE2aGLoMg+cEXw=",
       "type": "registry:ui",
       "target": ""
     }

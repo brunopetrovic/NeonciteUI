@@ -29,7 +29,7 @@ export const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[90vh] flex-col rounded-t-[18px] border border-b-0 border-[color:var(--hairline)] bg-[color:var(--surface-2)] shadow-[0_-24px_64px_rgba(0,0,0,.75),var(--rim-light-shadow)]",
+        "fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[90vh] flex-col rounded-t-[18px] border border-b-0 border-[color:var(--hairline)] bg-[color:var(--surface-2)] shadow-[var(--shadow-drawer)]",
         className,
       )}
       {...props}

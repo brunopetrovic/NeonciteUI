@@ -11,13 +11,13 @@ export const Progress = React.forwardRef<
     ref={ref}
     aria-label="progress"
     className={cn(
-      "relative h-2 w-full overflow-hidden rounded-full bg-[color:var(--recessed-bg)] border border-[color:var(--hairline)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]",
+      "relative h-2 w-full overflow-hidden rounded-full bg-[color:var(--recessed-bg)] border border-[color:var(--hairline)] shadow-[var(--shadow-recessed-compact)]",
       className,
     )}
     {...props}
   >
     <ProgressPrimitive.Indicator
-      className="h-full w-full flex-1 bg-gradient-to-r from-[color:var(--neon-pink)] via-[#b829ff] to-[#00f0ff] shadow-[0_0_12px_rgba(255,42,157,0.6)] transition-transform"
+      className="h-full w-full flex-1 bg-gradient-to-r from-[color:var(--neon-pink)] via-[var(--neon-purple)] to-[var(--neon-cyan)] shadow-[var(--glow-pink-strong)] transition-transform"
       style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}
     />
   </ProgressPrimitive.Root>

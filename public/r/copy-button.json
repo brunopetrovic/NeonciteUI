@@ -2,16 +2,19 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "copy-button",
   "type": "registry:ui",
+  "description": "Clipboard action with transient copied feedback.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [
     "button"
   ],
+  "integrity": "sha256-+De/Z2h3/gfaZVHc2ReQmiND9GmsgOVxUDOb22WLhJk=",
   "files": [
     {
       "path": "components/neoncite/copy-button.tsx",
       "content": "\"use client\";\nimport * as React from \"react\";\nimport { Check, Copy } from \"lucide-react\";\nimport { Button, type ButtonProps } from \"@/registry/ui/button\";\n\nexport interface CopyButtonProps extends Omit<ButtonProps, \"onClick\"> {\n  value: string;\n  copiedLabel?: string;\n  idleLabel?: string;\n  resetAfter?: number;\n  onCopied?: () => void;\n}\n\nexport const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(\n  (\n    {\n      value,\n      copiedLabel = \"Copied\",\n      idleLabel = \"Copy\",\n      resetAfter = 1600,\n      onCopied,\n      children,\n      ...props\n    },\n    ref,\n  ) => {\n    const [copied, setCopied] = React.useState(false);\n    async function copy() {\n      await navigator.clipboard.writeText(value);\n      setCopied(true);\n      onCopied?.();\n      window.setTimeout(() => setCopied(false), resetAfter);\n    }\n    return (\n      <Button ref={ref} type=\"button\" variant=\"outline\" size=\"sm\" onClick={copy} {...props}>\n        {children ?? (\n          <>\n            {copied ? (\n              <Check className=\"h-3.5 w-3.5 text-[color:var(--neon-green)]\" />\n            ) : (\n              <Copy className=\"h-3.5 w-3.5\" />\n            )}\n            {copied ? copiedLabel : idleLabel}\n          </>\n        )}\n      </Button>\n    );\n  },\n);\nCopyButton.displayName = \"CopyButton\";\n",
+      "integrity": "sha256-+De/Z2h3/gfaZVHc2ReQmiND9GmsgOVxUDOb22WLhJk=",
       "type": "registry:ui",
       "target": ""
     }

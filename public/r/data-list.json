@@ -2,12 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "data-list",
   "type": "registry:ui",
+  "description": "Compact label/value definition list for technical metadata.",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-5oRrnTLOq3m48M8Tgq351v0LDzAj1+Y2rPigr7XxFa8=",
   "files": [
     {
       "path": "components/neoncite/data-list.tsx",
       "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function DataList({ className, ...props }: React.ComponentProps<\"dl\">) {\n  return <dl className={cn(\"divide-y divide-white/[.05]\", className)} {...props} />;\n}\n\nexport function DataListItem({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      className={cn(\"grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function DataListLabel({ className, ...props }: React.ComponentProps<\"dt\">) {\n  return (\n    <dt\n      className={cn(\n        \"font-mono text-[10px] uppercase tracking-[.16em] text-muted-foreground\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function DataListValue({ className, ...props }: React.ComponentProps<\"dd\">) {\n  return <dd className={cn(\"text-sm text-foreground\", className)} {...props} />;\n}\n",
+      "integrity": "sha256-5oRrnTLOq3m48M8Tgq351v0LDzAj1+Y2rPigr7XxFa8=",
       "type": "registry:ui",
       "target": ""
     }

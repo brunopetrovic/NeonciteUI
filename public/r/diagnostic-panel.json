@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "diagnostic-panel",
   "type": "registry:ui",
+  "description": "Severity-coded diagnostics for checks, warnings and failures.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-soJRFIjfqKDkMFfxXm+x904L5m8Mc5+BgiCGZ8w2Xds=",
   "files": [
     {
       "path": "components/neoncite/diagnostic-panel.tsx",
       "content": "import * as React from \"react\";\nimport { AlertTriangle, CheckCircle2, Info, XCircle } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\n\nexport interface DiagnosticItem {\n  id?: string;\n  severity: \"pass\" | \"info\" | \"warning\" | \"error\";\n  title: React.ReactNode;\n  detail?: React.ReactNode;\n}\n\nexport interface DiagnosticPanelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, \"title\"> {\n  items: DiagnosticItem[];\n  title?: React.ReactNode;\n}\n\nconst meta = {\n  pass: { icon: CheckCircle2, tone: \"text-[color:var(--neon-green)]\" },\n  info: { icon: Info, tone: \"text-[color:var(--neon-cyan)]\" },\n  warning: { icon: AlertTriangle, tone: \"text-[color:var(--neon-yellow)]\" },\n  error: { icon: XCircle, tone: \"text-[color:var(--neon-red)]\" },\n};\n\nexport function DiagnosticPanel({\n  items,\n  title = \"Diagnostics\",\n  className,\n  ...props\n}: DiagnosticPanelProps) {\n  return (\n    <div\n      className={cn(\n        \"overflow-hidden rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] shadow-[var(--machined-shadow)]\",\n        className,\n      )}\n      {...props}\n    >\n      <div className=\"border-b border-[color:var(--hairline)] px-4 py-3 font-mono text-[10px] uppercase tracking-[.18em] text-muted-foreground\">\n        {title}\n      </div>\n      {items.map((item, index) => {\n        const itemMeta = meta[item.severity];\n        const Icon = itemMeta.icon;\n        return (\n          <div\n            key={item.id ?? index}\n            className=\"grid grid-cols-[auto_1fr] gap-3 border-b border-white/[.04] px-4 py-3 last:border-b-0\"\n          >\n            <Icon className={cn(\"mt-0.5 h-4 w-4\", itemMeta.tone)} />\n            <div>\n              <div className=\"text-sm text-foreground\">{item.title}</div>\n              {item.detail && (\n                <div className=\"mt-1 text-xs leading-relaxed text-muted-foreground\">\n                  {item.detail}\n                </div>\n              )}\n            </div>\n          </div>\n        );\n      })}\n    </div>\n  );\n}\n",
+      "integrity": "sha256-soJRFIjfqKDkMFfxXm+x904L5m8Mc5+BgiCGZ8w2Xds=",
       "type": "registry:ui",
       "target": ""
     }

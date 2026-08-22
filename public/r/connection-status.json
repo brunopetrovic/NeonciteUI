@@ -2,16 +2,19 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "connection-status",
   "type": "registry:ui",
+  "description": "Endpoint connection state with latency and signal treatment.",
   "dependencies": [
     "lucide-react"
   ],
   "registryDependencies": [
     "status-led"
   ],
+  "integrity": "sha256-H+ZLlihAsmMQgCdPQb/sZrjBrmUznNoHf0QcBSxr9Wk=",
   "files": [
     {
       "path": "components/neoncite/connection-status.tsx",
       "content": "import * as React from \"react\";\nimport { Wifi, WifiOff } from \"lucide-react\";\nimport { cn } from \"@/lib/utils\";\nimport { StatusLed } from \"@/registry/ui/status-led\";\n\nexport interface ConnectionStatusProps extends React.HTMLAttributes<HTMLDivElement> {\n  state: \"connected\" | \"connecting\" | \"disconnected\";\n  endpoint?: React.ReactNode;\n  latency?: number;\n}\n\nexport function ConnectionStatus({\n  state,\n  endpoint,\n  latency,\n  className,\n  ...props\n}: ConnectionStatusProps) {\n  const connected = state === \"connected\";\n  const status = connected ? \"online\" : state === \"connecting\" ? \"warning\" : \"error\";\n  return (\n    <div\n      className={cn(\n        \"inline-flex items-center gap-2 rounded-[10px] border border-[color:var(--hairline)] bg-[color:var(--surface-1)] px-3 py-2 font-mono text-[11px] shadow-[var(--rim-light-shadow)]\",\n        className,\n      )}\n      {...props}\n    >\n      <StatusLed status={status} pulse={state === \"connecting\"} label={state} />\n      {connected ? (\n        <Wifi className=\"h-3.5 w-3.5 text-[color:var(--neon-green)]\" />\n      ) : (\n        <WifiOff className=\"h-3.5 w-3.5 text-muted-foreground\" />\n      )}\n      <span className=\"uppercase tracking-wider text-foreground\">{state}</span>\n      {endpoint && <span className=\"text-muted-foreground\">{endpoint}</span>}\n      {latency !== undefined && (\n        <span className=\"ml-auto tabular-nums text-muted-foreground\">{latency}ms</span>\n      )}\n    </div>\n  );\n}\n",
+      "integrity": "sha256-H+ZLlihAsmMQgCdPQb/sZrjBrmUznNoHf0QcBSxr9Wk=",
       "type": "registry:ui",
       "target": ""
     }

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Skeleton } from "@/registry/ui/skeleton";
 
 export const usage = `import { Skeleton } from "@/components/neoncite/skeleton"

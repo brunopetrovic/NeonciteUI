@@ -12,10 +12,10 @@ export const Checkbox = React.forwardRef<
     ref={ref}
     className={cn(
       "peer h-4 w-4 shrink-0 rounded-[4px] border border-[color:var(--hairline)] bg-[color:var(--recessed-bg)]",
-      "shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] transition-all",
+      "shadow-[var(--shadow-recessed-compact)] transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--ring)] focus-visible:ring-offset-2 focus-visible:ring-offset-[color:var(--surface-1)]",
       "disabled:cursor-not-allowed disabled:opacity-40",
-      "data-[state=checked]:bg-[color:var(--neon-pink)] data-[state=checked]:border-[color:var(--neon-pink)] data-[state=checked]:shadow-[0_0_12px_rgba(255,42,157,0.5)] data-[state=checked]:text-white",
+      "data-[state=checked]:bg-[color:var(--neon-pink)] data-[state=checked]:border-[color:var(--neon-pink)] data-[state=checked]:shadow-[var(--glow-pink)] data-[state=checked]:text-[color:var(--surface-0)]",
       className,
     )}
     {...props}

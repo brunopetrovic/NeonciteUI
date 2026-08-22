@@ -8,10 +8,12 @@
     "card",
     "progress"
   ],
+  "integrity": "sha256-3rsMyRm/A3BKB1wxHpvDKG1Jz8ERtxqyJ5+4K03XFHM=",
   "files": [
     {
       "path": "components/neoncite/blocks/status-health.tsx",
       "content": "import { Badge } from \"@/registry/ui/badge\";\nimport { Card, CardHeader, CardTitle, CardDescription, CardContent } from \"@/registry/ui/card\";\nimport { Progress } from \"@/registry/ui/progress\";\n\nexport function StatusHealth() {\n  const services = [\n    { name: \"API\", pct: 99, color: \"green\" as const },\n    { name: \"Database\", pct: 96, color: \"cyan\" as const },\n    { name: \"CDN\", pct: 78, color: \"yellow\" as const },\n    { name: \"Workers\", pct: 100, color: \"green\" as const },\n  ];\n\n  return (\n    <Card>\n      <CardHeader>\n        <div className=\"flex items-center justify-between\">\n          <CardTitle>System Status</CardTitle>\n          <Badge variant=\"green\">All Operational</Badge>\n        </div>\n        <CardDescription>Updated 14 seconds ago</CardDescription>\n      </CardHeader>\n      <CardContent className=\"space-y-4\">\n        {services.map((s) => (\n          <div key={s.name} className=\"space-y-1.5\">\n            <div className=\"flex items-center justify-between font-mono text-[11px] uppercase tracking-wider\">\n              <span className=\"text-foreground\">{s.name}</span>\n              <span className=\"text-muted-foreground tabular-nums\">{s.pct}%</span>\n            </div>\n            <Progress value={s.pct} />\n          </div>\n        ))}\n      </CardContent>\n    </Card>\n  );\n}\n",
+      "integrity": "sha256-3rsMyRm/A3BKB1wxHpvDKG1Jz8ERtxqyJ5+4K03XFHM=",
       "type": "registry:block",
       "target": ""
     }

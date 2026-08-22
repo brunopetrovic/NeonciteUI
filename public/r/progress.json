@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "progress",
   "type": "registry:ui",
+  "description": "Recessed progress bar with neon spectrum fill.",
   "dependencies": [
     "@radix-ui/react-progress"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-jF+fx1GpsD1QgCeOMYDElBsU6x+tcKY3OVRUgb9i5pc=",
   "files": [
     {
       "path": "components/neoncite/progress.tsx",
-      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Progress = React.forwardRef<\n  React.ElementRef<typeof ProgressPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>\n>(({ className, value, ...props }, ref) => (\n  <ProgressPrimitive.Root\n    ref={ref}\n    aria-label=\"progress\"\n    className={cn(\n      \"relative h-2 w-full overflow-hidden rounded-full bg-[color:var(--recessed-bg)] border border-[color:var(--hairline)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)]\",\n      className,\n    )}\n    {...props}\n  >\n    <ProgressPrimitive.Indicator\n      className=\"h-full w-full flex-1 bg-gradient-to-r from-[color:var(--neon-pink)] via-[#b829ff] to-[#00f0ff] shadow-[0_0_12px_rgba(255,42,157,0.6)] transition-transform\"\n      style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}\n    />\n  </ProgressPrimitive.Root>\n));\nProgress.displayName = \"Progress\";\n",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\";\nimport { cn } from \"@/lib/utils\";\n\nexport const Progress = React.forwardRef<\n  React.ElementRef<typeof ProgressPrimitive.Root>,\n  React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>\n>(({ className, value, ...props }, ref) => (\n  <ProgressPrimitive.Root\n    ref={ref}\n    aria-label=\"progress\"\n    className={cn(\n      \"relative h-2 w-full overflow-hidden rounded-full bg-[color:var(--recessed-bg)] border border-[color:var(--hairline)] shadow-[var(--shadow-recessed-compact)]\",\n      className,\n    )}\n    {...props}\n  >\n    <ProgressPrimitive.Indicator\n      className=\"h-full w-full flex-1 bg-gradient-to-r from-[color:var(--neon-pink)] via-[var(--neon-purple)] to-[var(--neon-cyan)] shadow-[var(--glow-pink-strong)] transition-transform\"\n      style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}\n    />\n  </ProgressPrimitive.Root>\n));\nProgress.displayName = \"Progress\";\n",
+      "integrity": "sha256-jF+fx1GpsD1QgCeOMYDElBsU6x+tcKY3OVRUgb9i5pc=",
       "type": "registry:ui",
       "target": ""
     }

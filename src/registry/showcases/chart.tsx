@@ -1,4 +1,3 @@
-import * as React from "react";
 import { AreaChart, Area, XAxis, CartesianGrid } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/registry/ui/chart";
 

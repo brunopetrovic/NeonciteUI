@@ -54,16 +54,16 @@
   --color-surface-3: var(--surface-3);
   --color-hairline: var(--hairline);
 
-  /* Neon accents */
-  --color-neon-pink: #ff2a9d;
-  --color-neon-cyan: #00f0ff;
-  --color-neon-blue: #3399ff;
-  --color-neon-yellow: #ffcc00;
-  --color-neon-orange: #ff6600;
-  --color-neon-green: #00ff66;
-  --color-neon-purple: #b829ff;
-  --color-neon-red: #ff003c;
-  --color-neon-lime: #ccff00;
+  /* Neon accents — always reference the canonical variables below. */
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-orange: var(--neon-orange);
+  --color-neon-green: var(--neon-green);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-red: var(--neon-red);
+  --color-neon-lime: var(--neon-lime);
 
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -91,68 +91,140 @@
   --surface-2: #121214;
   --surface-3: #1c1c1e;
   --hairline: #2c2c2e;
+  --hairline-strong: color-mix(in oklab, white 40%, transparent);
 
-  --background: #000000;
+  --background: var(--surface-0);
   --foreground: #f2f2f7;
   --card: #0a0a0c;
-  --card-foreground: #f2f2f7;
-  --popover: #121214;
-  --popover-foreground: #f2f2f7;
-  --primary: #ff2a9d;
-  --primary-foreground: #ffffff;
-  --secondary: #1c1c1e;
-  --secondary-foreground: #f2f2f7;
-  --muted: #121214;
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--foreground);
+  --primary: var(--neon-pink);
+  --primary-foreground: var(--surface-0);
+  --secondary: var(--surface-3);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-2);
   --muted-foreground: #8e8e93;
-  --accent: #00f0ff;
-  --accent-foreground: #000000;
-  --destructive: #ff003c;
-  --destructive-foreground: #ffffff;
-  --border: #1c1c1e;
-  --input: #1c1c1e;
-  --ring: #ff2a9d;
+  --accent: var(--neon-cyan);
+  --accent-foreground: var(--surface-0);
+  --destructive: var(--neon-red);
+  --destructive-foreground: var(--surface-0);
+  --border: var(--surface-3);
+  --input: var(--surface-3);
+  --ring: var(--neon-pink);
 
-  --chart-1: #ff2a9d;
-  --chart-2: #00f0ff;
-  --chart-3: #00ff66;
-  --chart-4: #ffcc00;
-  --chart-5: #b829ff;
+  --chart-1: var(--neon-pink);
+  --chart-2: var(--neon-cyan);
+  --chart-3: var(--neon-green);
+  --chart-4: var(--neon-yellow);
+  --chart-5: var(--neon-purple);
 
-  --sidebar: #09090b;
-  --sidebar-foreground: #f2f2f7;
-  --sidebar-primary: #ff2a9d;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1c1c1e;
-  --sidebar-accent-foreground: #f2f2f7;
-  --sidebar-border: #1c1c1e;
-  --sidebar-ring: #ff2a9d;
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--neon-pink);
+  --sidebar-primary-foreground: var(--surface-0);
+  --sidebar-accent: var(--surface-3);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--surface-3);
+  --sidebar-ring: var(--neon-pink);
 
+  /*
+   * Accent-as-text WCAG contrast on OLED black (#000), sRGB relative luminance:
+   * pink #ff2a9d 6.07:1; cyan #00f0ff 14.91:1; blue #3399ff 7.14:1;
+   * yellow #ffcc00 13.89:1; orange #ff6600 7.15:1; green #00ff66 15.50:1;
+   * purple #b829ff 4.80:1; red #ff003c 5.32:1; lime #ccff00 17.87:1.
+   * All nine clear WCAG AA 4.5:1 for normal-size text on --surface-0.
+   */
   --neon-pink: #ff2a9d;
-  --neon-pink-glow: rgba(255, 42, 157, 0.5);
   --neon-cyan: #00f0ff;
-  --neon-cyan-glow: rgba(0, 240, 255, 0.5);
   --neon-blue: #3399ff;
-  --neon-blue-glow: rgba(51, 153, 255, 0.5);
   --neon-yellow: #ffcc00;
-  --neon-yellow-glow: rgba(255, 204, 0, 0.5);
   --neon-orange: #ff6600;
-  --neon-orange-glow: rgba(255, 102, 0, 0.5);
   --neon-green: #00ff66;
-  --neon-green-glow: rgba(0, 255, 102, 0.5);
   --neon-purple: #b829ff;
-  --neon-purple-glow: rgba(184, 41, 255, 0.5);
   --neon-red: #ff003c;
-  --neon-red-glow: rgba(255, 0, 60, 0.5);
   --neon-lime: #ccff00;
-  --neon-lime-glow: rgba(204, 255, 0, 0.5);
   --neon-white: #ffffff;
-  --neon-white-glow: rgba(255, 255, 255, 0.4);
 
-  --machined-bg: linear-gradient(180deg, #121214 0%, #0a0a0c 100%);
-  --machined-shadow: 0 16px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  /* Back-compatible glow colors, now derived from the accent tokens. */
+  --neon-pink-glow: color-mix(in oklab, var(--neon-pink) 50%, transparent);
+  --neon-cyan-glow: color-mix(in oklab, var(--neon-cyan) 50%, transparent);
+  --neon-blue-glow: color-mix(in oklab, var(--neon-blue) 50%, transparent);
+  --neon-yellow-glow: color-mix(in oklab, var(--neon-yellow) 50%, transparent);
+  --neon-orange-glow: color-mix(in oklab, var(--neon-orange) 50%, transparent);
+  --neon-green-glow: color-mix(in oklab, var(--neon-green) 50%, transparent);
+  --neon-purple-glow: color-mix(in oklab, var(--neon-purple) 50%, transparent);
+  --neon-red-glow: color-mix(in oklab, var(--neon-red) 50%, transparent);
+  --neon-lime-glow: color-mix(in oklab, var(--neon-lime) 50%, transparent);
+  --neon-white-glow: color-mix(in oklab, white 40%, transparent);
+
+  /* Semantic box-shadow glow tokens. */
+  --glow-pink: 0 0 24px color-mix(in oklab, var(--neon-pink) 40%, transparent);
+  --glow-pink-strong: 0 0 32px color-mix(in oklab, var(--neon-pink) 60%, transparent);
+  --glow-cyan: 0 0 24px color-mix(in oklab, var(--neon-cyan) 30%, transparent);
+  --glow-cyan-strong: 0 0 32px color-mix(in oklab, var(--neon-cyan) 50%, transparent);
+  --glow-blue: 0 0 24px color-mix(in oklab, var(--neon-blue) 35%, transparent);
+  --glow-blue-strong: 0 0 32px color-mix(in oklab, var(--neon-blue) 55%, transparent);
+  --glow-yellow: 0 0 24px color-mix(in oklab, var(--neon-yellow) 30%, transparent);
+  --glow-yellow-strong: 0 0 32px color-mix(in oklab, var(--neon-yellow) 50%, transparent);
+  --glow-orange: 0 0 24px color-mix(in oklab, var(--neon-orange) 35%, transparent);
+  --glow-orange-strong: 0 0 32px color-mix(in oklab, var(--neon-orange) 55%, transparent);
+  --glow-green: 0 0 24px color-mix(in oklab, var(--neon-green) 30%, transparent);
+  --glow-green-strong: 0 0 32px color-mix(in oklab, var(--neon-green) 50%, transparent);
+  --glow-purple: 0 0 24px color-mix(in oklab, var(--neon-purple) 35%, transparent);
+  --glow-purple-strong: 0 0 32px color-mix(in oklab, var(--neon-purple) 55%, transparent);
+  --glow-red: 0 0 24px color-mix(in oklab, var(--neon-red) 40%, transparent);
+  --glow-red-strong: 0 0 32px color-mix(in oklab, var(--neon-red) 60%, transparent);
+  --glow-lime: 0 0 24px color-mix(in oklab, var(--neon-lime) 30%, transparent);
+  --glow-lime-strong: 0 0 32px color-mix(in oklab, var(--neon-lime) 50%, transparent);
+
+  /* Semantic text glow tokens. */
+  --text-glow-pink: 0 0 8px color-mix(in oklab, var(--neon-pink) 60%, transparent);
+  --text-glow-cyan: 0 0 12px color-mix(in oklab, var(--neon-cyan) 50%, transparent);
+  --text-glow-blue: 0 0 8px color-mix(in oklab, var(--neon-blue) 55%, transparent);
+  --text-glow-yellow: 0 0 8px color-mix(in oklab, var(--neon-yellow) 55%, transparent);
+  --text-glow-orange: 0 0 8px color-mix(in oklab, var(--neon-orange) 55%, transparent);
+  --text-glow-green: 0 0 8px color-mix(in oklab, var(--neon-green) 55%, transparent);
+  --text-glow-purple: 0 0 8px color-mix(in oklab, var(--neon-purple) 55%, transparent);
+  --text-glow-red: 0 0 8px color-mix(in oklab, var(--neon-red) 60%, transparent);
+  --text-glow-lime: 0 0 8px color-mix(in oklab, var(--neon-lime) 55%, transparent);
+
+  --shadow-button:
+    0 4px 12px color-mix(in oklab, black 40%, transparent),
+    inset 0 1px 1px color-mix(in oklab, white 12%, transparent);
+  --shadow-inset-hairline: inset 0 1px 0 color-mix(in oklab, white 5%, transparent);
+  --shadow-floating:
+    0 24px 48px color-mix(in oklab, black 60%, transparent),
+    0 0 0 1px color-mix(in oklab, white 4%, transparent);
+  --shadow-dialog:
+    0 50px 100px color-mix(in oklab, black 90%, transparent), var(--rim-light-shadow);
+  --shadow-drawer:
+    0 -24px 64px color-mix(in oklab, black 75%, transparent), var(--rim-light-shadow);
+  --shadow-sheet: 0 0 64px color-mix(in oklab, black 80%, transparent);
+  --shadow-avatar:
+    0 0 0 1px color-mix(in oklab, white 4%, transparent),
+    0 4px 12px color-mix(in oklab, black 50%, transparent);
+  --shadow-recessed-compact: inset 0 2px 6px color-mix(in oklab, black 80%, transparent);
+  --shadow-control-thumb:
+    0 4px 8px color-mix(in oklab, black 60%, transparent),
+    inset 0 1px 1px color-mix(in oklab, white 50%, transparent);
+  --shadow-switch-checked:
+    inset 0 1px 2px color-mix(in oklab, black 40%, transparent), var(--glow-pink);
+  --shadow-keycap:
+    0 2px 0 color-mix(in oklab, black 65%, transparent),
+    inset 0 1px 1px color-mix(in oklab, white 8%, transparent);
+  --shadow-hud: inset 0 0 32px color-mix(in oklab, var(--neon-cyan) 2.5%, transparent);
+  --machined-bg: linear-gradient(180deg, var(--surface-2) 0%, var(--card) 100%);
+  --machined-shadow:
+    0 16px 32px color-mix(in oklab, black 50%, transparent),
+    inset 0 1px 1px color-mix(in oklab, white 5%, transparent);
   --recessed-bg: #050505;
-  --recessed-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.9), 0 1px 0 rgba(255, 255, 255, 0.05);
-  --rim-light-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 1px 0 rgba(255, 255, 255, 0.03);
+  --recessed-shadow:
+    inset 0 4px 16px color-mix(in oklab, black 90%, transparent),
+    0 1px 0 color-mix(in oklab, white 5%, transparent);
+  --rim-light-shadow:
+    inset 0 1px 1px color-mix(in oklab, white 8%, transparent),
+    0 1px 0 color-mix(in oklab, white 3%, transparent);
 }
 
 /* NEONCITE MONO (high-contrast, no neons) ------------------ */
@@ -167,39 +239,39 @@
 /* ============= NEON UTILITIES ============= */
 .neon-pink {
   color: var(--neon-pink);
-  text-shadow: 0 0 12px var(--neon-pink-glow);
+  text-shadow: var(--text-glow-pink);
 }
 .neon-cyan {
   color: var(--neon-cyan);
-  text-shadow: 0 0 12px var(--neon-cyan-glow);
+  text-shadow: var(--text-glow-cyan);
 }
 .neon-blue {
   color: var(--neon-blue);
-  text-shadow: 0 0 12px var(--neon-blue-glow);
+  text-shadow: var(--text-glow-blue);
 }
 .neon-yellow {
   color: var(--neon-yellow);
-  text-shadow: 0 0 12px var(--neon-yellow-glow);
+  text-shadow: var(--text-glow-yellow);
 }
 .neon-orange {
   color: var(--neon-orange);
-  text-shadow: 0 0 12px var(--neon-orange-glow);
+  text-shadow: var(--text-glow-orange);
 }
 .neon-green {
   color: var(--neon-green);
-  text-shadow: 0 0 12px var(--neon-green-glow);
+  text-shadow: var(--text-glow-green);
 }
 .neon-purple {
   color: var(--neon-purple);
-  text-shadow: 0 0 12px var(--neon-purple-glow);
+  text-shadow: var(--text-glow-purple);
 }
 .neon-red {
   color: var(--neon-red);
-  text-shadow: 0 0 12px var(--neon-red-glow);
+  text-shadow: var(--text-glow-red);
 }
 .neon-lime {
   color: var(--neon-lime);
-  text-shadow: 0 0 12px var(--neon-lime-glow);
+  text-shadow: var(--text-glow-lime);
 }
 .neon-white {
   color: var(--neon-white);
@@ -228,11 +300,11 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
+  background: color-mix(in oklab, white 8%, transparent);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: color-mix(in oklab, white 15%, transparent);
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -259,11 +331,11 @@
   0%,
   100% {
     opacity: 1;
-    filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.8));
+    filter: drop-shadow(0 0 8px color-mix(in oklab, var(--neon-green) 80%, transparent));
   }
   50% {
     opacity: 0.6;
-    filter: drop-shadow(0 0 2px rgba(0, 255, 102, 0.3));
+    filter: drop-shadow(0 0 2px color-mix(in oklab, var(--neon-green) 30%, transparent));
   }
 }
 .animate-pulse-glow {
@@ -338,8 +410,8 @@
 }
 .bg-grid {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    linear-gradient(color-mix(in oklab, white 4%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, white 4%, transparent) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .bg-grid-drift {
@@ -354,6 +426,49 @@
   .bg-grid-drift,
   .hover-glitch:hover {
     animation: none !important;
+  }
+}
+
+/* Higher-contrast users get clearer hairlines/muted text and less visual-noise glow. */
+@media (prefers-contrast: more) {
+  :root,
+  .dark {
+    --hairline: color-mix(in oklab, white 40%, transparent);
+    --hairline-strong: color-mix(in oklab, white 60%, transparent);
+    --muted-foreground: #c7c7cc;
+
+    --glow-pink: none;
+    --glow-pink-strong: none;
+    --glow-cyan: none;
+    --glow-cyan-strong: none;
+    --glow-blue: none;
+    --glow-blue-strong: none;
+    --glow-yellow: none;
+    --glow-yellow-strong: none;
+    --glow-orange: none;
+    --glow-orange-strong: none;
+    --glow-green: none;
+    --glow-green-strong: none;
+    --glow-purple: none;
+    --glow-purple-strong: none;
+    --glow-red: none;
+    --glow-red-strong: none;
+    --glow-lime: none;
+    --glow-lime-strong: none;
+
+    --text-glow-pink: none;
+    --text-glow-cyan: none;
+    --text-glow-blue: none;
+    --text-glow-yellow: none;
+    --text-glow-orange: none;
+    --text-glow-green: none;
+    --text-glow-purple: none;
+    --text-glow-red: none;
+    --text-glow-lime: none;
+    --neon-white-glow: transparent;
+    --machined-shadow: inset 0 0 0 1px var(--hairline);
+    --recessed-shadow: inset 0 0 0 1px var(--hairline);
+    --rim-light-shadow: inset 0 0 0 1px var(--hairline);
   }
 }
 

@@ -9,7 +9,7 @@ export function CtaBanner() {
         className="absolute -inset-px opacity-60 pointer-events-none"
         style={{
           background:
-            "radial-gradient(600px 200px at 80% 0%, rgba(255,42,157,0.18), transparent 60%), radial-gradient(500px 180px at 0% 100%, rgba(0,240,255,0.14), transparent 60%)",
+            "radial-gradient(600px 200px at 80% 0%, color-mix(in oklab, var(--neon-pink) 18%, transparent), transparent 60%), radial-gradient(500px 180px at 0% 100%, color-mix(in oklab, var(--neon-cyan) 14%, transparent), transparent 60%)",
         }}
       />
       <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-8">

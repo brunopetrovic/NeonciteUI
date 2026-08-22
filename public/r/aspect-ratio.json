@@ -2,14 +2,17 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "aspect-ratio",
   "type": "registry:ui",
+  "description": "Keeps media and panels locked to a consistent aspect ratio.",
   "dependencies": [
     "@radix-ui/react-aspect-ratio"
   ],
   "registryDependencies": [],
+  "integrity": "sha256-CCaCn4oFqcPVP5TIdXcMLbk9OAEtF/j7XJ7P+FuLIsw=",
   "files": [
     {
       "path": "components/neoncite/aspect-ratio.tsx",
       "content": "\"use client\";\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\n\nexport const AspectRatio = AspectRatioPrimitive.Root;\n",
+      "integrity": "sha256-CCaCn4oFqcPVP5TIdXcMLbk9OAEtF/j7XJ7P+FuLIsw=",
       "type": "registry:ui",
       "target": ""
     }

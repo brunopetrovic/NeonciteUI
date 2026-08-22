@@ -23,7 +23,7 @@ export function LoadingOverlay({
       aria-busy="true"
       {...props}
     >
-      <div className="flex min-w-[180px] flex-col items-center rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-5 text-center shadow-[0_24px_48px_rgba(0,0,0,.65),var(--rim-light-shadow)]">
+      <div className="flex min-w-[180px] flex-col items-center rounded-[14px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-5 text-center shadow-[var(--shadow-floating)]">
         <Spinner className="h-5 w-5" />
         <div className="mt-3 font-mono text-[11px] uppercase tracking-[.18em] text-foreground">
           {label}

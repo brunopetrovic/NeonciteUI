@@ -12,15 +12,18 @@
     "typecheck": "tsc --noEmit",
     "test": "node --test tests/*.test.mjs",
     "test:e2e": "playwright test",
-    "validate:registry": "node scripts/validate-registry-deps.mjs",
-    "validate": "npm run validate:registry && npm run validate:generated && npm run lint && npm run typecheck && npm run test && npm run build",
+    "validate:registry": "node scripts/validate-registry-deps.mjs && node scripts/validate-registry-style.mjs && node scripts/validate-registry-accessibility.mjs",
+    "validate": "npm run typecheck && npm run lint && npm run test && npm run test:unit && npm run validate:registry && npm run validate:generated && npm run build && npm run test:e2e && npm run check:bundle",
     "validate:generated": "npm run build:dist && npm run build:sitemap && node scripts/validate-generated.mjs",
     "format": "prettier --write .",
     "build:registry": "node scripts/build-registry.mjs",
     "build:package": "node scripts/build-package.mjs",
     "build:sitemap": "node scripts/build-sitemap.mjs",
     "build:dist": "npm run build:registry && npm run build:package",
-    "deploy": "npm run build && wrangler deploy --config wrangler.deploy.jsonc"
+    "deploy": "npm run build && wrangler deploy --config wrangler.deploy.jsonc",
+    "test:unit": "vitest run",
+    "check:bundle": "node scripts/check-core-bundle.mjs",
+    "build:analyze": "vite build --mode production && npx vite-bundle-visualizer --open false"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
@@ -54,7 +57,6 @@
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-query": "^5.83.0",
     "@tanstack/react-router": "^1.168.25",
-    "@tanstack/react-start": "^1.167.50",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.167.28",
     "class-variance-authority": "^0.7.1",
@@ -62,7 +64,6 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.39.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.575.0",
     "prism-react-renderer": "^2.4.1",
@@ -71,7 +72,6 @@
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.76.0",
     "react-resizable-panels": "^4.6.5",
-    "recharts": "^2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.1",
@@ -101,6 +101,35 @@
     "prompts": "^2.4.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "framer-motion": "^12.39.0",
+    "recharts": "^2.15.4",
+    "@tanstack/react-start": "^1.167.50",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.5",
+    "@testing-library/jest-dom": "^6.6.3",
+    "jsdom": "^26.1.0",
+    "vitest": "^4.1.10",
+    "esbuild": "^0.28.2",
+    "vite-bundle-visualizer": "^1.2.1"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "tailwindcss": ">=4.0.0",
+    "framer-motion": ">=10.0.0",
+    "recharts": ">=2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "framer-motion": {
+      "optional": true
+    },
+    "recharts": {
+      "optional": true
+    }
   }
 }

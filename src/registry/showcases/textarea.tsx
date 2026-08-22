@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Textarea } from "@/registry/ui/textarea";
 
 export const usage = `import { Textarea } from "@/components/neoncite/textarea"

@@ -4,10 +4,12 @@
   "type": "registry:theme",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-lnSFQpun8rqc5hGZuC/hLqTESE9iQvGVR64gz86nQPI=",
   "files": [
     {
       "path": "src/styles/theme-neoncite.css",
       "content": "/* Neoncite Neoncite — dark-only registry theme */\n:root, .dark {\n  --primary: #ff2a9d;\n  --ring: #ff2a9d;\n  --accent: #00f0ff;\n  --radius: 0.75rem;\n  --surface-0: #000000;\n  --surface-1: #09090b;\n  --surface-2: #121214;\n  --surface-3: #1c1c1e;\n  --hairline: #2c2c2e;\n  --background: #000000;\n  --foreground: #f2f2f7;\n  --card: #09090b;\n  --card-foreground: #f2f2f7;\n  --popover: #121214;\n  --popover-foreground: #f2f2f7;\n  --secondary: #1c1c1e;\n  --secondary-foreground: #f2f2f7;\n  --muted: #121214;\n  --muted-foreground: #8e8e93;\n  --input: #1c1c1e;\n  --border: #1c1c1e;\n}",
+      "integrity": "sha256-lnSFQpun8rqc5hGZuC/hLqTESE9iQvGVR64gz86nQPI=",
       "type": "registry:theme",
       "target": ""
     }

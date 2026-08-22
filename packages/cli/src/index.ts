@@ -8,6 +8,9 @@ import kleur from "kleur";
 import { execa } from "execa";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { createHash } from "node:crypto";
+import { createHash } from "node:crypto";
+import { createHash } from "node:crypto";
 import { z } from "zod";
 
 const CLI_VERSION = "0.2.0";
@@ -17,12 +20,14 @@ const BOOTSTRAP_DEPS = ["clsx", "tailwind-merge", "tw-animate-css"];
 const RegistryFile = z.object({
   path: z.string(),
   content: z.string(),
+  integrity: z.string().regex(/^sha256-[A-Za-z0-9+/=]+$/),
   type: z.string().optional(),
   target: z.string().optional(),
 });
 const RegistryItem = z.object({
   name: z.string(),
   type: z.string(),
+  description: z.string().optional(),
   dependencies: z.array(z.string()).default([]),
   registryDependencies: z.array(z.string()).default([]),
   files: z.array(RegistryFile),
@@ -115,6 +120,15 @@ function relativeImport(fromFile: string, toFile: string) {
   const withoutExtension = toFile.replace(/\.[cm]?[jt]sx?$/, "");
   const relative = path.relative(path.dirname(fromFile), withoutExtension).replace(/\\/g, "/");
   return relative.startsWith(".") ? relative : `./${relative}`;
+}
+
+function verifyRegistryIntegrity(itemName: string, file: z.infer<typeof RegistryFile>) {
+  const actual = `sha256-${createHash("sha256").update(file.content, "utf8").digest("base64")}`;
+  if (actual !== file.integrity) {
+    throw new Error(
+      `Registry integrity check failed for ${itemName}. Do not use the downloaded file. Report this at https://github.com/brunopetrovic/NeonciteUI/issues.`,
+    );
+  }
 }
 
 async function fetchItem(registry: string, name: string): Promise<TRegistryItem> {
@@ -370,6 +384,9 @@ program
       console.log(
         `  ${kleur.bold(item.name)} ${kleur.dim(`[${item.type}]`)} ${deps.length ? kleur.dim(`(requires: ${deps.join(", ")})`) : ""}`,
       );
+      if (item.description) console.log(kleur.dim(`    ${item.description}`));
+      if (item.description) console.log(kleur.dim(`    ${item.description}`));
+      if (item.description) console.log(kleur.dim(`    ${item.description}`));
     }
 
     const allDeps = [...new Set(items.flatMap((i) => i.dependencies))];
@@ -388,6 +405,7 @@ program
 
     for (const item of items) {
       for (const f of item.files) {
+        verifyRegistryIntegrity(item.name, f);
         const target = registryTarget(cwd, f, config);
         if ((await exists(target)) && !opts.overwrite) {
           console.log(
@@ -426,6 +444,7 @@ program
     const config = (await readConfig(cwd)) ?? ConfigSchema.parse({});
     const item = await fetchItem(config.registry, name);
     for (const f of item.files) {
+      verifyRegistryIntegrity(item.name, f);
       const local = registryTarget(cwd, f, config);
       if (!(await exists(local))) {
         console.log(kleur.red("  missing ") + path.relative(cwd, local));

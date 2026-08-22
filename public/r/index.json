@@ -5,399 +5,491 @@
     {
       "name": "button",
       "type": "registry:ui",
+      "description": "Machined button with neon variants and pressed state.",
       "dependencies": [
         "@radix-ui/react-slot",
-        "class-variance-authority",
-        "framer-motion"
+        "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-B9GPlQkeKSS7teapxmTswjsGsg4hYtiE3QPzEgrAMOM="
     },
     {
       "name": "input",
       "type": "registry:ui",
+      "description": "Recessed input with rim lighting and neon focus ring.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-CjRtX8sufFooF0Hg/Bw/fuvRmHno0Th2IWsbWDs5++M="
     },
     {
       "name": "textarea",
       "type": "registry:ui",
+      "description": "Recessed multi-line input with neon focus state.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-rz8Jy0FOJ5PtFsN9sfjHNsBiYcFP8iMfX8sk/NQwyag="
     },
     {
       "name": "card",
       "type": "registry:ui",
+      "description": "Neoncite machined card with optional rim-light header.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-1CwTvT1op9qNqCsWC32g/fAC7bqGQ6vENU5XUFraeTI="
     },
     {
       "name": "badge",
       "type": "registry:ui",
+      "description": "Pill badge in 6 neon variants for status and labels.",
       "dependencies": [
-        "class-variance-authority",
-        "framer-motion"
+        "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-EJ5tPJgBGmX85bY28ieFz75KGNYsXfPTMGYHvDSynH4="
     },
     {
       "name": "separator",
       "type": "registry:ui",
+      "description": "Hairline divider with horizontal and vertical orientations.",
       "dependencies": [
         "@radix-ui/react-separator"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-dbe/IQnL0nvG3lCUD5DRHn4lA3/qJPZO/HxXATnc+AA="
     },
     {
       "name": "avatar",
       "type": "registry:ui",
+      "description": "Circular avatar with rim glow and machined fallback.",
       "dependencies": [
         "@radix-ui/react-avatar"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-jIT/7mD6fr69dyRq19sps/IktGv6FAWHtgr+GdeGbR4="
     },
     {
       "name": "dialog",
       "type": "registry:ui",
+      "description": "Modal dialog with scan-line backdrop and machined panel.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "lucide-react"
       ],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-5WZw+2XY/amUj6Ez7dkURevLHoMA8G+n6oz5LbNkrKE="
     },
     {
       "name": "tooltip",
       "type": "registry:ui",
+      "description": "Compact uppercase tooltip with hairline border.",
       "dependencies": [
         "@radix-ui/react-tooltip"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-EHvNLYkG94JddeRJ0C2xrfmHew7YZ2sKfFZkRb2XvyI="
     },
     {
       "name": "tabs",
       "type": "registry:ui",
+      "description": "Segmented tabs with neon-active indicator.",
       "dependencies": [
         "@radix-ui/react-tabs"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-KlONftWmoMC86RWCnUinvEaxzi/pGBnjDW9qg4AWbjw="
     },
     {
       "name": "toggle",
       "type": "registry:ui",
+      "description": "Pressed/unpressed action control with a machined neon-active state.",
       "dependencies": [
         "@radix-ui/react-toggle"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-y6uUJNIkIUezZerHP+ZTX3WXEVEKToMfYJajNJpQptQ="
     },
     {
       "name": "checkbox",
       "type": "registry:ui",
+      "description": "Recessed checkbox with neon-pink checked state.",
       "dependencies": [
         "@radix-ui/react-checkbox",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-haJNSLeGTwDxZt3wowBbl4s6xAb+1fm+ZpKiEnc+Rfc="
     },
     {
       "name": "slider",
       "type": "registry:ui",
+      "description": "Hardware slider with track ticks and a metallic thumb.",
       "dependencies": [
         "@radix-ui/react-slider"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-5sZ42jrCbNS+Gy4tjbBeT0bOYmSY928OczKriISXl0k="
     },
     {
       "name": "progress",
       "type": "registry:ui",
+      "description": "Recessed progress bar with neon spectrum fill.",
       "dependencies": [
         "@radix-ui/react-progress"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-jF+fx1GpsD1QgCeOMYDElBsU6x+tcKY3OVRUgb9i5pc="
     },
     {
       "name": "kpi-card",
       "type": "registry:ui",
+      "description": "Neoncite signature: rim-lit metric card with delta.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-RMX1sHaG3CjAG82Gj8gQC3xarDG4/ShwKvWb2L0LDZo="
     },
     {
       "name": "label",
       "type": "registry:ui",
+      "description": "Mono uppercase form label tuned to Neoncite tokens.",
       "dependencies": [
         "@radix-ui/react-label"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-R1DSZu4T+TrhCsb8ozhPqdeVhaBX5ByGDA1mwpLHyHo="
     },
     {
       "name": "skeleton",
       "type": "registry:ui",
+      "description": "Shimmering placeholder for loading states.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-m7c7CXqhAjefAhFv/VKdg1y+TNTFlVGlTwII9Qa4Ay0="
     },
     {
       "name": "alert",
       "type": "registry:ui",
+      "description": "Status callout in 5 neon variants for inline feedback.",
       "dependencies": [
         "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-C9YTdGvpmg/E5di65fz4p9C1sUjyvZOGsi4U5hA/LdU="
     },
     {
       "name": "popover",
       "type": "registry:ui",
+      "description": "Floating panel anchored to a trigger.",
       "dependencies": [
         "@radix-ui/react-popover"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-mlOGbabE446uhGiBQ6Yehvk7vZJiP1kPLsI9KJQnrdo="
     },
     {
       "name": "radio-group",
       "type": "registry:ui",
+      "description": "Recessed radios with neon-pink indicator.",
       "dependencies": [
         "@radix-ui/react-radio-group",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-7FHW9c8W9ngdCKpRMD6vqJTp/TUjvzLgAP3YxDGDgYU="
     },
     {
       "name": "select",
       "type": "registry:ui",
+      "description": "Dropdown select with neon focus and machined surface.",
       "dependencies": [
         "@radix-ui/react-select",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-z+tzOUUEZE/oyYbPHZQonei2/awgaJ/vSaVF1/4Xx/U="
     },
     {
       "name": "sheet",
       "type": "registry:ui",
+      "description": "Side panel that slides from any edge of the viewport.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-3w/JKsAVoXvhejWxEO9mQcJ6os/b+RgnPKtgCaWMi/M="
     },
     {
       "name": "dropdown-menu",
       "type": "registry:ui",
+      "description": "Keyboard-friendly menu with checkbox/radio items.",
       "dependencies": [
         "@radix-ui/react-dropdown-menu",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-m+oGNmODZQxCq4Yi3n3vemI965BmI7xgjMu8jrfvLhQ="
     },
     {
       "name": "switch",
       "type": "registry:ui",
+      "description": "Hardware toggle switch with neon-pink active state.",
       "dependencies": [
         "@radix-ui/react-switch"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-mcdgjdfrT5bnW/ZlT/PwxImdXX1DWxWFSFpFQSfI7Bo="
     },
     {
       "name": "accordion",
       "type": "registry:ui",
+      "description": "Collapsible sections with neon-pink active triggers.",
       "dependencies": [
         "@radix-ui/react-accordion",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-g3PJak8vSncScvjl2A2d2XojVRg6yI62mt2PYuz1VY0="
     },
     {
       "name": "hover-card",
       "type": "registry:ui",
+      "description": "Rich hover-triggered preview floating panel.",
       "dependencies": [
         "@radix-ui/react-hover-card"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-yCbVN76D9Dia8CKv0aOQ4ePkAqv6mtPJqiFpp1iIiYA="
     },
     {
       "name": "breadcrumb",
       "type": "registry:ui",
+      "description": "Mono uppercase breadcrumb trail with chevron separators.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-utzYSnuEKAbtPPF5mWzQNt7AkSPlYC0lOdzJ28VGtH8="
     },
     {
       "name": "sonner",
       "type": "registry:ui",
+      "description": "Toast notifications themed for Neoncite (success/error/warn/info).",
       "dependencies": [
         "sonner"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-ZHylYm3cFBZZKztBpPD+E7XA8iOzyuJWFZfeWzkALsQ="
     },
     {
       "name": "command",
       "type": "registry:ui",
+      "description": "Keyboard-driven command palette built on cmdk.",
       "dependencies": [
         "cmdk",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-TiATISGr5XaU4U2DQRT6wMBaZtFJIMTkyQay9Rz7Xqo="
     },
     {
       "name": "chart",
       "type": "registry:ui",
+      "description": "Requires recharts >=2.0.0 as a peer dependency.",
       "dependencies": [
         "recharts"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-DmNPX9JqCvLxDh9RmjSmXvZGEC2wiSgtiRmcJqZCNws="
     },
     {
       "name": "data-table",
       "type": "registry:ui",
+      "description": "Sortable, filterable, paginated table built on TanStack Table.",
       "dependencies": [
         "@tanstack/react-table@^8",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-e2NSsLwOhNWtQWhmdoDQdH2vxezymDwE0SERWRKG91M="
     },
     {
       "name": "calendar",
       "type": "registry:ui",
+      "description": "Date picker calendar built on react-day-picker.",
       "dependencies": [
         "react-day-picker@^9",
         "date-fns@^4",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-mF3NMeZVAMRiQge5cI0LkuTx0LXOBGaCn5L1/DUoo7o="
     },
     {
       "name": "form",
       "type": "registry:ui",
+      "description": "Validated forms with react-hook-form and zod schema.",
       "dependencies": [
         "react-hook-form",
         "@hookform/resolvers",
-        "zod"
+        "zod",
+        "@radix-ui/react-slot"
       ],
       "registryDependencies": [
         "label"
-      ]
+      ],
+      "integrity": "sha256-TeBLbuKXF+cenNi85ectIAQCxXMWq3YPHKEiazagmrc="
     },
     {
       "name": "alert-dialog",
       "type": "registry:ui",
+      "description": "Confirmation dialog for destructive or consequential actions.",
       "dependencies": [
         "@radix-ui/react-alert-dialog"
       ],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-JvkKFxg2g/biZkRfbKydzVSFwwjuLlztwkiUbDUT+UE="
     },
     {
       "name": "aspect-ratio",
       "type": "registry:ui",
+      "description": "Keeps media and panels locked to a consistent aspect ratio.",
       "dependencies": [
         "@radix-ui/react-aspect-ratio"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-CCaCn4oFqcPVP5TIdXcMLbk9OAEtF/j7XJ7P+FuLIsw="
     },
     {
       "name": "collapsible",
       "type": "registry:ui",
+      "description": "Accessible disclosure primitive for expandable content.",
       "dependencies": [
         "@radix-ui/react-collapsible"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-9N28p/HCpFhiVO7euHsC2qcIJmk1onn95N0ckSSJQxI="
     },
     {
       "name": "scroll-area",
       "type": "registry:ui",
+      "description": "Custom scroll container with native scrolling behavior.",
       "dependencies": [
         "@radix-ui/react-scroll-area"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-RtRVUaXAQp7gk5iZ2T92SsFtnvuV06+7H/gw/OgFH8Y="
     },
     {
       "name": "toggle-group",
       "type": "registry:ui",
+      "description": "Single or multi-select group of pressed-state controls.",
       "dependencies": [
         "@radix-ui/react-toggle-group",
         "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-cYmuscurPe5OXPOr6PHv3jnuwLB7CpwzH8nVADhezYs="
     },
     {
       "name": "context-menu",
       "type": "registry:ui",
+      "description": "Right-click menu with checkbox, radio and nested items.",
       "dependencies": [
         "@radix-ui/react-context-menu",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-vmjuZIzm2s2xjoR6TINvwLX8SQlUE3F8irFuGS3ZAF8="
     },
     {
       "name": "menubar",
       "type": "registry:ui",
+      "description": "Desktop-style application menu bar with keyboard navigation.",
       "dependencies": [
         "@radix-ui/react-menubar",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-/OyWf/j9gjLRebAGVC2LfJC4P94l/vG8M+KP2mv0KAY="
     },
     {
       "name": "navigation-menu",
       "type": "registry:ui",
+      "description": "Accessible navigation with animated viewport content.",
       "dependencies": [
         "@radix-ui/react-navigation-menu",
         "class-variance-authority",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-1VOG2yZFeN8uXWU+nSFJHwKHlUijGPLviJSgESNs4eQ="
     },
     {
       "name": "resizable",
       "type": "registry:ui",
+      "description": "Keyboard-accessible resizable application panel layouts.",
       "dependencies": [
         "react-resizable-panels",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-nFTUq22wov5ieR9RU67qG+q/C0CfAAmGwdUCX8AAI8I="
     },
     {
       "name": "input-otp",
       "type": "registry:ui",
+      "description": "Segmented one-time-password input with accessible caret behavior.",
       "dependencies": [
         "input-otp",
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-CW2fJNafqzww6SPzdU7AoZHd4G5K3C8vt3a47y9Z1Zw="
     },
     {
       "name": "drawer",
       "type": "registry:ui",
+      "description": "Touch-friendly bottom drawer built on Vaul.",
       "dependencies": [
         "vaul"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-smjgn8nXIMGCTiZcqw+5vbbioISr/lwfRULNAhgSgC4="
     },
     {
       "name": "carousel",
       "type": "registry:ui",
+      "description": "Keyboard-friendly Embla carousel with Neoncite controls.",
       "dependencies": [
         "embla-carousel-react",
         "lucide-react"
       ],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-QJrdUD2Kpv1H6RotgwFLt5gPCMnFFLLjk3Ai8gi66xk="
     },
     {
       "name": "pagination",
       "type": "registry:ui",
+      "description": "Page navigation primitives with active and ellipsis states.",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-W9r2Ylal0SSudyBXJ6uj9tteNPR0rwEPnXvYJHd7znI="
     },
     {
       "name": "combobox",
       "type": "registry:ui",
+      "description": "Searchable select composed from Command and Popover.",
       "dependencies": [
         "lucide-react"
       ],
@@ -405,11 +497,13 @@
         "button",
         "command",
         "popover"
-      ]
+      ],
+      "integrity": "sha256-sZG2AGg7OMysKWrhNcLNoWaF67m6HlLYqDtXYC9Vfqo="
     },
     {
       "name": "date-picker",
       "type": "registry:ui",
+      "description": "Single-date picker composed from Calendar and Popover.",
       "dependencies": [
         "date-fns@^4",
         "lucide-react"
@@ -418,272 +512,345 @@
         "button",
         "calendar",
         "popover"
-      ]
+      ],
+      "integrity": "sha256-pkWPeC3CGgyBAC9vtE2FqsPCFu9R1NGVO5QKSS6djVI="
     },
     {
       "name": "empty-state",
       "type": "registry:ui",
+      "description": "Structured empty-state surface with icon, guidance and action slots.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-0LDaTDgPqgP6TFg/RzUp/8h+cXfLksWF0TZ7boAb4As="
     },
     {
       "name": "spinner",
       "type": "registry:ui",
+      "description": "Reduced-motion-aware loading spinner.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-0cI+8SzhRUuk/VBvL0cDMUWZLTkexFVwyawv6KsTqIY="
     },
     {
       "name": "loading-overlay",
       "type": "registry:ui",
+      "description": "Blocking loading surface with live-region semantics.",
       "dependencies": [],
       "registryDependencies": [
         "spinner"
-      ]
+      ],
+      "integrity": "sha256-4PJNCgRR1t/+r2nlGO4Vmw/wyUbGfWZMxWB+1mzSNpI="
     },
     {
       "name": "kbd",
       "type": "registry:ui",
+      "description": "Machined keyboard-key hint for shortcuts and command surfaces.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-2Ya5fnNDkZQBN4Sj8smQ21tHWKeP/QMi4TlPFqLrPtk="
     },
     {
       "name": "code",
       "type": "registry:ui",
+      "description": "Inline and block code typography helpers.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-VLOSbi+5j9IUUN6VT1ObmTTgk6doKBTrOguTnF+Q4TI="
     },
     {
       "name": "copy-button",
       "type": "registry:ui",
+      "description": "Clipboard action with transient copied feedback.",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-+De/Z2h3/gfaZVHc2ReQmiND9GmsgOVxUDOb22WLhJk="
     },
     {
       "name": "icon-button",
       "type": "registry:ui",
+      "description": "Accessible icon-only Button wrapper requiring a label.",
       "dependencies": [],
       "registryDependencies": [
         "button"
-      ]
+      ],
+      "integrity": "sha256-aBOoW0zmz8jwvM6H1yZgekxhmrznk/nRlSWNJx3KPb0="
     },
     {
       "name": "status-indicator",
       "type": "registry:ui",
+      "description": "Compact labeled status dot with semantic neon states.",
       "dependencies": [
         "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-L7dUA1KOVD7N5bmba5Tn27IJt+8xWYgD6umvX50Mr14="
     },
     {
       "name": "input-group",
       "type": "registry:ui",
+      "description": "Composed input shell with leading and trailing addons.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-Mn1TNzN2XntxtiE/oc8mcvxDlCZb0y7XXW0oBDYilH8="
     },
     {
       "name": "button-group",
       "type": "registry:ui",
+      "description": "Visually joins adjacent buttons into one control cluster.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-l6woBbU6PYGgH2glkGm6HabNYn3zigF9osDDGlc/kgM="
     },
     {
       "name": "search-input",
       "type": "registry:ui",
+      "description": "Recessed search field with icon and clear affordance.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-nCC2E46EtojS+S3YWE/geemWRDyHhc1QhP+VRJtz81k="
     },
     {
       "name": "password-input",
       "type": "registry:ui",
+      "description": "Password field with accessible visibility toggle.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-rg4S3gZT2yLCQ/UGYzIOAMzdFT7PvFSZtFLznsPKmgQ="
     },
     {
       "name": "number-field",
       "type": "registry:ui",
+      "description": "Numeric input with bounded increment and decrement controls.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-CFzV5CQMSSvoKxtJ2c2YBuNfgd4Xo3qKhOUJH+mYRXE="
     },
     {
       "name": "time-picker",
       "type": "registry:ui",
+      "description": "Dark-native time input with Neoncite focus treatment.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-OrtuAjVKp3+nvLJh9ZgjjoC4Mwc0Ud2U39tehikNoUY="
     },
     {
       "name": "file-upload",
       "type": "registry:ui",
+      "description": "Keyboard and drag-and-drop file selection surface.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-yWoVJtwFZGFjiqoIhwoPa0/52iuULo5OPNHqkuVyzWM="
     },
     {
       "name": "stepper",
       "type": "registry:ui",
+      "description": "Multi-step progress indicator with complete and active states.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-JRDuZmB2vOUz/UOI+nkt+x+eA7a/DOdWsdMt38lbJ90="
     },
     {
       "name": "timeline",
       "type": "registry:ui",
+      "description": "Chronological event timeline with optional icons and timestamps.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-Lb77yZhQdl+3jZqaAWc6xmE3vD+QITO7gRNdb5zTzxU="
     },
     {
       "name": "data-list",
       "type": "registry:ui",
+      "description": "Compact label/value definition list for technical metadata.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-5oRrnTLOq3m48M8Tgq351v0LDzAj1+Y2rPigr7XxFa8="
     },
     {
       "name": "tree-view",
       "type": "registry:ui",
+      "description": "Expandable hierarchical tree for files, nodes and resources.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-ksj5SWPtmfT/AAmhEWAbv5m09BvD7dGFaD/k+4Y/GPU="
     },
     {
       "name": "terminal",
       "type": "registry:ui",
+      "description": "Neoncite signature terminal shell with prompt and output primitives.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-vU228HlvfLxgbi+jlUhd/u6FMExbWwMIBLKRM7FOq58="
     },
     {
       "name": "log-viewer",
       "type": "registry:ui",
+      "description": "Structured live-log surface with severity, timestamp and source fields.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-05DjxsUVp9lNFuL6Y2oZx3Gwz0zKeojCjLhfNppa54Y="
     },
     {
       "name": "status-led",
       "type": "registry:ui",
+      "description": "Hardware-inspired semantic status LED with optional pulse.",
       "dependencies": [
         "class-variance-authority"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-8E2IFUPxI4t+1AoyXsYK5UeAw8A3b4va1eTrf5sz3J8="
     },
     {
       "name": "connection-status",
       "type": "registry:ui",
+      "description": "Endpoint connection state with latency and signal treatment.",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "status-led"
-      ]
+      ],
+      "integrity": "sha256-H+ZLlihAsmMQgCdPQb/sZrjBrmUznNoHf0QcBSxr9Wk="
     },
     {
       "name": "telemetry-panel",
       "type": "registry:ui",
+      "description": "Dense technical panel and row primitives for runtime telemetry.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-vp20Eoi6XcB+WmMFd1Vv7kQueFwionZqSfPrTzbj+7A="
     },
     {
       "name": "gauge",
       "type": "registry:ui",
+      "description": "Circular meter for bounded technical values.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-RIvxtDJWR0SPAA8BS7YmgrOTA6wmU9iKEhFWjYzx+/Q="
     },
     {
       "name": "sparkline-metric",
       "type": "registry:ui",
+      "description": "Metric card with a lightweight inline SVG trend line.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-CovrjsCmJp7OvCnaRYS9YsWbBql9dVySxK+aiM96nfM="
     },
     {
       "name": "resource-meter",
       "type": "registry:ui",
+      "description": "Threshold-aware resource utilization meter.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-TwgwRV1IFAwkInMeXDxW3Nw1gofohdVUqbRPhvhfrAQ="
     },
     {
       "name": "latency-indicator",
       "type": "registry:ui",
+      "description": "Signal-style latency readout with threshold coloring.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-Yci1lgnf8T1qrZFX48zI/3GuiAd3vzbLv6pjgGQnOC8="
     },
     {
       "name": "system-health",
       "type": "registry:ui",
+      "description": "Aggregated system checks with per-service health states.",
       "dependencies": [],
       "registryDependencies": [
         "status-led"
-      ]
+      ],
+      "integrity": "sha256-Q2HhFW96tRsj9S8BOKOo4R6V33Qr/y1QDy3C6MZ+Cmw="
     },
     {
       "name": "deployment-status",
       "type": "registry:ui",
+      "description": "Build/deploy state card with environment, commit and duration metadata.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-LnNlYW5949mM5ZSQ2wPhFzmMXGZXIoE2aGLoMg+cEXw="
     },
     {
       "name": "activity-stream",
       "type": "registry:ui",
+      "description": "Vertical runtime activity feed with status markers and timestamps.",
       "dependencies": [],
       "registryDependencies": [
         "status-led"
-      ]
+      ],
+      "integrity": "sha256-agxT228vefIxjYTbsOK62BRVtRPSgKHYthBCNkiLzVw="
     },
     {
       "name": "server-card",
       "type": "registry:ui",
+      "description": "Server/node surface with health and resource utilization.",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "resource-meter",
         "status-led"
-      ]
+      ],
+      "integrity": "sha256-86HP1l98UPraCLI6J6efDMQGzZM6t3IGujIVpzcLPjc="
     },
     {
       "name": "hud-panel",
       "type": "registry:ui",
+      "description": "Corner-bracket technical panel for dense command-center interfaces.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-Bngxg2sURLZKkNHGPuyxa7OeOL4vWvHRbyChJXW2IkM="
     },
     {
       "name": "diagnostic-panel",
       "type": "registry:ui",
+      "description": "Severity-coded diagnostics for checks, warnings and failures.",
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-soJRFIjfqKDkMFfxXm+x904L5m8Mc5+BgiCGZ8w2Xds="
     },
     {
       "name": "command-bar",
       "type": "registry:ui",
+      "description": "Compact command/search trigger with keyboard shortcut hints.",
       "dependencies": [
         "lucide-react"
       ],
       "registryDependencies": [
         "kbd"
-      ]
+      ],
+      "integrity": "sha256-5bCWIr4G9OIVOGwqEnVf3EJC6mwrLVzaoE5VxE8fdxc="
     },
     {
       "name": "metric-grid",
       "type": "registry:ui",
+      "description": "Responsive composition grid for KPI and telemetry cards.",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-xJ65UQG1AgwU1nqUzdDAoQAeNlE+qU0VMf/zYZHAWqk="
     },
     {
       "name": "hero-console",
@@ -692,7 +859,8 @@
       "registryDependencies": [
         "badge",
         "button"
-      ]
+      ],
+      "integrity": "sha256-yXbI0dHzD1vqXNjSj1AuB6jmfHEnGB8/TKN/uQmn+Ds="
     },
     {
       "name": "stats-strip",
@@ -700,7 +868,8 @@
       "dependencies": [],
       "registryDependencies": [
         "kpi-card"
-      ]
+      ],
+      "integrity": "sha256-9y2svR02ocy4toYaWl1rO12rbXKI4+wiy3rigtzanUo="
     },
     {
       "name": "pricing-three-tiers",
@@ -713,7 +882,8 @@
         "button",
         "card",
         "separator"
-      ]
+      ],
+      "integrity": "sha256-YQufoNgRW8V8GLgbZOhEYmUUHYsr4+qNa1fAg2ZXM14="
     },
     {
       "name": "status-health",
@@ -723,7 +893,8 @@
         "badge",
         "card",
         "progress"
-      ]
+      ],
+      "integrity": "sha256-3rsMyRm/A3BKB1wxHpvDKG1Jz8ERtxqyJ5+4K03XFHM="
     },
     {
       "name": "auth-console",
@@ -735,7 +906,8 @@
         "checkbox",
         "input",
         "label"
-      ]
+      ],
+      "integrity": "sha256-NztsCYzZ59yNTFEJ17b3oCdJwXJIWplGsPYLGN55ZCU="
     },
     {
       "name": "features-grid",
@@ -743,7 +915,8 @@
       "dependencies": [
         "lucide-react"
       ],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-xYCt2Y5Y7bDiR9vafMvUOovC+sBAPwVkbOk7QaUC83o="
     },
     {
       "name": "testimonials",
@@ -753,7 +926,8 @@
         "avatar",
         "badge",
         "card"
-      ]
+      ],
+      "integrity": "sha256-zI5H0W5afo6JGeJmFj9FhI4itnq9KIYbYLWELhdQyDs="
     },
     {
       "name": "faq-folded",
@@ -761,7 +935,8 @@
       "dependencies": [],
       "registryDependencies": [
         "accordion"
-      ]
+      ],
+      "integrity": "sha256-3R+Atht8HkB3tkk6k/q1lrgMonK4RDeOySUbaSJ3z28="
     },
     {
       "name": "pricing-tiers-alternative",
@@ -773,7 +948,8 @@
         "badge",
         "button",
         "card"
-      ]
+      ],
+      "integrity": "sha256-73Ofg20ZSNTzWoa9uLHBvoZFKc6U9Y0E2qCCxx0vFdc="
     },
     {
       "name": "cta-banner",
@@ -782,11 +958,13 @@
       "registryDependencies": [
         "badge",
         "button"
-      ]
+      ],
+      "integrity": "sha256-EuBwtVuG9hgrgxugF0z9JUlkLzMDzvA1SH/sZwSWou0="
     },
     {
       "name": "dashboard-activity",
       "type": "registry:block",
+      "description": "Requires recharts >=2.0.0 as a peer dependency.",
       "dependencies": [
         "recharts"
       ],
@@ -795,7 +973,8 @@
         "button",
         "chart",
         "separator"
-      ]
+      ],
+      "integrity": "sha256-92bmzW74CRd59tzzsjMUGAgK0LzJxVs+6X82TkNsCZU="
     },
     {
       "name": "dashboard-shell",
@@ -809,7 +988,8 @@
         "metric-grid",
         "server-card",
         "status-indicator"
-      ]
+      ],
+      "integrity": "sha256-EEv8aVyXDZx6ytoF2brATrSGzPCcfBLvfMnWya14Z/0="
     },
     {
       "name": "telemetry-dashboard",
@@ -821,7 +1001,8 @@
         "sparkline-metric",
         "system-health",
         "telemetry-panel"
-      ]
+      ],
+      "integrity": "sha256-cno1hoCnqA0wjT4BalrC3EbRXpjdz/QK3EHTsI5vynw="
     },
     {
       "name": "deployment-dashboard",
@@ -831,7 +1012,8 @@
         "activity-stream",
         "deployment-status",
         "diagnostic-panel"
-      ]
+      ],
+      "integrity": "sha256-KYFLC7bXG6BHtcS21uoePKwuDMUEKofEcDKcOwPFlSI="
     },
     {
       "name": "ai-agent-console",
@@ -845,7 +1027,8 @@
         "log-viewer",
         "status-indicator",
         "terminal"
-      ]
+      ],
+      "integrity": "sha256-cdX9n6pVwUrQJAaK27pQNR040VXA3/dUGjOj4ZqjQ6Q="
     },
     {
       "name": "settings-panel",
@@ -859,7 +1042,8 @@
         "label",
         "separator",
         "switch"
-      ]
+      ],
+      "integrity": "sha256-HBXanlrFTXZ6m9bTIgn7AUFkl5gmC2MqsPELmZo2waI="
     },
     {
       "name": "onboarding-panel",
@@ -870,7 +1054,8 @@
       "registryDependencies": [
         "button",
         "stepper"
-      ]
+      ],
+      "integrity": "sha256-+359eU001ytuaZRTzq5yq/aGng7I1m0cC/qqF2XbinY="
     },
     {
       "name": "error-state-page",
@@ -881,37 +1066,43 @@
       "registryDependencies": [
         "button",
         "diagnostic-panel"
-      ]
+      ],
+      "integrity": "sha256-t4oBit1tkOQpgN5x5pRgBI8XQFqgTxTJ8eI8fTUJYRo="
     },
     {
       "name": "theme-neoncite",
       "type": "registry:theme",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-lnSFQpun8rqc5hGZuC/hLqTESE9iQvGVR64gz86nQPI="
     },
     {
       "name": "theme-ocean",
       "type": "registry:theme",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-YQSSdguozlpnCSjVcaxXY7kZdlnOR4L2b/qMZcxktWo="
     },
     {
       "name": "theme-ember",
       "type": "registry:theme",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-RSzhG90TNxvYecKSsR7GgBG8CcpOYTsQPhTbXoTG758="
     },
     {
       "name": "theme-forest",
       "type": "registry:theme",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-Bimi1FEo8T6TdKyrDAe+ZfIA9BSNrntl4FsfVKT/10o="
     },
     {
       "name": "theme-ultraviolet",
       "type": "registry:theme",
       "dependencies": [],
-      "registryDependencies": []
+      "registryDependencies": [],
+      "integrity": "sha256-TOrofSiSWH1q6G51Q0L5MmfssEDDlwITLz6OGzoJ898="
     }
   ]
 }

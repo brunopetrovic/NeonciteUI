@@ -46,9 +46,7 @@ export function PricingThreeTiers() {
           <Card
             key={tier.name}
             className={
-              tier.tag
-                ? "border-[color:var(--neon-pink)]/40 shadow-[0_0_32px_rgba(255,42,157,0.15)]"
-                : ""
+              tier.tag ? "border-[color:var(--neon-pink)]/40 shadow-[var(--glow-pink)]" : ""
             }
           >
             <CardHeader>

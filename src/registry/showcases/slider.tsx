@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Slider } from "@/registry/ui/slider";
 
 export const usage = `import { Slider } from "@/components/neoncite/slider"

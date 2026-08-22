@@ -2,12 +2,15 @@
   "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
   "name": "kbd",
   "type": "registry:ui",
+  "description": "Machined keyboard-key hint for shortcuts and command surfaces.",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-2Ya5fnNDkZQBN4Sj8smQ21tHWKeP/QMi4TlPFqLrPtk=",
   "files": [
     {
       "path": "components/neoncite/kbd.tsx",
-      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function Kbd({ className, ...props }: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <kbd\n      className={cn(\n        \"inline-flex min-h-6 items-center justify-center rounded-[6px] border border-[color:var(--hairline)] bg-gradient-to-b from-[color:var(--surface-3)] to-[color:var(--surface-1)] px-1.5 font-mono text-[10px] font-medium text-muted-foreground shadow-[0_2px_0_rgba(0,0,0,.65),inset_0_1px_1px_rgba(255,255,255,.08)]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nexport function Kbd({ className, ...props }: React.HTMLAttributes<HTMLElement>) {\n  return (\n    <kbd\n      className={cn(\n        \"inline-flex min-h-6 items-center justify-center rounded-[6px] border border-[color:var(--hairline)] bg-gradient-to-b from-[color:var(--surface-3)] to-[color:var(--surface-1)] px-1.5 font-mono text-[10px] font-medium text-muted-foreground shadow-[var(--shadow-keycap)]\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n",
+      "integrity": "sha256-2Ya5fnNDkZQBN4Sj8smQ21tHWKeP/QMi4TlPFqLrPtk=",
       "type": "registry:ui",
       "target": ""
     }

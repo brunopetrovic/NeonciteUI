@@ -4,10 +4,12 @@
   "type": "registry:theme",
   "dependencies": [],
   "registryDependencies": [],
+  "integrity": "sha256-RSzhG90TNxvYecKSsR7GgBG8CcpOYTsQPhTbXoTG758=",
   "files": [
     {
       "path": "src/styles/theme-ember.css",
       "content": "/* Neoncite Ember — dark-only registry theme */\n:root, .dark {\n  --primary: #ff6600;\n  --ring: #ff6600;\n  --accent: #ffcc00;\n  --radius: 0.5rem;\n  --surface-0: #0c0403;\n  --surface-1: #140a07;\n  --surface-2: #1c110b;\n  --surface-3: #2a1810;\n  --hairline: #3d2418;\n  --background: #0c0403;\n  --foreground: #fde8d8;\n  --card: #140a07;\n  --card-foreground: #fde8d8;\n  --popover: #1c110b;\n  --popover-foreground: #fde8d8;\n  --secondary: #2a1810;\n  --secondary-foreground: #fde8d8;\n  --muted: #1c110b;\n  --muted-foreground: #b99a84;\n  --input: #2a1810;\n  --border: #2a1810;\n}",
+      "integrity": "sha256-RSzhG90TNxvYecKSsR7GgBG8CcpOYTsQPhTbXoTG758=",
       "type": "registry:theme",
       "target": ""
     }

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Switch } from "@/registry/ui/switch";
 
 export const usage = `import { Switch } from "@/components/neoncite/switch"

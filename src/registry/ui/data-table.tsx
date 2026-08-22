@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import {
+  type Column,
   type ColumnDef,
   type SortingState,
   type ColumnFiltersState,
@@ -130,6 +131,7 @@ function DataTable<TData, TValue>({
     <div className="space-y-3">
       {searchKey && (
         <input
+          aria-label={searchPlaceholder}
           placeholder={searchPlaceholder}
           value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
           onChange={(e) => table.getColumn(searchKey)?.setFilterValue(e.target.value)}
@@ -180,18 +182,22 @@ function DataTable<TData, TValue>({
           </span>
           <div className="flex gap-1">
             <button
+              type="button"
+              aria-label="Previous page"
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
               className="h-7 w-7 flex items-center justify-center rounded-[8px] border border-[color:var(--hairline)] text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <ChevronLeft size={14} />
+              <ChevronLeft size={14} aria-hidden="true" />
             </button>
             <button
+              type="button"
+              aria-label="Next page"
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
               className="h-7 w-7 flex items-center justify-center rounded-[8px] border border-[color:var(--hairline)] text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
             >
-              <ChevronRight size={14} />
+              <ChevronRight size={14} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -201,8 +207,6 @@ function DataTable<TData, TValue>({
 }
 
 /* ─── Sortable header helper ─── */
-import { type Column } from "@tanstack/react-table";
-
 function SortableHeader<TData, TValue>({
   column,
   children,
@@ -212,11 +216,12 @@ function SortableHeader<TData, TValue>({
 }) {
   return (
     <button
+      type="button"
       className="flex items-center gap-1 hover:text-foreground transition-colors"
       onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
     >
       {children}
-      <ArrowUpDown size={12} />
+      <ArrowUpDown size={12} aria-hidden="true" />
     </button>
   );
 }

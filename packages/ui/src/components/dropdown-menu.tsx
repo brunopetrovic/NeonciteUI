@@ -13,7 +13,7 @@ export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 
 const contentClass = cn(
   "z-50 min-w-[10rem] overflow-hidden rounded-[12px] border border-[color:var(--hairline)] bg-[color:var(--surface-2)] p-1 text-foreground",
-  "shadow-[0_24px_48px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.04)]",
+  "shadow-[var(--shadow-floating)]",
   "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
 );
 

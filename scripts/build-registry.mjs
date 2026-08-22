@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
@@ -20,6 +21,7 @@ const ItemSchema = z.object({
   dependencies: z.array(z.string()).default([]),
   registryDeps: z.array(z.string()).default([]),
   targetPath: z.string(),
+  description: z.string().optional(),
 });
 const BlockSchema = z.object({ slug: z.string(), source: z.string(), name: z.string() });
 const ThemeSchema = z.object({
@@ -44,6 +46,10 @@ const THEMES = z.array(ThemeSchema).parse(readJson(THEMES_PATH));
 const ITEM_SLUGS = new Set(ITEMS.map((item) => item.slug));
 
 fs.mkdirSync(OUT, { recursive: true });
+
+function integrity(content) {
+  return `sha256-${createHash("sha256").update(content, "utf8").digest("base64")}`;
+}
 
 function packageName(specifier) {
   if (specifier.startsWith("@")) return specifier.split("/").slice(0, 2).join("/");
@@ -113,20 +119,33 @@ for (const itemMeta of ITEMS) {
   const content = fs.readFileSync(srcPath, "utf8");
   if (!content.includes("export") || content.length < 10)
     throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
+  const sourceIntegrity = integrity(content);
   const item = {
     $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: itemMeta.slug,
     type: "registry:ui",
+    ...(itemMeta.description ? { description: itemMeta.description } : {}),
     dependencies: itemMeta.dependencies,
     registryDependencies: itemMeta.registryDeps,
-    files: [{ path: itemMeta.targetPath, content, type: "registry:ui", target: "" }],
+    integrity: sourceIntegrity,
+    files: [
+      {
+        path: itemMeta.targetPath,
+        content,
+        integrity: sourceIntegrity,
+        type: "registry:ui",
+        target: "",
+      },
+    ],
   };
   fs.writeFileSync(path.join(OUT, `${itemMeta.slug}.json`), JSON.stringify(item, null, 2));
   index.push({
     name: itemMeta.slug,
     type: "registry:ui",
+    ...(itemMeta.description ? { description: itemMeta.description } : {}),
     dependencies: itemMeta.dependencies,
     registryDependencies: itemMeta.registryDeps,
+    integrity: sourceIntegrity,
   });
   console.log(`[registry] validated and wrote ${itemMeta.slug}.json`);
 }
@@ -137,30 +156,55 @@ for (const blockMeta of BLOCKS) {
   const content = fs.readFileSync(sourcePath, "utf8");
   const { dependencies, registryDependencies } = blockDependencies(content, blockMeta.slug);
   const targetPath = `components/neoncite/blocks/${blockMeta.slug}.tsx`;
+  const sourceIntegrity = integrity(content);
+  const description = dependencies.includes("recharts")
+    ? "Requires recharts >=2.0.0 as a peer dependency."
+    : undefined;
   const item = {
     $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: blockMeta.slug,
     type: "registry:block",
+    ...(description ? { description } : {}),
     dependencies,
     registryDependencies,
-    files: [{ path: targetPath, content, type: "registry:block", target: "" }],
+    integrity: sourceIntegrity,
+    files: [
+      {
+        path: targetPath,
+        content,
+        integrity: sourceIntegrity,
+        type: "registry:block",
+        target: "",
+      },
+    ],
   };
   fs.writeFileSync(path.join(OUT, `${blockMeta.slug}.json`), JSON.stringify(item, null, 2));
-  index.push({ name: blockMeta.slug, type: "registry:block", dependencies, registryDependencies });
+  index.push({
+    name: blockMeta.slug,
+    type: "registry:block",
+    ...(description ? { description } : {}),
+    dependencies,
+    registryDependencies,
+    integrity: sourceIntegrity,
+  });
   console.log(`[registry] validated and wrote block ${blockMeta.slug}.json`);
 }
 
 for (const theme of THEMES) {
+  const content = themeCss(theme);
+  const sourceIntegrity = integrity(content);
   const item = {
     $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
     name: theme.slug,
     type: "registry:theme",
     dependencies: [],
     registryDependencies: [],
+    integrity: sourceIntegrity,
     files: [
       {
         path: `src/styles/${theme.slug}.css`,
-        content: themeCss(theme),
+        content,
+        integrity: sourceIntegrity,
         type: "registry:theme",
         target: "",
       },
@@ -172,6 +216,7 @@ for (const theme of THEMES) {
     type: "registry:theme",
     dependencies: [],
     registryDependencies: [],
+    integrity: sourceIntegrity,
   });
   console.log(`[registry] validated and wrote theme ${theme.slug}.json`);
 }
