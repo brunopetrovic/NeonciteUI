@@ -17,12 +17,28 @@ export const Route = createFileRoute("/changelog")({
 
 const releases = [
   {
-    version: "Neoncite/UI 0.2.0",
+    version: "Neoncite/UI 0.3.0",
     status: "current release",
+    textAccent: "neon-cyan",
+    dotAccent: "bg-[color:var(--neon-cyan)]",
+    summary:
+      "Hardening release: dependency boundaries, centralized design tokens, opt-in motion, supply-chain integrity, unit test coverage, and stricter CI policy.",
+    changes: [
+      "Centralized the neon palette and glow effects into canonical design tokens; registry components no longer hardcode raw color values.",
+      "Button and Badge micro-motion is now strictly opt-in via explicit motion variants, with reduced-motion behavior preserved.",
+      "Registry generation embeds SHA-256 integrity digests, and the CLI verifies each digest before writing files.",
+      "Added Vitest + React Testing Library coverage for Button, Input, Dialog, Select, Command, Sonner, Data Table, and Form foundations.",
+      "Enabled stricter TypeScript flags (noUnusedLocals, noUnusedParameters, verbatimModuleSyntax) across source and tests.",
+      "Enforced a core bundle size budget in CI and kept framer-motion and chart peers optional for tree-shaking.",
+      "Added Renovate weekly updates, CODEOWNERS, structured issue templates, a pull request checklist, accessibility guidance docs, and Theme Builder compatibility documentation.",
+    ],
+  },
+  {
+    version: "Neoncite/UI 0.2.0",
+    status: "previous release",
     textAccent: "neon-pink",
     dotAccent: "bg-[color:var(--neon-pink)]",
-    summary:
-      "Current published release of the complete Neoncite/UI component, Block, theme, CLI, and package system.",
+    summary: "Complete Neoncite/UI component, Block, theme, CLI, and package system.",
     changes: [
       "Expanded the canonical registry to 84 UI components, including the Neoncite Signature family for technical products.",
       "Published 18 application-grade Blocks and five installable dark themes.",
