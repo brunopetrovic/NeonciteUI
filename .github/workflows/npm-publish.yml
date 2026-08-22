@@ -1,0 +1,98 @@
+name: Publish to npm
+
+# Manual release publishing. Requires these repository secrets / environments:
+#
+#   NPM_TOKEN          — npm automation-granularity access token for the
+#                        account that owns `neoncite` and `@neoncite/ui`
+#   (optional)         — set the token in a GitHub Environment named "npm"
+#                        so publishes can be gated on approval
+#
+# Publishing is idempotent: if a version is already on npm the step is
+# skipped instead of failing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (build and pack, do not publish)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write # npm provenance attestation
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: npm # remove or rename if no environment gating wanted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22.13.0
+          registry-url: https://registry.npmjs.org/
+          cache: npm
+          cache-dependency-path: |
+            package.json
+            packages/cli/package-lock.json
+            packages/ui/package-lock.json
+
+      - name: Install CLI dependencies
+        run: npm ci --prefix packages/cli --no-audit --no-fund
+
+      - name: Install UI package dependencies
+        run: npm ci --prefix packages/ui --no-audit --no-fund
+
+      - name: Validate version parity
+        run: node scripts/validate-version-parity.mjs
+
+      - name: Build @neoncite/ui package
+        run: npm --prefix packages/ui run build
+
+      - name: Pack CLI
+        working-directory: packages/cli
+        run: npm pack --dry-run=false && ls -la *.tgz
+
+      - name: Publish neoncite CLI
+        working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view neoncite@${VERSION} version >/dev/null 2>&1; then
+            echo "neoncite@${VERSION} already published — skipping"
+          else
+            npm publish --provenance --access public
+          fi
+
+      - name: Publish @neoncite/ui
+        working-directory: packages/ui
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view @neoncite/ui@${VERSION} version >/dev/null 2>&1; then
+            echo "@neoncite/ui@${VERSION} already published — skipping"
+          else
+            npm publish --provenance --access public
+          fi
+
+      - name: Verify published versions
+        env:
+          VERSION: ${{ github.event.inputs.dry_run && 'skip' || 'check' }}
+        run: |
+          if [ "$VERSION" = "skip" ]; then echo "dry run — skipping verification"; exit 0; fi
+          V=$(node -p "require('./packages/cli/package.json').version")
+          npm view neoncite@${V} version
+          npm view @neoncite/ui@${V} version
+          echo "✓ both packages live at ${V}"
