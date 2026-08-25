@@ -102,8 +102,8 @@ function DocsOverview() {
         </p>
         <p className="text-[13px] leading-relaxed text-muted-foreground">
           Neoncite/UI v{PUBLIC_VERSION} is the current public release. APIs and installation
-          workflows remain under active development; migration notes accompany intentional
-          breaking changes.
+          workflows remain under active development; migration notes accompany intentional breaking
+          changes.
           {!SOURCE_IS_PUBLIC ? (
             <> Source currently targets v{SOURCE_VERSION}, which has not been published yet.</>
           ) : null}
