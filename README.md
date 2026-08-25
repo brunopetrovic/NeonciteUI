@@ -8,7 +8,7 @@ Neoncite/UI is an opinionated, dark-mode-only React component system built aroun
 
 ## Status
 
-Neoncite/UI v0.3.0 is the current public release. The public registry currently contains 84 UI components, 18 blocks, and 5 installable dark themes. APIs and installation behavior remain under active development.
+Neoncite/UI v0.2.0 is the current public release. Source currently targets v0.3.0, which has not yet been published to npm or tagged as a GitHub release. The public registry contains 84 UI components, 18 blocks, and 5 installable dark themes. APIs and installation behavior remain under active development.
 
 > **Accessibility constraint:** Neoncite/UI is intentionally dark-mode only. It does not support light mode. Projects with accessibility requirements for light interfaces or high-contrast modes should evaluate whether this constraint is compatible with their needs. `prefers-contrast: more` is partially supported through increased glow intensity.
 >
@@ -109,7 +109,7 @@ Otherwise, import from the component path relative to your application source as
 
 ## CLI
 
-Current CLI release: 0.3.0
+Current npm release: 0.2.0. Source version: 0.3.0.
 
 ```text
 neoncite init [-y|--yes]
