@@ -48,8 +48,25 @@ test("a real run enables every npm publish step", () => {
   }
 });
 
-test("release job performs audit and full validation before packaging", () => {
+test("real publication is restricted to main", () => {
+  const guard = stepBlock("Require main for publication");
+  assert.equal(
+    guard.match(/^        if:\s*(.+)$/m)?.[1]?.trim(),
+    "${{ !inputs.dry_run && github.ref != 'refs/heads/main' }}",
+  );
+  assert.match(guard, /exit 1/);
+});
+
+test("release job audits every package graph and fully validates before packaging", () => {
   assert.match(stepBlock("Audit release dependency graph"), /npm audit --audit-level=moderate/);
+  assert.match(
+    stepBlock("Audit CLI package graph"),
+    /npm audit --prefix packages\/cli --audit-level=moderate/,
+  );
+  assert.match(
+    stepBlock("Audit UI package graph"),
+    /npm audit --prefix packages\/ui --audit-level=moderate/,
+  );
   assert.match(stepBlock("Install Chromium"), /playwright install --with-deps chromium/);
   assert.match(stepBlock("Run full validation gate"), /npm run validate/);
   assert.ok(
