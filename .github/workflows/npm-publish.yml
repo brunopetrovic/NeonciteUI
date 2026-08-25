@@ -47,6 +47,9 @@ jobs:
             packages/cli/package-lock.json
             packages/ui/package-lock.json
 
+      - name: Use the lockfile npm version
+        run: npm install --global npm@11.9.0
+
       - name: Install CLI dependencies
         run: npm ci --prefix packages/cli --no-audit --no-fund
 

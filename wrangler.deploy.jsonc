@@ -3,11 +3,18 @@
   "name": "neoncite-ui",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": "dist/server/server.js",
+  "main": ".output/server/index.mjs",
   "account_id": "b125fb1c0875010abfd70cb3f1f74445",
   "assets": {
-    "directory": "./dist/client",
+    "directory": "./.output/public",
     "binding": "ASSETS",
     "not_found_handling": "none"
-  }
+  },
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": ["**/*.mjs", "**/*.js"]
+    }
+  ]
 }
