@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Blocks, Braces, Palette, Terminal, Zap } from "lucide-react";
+import { PUBLIC_VERSION, SOURCE_IS_PUBLIC, SOURCE_VERSION } from "@/lib/release-status";
 
 export const Route = createFileRoute("/docs/")({
   head: () => ({
@@ -100,8 +101,12 @@ function DocsOverview() {
           Project status
         </p>
         <p className="text-[13px] leading-relaxed text-muted-foreground">
-          Neoncite/UI v0.2.0 is the current public release. APIs and installation workflows remain
-          under active development; migration notes will accompany intentional breaking changes.
+          Neoncite/UI v{PUBLIC_VERSION} is the current public release. APIs and installation
+          workflows remain under active development; migration notes accompany intentional breaking
+          changes.
+          {!SOURCE_IS_PUBLIC ? (
+            <> Source currently targets v{SOURCE_VERSION}, which has not been published yet.</>
+          ) : null}
         </p>
       </section>
     </article>

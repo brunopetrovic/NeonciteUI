@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { PUBLIC_VERSION } from "@/lib/release-status";
 
 export function SiteFooter() {
   return (
@@ -16,7 +17,7 @@ export function SiteFooter() {
             and neon accents. Open source, source-first, and built for technical products.
           </p>
           <p className="mt-3 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-            v0.2.0 · Active development
+            v{PUBLIC_VERSION} · Current public release
           </p>
         </div>
 

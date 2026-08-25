@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0
+## 0.3.0 (unreleased)
 
 ### Dependency boundaries and bundle health
 
@@ -30,12 +30,14 @@
 - The CLI verifies each digest before writing files and aborts on mismatch.
 - Removed the unused Gemini server capability declaration after auditing the Worker implementation.
 - GitHub Actions are pinned to immutable action SHAs.
+- Upgraded the TanStack/Lovable build integration, removed the vulnerable Miniflare/Undici dependency chain, aligned workflows with the lockfile runtime, and moved Cloudflare deployment to generated Nitro Worker output.
 
 ### Repository operations
 
 - Added deterministic npm lockfiles and Node/npm engine requirements.
 - Added CODEOWNERS, branch-protection guidance, Renovate configuration, structured issue forms, and a pull-request checklist.
 - CI uses the full validation gate and retains Playwright diagnostics on failure.
+- Added a manual npm publish workflow with provenance, environment gating, dry-run support, idempotent version checks, and post-publish verification.
 
 ### Migration from v0.2.x
 

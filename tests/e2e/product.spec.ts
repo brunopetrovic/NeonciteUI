@@ -1,5 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { PUBLIC_VERSION, SOURCE_IS_PUBLIC, SOURCE_VERSION } from "../../src/lib/release-status";
 
 async function expectNoSeriousA11yViolations(page: import("@playwright/test").Page) {
   const results = await new AxeBuilder({ page })
@@ -29,18 +30,44 @@ async function expectNoButtonNameViolations(page: import("@playwright/test").Pag
   ).toEqual([]);
 }
 
-test("published surfaces identify v0.2.0 as the current release", async ({ page }) => {
+test("published surfaces match canonical release state", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByText("v0.2.0 · Active development", { exact: true })).toBeVisible();
+  await expect(
+    page.getByText(`v${PUBLIC_VERSION} · Current public release`, { exact: true }),
+  ).toBeVisible();
   await expect(page.getByText(/pre-1\.0/i)).toHaveCount(0);
 
   await page.goto("/changelog");
-  await expect(page.getByRole("heading", { level: 2, name: "Neoncite/UI 0.2.0" })).toBeVisible();
-  await expect(page.getByText("current release", { exact: true })).toBeVisible();
-  await expect(page.getByText(/release candidate/i)).toHaveCount(0);
+  await expect(
+    page.getByRole("heading", { level: 2, name: `Neoncite/UI ${PUBLIC_VERSION}` }),
+  ).toBeVisible();
+  await expect(
+    page.getByText(SOURCE_IS_PUBLIC ? "current release" : "current public release", {
+      exact: true,
+    }),
+  ).toBeVisible();
+  if (!SOURCE_IS_PUBLIC) {
+    await expect(
+      page.getByRole("heading", { level: 2, name: `Neoncite/UI ${SOURCE_VERSION}` }),
+    ).toBeVisible();
+    await expect(page.getByText("next release", { exact: true })).toBeVisible();
+  }
 
   await page.goto("/docs");
-  await expect(page.getByText(/Neoncite\/UI v0\.2\.0 is the current public release/)).toBeVisible();
+  await expect(
+    page.getByText(
+      new RegExp(
+        `Neoncite/UI v${PUBLIC_VERSION.replaceAll(".", "\\.")} is the current public release`,
+      ),
+    ),
+  ).toBeVisible();
+  if (!SOURCE_IS_PUBLIC) {
+    await expect(
+      page.getByText(
+        new RegExp(`Source currently targets v${SOURCE_VERSION.replaceAll(".", "\\.")}`),
+      ),
+    ).toBeVisible();
+  }
 });
 
 test("home hero has no pre-release pill and uses solid white heading text", async ({ page }) => {
