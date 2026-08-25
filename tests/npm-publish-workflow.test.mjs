@@ -70,7 +70,8 @@ test("release job audits every package graph and fully validates before packagin
   assert.match(stepBlock("Install Chromium"), /playwright install --with-deps chromium/);
   assert.match(stepBlock("Run full validation gate"), /npm run validate/);
   assert.ok(
-    workflow.indexOf(stepBlock("Run full validation gate")) < workflow.indexOf(stepBlock("Pack CLI")),
+    workflow.indexOf(stepBlock("Run full validation gate")) <
+      workflow.indexOf(stepBlock("Pack CLI")),
     "full validation must finish before release tarballs are packed",
   );
 });
