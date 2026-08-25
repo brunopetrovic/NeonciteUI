@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { PUBLIC_VERSION, SOURCE_IS_PUBLIC, SOURCE_VERSION } from "@/lib/release-status";
 
 export const Route = createFileRoute("/changelog")({
   head: () => ({
@@ -17,8 +18,8 @@ export const Route = createFileRoute("/changelog")({
 
 const releases = [
   {
-    version: "Neoncite/UI 0.3.0",
-    status: "current release",
+    version: `Neoncite/UI ${SOURCE_VERSION}`,
+    status: SOURCE_IS_PUBLIC ? "current release" : "next release",
     textAccent: "neon-cyan",
     dotAccent: "bg-[color:var(--neon-cyan)]",
     summary:
@@ -31,18 +32,19 @@ const releases = [
       "Enabled stricter TypeScript flags (noUnusedLocals, noUnusedParameters, verbatimModuleSyntax) across source and tests.",
       "Enforced a core bundle size budget in CI and kept framer-motion and chart peers optional for tree-shaking.",
       "Added Renovate weekly updates, CODEOWNERS, structured issue templates, a pull request checklist, accessibility guidance docs, and Theme Builder compatibility documentation.",
+      "Hardened the build toolchain and Cloudflare deployment path while removing vulnerable transitive dependencies.",
     ],
   },
   {
-    version: "Neoncite/UI 0.2.0",
-    status: "previous release",
+    version: `Neoncite/UI ${PUBLIC_VERSION}`,
+    status: SOURCE_IS_PUBLIC ? "previous release" : "current public release",
     textAccent: "neon-pink",
     dotAccent: "bg-[color:var(--neon-pink)]",
     summary: "Complete Neoncite/UI component, Block, theme, CLI, and package system.",
     changes: [
       "Expanded the canonical registry to 84 UI components, including the Neoncite Signature family for technical products.",
       "Published 18 application-grade Blocks and five installable dark themes.",
-      "Published neoncite@0.2.0 and @neoncite/ui@0.2.0 to npm with root and component subpath exports.",
+      `Published neoncite@${PUBLIC_VERSION} and @neoncite/ui@${PUBLIC_VERSION} to npm with root and component subpath exports.`,
       "CLI init, add, list, and diff workflows now resolve registry dependencies and rewrite internal imports for consuming projects.",
       "Documentation now covers live previews, installation, APIs, states, accessibility, keyboard behavior, tokens, SSR, RTL, and canonical source.",
       "Read-only CI validates registry integrity, generated parity, TypeScript, tests, builds, clean-room installation, accessibility, and visual regression before Cloudflare deployment.",
@@ -72,8 +74,8 @@ function ChangelogPage() {
           Changelog
         </h1>
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
-          Published Neoncite/UI releases and their coordinated CLI, package, registry, and
-          documentation changes.
+          Published releases and the next coordinated Neoncite/UI release across the CLI, package,
+          registry, and documentation.
         </p>
 
         <div className="mt-12 space-y-8">
