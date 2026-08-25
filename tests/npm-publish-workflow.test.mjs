@@ -48,12 +48,23 @@ test("a real run enables every npm publish step", () => {
   }
 });
 
-test("dry_run still builds and packs the CLI without publishing", () => {
+test("release job performs audit and full validation before packaging", () => {
+  assert.match(stepBlock("Audit release dependency graph"), /npm audit --audit-level=moderate/);
+  assert.match(stepBlock("Install Chromium"), /playwright install --with-deps chromium/);
+  assert.match(stepBlock("Run full validation gate"), /npm run validate/);
+  assert.ok(
+    workflow.indexOf(stepBlock("Run full validation gate")) < workflow.indexOf(stepBlock("Pack CLI")),
+    "full validation must finish before release tarballs are packed",
+  );
+});
+
+test("dry_run still builds and packs both packages without publishing", () => {
   assert.match(
     workflow,
     /- name: Build @neoncite\/ui package[\s\S]*?run: npm --prefix packages\/ui run build/,
   );
   assert.match(workflow, /- name: Pack CLI[\s\S]*?run: npm pack --dry-run=false/);
+  assert.match(workflow, /- name: Pack @neoncite\/ui[\s\S]*?run: npm pack --dry-run=false/);
 });
 
 test("builds the CLI before packing its declared executable and assets", () => {
@@ -106,12 +117,25 @@ test("builds the CLI before packing its declared executable and assets", () => {
   }
 });
 
-test("dry_run skips publish verification and a real run performs it", () => {
+test("real publish verifies npm and creates an idempotent GitHub release", () => {
   const verification = stepBlock("Verify published versions");
   assert.equal(verification.match(/^        if:\s*(.+)$/m)?.[1]?.trim(), "${{ !inputs.dry_run }}");
-  assert.doesNotMatch(verification, /github\.event\.inputs\.dry_run/);
   assert.match(verification, /npm view neoncite@\$\{V\} version/);
   assert.match(verification, /npm view @neoncite\/ui@\$\{V\} version/);
+
+  const githubRelease = stepBlock("Create coordinated GitHub release");
+  assert.equal(githubRelease.match(/^        if:\s*(.+)$/m)?.[1]?.trim(), "${{ !inputs.dry_run }}");
+  assert.match(githubRelease, /gh release view "v\$\{V\}"/);
+  assert.match(githubRelease, /gh release create "v\$\{V\}"/);
+  assert.match(githubRelease, /--target "\$GITHUB_SHA"/);
+});
+
+test("release workflow is OIDC-ready and uses a compatible runtime", () => {
+  assert.match(workflow, /contents: write/);
+  assert.match(workflow, /id-token: write/);
+  assert.match(workflow, /node-version: 22\.14\.0/);
+  assert.match(workflow, /package-manager-cache: false/);
+  assert.match(workflow, /npm install --global npm@11\.15\.0/);
 });
 
 test("release actions are pinned to immutable commits with readable versions", () => {
