@@ -9,6 +9,7 @@ const forbidden = [
   /@Lovable\b/i,
   /\b29 components\b/i,
   /\b60\+ Pro blocks\b/i,
+  /\b23 Radix-based components\b/i,
   /Figma (kit|library).*(included|access)/i,
   /\bSLA support\b/i,
 ];
@@ -32,7 +33,12 @@ function collect(target, output = []) {
 
 test("public source does not reintroduce known stale or unsupported claims", () => {
   const violations = [];
-  for (const file of [...collect("src"), ...collect("README.md"), ...collect("public/llms.txt")]) {
+  for (const file of [
+    ...collect("src"),
+    ...collect("README.md"),
+    ...collect("packages/ui/README.md"),
+    ...collect("public/llms.txt"),
+  ]) {
     const content = fs.readFileSync(file, "utf8");
     for (const pattern of forbidden) {
       if (pattern.test(content)) violations.push(`${path.relative(root, file)} matched ${pattern}`);
