@@ -39,6 +39,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7 as of 2026-08-21
 
+      - name: Require main for publication
+        if: ${{ !inputs.dry_run && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "Real releases must be dispatched from main; got ${GITHUB_REF}." >&2
+          exit 1
+
       - name: Setup Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6 as of 2026-08-21
         with:
@@ -64,8 +70,14 @@ jobs:
       - name: Install CLI dependencies
         run: npm ci --prefix packages/cli --no-audit --no-fund
 
+      - name: Audit CLI package graph
+        run: npm audit --prefix packages/cli --audit-level=moderate
+
       - name: Install UI package dependencies
         run: npm ci --prefix packages/ui --no-audit --no-fund
+
+      - name: Audit UI package graph
+        run: npm audit --prefix packages/ui --audit-level=moderate
 
       - name: Validate version and release parity
         run: node scripts/validate-version-parity.mjs
