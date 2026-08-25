@@ -93,7 +93,9 @@ if (!rootReadme.includes(expectedPublicClaim)) {
 if (!sourceIsPublic) {
   const expectedSourceClaim = `Source currently targets v${sourceVersion}`;
   if (!rootReadme.includes(expectedSourceClaim)) {
-    throw new Error(`[version] README unreleased-source claim must include: ${expectedSourceClaim}`);
+    throw new Error(
+      `[version] README unreleased-source claim must include: ${expectedSourceClaim}`,
+    );
   }
 }
 
@@ -107,7 +109,9 @@ const expectedHeading = sourceIsPublic
   ? `## ${sourceVersion}\n`
   : `## ${sourceVersion} (unreleased)\n`;
 if (!changelog.includes(expectedHeading)) {
-  throw new Error(`[version] CHANGELOG must contain coordinated heading: ${expectedHeading.trim()}`);
+  throw new Error(
+    `[version] CHANGELOG must contain coordinated heading: ${expectedHeading.trim()}`,
+  );
 }
 
 console.log(
