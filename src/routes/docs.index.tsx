@@ -104,7 +104,7 @@ function DocsOverview() {
           Neoncite/UI v{PUBLIC_VERSION} is the current public release. APIs and installation
           workflows remain under active development; migration notes accompany intentional
           breaking changes.
-          {!SOURCE_IS_PUBLIC && SOURCE_VERSION !== PUBLIC_VERSION ? (
+          {!SOURCE_IS_PUBLIC ? (
             <> Source currently targets v{SOURCE_VERSION}, which has not been published yet.</>
           ) : null}
         </p>
