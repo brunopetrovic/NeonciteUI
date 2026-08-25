@@ -55,11 +55,17 @@ test("published surfaces match canonical release state", async ({ page }) => {
 
   await page.goto("/docs");
   await expect(
-    page.getByText(new RegExp(`Neoncite/UI v${PUBLIC_VERSION.replaceAll(".", "\\.")} is the current public release`)),
+    page.getByText(
+      new RegExp(
+        `Neoncite/UI v${PUBLIC_VERSION.replaceAll(".", "\\.")} is the current public release`,
+      ),
+    ),
   ).toBeVisible();
   if (!SOURCE_IS_PUBLIC) {
     await expect(
-      page.getByText(new RegExp(`Source currently targets v${SOURCE_VERSION.replaceAll(".", "\\.")}`)),
+      page.getByText(
+        new RegExp(`Source currently targets v${SOURCE_VERSION.replaceAll(".", "\\.")}`),
+      ),
     ).toBeVisible();
   }
 });
