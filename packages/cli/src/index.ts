@@ -12,7 +12,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 
 const CLI_VERSION = "0.3.0";
-const DEFAULT_REGISTRY = "https://neoncite-ui.brunopetrovic33.workers.dev/r";
+const DEFAULT_REGISTRY = "https://neoncite-ui.thorus.workers.dev/r";
 const BOOTSTRAP_DEPS = ["clsx", "tailwind-merge", "tw-animate-css"];
 
 const RegistryFile = z.object({
@@ -325,7 +325,7 @@ program
           ]);
 
       config = ConfigSchema.parse({
-        $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+        $schema: "https://neoncite-ui.thorus.workers.dev/r/schema.json",
         style: "neoncite",
         registry: opts.registry,
         aliases: {

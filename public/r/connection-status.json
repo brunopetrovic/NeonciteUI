@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "connection-status",
   "type": "registry:ui",
   "description": "Endpoint connection state with latency and signal treatment.",

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "system-health",
   "type": "registry:ui",
   "description": "Aggregated system checks with per-service health states.",

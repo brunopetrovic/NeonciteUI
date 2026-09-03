@@ -45,7 +45,7 @@ for (const file of fs.readdirSync(packageComponentsDir)) {
 
 const index = readJson("public/r/index.json");
 const schema = readJson("public/r/schema.json");
-if (schema.$id !== "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json") {
+if (schema.$id !== "https://neoncite-ui.thorus.workers.dev/r/schema.json") {
   throw new Error(`[generated] registry schema has an unexpected $id: ${schema.$id}`);
 }
 if (!Array.isArray(schema.anyOf) || schema.anyOf.length !== 2) {

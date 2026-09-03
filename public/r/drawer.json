@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "drawer",
   "type": "registry:ui",
   "description": "Touch-friendly bottom drawer built on Vaul.",

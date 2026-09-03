@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "status-led",
   "type": "registry:ui",
   "description": "Hardware-inspired semantic status LED with optional pulse.",

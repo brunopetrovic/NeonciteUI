@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "$id": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$id": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "title": "Neoncite registry and registry-item schema",
   "description": "Validates the Neoncite registry index and individual registry items.",
   "anyOf": [
