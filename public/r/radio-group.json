@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "radio-group",
   "type": "registry:ui",
   "description": "Recessed radios with neon-pink indicator.",

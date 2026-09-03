@@ -121,7 +121,7 @@ for (const itemMeta of ITEMS) {
     throw new Error(`[registry] component ${itemMeta.slug} seems empty or invalid`);
   const sourceIntegrity = integrity(content);
   const item = {
-    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+    $schema: "https://neoncite-ui.thorus.workers.dev/r/schema.json",
     name: itemMeta.slug,
     type: "registry:ui",
     ...(itemMeta.description ? { description: itemMeta.description } : {}),
@@ -161,7 +161,7 @@ for (const blockMeta of BLOCKS) {
     ? "Requires recharts >=2.0.0 as a peer dependency."
     : undefined;
   const item = {
-    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+    $schema: "https://neoncite-ui.thorus.workers.dev/r/schema.json",
     name: blockMeta.slug,
     type: "registry:block",
     ...(description ? { description } : {}),
@@ -194,7 +194,7 @@ for (const theme of THEMES) {
   const content = themeCss(theme);
   const sourceIntegrity = integrity(content);
   const item = {
-    $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+    $schema: "https://neoncite-ui.thorus.workers.dev/r/schema.json",
     name: theme.slug,
     type: "registry:theme",
     dependencies: [],
@@ -225,7 +225,7 @@ fs.writeFileSync(
   path.join(OUT, "index.json"),
   JSON.stringify(
     {
-      $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+      $schema: "https://neoncite-ui.thorus.workers.dev/r/schema.json",
       name: "neoncite",
       items: index,
     },

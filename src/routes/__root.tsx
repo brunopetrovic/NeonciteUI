@@ -16,7 +16,7 @@ import "../styles.css";
 import { Toaster } from "@/registry/ui/sonner";
 import { CommandPaletteProvider } from "@/components/site/CommandPalette";
 
-const ORIGIN = "https://neoncite-ui.brunopetrovic33.workers.dev";
+const ORIGIN = "https://neoncite-ui.thorus.workers.dev";
 
 function NotFoundComponent() {
   return (

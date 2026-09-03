@@ -8,7 +8,7 @@ const ITEMS_PATH = path.join(ROOT, "src/registry/items.json");
 const EXTRA_ITEMS_PATH = path.join(ROOT, "src/registry/items-extra.json");
 const BLOCKS_PATH = path.join(ROOT, "src/registry/blocks.json");
 const OUT_PATH = path.join(ROOT, "public/sitemap.xml");
-const ORIGIN = "https://neoncite-ui.brunopetrovic33.workers.dev";
+const ORIGIN = "https://neoncite-ui.thorus.workers.dev";
 
 const blocks = JSON.parse(fs.readFileSync(BLOCKS_PATH, "utf8"));
 const items = [

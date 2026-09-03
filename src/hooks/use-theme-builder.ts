@@ -348,7 +348,7 @@ export function useThemeBuilder() {
     () =>
       JSON.stringify(
         {
-          $schema: "https://neoncite-ui.brunopetrovic33.workers.dev/r/theme.schema.json",
+          $schema: "https://neoncite-ui.thorus.workers.dev/r/theme.schema.json",
           format: "neoncite-theme",
           version: 1,
           name: activePreset,

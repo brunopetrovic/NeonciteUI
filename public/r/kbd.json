@@ -1,5 +1,5 @@
 {
-  "$schema": "https://neoncite-ui.brunopetrovic33.workers.dev/r/schema.json",
+  "$schema": "https://neoncite-ui.thorus.workers.dev/r/schema.json",
   "name": "kbd",
   "type": "registry:ui",
   "description": "Machined keyboard-key hint for shortcuts and command surfaces.",

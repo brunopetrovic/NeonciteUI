@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neoncite-ui.brunopetrovic33.workers.dev/sitemap.xml
+Sitemap: https://neoncite-ui.thorus.workers.dev/sitemap.xml

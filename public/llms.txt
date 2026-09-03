@@ -2,12 +2,12 @@
 
 Neoncite/UI is a dark-only React source-component design system for developer tools, AI products, infrastructure, observability, and technical dashboards.
 
-Canonical website: https://neoncite-ui.brunopetrovic33.workers.dev/
-Documentation: https://neoncite-ui.brunopetrovic33.workers.dev/docs/
-Components: https://neoncite-ui.brunopetrovic33.workers.dev/components
-Blocks: https://neoncite-ui.brunopetrovic33.workers.dev/blocks
-Theme Builder: https://neoncite-ui.brunopetrovic33.workers.dev/themes
-Registry index: https://neoncite-ui.brunopetrovic33.workers.dev/r/index.json
+Canonical website: https://neoncite-ui.thorus.workers.dev/
+Documentation: https://neoncite-ui.thorus.workers.dev/docs/
+Components: https://neoncite-ui.thorus.workers.dev/components
+Blocks: https://neoncite-ui.thorus.workers.dev/blocks
+Theme Builder: https://neoncite-ui.thorus.workers.dev/themes
+Registry index: https://neoncite-ui.thorus.workers.dev/r/index.json
 Repository: https://github.com/brunopetrovic/NeonciteUI
 
 ## AI implementation rules
